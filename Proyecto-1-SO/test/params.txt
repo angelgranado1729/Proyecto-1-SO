@@ -1,0 +1,32 @@
+General params;
+Day duration = 3000,
+Deadline = 2,
+
+Nickelodeon's param;
+Nickelodeon workers,
+Screenwriter = 1,
+Set designer = 1,
+Character animator = 1,
+Voice actor = 1,
+Plot Twist Screenwriter = 1,
+Assembler = 1,
+Project Manager = 1,
+Director = 1;
+Maximum number of nickelodeon workers,
+Maximum = 15;
+
+Cartoon Network's param;
+Cartoon Network workers,
+Screenwriter = 1,
+Set designer = 1,
+Character animator = 1,
+Voice actor = 1,
+Plot Twist Screenwriter = 1,
+Assembler = 1,
+Project Manager = 1,
+Director = 1;
+Maximum number of Cartoon Network workers,
+Maximum = 18;
+
+
+

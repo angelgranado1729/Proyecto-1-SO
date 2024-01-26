@@ -9,12 +9,18 @@ package MainPackage;
  * @author angel
  */
 public class Main {
-/**
+
+    /**
      * main method
-     * @param args 
+     *
+     * @param args
      */
-    public static void main(String[] args){
-       App.start();
+    public static App app = new App();
+
+    public static void main(String[] args) {
+
+        app.start();
+
     }
-    
+
 }
