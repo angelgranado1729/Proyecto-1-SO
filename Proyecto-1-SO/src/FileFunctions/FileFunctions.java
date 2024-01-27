@@ -126,8 +126,7 @@ public class FileFunctions {
                 }
             }
 
-            // TODO Terminar esto, probablemente se necesite primero agregar una clase PM y
-            // Director
+            // TODO Terminar esto, probablemente se necesite primero agregar una clase PM y Director
 
             // for (int specialWorker = 6; specialWorker < 8; specialWorker++) {
             // int hourlyWage = Helpers.hourlyWages[specialWorker];

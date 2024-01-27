@@ -1,54 +1,58 @@
-# Proyecto 1 - Sistemas Operativos: Estudios de animación en Venezuela
+# Proyecto 1: Estudios de animación en Venezuela
 
-## Equipo: Angel Granado, Erika Hernández
+Este proyecto es parte del curso de Sistemas Operativos de la Universidad Metropolitana de Caracas para el trimestre 2324-2, orientado a evaluar la viabilidad de abrir estudios de animación en Venezuela mediante una simulación de software.
 
-### Problemática
+## Autores
 
-Con el rápido crecimiento de las plataformas de streaming, los ingresos de
-plataformas tradicionales, como la televisión por cable, han sufrido una reducción
-considerable y muchos canales han optado por subirse a la nueva tendencia. No
-obstante, aún existen empresas entusiastas que apuestan por sus propias series,
-y están planificando darles un nuevo enfoque, abriendo estudios de animación en
-Venezuela para otorgarles un estilo fresco haciendo uso del talento nacional.
+- [@angelgranado1729](https://github.com/angelgranado1729)
+- [@erikaalexandrah](https://github.com/erikaalexandrah)
 
-Sin embargo, dado a lo arriesgado de dicha decisión, las empresas han
-optado por contratar a desarrolladores de software que puedan crear una
-simulación y así determinar **la viabilidad de la apertura de un estudio de
-animación en el país.** Después de todo, las interesadas, Nickelodeon, Cartoon
-Network, Disney Channel y Star Channel, no pueden darse el lujo de realizar una
-inversión equivocada.
+## Problemática
 
-El objetivo de la simulación es conocer las ganancias potenciales con la
-producción y emisión de series animadas, contrastadas con los gastos operativos
-que implican mantener al estudio en funcionamiento. Además, las empresas no
-quieren ceder ante la competencia, así que han solicitado **comparar el
-rendimiento de su estudio con el de una empresa rival**, para así determinar si
-es rentable realizar la inversión.
+La industria de la televisión está en transición hacia las plataformas de streaming, reduciendo los ingresos de las cadenas tradicionales. Frente a este panorama, Nickelodeon, Cartoon Network, Disney Channel y Star Channel exploran la posibilidad de establecer estudios de animación en Venezuela, aprovechando el talento local para inyectar un estilo fresco a sus series. El software desarrollado simulará las operaciones para determinar la rentabilidad de esta inversión arriesgada.
 
-Para lograrlo, los desarrolladores de software deben presentar un
-**Dashboard** en donde se puedan visualizar los datos solicitados de forma dinámica
-y creativa, a su vez de permitir la manipulación del número de trabajadores en
-cada estudio, para así conocer la combinación óptima de los mismos,
+## Objetivos de la Simulación
 
-### Lineamientos generales
+- Estimar las ganancias potenciales de la producción y emisión de series animadas.
+- Contrastar las ganancias con los gastos operativos de mantener un estudio en funcionamiento.
+- Comparar el rendimiento de un estudio con su competencia para tomar decisiones de inversión informadas.
 
-1. **Trabajadores de los estudios:** los estudios requieren personal
-especializado en cada área, al que se le debe pagar un sueldo por hora.
-También, cada grupo de trabajadores cuenta con un espacio de Google
-Drive, el cual tiene una capacidad **limitada** para guardar elementos de los
-capítulos ya terminados, si la sección del Drive está llena no se pueden
-producir más elementos.
+## Lineamientos Generales
 
-_Cada estudio cuenta con: último número del carnet del desarrollador + 12
-trabajadores_
+- **Trabajadores del Estudio:** Especializados por área, pagados por hora, con un espacio limitado de Google Drive para almacenar elementos de los capítulos.
+  
+- **Número de Trabajadores:** Determinado por la fórmula `último número del carnet del desarrollador + 12`.
 
-Ejemplo: integrante con carnet 0299, tendrá 9+12 = 21 empleados
-**Ese número de trabajadores abarcan las áreas que se encuentran a
-continuación y a los ensambladores finales**
+- **Roles Específicos:** Guionistas, Diseñadores de Escenarios, Animadores de Personajes, Actores de Doblaje y Guionistas de Plot Twist, cada uno con su capacidad de producción y limitaciones de almacenamiento.
 
+- **Ensambladores:** Sin limitación en el número de capítulos que pueden almacenar, ensamblan las partes de los capítulos en dos días.
 
+## Requerimientos Funcionales
 
+- Utilización de Hilos/Threads y Semáforos/Semaphores.
+- Exclusión mutua en la actualización de Drive.
+- Presencia de al menos un trabajador de cada tipo en cada estudio.
+- Presentación de un Dashboard para visualizar y manipular datos de la simulación.
 
+## Especificaciones de Empresas de Desarrollo
 
+- **Nickelodeon y Cartoon Network:** Detalles sobre la creación de capítulos estándar y con Plot Twist, incluyendo la política especial de cada uno y ganancias por capítulo.
 
+- **Disney Channel y Star Channel:** Información similar adaptada a sus políticas y modelos de negocio.
 
+## Consideraciones
+
+- El proyecto debe ser elaborado en Java, con un máximo de dos integrantes.
+- Se debe utilizar GitHub para el control de versiones.
+- Se valorará la creatividad y la contribución individual al proyecto.
+
+## Entrega
+
+- El código fuente se debe entregar junto con un informe detallando la funcionalidad de las clases y métodos clave.
+- Análisis basado en los Dashboards para concluir sobre la rentabilidad y eficiencia de los estudios.
+
+## Interrogatorio
+
+- Se llevará a cabo el 9 de febrero para discutir y demostrar la comprensión del proyecto.
+
+Para más detalles y especificaciones, por favor consulte el documento completo del proyecto.
