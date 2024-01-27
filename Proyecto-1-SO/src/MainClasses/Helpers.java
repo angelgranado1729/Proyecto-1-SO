@@ -10,6 +10,11 @@ package MainClasses;
  */
 public class Helpers {
 
+    public final static String[] companies = {
+        "Nickelodeon",
+        "Cartoon Network"
+    };
+
     public final static String[] workesType = {
         "Screenwriter",
         "Set designer",
@@ -21,25 +26,15 @@ public class Helpers {
         "Director"
     };
 
-    /**
-     * Calcula el progreso diario de un trabajador
-     *
-     * @param daysToFinish: La cantidad de dias para terminar un item
-     * @return El porcentaje del trabajo hecho por dia.
-     */
-    public static float calculateDailyProgress(int daysToFinish) {
-        return 1 / daysToFinish;
-    }
-
-    public static void getInitialParams() {
-
-    }
-
-    public static void startSumilation() {
-//        for (int numWorker: startWorkers){
-//            
-//            
-//        }
-    }
+    public final static int[] hourlyWages = {
+        20,
+        26,
+        40,
+        16,
+        34,
+        50,
+        40,
+        60
+    };
 
 }

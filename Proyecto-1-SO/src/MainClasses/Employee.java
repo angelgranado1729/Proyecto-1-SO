@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 public class Employee extends Thread {
 
     private int workerId;
+    private int company;
     private int type;
     private int hourlyWage;
     private float accumulatedSalary;
@@ -24,25 +25,28 @@ public class Employee extends Thread {
     private Drive driveRef;
     private Semaphore mutex;
     private int dayDuration;
+    private int daysToFinish;
 
     public Employee(
             int workerId,
+            int company,
             int type,
             int hourlyWage,
             int daysToFinish,
             Drive driveRef,
-            Semaphore mutex,
-            int dayDuration
+            Semaphore mutex
     ) {
         this.workerId = workerId;
+        this.company = company;
         this.type = type;
         this.hourlyWage = hourlyWage;
         this.accumulatedSalary = 0;
-        this.dailyProgress = Helpers.calculateDailyProgress(daysToFinish);
-        this.accumulatedProgress = 0;
+        this.daysToFinish = daysToFinish;
+        this.dailyProgress = 1.0f/daysToFinish;
+        this.accumulatedProgress = 0f;
         this.driveRef = driveRef;
         this.mutex = mutex;
-        this.dayDuration = dayDuration;
+        this.dayDuration = App.getDayDuration();
     }
 
     @Override
@@ -51,7 +55,8 @@ public class Employee extends Thread {
             try {
                 this.getPaid();
                 this.working();
-                sleep(this.dayDuration);
+                System.out.println(this.toString());
+                sleep(this.getDayDuration());
             } catch (InterruptedException ex) {
                 Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -59,13 +64,13 @@ public class Employee extends Thread {
     }
 
     private void working() {
-        this.accumulatedProgress += this.dailyProgress;
+        this.setAccumulatedProgress(this.getAccumulatedProgress() + (this.getDailyProgress()));
 
         if (this.getAccumulatedProgress() >= 1) {
             try {
-                this.mutex.acquire();
-                this.driveRef.uploadFile(type);
-                this.mutex.release();
+                this.getMutex().acquire();
+                this.getDriveRef().uploadFile(getType());
+                this.getMutex().release();
                 this.setAccumulatedProgress(0);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
@@ -75,21 +80,23 @@ public class Employee extends Thread {
     }
 
     private void getPaid() {
-        this.accumulatedSalary += this.hourlyWage * 24;
+        this.setAccumulatedSalary(this.getAccumulatedSalary() + this.getHourlyWage() * 24);
     }
 
     @Override
     public String toString() {
-        return "Employee {"
-                + "workerId=" + workerId
-                + ", type=" + type
-                + ", hourlyWage=" + hourlyWage
-                + ", accumulatedSalary=" + accumulatedSalary
-                + ", dailyProgress=" + dailyProgress
-                + ", accumulatedProgress=" + accumulatedProgress
-                + ", driveRef=" + (driveRef != null ? "assigned" : "not assigned")
-                + ", mutex=" + (mutex != null ? "assigned" : "not assigned")
-                + '}';
+        return "Employee { \n"
+                + "workerId=" + getWorkerId() + "\n"
+                + "Company=" + Helpers.companies[getCompany()] + "\n"
+                + "type=" + Helpers.workesType[getType()] + "\n"
+                + "hourlyWage=" + getHourlyWage() + "\n"
+                + "accumulatedSalary=" + getAccumulatedSalary() + "\n"
+                + "Days to finish work=" + getDaysToFinish() + "\n"
+                + "dailyProgress=" + getDailyProgress() + "\n"
+                + "accumulatedProgress=" + getAccumulatedProgress() + "\n"
+                + "driveRef=" + (getDriveRef() != null ? "assigned" : "not assigned") + "\n"
+                + "mutex=" + (getMutex() != null ? "assigned" : "not assigned") + "\n"
+                + '}' + "\n";
     }
 
     /**
@@ -104,6 +111,20 @@ public class Employee extends Thread {
      */
     public void setWorkerId(int workerId) {
         this.workerId = workerId;
+    }
+
+    /**
+     * @return the company
+     */
+    public int getCompany() {
+        return company;
+    }
+
+    /**
+     * @param company the company to set
+     */
+    public void setCompany(int company) {
+        this.company = company;
     }
 
     /**
@@ -204,4 +225,32 @@ public class Employee extends Thread {
         this.mutex = mutex;
     }
 
+    /**
+     * @return the dayDuration
+     */
+    public int getDayDuration() {
+        return dayDuration;
+    }
+
+    /**
+     * @param dayDuration the dayDuration to set
+     */
+    public void setDayDuration(int dayDuration) {
+        this.dayDuration = dayDuration;
+    }
+
+    /**
+     * @return the daysToFinish
+     */
+    public int getDaysToFinish() {
+        return daysToFinish;
+    }
+
+    /**
+     * @param daysToFinish the daysToFinish to set
+     */
+    public void setDaysToFinish(int daysToFinish) {
+        this.daysToFinish = daysToFinish;
+    }
+  
 }

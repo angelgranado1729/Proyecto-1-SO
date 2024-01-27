@@ -1,22 +1,39 @@
-General params;
+------------------------------------------
+General params,
+------------------------------------------
 Day duration = 3000,
 Deadline = 2,
-
-Nickelodeon's param;
+------------------------------------------
+Nickelodeon's param,
+------------------------------------------
 Nickelodeon workers,
-Screenwriter = 1,
-Set designer = 1,
-Character animator = 1,
-Voice actor = 1,
-Plot Twist Screenwriter = 1,
+-------------------------
+Screenwriter = 5,
+Set designer = 4,
+Character animator = 8,
+Voice actor = 3,
+Plot Twist Screenwriter = 2,
 Assembler = 1,
-Project Manager = 1,
-Director = 1;
-Maximum number of nickelodeon workers,
-Maximum = 15;
-
-Cartoon Network's param;
+Project Manager = 6,
+Director = 3,
+-------------------------
+Maximum number of Nickelodeon workers,
+-------------------------
+Maximum = 15,
+-------------------------
+Days to finish work for Nickelodeon workers,
+-------------------------
+Screenwriter = 3,
+Set designer = 3,
+Character animator = 2,
+Voice actor = 3,
+Plot Twist Screenwriter = 3,
+Assembler = 2,
+------------------------------------------
+Cartoon Network's param,
+------------------------------------------
 Cartoon Network workers,
+-------------------------
 Screenwriter = 1,
 Set designer = 1,
 Character animator = 1,
@@ -24,9 +41,21 @@ Voice actor = 1,
 Plot Twist Screenwriter = 1,
 Assembler = 1,
 Project Manager = 1,
-Director = 1;
+Director = 1,
+-------------------------
 Maximum number of Cartoon Network workers,
-Maximum = 18;
+-------------------------
+Maximum = 18,
+-------------------------
+Days to finish work for Cartoon Network workers,
+-------------------------
+Screenwriter = 3,
+Set designer = 3,
+Character animator = 2,
+Voice actor = 3,
+Plot Twist Screenwriter = 3,
+Assembler = 2,
+------------------------------------------
 
 
 

@@ -4,10 +4,12 @@
  */
 package MainPackage;
 
+import FileFunctions.FileFunctions;
 import GUI.Classes.Home;
 import MainClasses.Drive;
 import MainClasses.Employee;
-import java.io.File;
+import MainClasses.Helpers;
+import java.util.concurrent.Semaphore;
 
 /**
  *
@@ -15,26 +17,66 @@ import java.io.File;
  */
 public class App {
 
-    private static int dayDuration = 3000;
+    private static int dayDuration;
+    private static int deadline;
+    private static final Semaphore mutex = new Semaphore(1);
     private static Drive drive = new Drive(25, 20, 55, 35, 10);
-    private static Employee[] screenwriters;
-    private static Employee[] setDesigners;
-    private static Employee[] characterAnimators;
-    private static Employee[] voiceActors;
-    private static Employee[] plotTwistScreenwriters;
-    private static Employee[] Assemblers;
+
+    // Es un array tal que en 0 esta un array con los arrays de los trabajadores de Nickelodeon, y en 1 los de Cartoon Network
+    // Es decir workers[0][1] es la lista de Set designers de Nickelodeon, mientras que workers[1][0] es el array de los Screenwriters
+    // de Cartoon Network
+    private static Employee[][][] workers;
+    private static Employee[][] proyectManagers;
+    private static Employee[][] directors;
+
     private static String selectedPath = "test\\params.txt";
-    private static File selectedFile = new File(selectedPath);
 
     public void start() {
+        FileFunctions fileFunctions = new FileFunctions(getSelectedPath());
+        //Cargamos los parametros iniciales
+        fileFunctions.loadParameters();
+
         Home home = new Home();
         home.setVisible(true);
     }
 
     /**
+     * Devuelve la lista de los empleados de una empresa.
+     *
+     * @param company, nombre de la empresa (nickelodeon o cartoon network)
+     * @param type, tipo de empleado a obtener
+     * @return Un array con los empleados
+     */
+    public static Employee[] getEmployees(String company, String type) {
+        int numCompany = company.equalsIgnoreCase("nickelodeon") ? 0 : 1;
+        for (int i = 0; i < Helpers.workesType.length; i++) {
+            if (Helpers.workesType[i].equalsIgnoreCase(type)) {
+                return getWorkers()[numCompany][i];
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Actualiza la lista de empleados de una empresa.
+     *
+     * @param company, el nombre de la empresa (nickelodeon o cartoon network)
+     * @param type, lista de empleados a modificar
+     * @param newEmployees, la nueva lista de empleados
+     */
+    public static void setEmployees(String company, String type, Employee[] newEmployees) {
+        int numCompany = company.equalsIgnoreCase("nickelodeon") ? 0 : 1;
+        for (int i = 0; i < Helpers.workesType.length; i++) {
+            if (Helpers.workesType[i].equalsIgnoreCase(type)) {
+                getWorkers()[numCompany][i] = newEmployees;
+            }
+        }
+    }
+
+    /**
      * @return the dayDuration
      */
-    public int getDayDuration() {
+    public static int getDayDuration() {
         return dayDuration;
     }
 
@@ -43,6 +85,20 @@ public class App {
      */
     public static void setDayDuration(int aDayDuration) {
         dayDuration = aDayDuration;
+    }
+
+    /**
+     * @return the deadline
+     */
+    public static int getDeadline() {
+        return deadline;
+    }
+
+    /**
+     * @param aDeadline the deadline to set
+     */
+    public static void setDeadline(int aDeadline) {
+        deadline = aDeadline;
     }
 
     /**
@@ -60,87 +116,52 @@ public class App {
     }
 
     /**
-     * @return the screenwriters
+     * @return the mutex
      */
-    public static Employee[] getScreenwriters() {
-        return screenwriters;
+    public static Semaphore getMutex() {
+        return mutex;
     }
 
     /**
-     * @param aScreenwriters the screenwriters to set
+     * @return the workers
      */
-    public static void setScreenwriters(Employee[] aScreenwriters) {
-        screenwriters = aScreenwriters;
+    public static Employee[][][] getWorkers() {
+        return workers;
     }
 
     /**
-     * @return the setDesigners
+     * @param aWorkers the workers to set
      */
-    public static Employee[] getSetDesigners() {
-        return setDesigners;
+    public static void setWorkers(Employee[][][] aWorkers) {
+        workers = aWorkers;
     }
 
     /**
-     * @param aSetDesigners the setDesigners to set
+     * @return the proyectManagers
      */
-    public static void setSetDesigners(Employee[] aSetDesigners) {
-        setDesigners = aSetDesigners;
+    public static Employee[][] getProyectManagers() {
+        return proyectManagers;
     }
 
     /**
-     * @return the characterAnimators
+     * @param aProyectManagers the proyectManagers to set
      */
-    public static Employee[] getCharacterAnimators() {
-        return characterAnimators;
+    public static void setProyectManagers(Employee[][] aProyectManagers) {
+        proyectManagers = aProyectManagers;
     }
 
     /**
-     * @param aCharacterAnimators the characterAnimators to set
+     * @return the directors
      */
-    public static void setCharacterAnimators(Employee[] aCharacterAnimators) {
-        characterAnimators = aCharacterAnimators;
+    public static Employee[][] getDirectors() {
+        return directors;
     }
 
     /**
-     * @return the voiceActors
+     * @param aDirectors the directors to set
      */
-    public static Employee[] getVoiceActors() {
-        return voiceActors;
-    }
-
-    /**
-     * @param aVoiceActors the voiceActors to set
-     */
-    public static void setVoiceActors(Employee[] aVoiceActors) {
-        voiceActors = aVoiceActors;
-    }
-
-    /**
-     * @return the plotTwistScreenwriters
-     */
-    public static Employee[] getPlotTwistScreenwriters() {
-        return plotTwistScreenwriters;
-    }
-
-    /**
-     * @param aPlotTwistScreenwriters the plotTwistScreenwriters to set
-     */
-    public static void setPlotTwistScreenwriters(Employee[] aPlotTwistScreenwriters) {
-        plotTwistScreenwriters = aPlotTwistScreenwriters;
-    }
-
-    /**
-     * @return the Assemblers
-     */
-    public static Employee[] getAssemblers() {
-        return Assemblers;
-    }
-
-    /**
-     * @param aAssemblers the Assemblers to set
-     */
-    public static void setAssemblers(Employee[] aAssemblers) {
-        Assemblers = aAssemblers;
+    public static void setDirectors(Employee[][] aDirectors) {
+        directors = aDirectors;
     }
 
     /**
@@ -155,7 +176,5 @@ public class App {
      */
     public static void setSelectedPath(String aSelectedPath) {
         selectedPath = aSelectedPath;
-    }
-
-
+    }  
 }
