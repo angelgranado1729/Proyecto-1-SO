@@ -3,7 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI.Classes;
+import MainPackage.App;
+import static MainPackage.App.getApp;
+import static MainPackage.App.setApp;
 import java.awt.Point;
+import javax.swing.UIManager;
 
 /**
  *
@@ -12,17 +16,48 @@ import java.awt.Point;
 public class CartoonNetwork extends javax.swing.JFrame {
     
     private Point initialClick;
+    private final App app = App.getInstance();
+    private int maxEmployees;
+    private int actualEmployees;
+    private static CartoonNetwork cartoonNetwork;
 
-    /**
-     * Creates new form Home
-     */
+
+    public static synchronized CartoonNetwork getInstance() {
+        if (cartoonNetwork == null) {
+            cartoonNetwork = new CartoonNetwork();
+        }
+        return cartoonNetwork;
+    }
+
     public CartoonNetwork() {
+        try {
+        for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                UIManager.setLookAndFeel(info.getClassName());
+                break;
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        initializeValues();
     }
     
-
+    private void initializeValues() {
+        if (this.app.getCartoonNetwork() != null) {
+            this.maxEmployees = this.app.getCartoonNetwork().getMaxEmployeesQuantity();
+            this.actualEmployees = this.app.getCartoonNetwork().getActualEmployeesQuantity();
+            this.scriptsValues.setText(String.valueOf(this.app.getCartoonNetwork().getScreenwriters().length));
+            this.scenaryValue.setText(String.valueOf(this.app.getCartoonNetwork().getSetDesigners().length));
+            this.animationValues.setText(String.valueOf(this.app.getCartoonNetwork().getCharacterAnimators().length));
+            this.dubbingValues.setText(String.valueOf(this.app.getCartoonNetwork().getVoiceActors().length));
+            this.plotTwistValues.setText(String.valueOf(this.app.getCartoonNetwork().getPlotTwistScreenwriters().length));
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,30 +99,30 @@ public class CartoonNetwork extends javax.swing.JFrame {
         driveTitle = new javax.swing.JLabel();
         driveTitle1 = new javax.swing.JLabel();
         scripts = new javax.swing.JPanel();
-        scriptTitle = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        scriptsTitle = new javax.swing.JLabel();
+        decreaseScripts = new javax.swing.JButton();
+        increaseScripts = new javax.swing.JButton();
+        scriptsValues = new javax.swing.JTextField();
         scenary = new javax.swing.JPanel();
         scenaryTitle = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
+        scenaryValue = new javax.swing.JTextField();
+        increaseScenary = new javax.swing.JButton();
+        decreaseScenary = new javax.swing.JButton();
         animations = new javax.swing.JPanel();
         animationsTitle = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
+        animationValues = new javax.swing.JTextField();
+        increaseAnimation = new javax.swing.JButton();
+        decreaseAnimation = new javax.swing.JButton();
         dubbing = new javax.swing.JPanel();
         dubbingTitle = new javax.swing.JLabel();
-        jButton18 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
-        jTextField4 = new javax.swing.JTextField();
+        decreaseDubbing = new javax.swing.JButton();
+        increaseDubbing = new javax.swing.JButton();
+        dubbingValues = new javax.swing.JTextField();
         plotTwist = new javax.swing.JPanel();
         plotTwistTitle = new javax.swing.JLabel();
-        jButton20 = new javax.swing.JButton();
-        jButton19 = new javax.swing.JButton();
-        jTextField5 = new javax.swing.JTextField();
+        increasePlotTwist = new javax.swing.JButton();
+        decreacePlotTwist = new javax.swing.JButton();
+        plotTwistValues = new javax.swing.JTextField();
         drivePanel = new javax.swing.JPanel();
         driveTitle2 = new javax.swing.JLabel();
         driveTitle3 = new javax.swing.JLabel();
@@ -160,11 +195,12 @@ public class CartoonNetwork extends javax.swing.JFrame {
         SidePanel.setBackground(new java.awt.Color(34, 46, 60));
         SidePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btn_Inicio.setBackground(new java.awt.Color(243, 168, 71));
+        btn_Inicio.setBackground(new java.awt.Color(55, 71, 90));
 
         icono1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Montserrat", 0, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Inicio");
 
         javax.swing.GroupLayout btn_InicioLayout = new javax.swing.GroupLayout(btn_Inicio);
@@ -174,18 +210,18 @@ public class CartoonNetwork extends javax.swing.JFrame {
             .addGroup(btn_InicioLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(icono1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
         btn_InicioLayout.setVerticalGroup(
             btn_InicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_InicioLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(btn_InicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel4)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icono1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         SidePanel.add(btn_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 330, 60));
@@ -197,7 +233,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Montserrat", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Dashboard");
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -213,9 +249,9 @@ public class CartoonNetwork extends javax.swing.JFrame {
             .addGroup(btn_nuevo_pedidoLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel13)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
         btn_nuevo_pedidoLayout.setVerticalGroup(
             btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,12 +260,12 @@ public class CartoonNetwork extends javax.swing.JFrame {
                 .addGroup(btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         SidePanel.add(btn_nuevo_pedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 330, 60));
 
-        btn_nueva_ruta.setBackground(new java.awt.Color(55, 71, 90));
+        btn_nueva_ruta.setBackground(new java.awt.Color(243, 168, 71));
         btn_nueva_ruta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_nueva_rutaMouseClicked(evt);
@@ -243,8 +279,8 @@ public class CartoonNetwork extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("Montserrat", 0, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Cartoon Network");
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -257,20 +293,20 @@ public class CartoonNetwork extends javax.swing.JFrame {
         btn_nueva_rutaLayout.setHorizontalGroup(
             btn_nueva_rutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_nueva_rutaLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(icono3)
-                .addGap(18, 18, 18)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel6)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(icono3)
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         btn_nueva_rutaLayout.setVerticalGroup(
             btn_nueva_rutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_nueva_rutaLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(btn_nueva_rutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel6)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icono3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         SidePanel.add(btn_nueva_ruta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 330, 60));
@@ -289,7 +325,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Montserrat", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Parámetros");
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -305,17 +341,19 @@ public class CartoonNetwork extends javax.swing.JFrame {
             .addGroup(btn_nuevo_almacenLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(icono4)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
         btn_nuevo_almacenLayout.setVerticalGroup(
             btn_nuevo_almacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_nuevo_almacenLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(btn_nuevo_almacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel7)
-                    .addComponent(icono4, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
+                .addGroup(btn_nuevo_almacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icono4, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                    .addGroup(btn_nuevo_almacenLayout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(0, 7, Short.MAX_VALUE))
         );
 
@@ -335,7 +373,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Montserrat", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Guardar");
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -351,18 +389,18 @@ public class CartoonNetwork extends javax.swing.JFrame {
             .addGroup(btn_reporteLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(icono5)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
-                .addContainerGap(206, Short.MAX_VALUE))
+                .addContainerGap(203, Short.MAX_VALUE))
         );
         btn_reporteLayout.setVerticalGroup(
             btn_reporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_reporteLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(btn_reporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel8)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icono5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         SidePanel.add(btn_reporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 330, 60));
@@ -381,7 +419,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Montserrat", 0, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Nickelodeon");
         jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -397,18 +435,18 @@ public class CartoonNetwork extends javax.swing.JFrame {
             .addGroup(btn_cargar_guardarLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(icono7)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
         btn_cargar_guardarLayout.setVerticalGroup(
             btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_cargar_guardarLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel10)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icono7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         SidePanel.add(btn_cargar_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 330, 60));
@@ -499,38 +537,49 @@ public class CartoonNetwork extends javax.swing.JFrame {
         scripts.setBackground(java.awt.Color.lightGray);
         scripts.setForeground(new java.awt.Color(60, 63, 65));
 
-        scriptTitle.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        scriptTitle.setForeground(new java.awt.Color(51, 51, 51));
-        scriptTitle.setText("Guionistas:");
+        scriptsTitle.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        scriptsTitle.setForeground(new java.awt.Color(51, 51, 51));
+        scriptsTitle.setText("Guionistas:");
 
-        jButton2.setBackground(new java.awt.Color(51, 51, 51));
-        jButton2.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(204, 204, 204));
-        jButton2.setText("-");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        decreaseScripts.setBackground(new java.awt.Color(51, 51, 51));
+        decreaseScripts.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        decreaseScripts.setForeground(new java.awt.Color(255, 255, 255));
+        decreaseScripts.setText("-");
+        decreaseScripts.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                decreaseScriptsMouseClicked(evt);
+            }
+        });
+        decreaseScripts.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                decreaseScriptsActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(51, 51, 51));
-        jButton3.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(204, 204, 204));
-        jButton3.setText("+");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        increaseScripts.setBackground(new java.awt.Color(51, 51, 51));
+        increaseScripts.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        increaseScripts.setForeground(new java.awt.Color(255, 255, 255));
+        increaseScripts.setText("+");
+        increaseScripts.setBorderPainted(false);
+        increaseScripts.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                increaseScriptsMouseClicked(evt);
+            }
+        });
+        increaseScripts.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                increaseScriptsActionPerformed(evt);
             }
         });
 
-        jTextField1.setBackground(java.awt.Color.lightGray);
-        jTextField1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField1.setText("1");
-        jTextField1.setBorder(null);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        scriptsValues.setBackground(java.awt.Color.lightGray);
+        scriptsValues.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        scriptsValues.setForeground(new java.awt.Color(51, 51, 51));
+        scriptsValues.setText("0");
+        scriptsValues.setBorder(null);
+        scriptsValues.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                scriptsValuesActionPerformed(evt);
             }
         });
 
@@ -540,22 +589,22 @@ public class CartoonNetwork extends javax.swing.JFrame {
             scriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(scriptsLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(scriptTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(34, 34, 34)
-                .addComponent(jButton3)
+                .addComponent(scriptsTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
+                .addComponent(increaseScripts)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scriptsValues, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addGap(17, 17, 17))
+                .addComponent(decreaseScripts)
+                .addGap(15, 15, 15))
         );
         scriptsLayout.setVerticalGroup(
             scriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(scriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(scriptTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jButton2)
-                .addComponent(jButton3)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(scriptsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(decreaseScripts)
+                .addComponent(increaseScripts)
+                .addComponent(scriptsValues, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         scenary.setBackground(java.awt.Color.lightGray);
@@ -565,34 +614,44 @@ public class CartoonNetwork extends javax.swing.JFrame {
         scenaryTitle.setForeground(new java.awt.Color(51, 51, 51));
         scenaryTitle.setText("Escenarios:");
 
-        jTextField2.setBackground(java.awt.Color.lightGray);
-        jTextField2.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField2.setText("1");
-        jTextField2.setBorder(null);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        scenaryValue.setBackground(java.awt.Color.lightGray);
+        scenaryValue.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        scenaryValue.setForeground(new java.awt.Color(51, 51, 51));
+        scenaryValue.setText("0");
+        scenaryValue.setBorder(null);
+        scenaryValue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                scenaryValueActionPerformed(evt);
             }
         });
 
-        jButton13.setBackground(new java.awt.Color(51, 51, 51));
-        jButton13.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        jButton13.setForeground(new java.awt.Color(204, 204, 204));
-        jButton13.setText("+");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
+        increaseScenary.setBackground(new java.awt.Color(51, 51, 51));
+        increaseScenary.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        increaseScenary.setForeground(new java.awt.Color(255, 255, 255));
+        increaseScenary.setText("+");
+        increaseScenary.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                increaseScenaryMouseClicked(evt);
+            }
+        });
+        increaseScenary.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
+                increaseScenaryActionPerformed(evt);
             }
         });
 
-        jButton14.setBackground(new java.awt.Color(51, 51, 51));
-        jButton14.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        jButton14.setForeground(new java.awt.Color(204, 204, 204));
-        jButton14.setText("-");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
+        decreaseScenary.setBackground(new java.awt.Color(51, 51, 51));
+        decreaseScenary.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        decreaseScenary.setForeground(new java.awt.Color(255, 255, 255));
+        decreaseScenary.setText("-");
+        decreaseScenary.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                decreaseScenaryMouseClicked(evt);
+            }
+        });
+        decreaseScenary.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
+                decreaseScenaryActionPerformed(evt);
             }
         });
 
@@ -604,61 +663,71 @@ public class CartoonNetwork extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addComponent(scenaryTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton13)
+                .addComponent(increaseScenary)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scenaryValue, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton14)
+                .addComponent(decreaseScenary)
                 .addGap(14, 14, 14))
         );
         scenaryLayout.setVerticalGroup(
             scenaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(scenaryLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(scenaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(scenaryTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                .addGroup(scenaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(scenaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton14)
-                        .addComponent(jButton13)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(decreaseScenary)
+                        .addComponent(increaseScenary)
+                        .addComponent(scenaryValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scenaryTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         animations.setBackground(java.awt.Color.lightGray);
-        animations.setForeground(new java.awt.Color(60, 63, 65));
+        animations.setForeground(new java.awt.Color(255, 255, 255));
 
         animationsTitle.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         animationsTitle.setForeground(new java.awt.Color(51, 51, 51));
         animationsTitle.setText("Animador:");
 
-        jTextField3.setBackground(java.awt.Color.lightGray);
-        jTextField3.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField3.setText("1");
-        jTextField3.setBorder(null);
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        animationValues.setBackground(java.awt.Color.lightGray);
+        animationValues.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        animationValues.setForeground(new java.awt.Color(51, 51, 51));
+        animationValues.setText("0");
+        animationValues.setBorder(null);
+        animationValues.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                animationValuesActionPerformed(evt);
             }
         });
 
-        jButton15.setBackground(new java.awt.Color(51, 51, 51));
-        jButton15.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        jButton15.setForeground(new java.awt.Color(204, 204, 204));
-        jButton15.setText("+");
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
+        increaseAnimation.setBackground(new java.awt.Color(51, 51, 51));
+        increaseAnimation.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        increaseAnimation.setForeground(new java.awt.Color(255, 255, 255));
+        increaseAnimation.setText("+");
+        increaseAnimation.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                increaseAnimationMouseClicked(evt);
+            }
+        });
+        increaseAnimation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
+                increaseAnimationActionPerformed(evt);
             }
         });
 
-        jButton16.setBackground(new java.awt.Color(51, 51, 51));
-        jButton16.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        jButton16.setForeground(new java.awt.Color(204, 204, 204));
-        jButton16.setText("-");
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
+        decreaseAnimation.setBackground(new java.awt.Color(51, 51, 51));
+        decreaseAnimation.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        decreaseAnimation.setForeground(new java.awt.Color(255, 255, 255));
+        decreaseAnimation.setText("-");
+        decreaseAnimation.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                decreaseAnimationMouseClicked(evt);
+            }
+        });
+        decreaseAnimation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton16ActionPerformed(evt);
+                decreaseAnimationActionPerformed(evt);
             }
         });
 
@@ -670,61 +739,71 @@ public class CartoonNetwork extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addComponent(animationsTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton15)
+                .addComponent(increaseAnimation)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(animationValues, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton16)
+                .addComponent(decreaseAnimation)
                 .addGap(15, 15, 15))
         );
         animationsLayout.setVerticalGroup(
             animationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(animationsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(animationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(animationsTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                .addGroup(animationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(animationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton16)
-                        .addComponent(jButton15)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(decreaseAnimation)
+                        .addComponent(increaseAnimation)
+                        .addComponent(animationValues, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(animationsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         dubbing.setBackground(java.awt.Color.lightGray);
-        dubbing.setForeground(new java.awt.Color(60, 63, 65));
+        dubbing.setForeground(new java.awt.Color(255, 255, 255));
 
         dubbingTitle.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         dubbingTitle.setForeground(new java.awt.Color(51, 51, 51));
         dubbingTitle.setText("Doblaje:");
 
-        jButton18.setBackground(new java.awt.Color(51, 51, 51));
-        jButton18.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        jButton18.setForeground(new java.awt.Color(204, 204, 204));
-        jButton18.setText("-");
-        jButton18.addActionListener(new java.awt.event.ActionListener() {
+        decreaseDubbing.setBackground(new java.awt.Color(51, 51, 51));
+        decreaseDubbing.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        decreaseDubbing.setForeground(new java.awt.Color(204, 204, 204));
+        decreaseDubbing.setText("-");
+        decreaseDubbing.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                decreaseDubbingMouseClicked(evt);
+            }
+        });
+        decreaseDubbing.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton18ActionPerformed(evt);
+                decreaseDubbingActionPerformed(evt);
             }
         });
 
-        jButton17.setBackground(new java.awt.Color(51, 51, 51));
-        jButton17.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        jButton17.setForeground(new java.awt.Color(204, 204, 204));
-        jButton17.setText("+");
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
+        increaseDubbing.setBackground(new java.awt.Color(51, 51, 51));
+        increaseDubbing.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        increaseDubbing.setForeground(new java.awt.Color(255, 255, 255));
+        increaseDubbing.setText("+");
+        increaseDubbing.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                increaseDubbingMouseClicked(evt);
+            }
+        });
+        increaseDubbing.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
+                increaseDubbingActionPerformed(evt);
             }
         });
 
-        jTextField4.setBackground(java.awt.Color.lightGray);
-        jTextField4.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField4.setText("1");
-        jTextField4.setBorder(null);
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        dubbingValues.setBackground(java.awt.Color.lightGray);
+        dubbingValues.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        dubbingValues.setForeground(new java.awt.Color(51, 51, 51));
+        dubbingValues.setText("0");
+        dubbingValues.setBorder(null);
+        dubbingValues.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                dubbingValuesActionPerformed(evt);
             }
         });
 
@@ -736,61 +815,71 @@ public class CartoonNetwork extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(dubbingTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton17)
+                .addComponent(increaseDubbing)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dubbingValues, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton18)
+                .addComponent(decreaseDubbing)
                 .addGap(15, 15, 15))
         );
         dubbingLayout.setVerticalGroup(
             dubbingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dubbingLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(dubbingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dubbingTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(dubbingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dubbingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton18)
-                        .addComponent(jButton17)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(decreaseDubbing)
+                        .addComponent(increaseDubbing)
+                        .addComponent(dubbingValues, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dubbingTitle))
                 .addContainerGap())
         );
 
         plotTwist.setBackground(java.awt.Color.lightGray);
-        plotTwist.setForeground(new java.awt.Color(60, 63, 65));
+        plotTwist.setForeground(new java.awt.Color(255, 255, 255));
 
         plotTwistTitle.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         plotTwistTitle.setForeground(new java.awt.Color(51, 51, 51));
         plotTwistTitle.setText("PlotTwist:");
 
-        jButton20.setBackground(new java.awt.Color(51, 51, 51));
-        jButton20.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        jButton20.setForeground(new java.awt.Color(204, 204, 204));
-        jButton20.setText("+");
-        jButton20.addActionListener(new java.awt.event.ActionListener() {
+        increasePlotTwist.setBackground(new java.awt.Color(51, 51, 51));
+        increasePlotTwist.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        increasePlotTwist.setForeground(new java.awt.Color(255, 255, 255));
+        increasePlotTwist.setText("+");
+        increasePlotTwist.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                increasePlotTwistMouseClicked(evt);
+            }
+        });
+        increasePlotTwist.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton20ActionPerformed(evt);
+                increasePlotTwistActionPerformed(evt);
             }
         });
 
-        jButton19.setBackground(new java.awt.Color(51, 51, 51));
-        jButton19.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        jButton19.setForeground(new java.awt.Color(204, 204, 204));
-        jButton19.setText("-");
-        jButton19.addActionListener(new java.awt.event.ActionListener() {
+        decreacePlotTwist.setBackground(new java.awt.Color(51, 51, 51));
+        decreacePlotTwist.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        decreacePlotTwist.setForeground(new java.awt.Color(255, 255, 255));
+        decreacePlotTwist.setText("-");
+        decreacePlotTwist.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                decreacePlotTwistMouseClicked(evt);
+            }
+        });
+        decreacePlotTwist.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton19ActionPerformed(evt);
+                decreacePlotTwistActionPerformed(evt);
             }
         });
 
-        jTextField5.setBackground(java.awt.Color.lightGray);
-        jTextField5.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField5.setText("1");
-        jTextField5.setBorder(null);
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        plotTwistValues.setBackground(java.awt.Color.lightGray);
+        plotTwistValues.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        plotTwistValues.setForeground(new java.awt.Color(51, 51, 51));
+        plotTwistValues.setText("0");
+        plotTwistValues.setBorder(null);
+        plotTwistValues.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                plotTwistValuesActionPerformed(evt);
             }
         });
 
@@ -802,23 +891,23 @@ public class CartoonNetwork extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(plotTwistTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton20)
+                .addComponent(increasePlotTwist)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(plotTwistValues, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton19)
+                .addComponent(decreacePlotTwist)
                 .addGap(16, 16, 16))
         );
         plotTwistLayout.setVerticalGroup(
             plotTwistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(plotTwistLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(plotTwistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(plotTwistTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                .addGroup(plotTwistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(plotTwistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton19)
-                        .addComponent(jButton20)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(decreacePlotTwist)
+                        .addComponent(increasePlotTwist)
+                        .addComponent(plotTwistValues, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(plotTwistTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -840,7 +929,9 @@ public class CartoonNetwork extends javax.swing.JFrame {
                         .addGap(60, 60, 60)
                         .addGroup(workersConfigurationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(driveTitle)
-                            .addComponent(driveTitle1))))
+                            .addGroup(workersConfigurationsLayout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(driveTitle1)))))
                 .addContainerGap(10, Short.MAX_VALUE))
         );
         workersConfigurationsLayout.setVerticalGroup(
@@ -1151,7 +1242,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
 
         jButton12.setBackground(new java.awt.Color(51, 51, 51));
         jButton12.setFont(new java.awt.Font("Montserrat", 1, 24)); // NOI18N
-        jButton12.setForeground(new java.awt.Color(204, 204, 204));
+        jButton12.setForeground(new java.awt.Color(255, 255, 255));
         jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Assets/playIcon.png"))); // NOI18N
         jButton12.setText("Pausar");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
@@ -1163,7 +1254,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
 
         jButton21.setBackground(new java.awt.Color(51, 51, 51));
         jButton21.setFont(new java.awt.Font("Montserrat", 1, 24)); // NOI18N
-        jButton21.setForeground(new java.awt.Color(204, 204, 204));
+        jButton21.setForeground(new java.awt.Color(255, 255, 255));
         jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Assets/playIcon.png"))); // NOI18N
         jButton21.setText("Comenzar");
         jButton21.addActionListener(new java.awt.event.ActionListener() {
@@ -1488,16 +1579,17 @@ public class CartoonNetwork extends javax.swing.JFrame {
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(driveTitle14)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(driveTitle18)
-                    .addComponent(jTextField35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(driveTitle14))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(driveTitle18)
+                            .addComponent(jTextField35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 390, 300, 60));
@@ -1627,65 +1719,65 @@ public class CartoonNetwork extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton12ActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void plotTwistValuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plotTwistValuesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_plotTwistValuesActionPerformed
 
-    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+    private void decreacePlotTwistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreacePlotTwistActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton19ActionPerformed
+    }//GEN-LAST:event_decreacePlotTwistActionPerformed
 
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+    private void increasePlotTwistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increasePlotTwistActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton20ActionPerformed
+    }//GEN-LAST:event_increasePlotTwistActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void dubbingValuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dubbingValuesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_dubbingValuesActionPerformed
 
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+    private void increaseDubbingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseDubbingActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton17ActionPerformed
+    }//GEN-LAST:event_increaseDubbingActionPerformed
 
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+    private void decreaseDubbingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseDubbingActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton18ActionPerformed
+    }//GEN-LAST:event_decreaseDubbingActionPerformed
 
-    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+    private void decreaseAnimationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseAnimationActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton16ActionPerformed
+    }//GEN-LAST:event_decreaseAnimationActionPerformed
 
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+    private void increaseAnimationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseAnimationActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton15ActionPerformed
+    }//GEN-LAST:event_increaseAnimationActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void animationValuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animationValuesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_animationValuesActionPerformed
 
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+    private void decreaseScenaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseScenaryActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton14ActionPerformed
+    }//GEN-LAST:event_decreaseScenaryActionPerformed
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+    private void increaseScenaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseScenaryActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton13ActionPerformed
+    }//GEN-LAST:event_increaseScenaryActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void scenaryValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scenaryValueActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_scenaryValueActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void scriptsValuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scriptsValuesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_scriptsValuesActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void increaseScriptsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseScriptsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_increaseScriptsActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void decreaseScriptsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseScriptsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_decreaseScriptsActionPerformed
 
     private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
         // TODO add your handling code here:
@@ -1835,6 +1927,100 @@ public class CartoonNetwork extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField39ActionPerformed
 
+    private void increaseScriptsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseScriptsMouseClicked
+        // TODO add your handling code here:
+        this.scriptsValues.setText(increaseQuantity(this.scriptsValues.getText()));
+
+    }//GEN-LAST:event_increaseScriptsMouseClicked
+
+    private void increaseScenaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseScenaryMouseClicked
+        // TODO add your handling code here:
+        this.scenaryValue.setText(increaseQuantity(this.scenaryValue.getText()));
+
+    }//GEN-LAST:event_increaseScenaryMouseClicked
+
+    private void increaseAnimationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseAnimationMouseClicked
+        // TODO add your handling code here:
+        this.animationValues.setText(increaseQuantity(this.animationValues.getText()));
+    }//GEN-LAST:event_increaseAnimationMouseClicked
+
+    private void increaseDubbingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseDubbingMouseClicked
+        // TODO add your handling code here:
+        this.dubbingValues.setText(increaseQuantity(this.dubbingValues.getText()));
+
+    }//GEN-LAST:event_increaseDubbingMouseClicked
+
+    private void increasePlotTwistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increasePlotTwistMouseClicked
+        // TODO add your handling code here:
+        this.plotTwistValues.setText(increaseQuantity(this.plotTwistValues.getText()));
+    }//GEN-LAST:event_increasePlotTwistMouseClicked
+
+    private void decreacePlotTwistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreacePlotTwistMouseClicked
+        // TODO add your handling code here:
+        this.plotTwistValues.setText(decreaseQuantity(this.plotTwistValues.getText()));
+
+    }//GEN-LAST:event_decreacePlotTwistMouseClicked
+
+    private void decreaseDubbingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseDubbingMouseClicked
+        // TODO add your handling code here:
+        this.dubbingValues.setText(decreaseQuantity(this.dubbingValues.getText()));
+
+    }//GEN-LAST:event_decreaseDubbingMouseClicked
+
+    private void decreaseAnimationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseAnimationMouseClicked
+        // TODO add your handling code here:
+        this.animationValues.setText(decreaseQuantity(this.animationValues.getText()));
+
+    }//GEN-LAST:event_decreaseAnimationMouseClicked
+
+    private void decreaseScenaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseScenaryMouseClicked
+        // TODO add your handling code here:
+        this.scenaryValue.setText(decreaseQuantity(this.scenaryValue.getText()));
+
+    }//GEN-LAST:event_decreaseScenaryMouseClicked
+
+    private void decreaseScriptsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseScriptsMouseClicked
+        // TODO add your handling code here:
+        this.scriptsValues.setText(decreaseQuantity(this.scriptsValues.getText()));
+
+    }//GEN-LAST:event_decreaseScriptsMouseClicked
+
+    private String increaseQuantity (String actualValue){
+    int intValue = 0; 
+        try {
+            intValue = Integer.parseInt(actualValue); 
+            if (actualEmployees < maxEmployees){
+                intValue ++;
+                actualEmployees ++;
+                return String.valueOf(intValue);
+            }
+            else{
+                return String.valueOf(intValue);
+            }
+        } catch (NumberFormatException e) {
+            System.err.println("Error al convertir el valor a int: " + e.getMessage());
+        }
+        return null;
+    }
+    
+    private String decreaseQuantity (String actualValue){
+    int intValue = 0; 
+        try {
+            intValue = Integer.parseInt(actualValue); 
+            if (intValue > 0){
+                intValue --;
+                actualEmployees --;
+                return String.valueOf(intValue);
+            }
+            else{
+                return String.valueOf(intValue);
+            }
+        } catch (NumberFormatException e) {
+            System.err.println("Error al convertir el valor a int: " + e.getMessage());
+        }
+        return null;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -1873,6 +2059,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel SidePanel;
+    private javax.swing.JTextField animationValues;
     private javax.swing.JPanel animations;
     private javax.swing.JPanel animations1;
     private javax.swing.JLabel animationsLimit1;
@@ -1884,6 +2071,11 @@ public class CartoonNetwork extends javax.swing.JFrame {
     private javax.swing.JPanel btn_nuevo_almacen;
     private javax.swing.JPanel btn_nuevo_pedido;
     private javax.swing.JPanel btn_reporte;
+    private javax.swing.JButton decreacePlotTwist;
+    private javax.swing.JButton decreaseAnimation;
+    private javax.swing.JButton decreaseDubbing;
+    private javax.swing.JButton decreaseScenary;
+    private javax.swing.JButton decreaseScripts;
     private javax.swing.JPanel drivePanel;
     private javax.swing.JLabel driveTitle;
     private javax.swing.JLabel driveTitle1;
@@ -1911,24 +2103,20 @@ public class CartoonNetwork extends javax.swing.JFrame {
     private javax.swing.JLabel dubbingLimit1;
     private javax.swing.JLabel dubbingTitle;
     private javax.swing.JLabel dubbingTitle1;
+    private javax.swing.JTextField dubbingValues;
     private javax.swing.JLabel exit;
     private javax.swing.JLabel icono1;
     private javax.swing.JLabel icono3;
     private javax.swing.JLabel icono4;
     private javax.swing.JLabel icono5;
     private javax.swing.JLabel icono7;
+    private javax.swing.JButton increaseAnimation;
+    private javax.swing.JButton increaseDubbing;
+    private javax.swing.JButton increasePlotTwist;
+    private javax.swing.JButton increaseScenary;
+    private javax.swing.JButton increaseScripts;
     private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
@@ -1948,15 +2136,12 @@ public class CartoonNetwork extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField24;
     private javax.swing.JTextField jTextField25;
     private javax.swing.JTextField jTextField26;
     private javax.swing.JTextField jTextField27;
     private javax.swing.JTextField jTextField28;
     private javax.swing.JTextField jTextField29;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField30;
     private javax.swing.JTextField jTextField31;
     private javax.swing.JTextField jTextField32;
@@ -1967,8 +2152,6 @@ public class CartoonNetwork extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField37;
     private javax.swing.JTextField jTextField38;
     private javax.swing.JTextField jTextField39;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JPanel plotTwist;
@@ -1976,16 +2159,19 @@ public class CartoonNetwork extends javax.swing.JFrame {
     private javax.swing.JLabel plotTwistLimit1;
     private javax.swing.JLabel plotTwistTitle;
     private javax.swing.JLabel plotTwistTitle1;
+    private javax.swing.JTextField plotTwistValues;
     private javax.swing.JPanel scenary;
     private javax.swing.JPanel scenary1;
     private javax.swing.JLabel scenaryLimit1;
     private javax.swing.JLabel scenaryTitle;
     private javax.swing.JLabel scenaryTitle1;
-    private javax.swing.JLabel scriptTitle;
+    private javax.swing.JTextField scenaryValue;
     private javax.swing.JLabel scriptTitle1;
     private javax.swing.JPanel scripts;
     private javax.swing.JPanel scripts1;
     private javax.swing.JLabel scriptsLimit1;
+    private javax.swing.JLabel scriptsTitle;
+    private javax.swing.JTextField scriptsValues;
     private javax.swing.JPanel workersConfigurations;
     // End of variables declaration//GEN-END:variables
 }

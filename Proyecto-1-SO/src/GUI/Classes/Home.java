@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI.Classes;
+import MainPackage.App;
 import java.awt.Point;
 
 /**
@@ -12,6 +13,8 @@ import java.awt.Point;
 public class Home extends javax.swing.JFrame {
     
     private Point initialClick;
+    private final App app = App.getInstance();
+    private final CartoonNetwork cartoonNetwork = CartoonNetwork.getInstance();
 
     /**
      * Creates new form Home
@@ -74,7 +77,7 @@ public class Home extends javax.swing.JFrame {
 
         icono1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Montserrat", 0, 24)); // NOI18N
         jLabel4.setText("Inicio");
 
         javax.swing.GroupLayout btn_InicioLayout = new javax.swing.GroupLayout(btn_Inicio);
@@ -84,18 +87,18 @@ public class Home extends javax.swing.JFrame {
             .addGroup(btn_InicioLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(icono1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
         btn_InicioLayout.setVerticalGroup(
             btn_InicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_InicioLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(btn_InicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel4)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icono1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         SidePanel.add(btn_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 330, 60));
@@ -107,7 +110,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Montserrat", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Dashboard");
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -122,10 +125,10 @@ public class Home extends javax.swing.JFrame {
             btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_nuevo_pedidoLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jLabel13)
-                .addGap(18, 18, 18)
                 .addComponent(jLabel5)
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel13)
+                .addContainerGap(168, Short.MAX_VALUE))
         );
         btn_nuevo_pedidoLayout.setVerticalGroup(
             btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,7 +137,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         SidePanel.add(btn_nuevo_pedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 330, 60));
@@ -153,7 +156,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Montserrat", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Cartoon Network");
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -168,19 +171,19 @@ public class Home extends javax.swing.JFrame {
             btn_nueva_rutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_nueva_rutaLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(icono3)
-                .addGap(18, 18, 18)
                 .addComponent(jLabel6)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(icono3)
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         btn_nueva_rutaLayout.setVerticalGroup(
             btn_nueva_rutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_nueva_rutaLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(btn_nueva_rutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel6)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icono3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         SidePanel.add(btn_nueva_ruta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 330, 60));
@@ -199,7 +202,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Montserrat", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Parámetros");
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -214,18 +217,20 @@ public class Home extends javax.swing.JFrame {
             btn_nuevo_almacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_nuevo_almacenLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(icono4)
-                .addGap(18, 18, 18)
                 .addComponent(jLabel7)
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(icono4)
+                .addContainerGap(161, Short.MAX_VALUE))
         );
         btn_nuevo_almacenLayout.setVerticalGroup(
             btn_nuevo_almacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_nuevo_almacenLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(btn_nuevo_almacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel7)
-                    .addComponent(icono4, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
+                .addGroup(btn_nuevo_almacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icono4, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                    .addGroup(btn_nuevo_almacenLayout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(0, 7, Short.MAX_VALUE))
         );
 
@@ -245,7 +250,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Montserrat", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Guardar");
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -260,19 +265,19 @@ public class Home extends javax.swing.JFrame {
             btn_reporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_reporteLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(icono5)
-                .addGap(18, 18, 18)
                 .addComponent(jLabel8)
-                .addContainerGap(206, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(icono5)
+                .addContainerGap(203, Short.MAX_VALUE))
         );
         btn_reporteLayout.setVerticalGroup(
             btn_reporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_reporteLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(btn_reporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel8)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icono5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         SidePanel.add(btn_reporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 330, 60));
@@ -291,7 +296,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Montserrat", 0, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Nickelodeon");
         jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -306,19 +311,19 @@ public class Home extends javax.swing.JFrame {
             btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_cargar_guardarLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(icono7)
-                .addGap(18, 18, 18)
                 .addComponent(jLabel10)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(icono7)
+                .addContainerGap(152, Short.MAX_VALUE))
         );
         btn_cargar_guardarLayout.setVerticalGroup(
             btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_cargar_guardarLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel10)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icono7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         SidePanel.add(btn_cargar_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 330, 60));
@@ -420,6 +425,10 @@ public class Home extends javax.swing.JFrame {
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
+        cartoonNetwork.setVisible(true);
+        cartoonNetwork.setLocationRelativeTo(null);
+        cartoonNetwork.setResizable(false);
+        this.setVisible(false);
        
     }//GEN-LAST:event_jLabel6MouseClicked
 
@@ -450,6 +459,7 @@ public class Home extends javax.swing.JFrame {
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
+
         
     }//GEN-LAST:event_jLabel10MouseClicked
 

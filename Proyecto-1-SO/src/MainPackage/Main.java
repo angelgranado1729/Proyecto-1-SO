@@ -15,12 +15,13 @@ public class Main {
      *
      * @param args
      */
-    public static App app = new App();
 
     public static void main(String[] args) {
 
+        App app = App.getInstance();
         app.start();
-
+        
+        
     }
 
 }

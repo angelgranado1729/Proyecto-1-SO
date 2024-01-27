@@ -27,7 +27,7 @@ public class Helpers {
      * @param daysToFinish: La cantidad de dias para terminar un item
      * @return El porcentaje del trabajo hecho por dia.
      */
-    public static float calculateDailyProgress(int daysToFinish) {
+    public static float calculateDailyProgress(float daysToFinish) {
         return 1 / daysToFinish;
     }
 

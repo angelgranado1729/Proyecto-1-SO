@@ -72,7 +72,7 @@
             <Container class="javax.swing.JPanel" name="btn_Inicio">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="47" green="a8" red="f3" type="rgb"/>
+                  <Color blue="5a" green="47" red="37" type="rgb"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -87,9 +87,9 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           <Component id="icono1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel4" pref="284" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel4" pref="284" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -98,10 +98,10 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="2" attributes="0">
-                              <Component id="jLabel4" alignment="2" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="icono1" alignment="2" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="14" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -117,7 +117,10 @@
                 <Component class="javax.swing.JLabel" name="jLabel4">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="24" style="0"/>
+                      <Font name="Montserrat" size="24" style="0"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Inicio"/>
                   </Properties>
@@ -145,9 +148,9 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                           <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="174" max="32767" attributes="0"/>
+                          <EmptySpace pref="168" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -159,7 +162,7 @@
                               <Component id="jLabel13" alignment="0" max="32767" attributes="0"/>
                               <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="14" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -168,7 +171,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel5">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="24" style="0"/>
+                      <Font name="Montserrat" size="24" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -186,7 +189,7 @@
             <Container class="javax.swing.JPanel" name="btn_nueva_ruta">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="5a" green="47" red="37" type="rgb"/>
+                  <Color blue="47" green="a8" red="f3" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
@@ -202,11 +205,11 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="icono3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="108" max="32767" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="icono3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="95" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -215,10 +218,10 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="2" attributes="0">
-                              <Component id="jLabel6" alignment="2" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="icono3" alignment="2" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="14" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -237,10 +240,10 @@
                 <Component class="javax.swing.JLabel" name="jLabel6">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="24" style="0"/>
+                      <Font name="Montserrat" size="24" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                      <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Cartoon Network"/>
                   </Properties>
@@ -271,9 +274,9 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           <Component id="icono4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="171" max="32767" attributes="0"/>
+                          <EmptySpace pref="161" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -281,9 +284,12 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="2" attributes="0">
-                              <Component id="jLabel7" alignment="2" min="-2" max="-2" attributes="0"/>
-                              <Component id="icono4" alignment="2" pref="39" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="icono4" pref="39" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace min="0" pref="7" max="32767" attributes="0"/>
                       </Group>
@@ -304,7 +310,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel7">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="24" style="0"/>
+                      <Font name="Montserrat" size="24" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -338,9 +344,9 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           <Component id="icono5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="206" max="32767" attributes="0"/>
+                          <EmptySpace pref="203" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -349,10 +355,10 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="2" attributes="0">
-                              <Component id="jLabel8" alignment="2" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="icono5" alignment="2" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="14" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -371,7 +377,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel8">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="24" style="0"/>
+                      <Font name="Montserrat" size="24" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -405,9 +411,9 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           <Component id="icono7" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="155" max="32767" attributes="0"/>
+                          <EmptySpace pref="152" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -416,10 +422,10 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="2" attributes="0">
-                              <Component id="jLabel10" alignment="2" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="icono7" alignment="2" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="14" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -438,7 +444,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel10">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="24" style="0"/>
+                      <Font name="Montserrat" size="24" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -610,7 +616,10 @@
                               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="driveTitle" min="-2" max="-2" attributes="0"/>
-                                  <Component id="driveTitle1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                      <Component id="driveTitle1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
@@ -678,30 +687,30 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                          <Component id="scriptTitle" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                          <Component id="jButton3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jTextField1" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="scriptsTitle" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="increaseScripts" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <Component id="scriptsValues" min="-2" pref="20" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                          <Component id="decreaseScripts" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="scriptTitle" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
-                          <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="scriptsTitle" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                          <Component id="decreaseScripts" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="increaseScripts" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="scriptsValues" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="scriptTitle">
+                <Component class="javax.swing.JLabel" name="scriptsTitle">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Montserrat" size="16" style="1"/>
@@ -712,7 +721,7 @@
                     <Property name="text" type="java.lang.String" value="Guionistas:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton2">
+                <Component class="javax.swing.JButton" name="decreaseScripts">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
@@ -721,15 +730,16 @@
                       <Font name="Montserrat" size="18" style="1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="-"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="decreaseScriptsMouseClicked"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="decreaseScriptsActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton3">
+                <Component class="javax.swing.JButton" name="increaseScripts">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
@@ -738,15 +748,17 @@
                       <Font name="Montserrat" size="18" style="1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="+"/>
+                    <Property name="borderPainted" type="boolean" value="false"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="increaseScriptsMouseClicked"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="increaseScriptsActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField1">
+                <Component class="javax.swing.JTextField" name="scriptsValues">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
@@ -757,13 +769,13 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="1"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="scriptsValuesActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -785,11 +797,11 @@
                           <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                           <Component id="scenaryTitle" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jButton13" min="-2" max="-2" attributes="0"/>
+                          <Component id="increaseScenary" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Component id="jTextField2" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="scenaryValue" min="-2" pref="20" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton14" min="-2" max="-2" attributes="0"/>
+                          <Component id="decreaseScenary" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -798,13 +810,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="scenaryTitle" alignment="3" pref="32" max="32767" attributes="0"/>
-                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                                  <Component id="jButton14" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton13" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="decreaseScenary" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="increaseScenary" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="scenaryValue" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="scenaryTitle" min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -823,7 +835,7 @@
                     <Property name="text" type="java.lang.String" value="Escenarios:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField2">
+                <Component class="javax.swing.JTextField" name="scenaryValue">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
@@ -834,16 +846,16 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="1"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="scenaryValueActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton13">
+                <Component class="javax.swing.JButton" name="increaseScenary">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
@@ -852,15 +864,16 @@
                       <Font name="Montserrat" size="18" style="1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="+"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton13ActionPerformed"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="increaseScenaryMouseClicked"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="increaseScenaryActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton14">
+                <Component class="javax.swing.JButton" name="decreaseScenary">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
@@ -869,12 +882,13 @@
                       <Font name="Montserrat" size="18" style="1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="-"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton14ActionPerformed"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="decreaseScenaryMouseClicked"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="decreaseScenaryActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -885,7 +899,7 @@
                   <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="41" green="3f" red="3c" type="rgb"/>
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
               </Properties>
 
@@ -896,11 +910,11 @@
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           <Component id="animationsTitle" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jButton15" min="-2" max="-2" attributes="0"/>
+                          <Component id="increaseAnimation" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Component id="jTextField3" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="animationValues" min="-2" pref="20" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton16" min="-2" max="-2" attributes="0"/>
+                          <Component id="decreaseAnimation" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -909,13 +923,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="animationsTitle" alignment="3" pref="33" max="32767" attributes="0"/>
-                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                                  <Component id="jButton16" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton15" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="decreaseAnimation" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="increaseAnimation" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="animationValues" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="animationsTitle" min="-2" pref="33" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -934,7 +948,7 @@
                     <Property name="text" type="java.lang.String" value="Animador:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField3">
+                <Component class="javax.swing.JTextField" name="animationValues">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
@@ -945,16 +959,16 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="1"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField3ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="animationValuesActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton15">
+                <Component class="javax.swing.JButton" name="increaseAnimation">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
@@ -963,15 +977,16 @@
                       <Font name="Montserrat" size="18" style="1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="+"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton15ActionPerformed"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="increaseAnimationMouseClicked"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="increaseAnimationActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton16">
+                <Component class="javax.swing.JButton" name="decreaseAnimation">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
@@ -980,12 +995,13 @@
                       <Font name="Montserrat" size="18" style="1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="-"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton16ActionPerformed"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="decreaseAnimationMouseClicked"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="decreaseAnimationActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -996,7 +1012,7 @@
                   <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="41" green="3f" red="3c" type="rgb"/>
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
               </Properties>
 
@@ -1007,11 +1023,11 @@
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Component id="dubbingTitle" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jButton17" min="-2" max="-2" attributes="0"/>
+                          <Component id="increaseDubbing" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Component id="jTextField4" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="dubbingValues" min="-2" pref="20" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton18" min="-2" max="-2" attributes="0"/>
+                          <Component id="decreaseDubbing" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1020,13 +1036,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="dubbingTitle" alignment="3" max="32767" attributes="0"/>
-                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                                  <Component id="jButton18" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton17" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="decreaseDubbing" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="increaseDubbing" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="dubbingValues" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="dubbingTitle" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1045,7 +1061,7 @@
                     <Property name="text" type="java.lang.String" value="Doblaje:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton18">
+                <Component class="javax.swing.JButton" name="decreaseDubbing">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
@@ -1059,10 +1075,11 @@
                     <Property name="text" type="java.lang.String" value="-"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton18ActionPerformed"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="decreaseDubbingMouseClicked"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="decreaseDubbingActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton17">
+                <Component class="javax.swing.JButton" name="increaseDubbing">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
@@ -1071,15 +1088,16 @@
                       <Font name="Montserrat" size="18" style="1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="+"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton17ActionPerformed"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="increaseDubbingMouseClicked"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="increaseDubbingActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField4">
+                <Component class="javax.swing.JTextField" name="dubbingValues">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
@@ -1090,13 +1108,13 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="1"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField4ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dubbingValuesActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -1107,7 +1125,7 @@
                   <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="41" green="3f" red="3c" type="rgb"/>
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
               </Properties>
 
@@ -1118,11 +1136,11 @@
                           <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                           <Component id="plotTwistTitle" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jButton20" min="-2" max="-2" attributes="0"/>
+                          <Component id="increasePlotTwist" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Component id="jTextField5" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="plotTwistValues" min="-2" pref="20" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton19" min="-2" max="-2" attributes="0"/>
+                          <Component id="decreacePlotTwist" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1131,13 +1149,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="plotTwistTitle" alignment="3" pref="33" max="32767" attributes="0"/>
-                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                                  <Component id="jButton19" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton20" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="decreacePlotTwist" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="increasePlotTwist" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="plotTwistValues" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="plotTwistTitle" min="-2" pref="33" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1156,7 +1174,7 @@
                     <Property name="text" type="java.lang.String" value="PlotTwist:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton20">
+                <Component class="javax.swing.JButton" name="increasePlotTwist">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
@@ -1165,15 +1183,16 @@
                       <Font name="Montserrat" size="18" style="1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="+"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton20ActionPerformed"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="increasePlotTwistMouseClicked"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="increasePlotTwistActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton19">
+                <Component class="javax.swing.JButton" name="decreacePlotTwist">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
@@ -1182,15 +1201,16 @@
                       <Font name="Montserrat" size="18" style="1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="-"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton19ActionPerformed"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="decreacePlotTwistMouseClicked"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="decreacePlotTwistActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField5">
+                <Component class="javax.swing.JTextField" name="plotTwistValues">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
@@ -1201,13 +1221,13 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="1"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField5ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plotTwistValuesActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -1726,7 +1746,7 @@
               <Font name="Montserrat" size="24" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="cc" red="cc" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/GUI/Assets/playIcon.png"/>
@@ -1751,7 +1771,7 @@
               <Font name="Montserrat" size="24" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="cc" red="cc" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/GUI/Assets/playIcon.png"/>
@@ -2304,18 +2324,21 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="driveTitle14" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="65" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="driveTitle18" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField35" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="driveTitle14" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="driveTitle18" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextField35" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="12" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

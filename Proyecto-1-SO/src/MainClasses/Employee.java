@@ -29,7 +29,7 @@ public class Employee extends Thread {
             int workerId,
             int type,
             int hourlyWage,
-            int daysToFinish,
+            float daysToFinish,
             Drive driveRef,
             Semaphore mutex,
             int dayDuration
@@ -41,7 +41,6 @@ public class Employee extends Thread {
         this.dailyProgress = Helpers.calculateDailyProgress(daysToFinish);
         this.accumulatedProgress = 0;
         this.driveRef = driveRef;
-        this.mutex = mutex;
         this.dayDuration = dayDuration;
     }
 
