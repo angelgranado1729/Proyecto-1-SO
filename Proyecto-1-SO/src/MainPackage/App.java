@@ -17,6 +17,7 @@ import java.util.concurrent.Semaphore;
  */
 public class App {
 
+    public static int totalDays = 0;
     private static int dayDuration;
     private static int deadline;
     private static final Semaphore mutex = new Semaphore(1);

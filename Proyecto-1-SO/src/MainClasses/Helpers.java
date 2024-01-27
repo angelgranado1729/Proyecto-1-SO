@@ -36,5 +36,11 @@ public class Helpers {
         40,
         60
     };
+    
+    
+    public final static int[][] plotTwistTriggers = {
+        {5, 2},
+        {3, 1}    
+    };
 
 }

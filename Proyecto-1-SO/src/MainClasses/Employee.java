@@ -63,7 +63,7 @@ public class Employee extends Thread {
         }
     }
 
-    private void working() {
+    public void working() {
         this.setAccumulatedProgress(this.getAccumulatedProgress() + (this.getDailyProgress()));
 
         if (this.getAccumulatedProgress() >= 1) {
@@ -79,7 +79,7 @@ public class Employee extends Thread {
         }
     }
 
-    private void getPaid() {
+    public void getPaid() {
         this.setAccumulatedSalary(this.getAccumulatedSalary() + this.getHourlyWage() * 24);
     }
 
