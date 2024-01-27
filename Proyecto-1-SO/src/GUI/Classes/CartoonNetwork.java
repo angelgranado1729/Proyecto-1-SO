@@ -7,7 +7,15 @@ import MainPackage.App;
 import static MainPackage.App.getApp;
 import static MainPackage.App.setApp;
 import java.awt.Point;
+import java.io.IOException;
+import java.net.URL;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.UIManager;
+
 
 /**
  *
@@ -31,15 +39,17 @@ public class CartoonNetwork extends javax.swing.JFrame {
 
     public CartoonNetwork() {
         try {
-        for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-                UIManager.setLookAndFeel(info.getClassName());
-                break;
+            // Código para el Look and Feel
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
+        
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -58,6 +68,17 @@ public class CartoonNetwork extends javax.swing.JFrame {
         }
     }
     
+     private void cartoonPlayMusic(String path) {
+        try {
+            URL url = this.getClass().getResource(path);
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1929,58 +1950,68 @@ public class CartoonNetwork extends javax.swing.JFrame {
 
     private void increaseScriptsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseScriptsMouseClicked
         // TODO add your handling code here:
+        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
         this.scriptsValues.setText(increaseQuantity(this.scriptsValues.getText()));
 
     }//GEN-LAST:event_increaseScriptsMouseClicked
 
     private void increaseScenaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseScenaryMouseClicked
         // TODO add your handling code here:
+        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
         this.scenaryValue.setText(increaseQuantity(this.scenaryValue.getText()));
 
     }//GEN-LAST:event_increaseScenaryMouseClicked
 
     private void increaseAnimationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseAnimationMouseClicked
         // TODO add your handling code here:
+        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
         this.animationValues.setText(increaseQuantity(this.animationValues.getText()));
     }//GEN-LAST:event_increaseAnimationMouseClicked
 
     private void increaseDubbingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseDubbingMouseClicked
         // TODO add your handling code here:
+        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
         this.dubbingValues.setText(increaseQuantity(this.dubbingValues.getText()));
 
     }//GEN-LAST:event_increaseDubbingMouseClicked
 
     private void increasePlotTwistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increasePlotTwistMouseClicked
         // TODO add your handling code here:
+        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
         this.plotTwistValues.setText(increaseQuantity(this.plotTwistValues.getText()));
     }//GEN-LAST:event_increasePlotTwistMouseClicked
 
     private void decreacePlotTwistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreacePlotTwistMouseClicked
         // TODO add your handling code here:
+        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
         this.plotTwistValues.setText(decreaseQuantity(this.plotTwistValues.getText()));
 
     }//GEN-LAST:event_decreacePlotTwistMouseClicked
 
     private void decreaseDubbingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseDubbingMouseClicked
         // TODO add your handling code here:
+        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
         this.dubbingValues.setText(decreaseQuantity(this.dubbingValues.getText()));
 
     }//GEN-LAST:event_decreaseDubbingMouseClicked
 
     private void decreaseAnimationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseAnimationMouseClicked
         // TODO add your handling code here:
+        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
         this.animationValues.setText(decreaseQuantity(this.animationValues.getText()));
 
     }//GEN-LAST:event_decreaseAnimationMouseClicked
 
     private void decreaseScenaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseScenaryMouseClicked
         // TODO add your handling code here:
+        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
         this.scenaryValue.setText(decreaseQuantity(this.scenaryValue.getText()));
 
     }//GEN-LAST:event_decreaseScenaryMouseClicked
 
     private void decreaseScriptsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseScriptsMouseClicked
         // TODO add your handling code here:
+        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
         this.scriptsValues.setText(decreaseQuantity(this.scriptsValues.getText()));
 
     }//GEN-LAST:event_decreaseScriptsMouseClicked

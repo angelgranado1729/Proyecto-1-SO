@@ -26,6 +26,8 @@ public class App {
     private static String fileData = getFileFunctions().read(getSelectedFile());
     private static Semaphore mutex;
     private TelevisionNetwork cartoonNetwork;
+    private TelevisionNetwork nickelodeon;
+
     
     private static App app;
      
@@ -44,6 +46,7 @@ public class App {
 
     public void start() {
             this.createCartoonNetwork();
+            this.createNickelodeon();
             Home home = new Home();
             home.setVisible(true);
     }
@@ -90,6 +93,50 @@ public class App {
                 assemblers[j] = new Employee(idWorker++, 5, 50, 2, cartoonDrive, mutex, 3000);
             }
             this.cartoonNetwork = new TelevisionNetwork("Cartoon Network", maxEmployees, screenWriters, setDesigners, characterAnimators, voiceActors, plotTwistScreenwriters, assemblers, projectManager, director, remainingDays, passedDays, cartoonDrive, mutex);
+        }
+    }
+    
+    public void createNickelodeon() {
+        // Se obtiene los datos de Nickelodeon del TXT
+        int[] NickelodeonValues = fileFunctions.getNickelodeonValues(this.fileData);
+        
+        if (NickelodeonValues != null && NickelodeonValues.length >= 9) {
+            int idWorker = 1;
+            
+            // Inicialización de arrays de empleados con los tamaños especificados
+            Employee[] screenWriters = new Employee[NickelodeonValues[0]];
+            Employee[] setDesigners = new Employee[NickelodeonValues[1]];
+            Employee[] characterAnimators = new Employee[NickelodeonValues[2]];
+            Employee[] voiceActors = new Employee[NickelodeonValues[3]];
+            Employee[] plotTwistScreenwriters = new Employee[NickelodeonValues[4]];
+            Employee[] assemblers = new Employee[NickelodeonValues[5]];
+            Drive nickelodeonDrive = new Drive(25, 20, 55, 35, 10); // Asumiendo que estos son los tamaños del drive
+            int projectManager = 1; 
+            int director = 1; 
+            int maxEmployees = NickelodeonValues[8];
+            int remainingDays = 30; 
+            int passedDays = 0;
+            
+            // Llenar los arrays con instancias de empleados
+            for (int j = 0; j < screenWriters.length; j++) {
+                screenWriters[j] = new Employee(idWorker++, 0, 20, 4, nickelodeonDrive, mutex, 3000);
+            }
+            for (int j = 0; j < setDesigners.length; j++) {
+                setDesigners[j] = new Employee(idWorker++, 1, 26, 4, nickelodeonDrive, mutex, 3000);
+            }
+            for (int j = 0; j < characterAnimators.length; j++) {
+                characterAnimators[j] = new Employee(idWorker++, 2, 40, 1, nickelodeonDrive, mutex, 3000);
+            }
+            for (int j = 0; j < voiceActors.length; j++) {
+                voiceActors[j] = new Employee(idWorker++, 3, 16, 1, nickelodeonDrive, mutex, 3000);
+            }
+            for (int j = 0; j < plotTwistScreenwriters.length; j++) {
+                plotTwistScreenwriters[j] = new Employee(idWorker++, 4, 34, 2, nickelodeonDrive, mutex, 3000);
+            }
+            for (int j = 0; j < assemblers.length; j++) {
+                assemblers[j] = new Employee(idWorker++, 5, 50, 2, nickelodeonDrive, mutex, 3000);
+            }
+            this.setNickelodeon(new TelevisionNetwork("Nickelodeon", maxEmployees, screenWriters, setDesigners, characterAnimators, voiceActors, plotTwistScreenwriters, assemblers, projectManager, director, remainingDays, passedDays, nickelodeonDrive, mutex));
         }
     }
 
@@ -163,6 +210,7 @@ public class App {
         this.cartoonNetwork = cartoonNetwork;
     }
 
+    
     /**
      * @return the app
      */
@@ -175,6 +223,20 @@ public class App {
      */
     public static void setApp(App aApp) {
         app = aApp;
+    }
+
+    /**
+     * @return the nickelodeon
+     */
+    public TelevisionNetwork getNickelodeon() {
+        return nickelodeon;
+    }
+
+    /**
+     * @param nickelodeon the nickelodeon to set
+     */
+    public void setNickelodeon(TelevisionNetwork nickelodeon) {
+        this.nickelodeon = nickelodeon;
     }
 
     

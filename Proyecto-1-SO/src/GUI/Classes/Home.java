@@ -5,6 +5,13 @@
 package GUI.Classes;
 import MainPackage.App;
 import java.awt.Point;
+import java.io.IOException;
+import java.net.URL;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  *
@@ -15,6 +22,7 @@ public class Home extends javax.swing.JFrame {
     private Point initialClick;
     private final App app = App.getInstance();
     private final CartoonNetwork cartoonNetwork = CartoonNetwork.getInstance();
+    private final Nickelodeon nickelodeon = Nickelodeon.getInstance();
 
     /**
      * Creates new form Home
@@ -428,10 +436,22 @@ public class Home extends javax.swing.JFrame {
         cartoonNetwork.setVisible(true);
         cartoonNetwork.setLocationRelativeTo(null);
         cartoonNetwork.setResizable(false);
+        cartoonPlayMusic("/GUI/Assets/cartoonNetworkTheme.wav"); 
         this.setVisible(false);
        
     }//GEN-LAST:event_jLabel6MouseClicked
 
+    private void cartoonPlayMusic(String path) {
+        try {
+            URL url = this.getClass().getResource(path);
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
     private void btn_nueva_rutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nueva_rutaMouseClicked
         // TODO add your handling code here:
         
@@ -459,8 +479,11 @@ public class Home extends javax.swing.JFrame {
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
-
-        
+        nickelodeon.setVisible(true);
+        nickelodeon.setLocationRelativeTo(null);
+        nickelodeon.setResizable(false);
+        cartoonPlayMusic("/GUI/Assets/nickelodeonTheme.wav"); 
+        this.setVisible(false);
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void btn_cargar_guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cargar_guardarMouseClicked
