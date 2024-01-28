@@ -16,7 +16,8 @@ import java.util.logging.Logger;
  */
 public class Employee extends Thread {
 
-//    0 si es Nickelodeon & 1 si es Cartoon Network (REVISAR LA CLASE IMPORTANT CONSTANTS)
+    // 0 si es Nickelodeon & 1 si es Cartoon Network (REVISAR LA CLASE IMPORTANT
+    // CONSTANTS)
     private int company;
     private int workerId;
     private int type;
@@ -30,7 +31,8 @@ public class Employee extends Thread {
     private float dailyProgress;
     private float totalWork;
 
-    public Employee(int company, int workerId, int type, int daysToFinish, int numOfWorkDone, int hourlyWage, Drive driveRef, Semaphore mutex) {
+    public Employee(int company, int workerId, int type, int daysToFinish, int numOfWorkDone, int hourlyWage,
+            Drive driveRef, Semaphore mutex) {
         this.company = company;
         this.workerId = workerId;
         this.type = type;
@@ -41,7 +43,7 @@ public class Employee extends Thread {
 
         this.hourlyWage = ImportantConstants.hourlyWages[type];
         this.accumulatedSalary = 0;
-        // Cantidad de trabajo realizado por dia        
+        // Cantidad de trabajo realizado por dia
         this.dailyProgress = (float) numOfWorkDone / daysToFinish;
         this.totalWork = 0;
     }
@@ -52,6 +54,7 @@ public class Employee extends Thread {
             try {
                 this.getPaid();
                 this.working();
+                System.out.println(this.toString());
                 sleep(App.getDayDuration());
             } catch (InterruptedException ex) {
                 Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
@@ -83,8 +86,8 @@ public class Employee extends Thread {
     @Override
     public String toString() {
         return """
-               Employee {
-               """ + "-Company= " + ImportantConstants.companies[getCompany()] + "\n"
+                Employee {
+                """ + "-Company= " + ImportantConstants.companies[getCompany()] + "\n"
                 + "-workerId= " + getWorkerId() + "\n"
                 + "-type= " + ImportantConstants.workesType[getType()] + "\n"
                 + "-Days to Finish his part= " + getDaysToFinish() + "\n"
@@ -98,7 +101,7 @@ public class Employee extends Thread {
                 + "\n}";
     }
 
-    //    Getters and Setters
+    // Getters and Setters
     /**
      * @return the company
      */

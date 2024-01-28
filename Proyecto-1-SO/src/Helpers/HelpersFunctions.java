@@ -18,6 +18,24 @@ import java.util.concurrent.Semaphore;
  */
 public class HelpersFunctions {
 
+    public static void loadParams() {
+        String fileData = FileFunctions.read(App.getSelectedFile());
+
+        // Se obtiene los datos del TXT
+        int[] params = FileFunctions.getGeneralParams(fileData);
+
+        if (params != null && params.length >= 2) {
+            App.setDayDuration(params[0]);
+            App.setDeadline(params[1]);
+        }
+
+        App app = App.getInstance();
+        app.setNickelodeon(HelpersFunctions.createTelevisionNetwork(0));
+        app.setCartoonNetwork(HelpersFunctions.createTelevisionNetwork(1));
+
+    }
+
+    // NOTE - 0 para nickelodeon y 1 para cartoon network
     public static TelevisionNetwork createTelevisionNetwork(int company) {
         String fileData = FileFunctions.read(App.getSelectedFile());
 
@@ -47,8 +65,6 @@ public class HelpersFunctions {
 
                     employees[j] = new Employee(company, workerId, type, daysToFinish, numOfWorkDone, hourlyWage,
                             drive, mutex);
-
-                    System.out.println(employees[j].toString());
 
                 }
                 workers[type] = employees;

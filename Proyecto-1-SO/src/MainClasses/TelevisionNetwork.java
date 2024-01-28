@@ -49,6 +49,32 @@ public class TelevisionNetwork {
         this.actualEmployeesQuantity();
     }
 
+    public void start() {
+        this.setTotalCost(0);
+        this.setEarning(0);
+        this.setProfit(0);
+
+        for (int i = 0; i < this.getScreenwriters().length; i++) {
+            this.getScreenwriters()[i].start();
+        }
+        for (int i = 0; i < this.getSetDesigners().length; i++) {
+            this.getSetDesigners()[i].start();
+        }
+        for (int i = 0; i < this.getCharacterAnimators().length; i++) {
+            this.getCharacterAnimators()[i].start();
+        }
+        for (int i = 0; i < this.getVoiceActors().length; i++) {
+            this.getVoiceActors()[i].start();
+        }
+        for (int i = 0; i < this.getPlotTwistScreenwriters().length; i++) {
+            this.getPlotTwistScreenwriters()[i].start();
+        }
+        for (int i = 0; i < this.getAssemblers().length; i++) {
+            this.getAssemblers()[i].start();
+        }
+
+    }
+
     public void actualEmployeesQuantity() {
         this.setActualEmployeesQuantity(screenwriters.length + setDesigners.length + characterAnimators.length
                 + characterAnimators.length + voiceActors.length + plotTwistScreenwriters.length);

@@ -48,12 +48,16 @@ public class App {
     }
 
     public void start() {
+        
+        HelpersFunctions.loadParams();
+        System.out.println(getDayDuration());
+        
+        // Inicia la simulacion
+        getNickelodeon().start();
+        getCartoonNetwork().start();
 
-        setNickelodeon(HelpersFunctions.createTelevisionNetwork(0));
-        setCartoonNetwork(HelpersFunctions.createTelevisionNetwork(1));
-
-         Home home = new Home();
-         home.setVisible(true);
+        Home home = new Home();
+        home.setVisible(true);
     }
 
     /**
@@ -168,5 +172,4 @@ public class App {
         app = aApp;
     }
 
-  
 }
