@@ -1336,8 +1336,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                           <Component id="scriptTitle1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="58" max="32767" attributes="0"/>
-                          <Component id="jTextField24" min="-2" pref="14" max="-2" attributes="0"/>
+                          <EmptySpace pref="47" max="32767" attributes="0"/>
+                          <Component id="scriptDrive" min="-2" pref="25" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="scriptsLimit1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
@@ -1351,7 +1351,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="scriptTitle1" alignment="3" max="32767" attributes="0"/>
                               <Component id="scriptsLimit1" alignment="3" pref="33" max="32767" attributes="0"/>
-                              <Component id="jTextField24" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="scriptDrive" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1381,7 +1381,7 @@
                     <Property name="text" type="java.lang.String" value="/25"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField24">
+                <Component class="javax.swing.JTextField" name="scriptDrive">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
@@ -1392,13 +1392,14 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="4"/>
                     <Property name="text" type="java.lang.String" value="0"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField24ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="scriptDriveActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -1419,8 +1420,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           <Component id="scenaryTitle1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="18" max="32767" attributes="0"/>
-                          <Component id="jTextField25" min="-2" pref="14" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="scenaryDrive" pref="20" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="scenaryLimit1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
@@ -1434,7 +1435,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="scenaryTitle1" alignment="3" max="32767" attributes="0"/>
                               <Component id="scenaryLimit1" alignment="3" pref="35" max="32767" attributes="0"/>
-                              <Component id="jTextField25" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="scenaryDrive" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1464,7 +1465,7 @@
                     <Property name="text" type="java.lang.String" value="/20"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField25">
+                <Component class="javax.swing.JTextField" name="scenaryDrive">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
@@ -1475,13 +1476,14 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="4"/>
                     <Property name="text" type="java.lang.String" value="0"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField25ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="scenaryDriveActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -1503,7 +1505,7 @@
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           <Component id="animationsTitle1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jTextField26" min="-2" pref="14" max="-2" attributes="0"/>
+                          <Component id="animationDrive" min="-2" pref="23" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="animationsLimit1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
@@ -1517,7 +1519,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="animationsTitle1" alignment="3" max="32767" attributes="0"/>
                               <Component id="animationsLimit1" alignment="3" pref="34" max="32767" attributes="0"/>
-                              <Component id="jTextField26" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="animationDrive" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1547,7 +1549,7 @@
                     <Property name="text" type="java.lang.String" value="/55"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField26">
+                <Component class="javax.swing.JTextField" name="animationDrive">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
@@ -1558,13 +1560,14 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="4"/>
                     <Property name="text" type="java.lang.String" value="0"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField26ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="animationDriveActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -1586,7 +1589,7 @@
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Component id="dubbingTitle1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jTextField27" min="-2" pref="14" max="-2" attributes="0"/>
+                          <Component id="dubbingDrive" min="-2" pref="25" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="dubbingLimit1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
@@ -1600,7 +1603,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="dubbingTitle1" alignment="3" max="32767" attributes="0"/>
                               <Component id="dubbingLimit1" alignment="3" pref="34" max="32767" attributes="0"/>
-                              <Component id="jTextField27" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="dubbingDrive" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1630,7 +1633,7 @@
                     <Property name="text" type="java.lang.String" value="/35"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField27">
+                <Component class="javax.swing.JTextField" name="dubbingDrive">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
@@ -1641,13 +1644,14 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="4"/>
                     <Property name="text" type="java.lang.String" value="0"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField27ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dubbingDriveActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -1669,7 +1673,7 @@
                           <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                           <Component id="plotTwistTitle1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jTextField28" min="-2" pref="14" max="-2" attributes="0"/>
+                          <Component id="plotTwistDrive" min="-2" pref="23" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="plotTwistLimit1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
@@ -1683,7 +1687,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="plotTwistLimit1" alignment="3" pref="33" max="32767" attributes="0"/>
                               <Component id="plotTwistTitle1" alignment="3" max="32767" attributes="0"/>
-                              <Component id="jTextField28" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="plotTwistDrive" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1713,7 +1717,7 @@
                     <Property name="text" type="java.lang.String" value="PlotTwist:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField28">
+                <Component class="javax.swing.JTextField" name="plotTwistDrive">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
@@ -1724,13 +1728,14 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="4"/>
                     <Property name="text" type="java.lang.String" value="0"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField28ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plotTwistDriveActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -1779,6 +1784,7 @@
             <Property name="text" type="java.lang.String" value="Comenzar"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton21MouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton21ActionPerformed"/>
           </Events>
           <Constraints>
@@ -1952,9 +1958,9 @@
                                   <Component id="driveTitle19" alignment="0" min="-2" pref="174" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTextField29" alignment="1" min="-2" pref="14" max="-2" attributes="0"/>
-                                  <Component id="jTextField30" alignment="1" min="-2" pref="14" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="currentDays" min="-2" pref="35" max="-2" attributes="0"/>
+                                  <Component id="remainingDays" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
@@ -1979,12 +1985,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="driveTitle19" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField29" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="currentDays" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="driveTitle20" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField30" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="remainingDays" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -2078,7 +2084,7 @@
                 <Property name="text" type="java.lang.String" value="D&#xed;as restantes:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField29">
+            <Component class="javax.swing.JTextField" name="currentDays">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
@@ -2089,16 +2095,17 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
+                <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" value="0"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField29ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="currentDaysActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField30">
+            <Component class="javax.swing.JTextField" name="remainingDays">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
@@ -2109,13 +2116,14 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
+                <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" value="0"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField30ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="remainingDaysActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -2311,34 +2319,31 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
+                      <Component id="driveTitle14" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="300" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                      <Component id="driveTitle18" min="-2" pref="86" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="driveTitle14" pref="106" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="jTextField35" min="-2" pref="14" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      <Component id="driveTitle18" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <Component id="directorStatus" min="-2" pref="167" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="driveTitle14" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="driveTitle18" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField35" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="driveTitle14" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="directorStatus" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="driveTitle18" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2367,7 +2372,7 @@
                 <Property name="text" type="java.lang.String" value="Estado:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField35">
+            <Component class="javax.swing.JTextField" name="directorStatus">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
@@ -2378,13 +2383,14 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
+                <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" value="0"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField35ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="directorStatusActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -2425,9 +2431,11 @@
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTextField34" alignment="1" min="-2" pref="14" max="-2" attributes="0"/>
-                                  <Component id="jTextField33" alignment="1" min="-2" pref="14" max="-2" attributes="0"/>
-                                  <Component id="jTextField36" alignment="1" min="-2" pref="14" max="-2" attributes="0"/>
+                                  <Component id="projectManagerStatus" alignment="1" min="-2" pref="142" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="cashPenality" alignment="1" pref="91" max="32767" attributes="0"/>
+                                      <Component id="strikeCounter" alignment="1" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                           </Group>
@@ -2448,15 +2456,15 @@
                               <Component id="driveTitle13" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="jTextField34" min="-2" max="-2" attributes="0"/>
+                              <Component id="projectManagerStatus" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField33" min="-2" max="-2" attributes="0"/>
+                              <Component id="strikeCounter" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="driveTitle16" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField36" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cashPenality" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                   </Group>
@@ -2505,10 +2513,10 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="cc" red="cc" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Penalizaci&#xf3;n:"/>
+                <Property name="text" type="java.lang.String" value="Penalizaci&#xf3;n$:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField34">
+            <Component class="javax.swing.JTextField" name="projectManagerStatus">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
@@ -2519,16 +2527,17 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="0"/>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" value="Por comenzar"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField34ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="projectManagerStatusActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField33">
+            <Component class="javax.swing.JTextField" name="strikeCounter">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
@@ -2539,16 +2548,17 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
+                <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" value="0"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField33ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="strikeCounterActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField36">
+            <Component class="javax.swing.JTextField" name="cashPenality">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
@@ -2559,13 +2569,14 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
+                <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" value="0"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField36ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cashPenalityActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

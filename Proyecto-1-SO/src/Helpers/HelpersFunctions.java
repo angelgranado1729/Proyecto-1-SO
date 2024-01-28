@@ -5,8 +5,10 @@
 package Helpers;
 
 import MainClasses.Employee;
+import MainClasses.ProjectManager;
 import FileFunctions.FileFunctions;
 import Helpers.ImportantConstants;
+import MainClasses.Director;
 import MainClasses.Drive;
 import MainClasses.TelevisionNetwork;
 import MainPackage.App;
@@ -69,8 +71,16 @@ public class HelpersFunctions {
                 }
                 workers[type] = employees;
             }
-            return new TelevisionNetwork(name, maxEmployees, workers[0], workers[1], workers[2], workers[3], workers[4],
-                    workers[5], projectManager, director, drive, mutex);
+            TelevisionNetwork network = new TelevisionNetwork(name, maxEmployees, workers[0], workers[1], workers[2], workers[3], workers[4],
+            workers[5], projectManager, director, drive, mutex);
+            
+            // Se crea al projectManager y al director, se les pasa la cadena televisiva. 
+            ProjectManager projectManagerInstance = new ProjectManager(40, network);
+            Director directorInstance = new Director(60, network);
+            network.setProjectManagerInstance(projectManagerInstance);
+            network.setDirectorInstance(directorInstance);
+            
+            return network;
 
         }
         return null;

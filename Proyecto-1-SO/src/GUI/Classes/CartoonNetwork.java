@@ -14,6 +14,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 
@@ -54,7 +55,50 @@ public class CartoonNetwork extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         initializeValues();
+        this.start();
     }
+//    
+    private void start() {
+    // Crear un nuevo hilo para el bucle infinito
+    Thread updateThread = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    // Ejecutar las actualizaciones de la UI en el EDT
+                    SwingUtilities.invokeLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Aquí van tus actualizaciones de la UI
+                            scriptDrive.setText(String.valueOf(app.getCartoonNetwork().getDrive().getSections()[0]));
+                            scenaryDrive.setText(String.valueOf(app.getCartoonNetwork().getDrive().getSections()[1]));
+                            animationDrive.setText(String.valueOf(app.getCartoonNetwork().getDrive().getSections()[2]));
+                            dubbingDrive.setText(String.valueOf(app.getCartoonNetwork().getDrive().getSections()[3]));
+                            plotTwistDrive.setText(String.valueOf(app.getCartoonNetwork().getDrive().getSections()[4]));
+                            projectManagerStatus.setText(app.getCartoonNetwork().getProjectManagerInstance().getCurrentState());
+                            remainingDays.setText(String.valueOf(app.getCartoonNetwork().getRemainingDays()));
+                            currentDays.setText(String.valueOf(app.getCartoonNetwork().getDaySet() - app.getCartoonNetwork().getRemainingDays()));
+                            strikeCounter.setText(String.valueOf(app.getCartoonNetwork().getProjectManagerInstance().getStrikes()));
+                            cashPenality.setText(String.valueOf(Integer.parseInt(strikeCounter.getText()) * 100));
+                            directorStatus.setText(app.getCartoonNetwork().getDirectorInstance().getStatus());
+                        }
+                    });
+
+                    // Pausar el hilo separado, no el EDT
+                    Thread.sleep(app.getDayDuration()/48);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    // Opcionalmente, podrías salir del bucle si el hilo es interrumpido
+                    break;
+                }
+            }
+        }
+    });
+
+    // Iniciar el hilo
+    updateThread.start();
+}
+
     
     private void initializeValues() {
         if (this.app.getCartoonNetwork() != null) {
@@ -150,23 +194,23 @@ public class CartoonNetwork extends javax.swing.JFrame {
         scripts1 = new javax.swing.JPanel();
         scriptTitle1 = new javax.swing.JLabel();
         scriptsLimit1 = new javax.swing.JLabel();
-        jTextField24 = new javax.swing.JTextField();
+        scriptDrive = new javax.swing.JTextField();
         scenary1 = new javax.swing.JPanel();
         scenaryTitle1 = new javax.swing.JLabel();
         scenaryLimit1 = new javax.swing.JLabel();
-        jTextField25 = new javax.swing.JTextField();
+        scenaryDrive = new javax.swing.JTextField();
         animations1 = new javax.swing.JPanel();
         animationsTitle1 = new javax.swing.JLabel();
         animationsLimit1 = new javax.swing.JLabel();
-        jTextField26 = new javax.swing.JTextField();
+        animationDrive = new javax.swing.JTextField();
         dubbing1 = new javax.swing.JPanel();
         dubbingTitle1 = new javax.swing.JLabel();
         dubbingLimit1 = new javax.swing.JLabel();
-        jTextField27 = new javax.swing.JTextField();
+        dubbingDrive = new javax.swing.JTextField();
         plotTwist1 = new javax.swing.JPanel();
         plotTwistLimit1 = new javax.swing.JLabel();
         plotTwistTitle1 = new javax.swing.JLabel();
-        jTextField28 = new javax.swing.JTextField();
+        plotTwistDrive = new javax.swing.JTextField();
         jButton12 = new javax.swing.JButton();
         jButton21 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -182,8 +226,8 @@ public class CartoonNetwork extends javax.swing.JFrame {
         jTextField8 = new javax.swing.JTextField();
         driveTitle19 = new javax.swing.JLabel();
         driveTitle20 = new javax.swing.JLabel();
-        jTextField29 = new javax.swing.JTextField();
-        jTextField30 = new javax.swing.JTextField();
+        currentDays = new javax.swing.JTextField();
+        remainingDays = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         driveTitle9 = new javax.swing.JLabel();
         driveTitle10 = new javax.swing.JLabel();
@@ -195,15 +239,15 @@ public class CartoonNetwork extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         driveTitle14 = new javax.swing.JLabel();
         driveTitle18 = new javax.swing.JLabel();
-        jTextField35 = new javax.swing.JTextField();
+        directorStatus = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         driveTitle15 = new javax.swing.JLabel();
         driveTitle12 = new javax.swing.JLabel();
         driveTitle13 = new javax.swing.JLabel();
         driveTitle16 = new javax.swing.JLabel();
-        jTextField34 = new javax.swing.JTextField();
-        jTextField33 = new javax.swing.JTextField();
-        jTextField36 = new javax.swing.JTextField();
+        projectManagerStatus = new javax.swing.JTextField();
+        strikeCounter = new javax.swing.JTextField();
+        cashPenality = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -998,14 +1042,15 @@ public class CartoonNetwork extends javax.swing.JFrame {
         scriptsLimit1.setForeground(new java.awt.Color(51, 51, 51));
         scriptsLimit1.setText("/25");
 
-        jTextField24.setBackground(java.awt.Color.lightGray);
-        jTextField24.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField24.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField24.setText("0");
-        jTextField24.setBorder(null);
-        jTextField24.addActionListener(new java.awt.event.ActionListener() {
+        scriptDrive.setBackground(java.awt.Color.lightGray);
+        scriptDrive.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        scriptDrive.setForeground(new java.awt.Color(51, 51, 51));
+        scriptDrive.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        scriptDrive.setText("0");
+        scriptDrive.setBorder(null);
+        scriptDrive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField24ActionPerformed(evt);
+                scriptDriveActionPerformed(evt);
             }
         });
 
@@ -1016,8 +1061,8 @@ public class CartoonNetwork extends javax.swing.JFrame {
             .addGroup(scripts1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(scriptTitle1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addComponent(scriptDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scriptsLimit1)
                 .addGap(16, 16, 16))
@@ -1029,7 +1074,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
                 .addGroup(scripts1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(scriptTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(scriptsLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                    .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scriptDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -1044,14 +1089,15 @@ public class CartoonNetwork extends javax.swing.JFrame {
         scenaryLimit1.setForeground(new java.awt.Color(51, 51, 51));
         scenaryLimit1.setText("/20");
 
-        jTextField25.setBackground(java.awt.Color.lightGray);
-        jTextField25.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField25.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField25.setText("0");
-        jTextField25.setBorder(null);
-        jTextField25.addActionListener(new java.awt.event.ActionListener() {
+        scenaryDrive.setBackground(java.awt.Color.lightGray);
+        scenaryDrive.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        scenaryDrive.setForeground(new java.awt.Color(51, 51, 51));
+        scenaryDrive.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        scenaryDrive.setText("0");
+        scenaryDrive.setBorder(null);
+        scenaryDrive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField25ActionPerformed(evt);
+                scenaryDriveActionPerformed(evt);
             }
         });
 
@@ -1062,8 +1108,8 @@ public class CartoonNetwork extends javax.swing.JFrame {
             .addGroup(scenary1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(scenaryTitle1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(scenaryDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 20, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scenaryLimit1)
                 .addGap(15, 15, 15))
@@ -1075,7 +1121,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
                 .addGroup(scenary1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(scenaryTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(scenaryLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scenaryDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -1090,14 +1136,15 @@ public class CartoonNetwork extends javax.swing.JFrame {
         animationsLimit1.setForeground(new java.awt.Color(51, 51, 51));
         animationsLimit1.setText("/55");
 
-        jTextField26.setBackground(java.awt.Color.lightGray);
-        jTextField26.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField26.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField26.setText("0");
-        jTextField26.setBorder(null);
-        jTextField26.addActionListener(new java.awt.event.ActionListener() {
+        animationDrive.setBackground(java.awt.Color.lightGray);
+        animationDrive.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        animationDrive.setForeground(new java.awt.Color(51, 51, 51));
+        animationDrive.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        animationDrive.setText("0");
+        animationDrive.setBorder(null);
+        animationDrive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField26ActionPerformed(evt);
+                animationDriveActionPerformed(evt);
             }
         });
 
@@ -1109,7 +1156,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addComponent(animationsTitle1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(animationDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(animationsLimit1)
                 .addGap(14, 14, 14))
@@ -1121,7 +1168,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
                 .addGroup(animations1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(animationsTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(animationsLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                    .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(animationDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -1136,14 +1183,15 @@ public class CartoonNetwork extends javax.swing.JFrame {
         dubbingLimit1.setForeground(new java.awt.Color(51, 51, 51));
         dubbingLimit1.setText("/35");
 
-        jTextField27.setBackground(java.awt.Color.lightGray);
-        jTextField27.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField27.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField27.setText("0");
-        jTextField27.setBorder(null);
-        jTextField27.addActionListener(new java.awt.event.ActionListener() {
+        dubbingDrive.setBackground(java.awt.Color.lightGray);
+        dubbingDrive.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        dubbingDrive.setForeground(new java.awt.Color(51, 51, 51));
+        dubbingDrive.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        dubbingDrive.setText("0");
+        dubbingDrive.setBorder(null);
+        dubbingDrive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField27ActionPerformed(evt);
+                dubbingDriveActionPerformed(evt);
             }
         });
 
@@ -1155,7 +1203,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(dubbingTitle1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField27, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dubbingDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dubbingLimit1)
                 .addGap(14, 14, 14))
@@ -1167,7 +1215,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
                 .addGroup(dubbing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dubbingTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(dubbingLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                    .addComponent(jTextField27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dubbingDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -1182,14 +1230,15 @@ public class CartoonNetwork extends javax.swing.JFrame {
         plotTwistTitle1.setForeground(new java.awt.Color(51, 51, 51));
         plotTwistTitle1.setText("PlotTwist:");
 
-        jTextField28.setBackground(java.awt.Color.lightGray);
-        jTextField28.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField28.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField28.setText("0");
-        jTextField28.setBorder(null);
-        jTextField28.addActionListener(new java.awt.event.ActionListener() {
+        plotTwistDrive.setBackground(java.awt.Color.lightGray);
+        plotTwistDrive.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        plotTwistDrive.setForeground(new java.awt.Color(51, 51, 51));
+        plotTwistDrive.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        plotTwistDrive.setText("0");
+        plotTwistDrive.setBorder(null);
+        plotTwistDrive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField28ActionPerformed(evt);
+                plotTwistDriveActionPerformed(evt);
             }
         });
 
@@ -1201,7 +1250,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(plotTwistTitle1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField28, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(plotTwistDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(plotTwistLimit1)
                 .addGap(14, 14, 14))
@@ -1213,7 +1262,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
                 .addGroup(plotTwist1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(plotTwistLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
                     .addComponent(plotTwistTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(plotTwistDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -1278,6 +1327,11 @@ public class CartoonNetwork extends javax.swing.JFrame {
         jButton21.setForeground(new java.awt.Color(255, 255, 255));
         jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Assets/playIcon.png"))); // NOI18N
         jButton21.setText("Comenzar");
+        jButton21.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton21MouseClicked(evt);
+            }
+        });
         jButton21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton21ActionPerformed(evt);
@@ -1395,25 +1449,27 @@ public class CartoonNetwork extends javax.swing.JFrame {
         driveTitle20.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle20.setText("Días restantes:");
 
-        jTextField29.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField29.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField29.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField29.setText("0");
-        jTextField29.setBorder(null);
-        jTextField29.addActionListener(new java.awt.event.ActionListener() {
+        currentDays.setBackground(new java.awt.Color(51, 51, 51));
+        currentDays.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        currentDays.setForeground(new java.awt.Color(255, 255, 255));
+        currentDays.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        currentDays.setText("0");
+        currentDays.setBorder(null);
+        currentDays.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField29ActionPerformed(evt);
+                currentDaysActionPerformed(evt);
             }
         });
 
-        jTextField30.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField30.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField30.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField30.setText("0");
-        jTextField30.setBorder(null);
-        jTextField30.addActionListener(new java.awt.event.ActionListener() {
+        remainingDays.setBackground(new java.awt.Color(51, 51, 51));
+        remainingDays.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        remainingDays.setForeground(new java.awt.Color(255, 255, 255));
+        remainingDays.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        remainingDays.setText("0");
+        remainingDays.setBorder(null);
+        remainingDays.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField30ActionPerformed(evt);
+                remainingDaysActionPerformed(evt);
             }
         });
 
@@ -1429,9 +1485,9 @@ public class CartoonNetwork extends javax.swing.JFrame {
                             .addComponent(driveTitle20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(driveTitle19, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField29, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField30, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(currentDays, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(remainingDays, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(driveTitle8)
@@ -1448,11 +1504,11 @@ public class CartoonNetwork extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(driveTitle19)
-                    .addComponent(jTextField29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(currentDays, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(driveTitle20)
-                    .addComponent(jTextField30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(remainingDays, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(134, 134, 134)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(driveTitle8)
@@ -1574,14 +1630,15 @@ public class CartoonNetwork extends javax.swing.JFrame {
         driveTitle18.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle18.setText("Estado:");
 
-        jTextField35.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField35.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField35.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField35.setText("0");
-        jTextField35.setBorder(null);
-        jTextField35.addActionListener(new java.awt.event.ActionListener() {
+        directorStatus.setBackground(new java.awt.Color(51, 51, 51));
+        directorStatus.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        directorStatus.setForeground(new java.awt.Color(255, 255, 255));
+        directorStatus.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        directorStatus.setText("0");
+        directorStatus.setBorder(null);
+        directorStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField35ActionPerformed(evt);
+                directorStatusActionPerformed(evt);
             }
         });
 
@@ -1590,27 +1647,26 @@ public class CartoonNetwork extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(driveTitle18, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(driveTitle14, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                .addGap(50, 50, 50)
-                .addComponent(jTextField35, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGap(109, 109, 109)
+                .addComponent(driveTitle14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(300, 300, 300))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(driveTitle18)
+                .addGap(47, 47, 47)
+                .addComponent(directorStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(driveTitle14))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(driveTitle18)
-                            .addComponent(jTextField35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(driveTitle14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(directorStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(driveTitle18))
+                .addContainerGap())
         );
 
         jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 390, 300, 60));
@@ -1633,38 +1689,41 @@ public class CartoonNetwork extends javax.swing.JFrame {
 
         driveTitle16.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         driveTitle16.setForeground(new java.awt.Color(204, 204, 204));
-        driveTitle16.setText("Penalización:");
+        driveTitle16.setText("Penalización$:");
 
-        jTextField34.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField34.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField34.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField34.setText("0");
-        jTextField34.setBorder(null);
-        jTextField34.addActionListener(new java.awt.event.ActionListener() {
+        projectManagerStatus.setBackground(new java.awt.Color(51, 51, 51));
+        projectManagerStatus.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        projectManagerStatus.setForeground(new java.awt.Color(255, 255, 255));
+        projectManagerStatus.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        projectManagerStatus.setText("Por comenzar");
+        projectManagerStatus.setBorder(null);
+        projectManagerStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField34ActionPerformed(evt);
+                projectManagerStatusActionPerformed(evt);
             }
         });
 
-        jTextField33.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField33.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField33.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField33.setText("0");
-        jTextField33.setBorder(null);
-        jTextField33.addActionListener(new java.awt.event.ActionListener() {
+        strikeCounter.setBackground(new java.awt.Color(51, 51, 51));
+        strikeCounter.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        strikeCounter.setForeground(new java.awt.Color(255, 255, 255));
+        strikeCounter.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        strikeCounter.setText("0");
+        strikeCounter.setBorder(null);
+        strikeCounter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField33ActionPerformed(evt);
+                strikeCounterActionPerformed(evt);
             }
         });
 
-        jTextField36.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField36.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField36.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField36.setText("0");
-        jTextField36.setBorder(null);
-        jTextField36.addActionListener(new java.awt.event.ActionListener() {
+        cashPenality.setBackground(new java.awt.Color(51, 51, 51));
+        cashPenality.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        cashPenality.setForeground(new java.awt.Color(255, 255, 255));
+        cashPenality.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        cashPenality.setText("0");
+        cashPenality.setBorder(null);
+        cashPenality.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField36ActionPerformed(evt);
+                cashPenalityActionPerformed(evt);
             }
         });
 
@@ -1686,9 +1745,10 @@ public class CartoonNetwork extends javax.swing.JFrame {
                             .addComponent(driveTitle12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField34, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField33, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField36, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(projectManagerStatus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(cashPenality, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                                .addComponent(strikeCounter, javax.swing.GroupLayout.Alignment.TRAILING)))
                         .addGap(21, 21, 21))))
         );
         jPanel8Layout.setVerticalGroup(
@@ -1703,13 +1763,13 @@ public class CartoonNetwork extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(driveTitle13))
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jTextField34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(projectManagerStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(strikeCounter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(driveTitle16)
-                    .addComponent(jTextField36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cashPenality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7))
         );
 
@@ -1884,33 +1944,33 @@ public class CartoonNetwork extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jLabel5MouseClicked
 
-    private void jTextField24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField24ActionPerformed
+    private void scriptDriveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scriptDriveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField24ActionPerformed
+    }//GEN-LAST:event_scriptDriveActionPerformed
 
-    private void jTextField25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField25ActionPerformed
+    private void scenaryDriveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scenaryDriveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField25ActionPerformed
+    }//GEN-LAST:event_scenaryDriveActionPerformed
 
-    private void jTextField26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField26ActionPerformed
+    private void animationDriveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animationDriveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField26ActionPerformed
+    }//GEN-LAST:event_animationDriveActionPerformed
 
-    private void jTextField27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField27ActionPerformed
+    private void dubbingDriveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dubbingDriveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField27ActionPerformed
+    }//GEN-LAST:event_dubbingDriveActionPerformed
 
-    private void jTextField28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField28ActionPerformed
+    private void plotTwistDriveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plotTwistDriveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField28ActionPerformed
+    }//GEN-LAST:event_plotTwistDriveActionPerformed
 
-    private void jTextField29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField29ActionPerformed
+    private void currentDaysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentDaysActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField29ActionPerformed
+    }//GEN-LAST:event_currentDaysActionPerformed
 
-    private void jTextField30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField30ActionPerformed
+    private void remainingDaysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remainingDaysActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField30ActionPerformed
+    }//GEN-LAST:event_remainingDaysActionPerformed
 
     private void jTextField31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField31ActionPerformed
         // TODO add your handling code here:
@@ -1920,21 +1980,21 @@ public class CartoonNetwork extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField32ActionPerformed
 
-    private void jTextField33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField33ActionPerformed
+    private void strikeCounterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_strikeCounterActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField33ActionPerformed
+    }//GEN-LAST:event_strikeCounterActionPerformed
 
-    private void jTextField34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField34ActionPerformed
+    private void projectManagerStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectManagerStatusActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField34ActionPerformed
+    }//GEN-LAST:event_projectManagerStatusActionPerformed
 
-    private void jTextField35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField35ActionPerformed
+    private void directorStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_directorStatusActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField35ActionPerformed
+    }//GEN-LAST:event_directorStatusActionPerformed
 
-    private void jTextField36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField36ActionPerformed
+    private void cashPenalityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashPenalityActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField36ActionPerformed
+    }//GEN-LAST:event_cashPenalityActionPerformed
 
     private void jTextField37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField37ActionPerformed
         // TODO add your handling code here:
@@ -2016,6 +2076,11 @@ public class CartoonNetwork extends javax.swing.JFrame {
 
     }//GEN-LAST:event_decreaseScriptsMouseClicked
 
+    private void jButton21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton21MouseClicked
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_jButton21MouseClicked
+
     private String increaseQuantity (String actualValue){
     int intValue = 0; 
         try {
@@ -2090,6 +2155,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel SidePanel;
+    private javax.swing.JTextField animationDrive;
     private javax.swing.JTextField animationValues;
     private javax.swing.JPanel animations;
     private javax.swing.JPanel animations1;
@@ -2102,11 +2168,14 @@ public class CartoonNetwork extends javax.swing.JFrame {
     private javax.swing.JPanel btn_nuevo_almacen;
     private javax.swing.JPanel btn_nuevo_pedido;
     private javax.swing.JPanel btn_reporte;
+    private javax.swing.JTextField cashPenality;
+    private javax.swing.JTextField currentDays;
     private javax.swing.JButton decreacePlotTwist;
     private javax.swing.JButton decreaseAnimation;
     private javax.swing.JButton decreaseDubbing;
     private javax.swing.JButton decreaseScenary;
     private javax.swing.JButton decreaseScripts;
+    private javax.swing.JTextField directorStatus;
     private javax.swing.JPanel drivePanel;
     private javax.swing.JLabel driveTitle;
     private javax.swing.JLabel driveTitle1;
@@ -2131,6 +2200,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
     private javax.swing.JLabel driveTitle9;
     private javax.swing.JPanel dubbing;
     private javax.swing.JPanel dubbing1;
+    private javax.swing.JTextField dubbingDrive;
     private javax.swing.JLabel dubbingLimit1;
     private javax.swing.JLabel dubbingTitle;
     private javax.swing.JLabel dubbingTitle1;
@@ -2167,19 +2237,8 @@ public class CartoonNetwork extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField24;
-    private javax.swing.JTextField jTextField25;
-    private javax.swing.JTextField jTextField26;
-    private javax.swing.JTextField jTextField27;
-    private javax.swing.JTextField jTextField28;
-    private javax.swing.JTextField jTextField29;
-    private javax.swing.JTextField jTextField30;
     private javax.swing.JTextField jTextField31;
     private javax.swing.JTextField jTextField32;
-    private javax.swing.JTextField jTextField33;
-    private javax.swing.JTextField jTextField34;
-    private javax.swing.JTextField jTextField35;
-    private javax.swing.JTextField jTextField36;
     private javax.swing.JTextField jTextField37;
     private javax.swing.JTextField jTextField38;
     private javax.swing.JTextField jTextField39;
@@ -2187,22 +2246,28 @@ public class CartoonNetwork extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JPanel plotTwist;
     private javax.swing.JPanel plotTwist1;
+    private javax.swing.JTextField plotTwistDrive;
     private javax.swing.JLabel plotTwistLimit1;
     private javax.swing.JLabel plotTwistTitle;
     private javax.swing.JLabel plotTwistTitle1;
     private javax.swing.JTextField plotTwistValues;
+    private javax.swing.JTextField projectManagerStatus;
+    private javax.swing.JTextField remainingDays;
     private javax.swing.JPanel scenary;
     private javax.swing.JPanel scenary1;
+    private javax.swing.JTextField scenaryDrive;
     private javax.swing.JLabel scenaryLimit1;
     private javax.swing.JLabel scenaryTitle;
     private javax.swing.JLabel scenaryTitle1;
     private javax.swing.JTextField scenaryValue;
+    private javax.swing.JTextField scriptDrive;
     private javax.swing.JLabel scriptTitle1;
     private javax.swing.JPanel scripts;
     private javax.swing.JPanel scripts1;
     private javax.swing.JLabel scriptsLimit1;
     private javax.swing.JLabel scriptsTitle;
     private javax.swing.JTextField scriptsValues;
+    private javax.swing.JTextField strikeCounter;
     private javax.swing.JPanel workersConfigurations;
     // End of variables declaration//GEN-END:variables
 }

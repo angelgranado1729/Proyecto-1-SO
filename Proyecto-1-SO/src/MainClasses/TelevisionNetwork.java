@@ -22,12 +22,16 @@ public class TelevisionNetwork {
     private Employee[] plotTwistScreenwriters;
     private Employee[] Assemblers;
     private int projectManager;
+    private ProjectManager projectManagerInstance;
     private int director;
+    private Director directorInstance;
     private static Drive drive;
     private Semaphore mutex;
     private float totalCost;
     private float earning;
     private float profit;
+    private int daySet = 30;
+    private int remainingDays = daySet;
 
     // CONSTRUCTOR
 
@@ -72,6 +76,8 @@ public class TelevisionNetwork {
         for (int i = 0; i < this.getAssemblers().length; i++) {
             this.getAssemblers()[i].start();
         }
+       this.getProjectManagerInstance().start();
+       this.getDirectorInstance().start();
 
     }
 
@@ -309,4 +315,63 @@ public class TelevisionNetwork {
         this.actualEmployeesQuantity = actualEmployeesQuantity;
     }
 
+    /**
+     * @return the projectManagerInstance
+     */
+    public ProjectManager getProjectManagerInstance() {
+        return projectManagerInstance;
+    }
+
+    /**
+     * @param projectManagerInstance the projectManagerInstance to set
+     */
+    public void setProjectManagerInstance(ProjectManager projectManagerInstance) {
+        this.projectManagerInstance = projectManagerInstance;
+    }
+
+    /**
+     * @return the daySet
+     */
+    public int getDaySet() {
+        return daySet;
+    }
+
+    /**
+     * @param daySet the daySet to set
+     */
+    public void setDaySet(int daySet) {
+        this.daySet = daySet;
+    }
+
+    /**
+     * @return the remainingDays
+     */
+    public int getRemainingDays() {
+        return remainingDays;
+    }
+
+    /**
+     * @param remainingDays the remainingDays to set
+     */
+    public void setRemainingDays(int remainingDays) {
+        this.remainingDays = remainingDays;
+    }
+
+    /**
+     * @return the directorInstance
+     */
+    public Director getDirectorInstance() {
+        return directorInstance;
+    }
+
+    /**
+     * @param directorInstance the directorInstance to set
+     */
+    public void setDirectorInstance(Director directorInstance) {
+        this.directorInstance = directorInstance;
+    }
+    
+    
+    
+    
 }
