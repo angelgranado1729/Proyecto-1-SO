@@ -4,6 +4,8 @@
  */
 package MainClasses;
 
+import Helpers.ImportantConstants;
+
 /**
  *
  * @author angel
@@ -46,9 +48,9 @@ public class Drive {
     public String toString() {
         String str = "Drive Info\n\n";
         for (int i = 0; i <= 5; i++) {
-            str += "-" + Helpers.workesType[i] + "'s drive section: " + this.sections[i] + "\n";
+            str += "-" + ImportantConstants.workesType[i] + "'s drive section: " + this.sections[i] + "\n";
             if (i != 5) {
-                str += "-" + Helpers.workesType[i] + "'s max capacity: " + this.maxCapacity[i] + "\n";
+                str += "-" + ImportantConstants.workesType[i] + "'s max capacity: " + this.maxCapacity[i] + "\n";
             }
         }
         return str;

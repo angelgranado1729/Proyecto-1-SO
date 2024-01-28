@@ -7,8 +7,9 @@ package MainPackage;
 import GUI.Classes.Home;
 import MainClasses.Drive;
 import MainClasses.Employee;
-import FileFunctions.FileFuctions;
-import MainClasses.Helpers;
+import FileFunctions.FileFunctions;
+import Helpers.HelpersFunctions;
+import Helpers.ImportantConstants;
 import MainClasses.TelevisionNetwork;
 import java.io.File;
 import java.util.concurrent.Semaphore;
@@ -19,19 +20,22 @@ import java.util.concurrent.Semaphore;
  */
 public class App {
 
-    private static int dayDuration = 3000;
+    // FIle params
     private static String selectedPath = "test//params.txt";
     private static File selectedFile = new File(selectedPath);
-    private static FileFuctions fileFunctions = new FileFuctions();
-    private static String fileData = getFileFunctions().read(getSelectedFile());
-    private static Semaphore mutex;
+    private static FileFunctions fileFunctions = new FileFunctions();
+
+    // General params
+    private static int dayDuration;
+    private static int deadline;
+
+    // General variables
     private TelevisionNetwork cartoonNetwork;
     private TelevisionNetwork nickelodeon;
 
-    
     private static App app;
-     
-     /**
+
+    /**
      * Devuelve una instancia única de la aplicación.
      *
      * @return La instancia única de la aplicación.
@@ -43,115 +47,13 @@ public class App {
         return getApp();
     }
 
-
     public void start() {
-            this.createCartoonNetwork();
-            this.createNickelodeon();
-            Home home = new Home();
-            home.setVisible(true);
-    }
 
-    
-    public void createCartoonNetwork() {
-        // Se obtiene los datos de CartoonNetwork del TXT
-        int[] cartoonNetworkValues = fileFunctions.getCartoonNetworkValues(this.fileData);
-        
-        if (cartoonNetworkValues != null && cartoonNetworkValues.length >= 9) {
-            int idWorker = 1;
-            
-            // Inicialización de arrays de empleados con los tamaños especificados
-            Employee[] screenWriters = new Employee[cartoonNetworkValues[0]];
-            Employee[] setDesigners = new Employee[cartoonNetworkValues[1]];
-            Employee[] characterAnimators = new Employee[cartoonNetworkValues[2]];
-            Employee[] voiceActors = new Employee[cartoonNetworkValues[3]];
-            Employee[] plotTwistScreenwriters = new Employee[cartoonNetworkValues[4]];
-            Employee[] assemblers = new Employee[cartoonNetworkValues[5]];
-            Drive cartoonDrive = new Drive(25, 20, 55, 35, 10); // Asumiendo que estos son los tamaños del drive
-            int projectManager = 1; 
-            int director = 1; 
-            int maxEmployees = cartoonNetworkValues[8];
-            int remainingDays = 30; 
-            int passedDays = 0;
-            
-            // Llenar los arrays con instancias de empleados
-            for (int j = 0; j < screenWriters.length; j++) {
-                screenWriters[j] = new Employee(idWorker++, 0, 20, 4, cartoonDrive, mutex, 3000);
-            }
-            for (int j = 0; j < setDesigners.length; j++) {
-                setDesigners[j] = new Employee(idWorker++, 1, 26, 4, cartoonDrive, mutex, 3000);
-            }
-            for (int j = 0; j < characterAnimators.length; j++) {
-                characterAnimators[j] = new Employee(idWorker++, 2, 40, 1, cartoonDrive, mutex, 3000);
-            }
-            for (int j = 0; j < voiceActors.length; j++) {
-                voiceActors[j] = new Employee(idWorker++, 3, 16, 1, cartoonDrive, mutex, 3000);
-            }
-            for (int j = 0; j < plotTwistScreenwriters.length; j++) {
-                plotTwistScreenwriters[j] = new Employee(idWorker++, 4, 34, 2, cartoonDrive, mutex, 3000);
-            }
-            for (int j = 0; j < assemblers.length; j++) {
-                assemblers[j] = new Employee(idWorker++, 5, 50, 2, cartoonDrive, mutex, 3000);
-            }
-            this.cartoonNetwork = new TelevisionNetwork("Cartoon Network", maxEmployees, screenWriters, setDesigners, characterAnimators, voiceActors, plotTwistScreenwriters, assemblers, projectManager, director, remainingDays, passedDays, cartoonDrive, mutex);
-        }
-    }
-    
-    public void createNickelodeon() {
-        // Se obtiene los datos de Nickelodeon del TXT
-        int[] NickelodeonValues = fileFunctions.getNickelodeonValues(this.fileData);
-        
-        if (NickelodeonValues != null && NickelodeonValues.length >= 9) {
-            int idWorker = 1;
-            
-            // Inicialización de arrays de empleados con los tamaños especificados
-            Employee[] screenWriters = new Employee[NickelodeonValues[0]];
-            Employee[] setDesigners = new Employee[NickelodeonValues[1]];
-            Employee[] characterAnimators = new Employee[NickelodeonValues[2]];
-            Employee[] voiceActors = new Employee[NickelodeonValues[3]];
-            Employee[] plotTwistScreenwriters = new Employee[NickelodeonValues[4]];
-            Employee[] assemblers = new Employee[NickelodeonValues[5]];
-            Drive nickelodeonDrive = new Drive(25, 20, 55, 35, 10); // Asumiendo que estos son los tamaños del drive
-            int projectManager = 1; 
-            int director = 1; 
-            int maxEmployees = NickelodeonValues[8];
-            int remainingDays = 30; 
-            int passedDays = 0;
-            
-            // Llenar los arrays con instancias de empleados
-            for (int j = 0; j < screenWriters.length; j++) {
-                screenWriters[j] = new Employee(idWorker++, 0, 20, 4, nickelodeonDrive, mutex, 3000);
-            }
-            for (int j = 0; j < setDesigners.length; j++) {
-                setDesigners[j] = new Employee(idWorker++, 1, 26, 4, nickelodeonDrive, mutex, 3000);
-            }
-            for (int j = 0; j < characterAnimators.length; j++) {
-                characterAnimators[j] = new Employee(idWorker++, 2, 40, 1, nickelodeonDrive, mutex, 3000);
-            }
-            for (int j = 0; j < voiceActors.length; j++) {
-                voiceActors[j] = new Employee(idWorker++, 3, 16, 1, nickelodeonDrive, mutex, 3000);
-            }
-            for (int j = 0; j < plotTwistScreenwriters.length; j++) {
-                plotTwistScreenwriters[j] = new Employee(idWorker++, 4, 34, 2, nickelodeonDrive, mutex, 3000);
-            }
-            for (int j = 0; j < assemblers.length; j++) {
-                assemblers[j] = new Employee(idWorker++, 5, 50, 2, nickelodeonDrive, mutex, 3000);
-            }
-            this.setNickelodeon(new TelevisionNetwork("Nickelodeon", maxEmployees, screenWriters, setDesigners, characterAnimators, voiceActors, plotTwistScreenwriters, assemblers, projectManager, director, remainingDays, passedDays, nickelodeonDrive, mutex));
-        }
-    }
+        setNickelodeon(HelpersFunctions.createTelevisionNetwork(0));
+        setCartoonNetwork(HelpersFunctions.createTelevisionNetwork(1));
 
-    /**
-     * @return the dayDuration
-     */
-    public static int getDayDuration() {
-        return dayDuration;
-    }
-
-    /**
-     * @param aDayDuration the dayDuration to set
-     */
-    public static void setDayDuration(int aDayDuration) {
-        dayDuration = aDayDuration;
+         Home home = new Home();
+         home.setVisible(true);
     }
 
     /**
@@ -185,15 +87,43 @@ public class App {
     /**
      * @return the fileFunctions
      */
-    public static FileFuctions getFileFunctions() {
+    public static FileFunctions getFileFunctions() {
         return fileFunctions;
     }
 
     /**
      * @param aFileFunctions the fileFunctions to set
      */
-    public static void setFileFunctions(FileFuctions aFileFunctions) {
+    public static void setFileFunctions(FileFunctions aFileFunctions) {
         fileFunctions = aFileFunctions;
+    }
+
+    /**
+     * @return the dayDuration
+     */
+    public static int getDayDuration() {
+        return dayDuration;
+    }
+
+    /**
+     * @param aDayDuration the dayDuration to set
+     */
+    public static void setDayDuration(int aDayDuration) {
+        dayDuration = aDayDuration;
+    }
+
+    /**
+     * @return the deadline
+     */
+    public static int getDeadline() {
+        return deadline;
+    }
+
+    /**
+     * @param aDeadline the deadline to set
+     */
+    public static void setDeadline(int aDeadline) {
+        deadline = aDeadline;
     }
 
     /**
@@ -210,21 +140,6 @@ public class App {
         this.cartoonNetwork = cartoonNetwork;
     }
 
-    
-    /**
-     * @return the app
-     */
-    public static App getApp() {
-        return app;
-    }
-
-    /**
-     * @param aApp the app to set
-     */
-    public static void setApp(App aApp) {
-        app = aApp;
-    }
-
     /**
      * @return the nickelodeon
      */
@@ -239,5 +154,19 @@ public class App {
         this.nickelodeon = nickelodeon;
     }
 
-    
+    /**
+     * @return the app
+     */
+    public static App getApp() {
+        return app;
+    }
+
+    /**
+     * @param aApp the app to set
+     */
+    public static void setApp(App aApp) {
+        app = aApp;
+    }
+
+  
 }

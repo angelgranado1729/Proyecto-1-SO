@@ -3,36 +3,37 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package MainClasses;
+
 import java.util.concurrent.Semaphore;
 
 /**
  *
- * @author Erika A. Hernández Z. 
+ * @author Erika A. Hernández Z.
  */
 public class TelevisionNetwork {
-    
-   private String name; 
-   private int maxEmployeesQuantity; 
-   private int actualEmployeesQuantity;
-   private Employee[] screenwriters;
-   private Employee[] setDesigners;
-   private Employee[] characterAnimators;
-   private Employee[] voiceActors;
-   private Employee[] plotTwistScreenwriters;
-   private Employee[] Assemblers;
-   private int projectManager; 
-   private int director;
-   private int remainingDays;
-   private int passedDays; 
-   private static Drive drive;
-   private Semaphore mutex;
-   private float totalCost; 
-   private float earning;
-   private float profit;
-   
-   // CONSTRUCTOR
 
-    public TelevisionNetwork(String name, int maxEmployeesQuantity, Employee[] screenwriters, Employee[] setDesigners, Employee[] characterAnimators, Employee[] voiceActors, Employee[] plotTwistScreenwriters, Employee[] Assemblers, int projectManager, int director, int remainingDays, int passedDays, Drive drive, Semaphore mutex) {
+    private String name;
+    private int maxEmployeesQuantity;
+    private int actualEmployeesQuantity;
+    private Employee[] screenwriters;
+    private Employee[] setDesigners;
+    private Employee[] characterAnimators;
+    private Employee[] voiceActors;
+    private Employee[] plotTwistScreenwriters;
+    private Employee[] Assemblers;
+    private int projectManager;
+    private int director;
+    private static Drive drive;
+    private Semaphore mutex;
+    private float totalCost;
+    private float earning;
+    private float profit;
+
+    // CONSTRUCTOR
+
+    public TelevisionNetwork(String name, int maxEmployeesQuantity, Employee[] screenwriters, Employee[] setDesigners,
+            Employee[] characterAnimators, Employee[] voiceActors, Employee[] plotTwistScreenwriters,
+            Employee[] Assemblers, int projectManager, int director, Drive drive, Semaphore mutex) {
         this.name = name;
         this.maxEmployeesQuantity = maxEmployeesQuantity;
         this.screenwriters = screenwriters;
@@ -43,16 +44,14 @@ public class TelevisionNetwork {
         this.Assemblers = Assemblers;
         this.projectManager = projectManager;
         this.director = director;
-        this.remainingDays = remainingDays;
-        this.passedDays = passedDays;
         this.drive = drive;
         this.mutex = mutex;
         this.actualEmployeesQuantity();
     }
-   
-   
-    public void actualEmployeesQuantity (){
-        this.setActualEmployeesQuantity(screenwriters.length + setDesigners.length + characterAnimators.length + characterAnimators.length + voiceActors.length + plotTwistScreenwriters.length);
+
+    public void actualEmployeesQuantity() {
+        this.setActualEmployeesQuantity(screenwriters.length + setDesigners.length + characterAnimators.length
+                + characterAnimators.length + voiceActors.length + plotTwistScreenwriters.length);
     }
 
     public TelevisionNetwork(String name, int maxEmployeesQuantity) {
@@ -201,34 +200,6 @@ public class TelevisionNetwork {
     }
 
     /**
-     * @return the remainingDays
-     */
-    public int getRemainingDays() {
-        return remainingDays;
-    }
-
-    /**
-     * @param remainingDays the remainingDays to set
-     */
-    public void setRemainingDays(int remainingDays) {
-        this.remainingDays = remainingDays;
-    }
-
-    /**
-     * @return the passedDays
-     */
-    public int getPassedDays() {
-        return passedDays;
-    }
-
-    /**
-     * @param passedDays the passedDays to set
-     */
-    public void setPassedDays(int passedDays) {
-        this.passedDays = passedDays;
-    }
-
-    /**
      * @return the drive
      */
     public static Drive getDrive() {
@@ -312,7 +283,4 @@ public class TelevisionNetwork {
         this.actualEmployeesQuantity = actualEmployeesQuantity;
     }
 
-    
-    
-   
 }

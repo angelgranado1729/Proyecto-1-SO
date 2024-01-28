@@ -4,6 +4,7 @@
  */
 package MainClasses;
 
+import Helpers.ImportantConstants;
 import MainPackage.App;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
@@ -15,26 +16,30 @@ import java.util.logging.Logger;
  */
 public class Employee extends Thread {
 
+//    0 si es Nickelodeon & 1 si es Cartoon Network (REVISAR LA CLASE IMPORTANT CONSTANTS)
+    private int company;
     private int workerId;
     private int type;
     private int daysToFinish;
     private int numOfWorkDone;
-    private int hourlyWage;
     private Drive driveRef;
     private Semaphore mutex;
 
+    private int hourlyWage;
     private float accumulatedSalary;
     private float dailyProgress;
     private float totalWork;
 
-    public Employee(int workerId, int type, int daysToFinish, int numOfWorkDone, int hourlyWage, Drive driveRef, Semaphore mutex) {
+    public Employee(int company, int workerId, int type, int daysToFinish, int numOfWorkDone, int hourlyWage, Drive driveRef, Semaphore mutex) {
+        this.company = company;
         this.workerId = workerId;
         this.type = type;
         this.daysToFinish = daysToFinish;
         this.numOfWorkDone = numOfWorkDone;
-        this.hourlyWage = hourlyWage;
         this.driveRef = driveRef;
         this.mutex = mutex;
+
+        this.hourlyWage = ImportantConstants.hourlyWages[type];
         this.accumulatedSalary = 0;
         // Cantidad de trabajo realizado por dia        
         this.dailyProgress = (float) numOfWorkDone / daysToFinish;
@@ -79,20 +84,35 @@ public class Employee extends Thread {
     public String toString() {
         return """
                Employee {
-               -workerId=""" + getWorkerId() + "\n"
-                + "-type=" + getType() + "\n"
-                + "-Days to Finish his part=" + getDaysToFinish() + "\n"
-                + "- Num of work done per days=" + getNumOfWorkDone() + "\n"
-                + "-hourlyWage=" + getHourlyWage() + "\n"
-                + "-accumulatedSalary=" + getAccumulatedSalary() + "\n"
-                + "-dailyProgress=" + getDailyProgress() + "\n"
-                + "-Total Work=" + getTotalWork() + "\n"
-                + "-driveRef=" + (getDriveRef() != null ? "assigned" : "not assigned") + "\n"
-                + "-mutex=" + (getMutex() != null ? "assigned" : "not assigned") + "\n"
+               """ + "-Company= " + ImportantConstants.companies[getCompany()] + "\n"
+                + "-workerId= " + getWorkerId() + "\n"
+                + "-type= " + ImportantConstants.workesType[getType()] + "\n"
+                + "-Days to Finish his part= " + getDaysToFinish() + "\n"
+                + "- Num of work done per days= " + getNumOfWorkDone() + "\n"
+                + "-hourlyWage= " + getHourlyWage() + "\n"
+                + "-accumulatedSalary= " + getAccumulatedSalary() + "\n"
+                + "-dailyProgress= " + getDailyProgress() + "\n"
+                + "-Total Work= " + getTotalWork() + "\n"
+                + "-driveRef= " + (getDriveRef() != null ? "assigned" : "not assigned") + "\n"
+                + "-mutex= " + (getMutex() != null ? "assigned" : "not assigned") + "\n"
                 + "\n}";
     }
 
     //    Getters and Setters
+    /**
+     * @return the company
+     */
+    public int getCompany() {
+        return company;
+    }
+
+    /**
+     * @param company the company to set
+     */
+    public void setCompany(int company) {
+        this.company = company;
+    }
+
     /**
      * @return the workerId
      */
@@ -150,20 +170,6 @@ public class Employee extends Thread {
     }
 
     /**
-     * @return the hourlyWage
-     */
-    public int getHourlyWage() {
-        return hourlyWage;
-    }
-
-    /**
-     * @param hourlyWage the hourlyWage to set
-     */
-    public void setHourlyWage(int hourlyWage) {
-        this.hourlyWage = hourlyWage;
-    }
-
-    /**
      * @return the driveRef
      */
     public Drive getDriveRef() {
@@ -189,6 +195,20 @@ public class Employee extends Thread {
      */
     public void setMutex(Semaphore mutex) {
         this.mutex = mutex;
+    }
+
+    /**
+     * @return the hourlyWage
+     */
+    public int getHourlyWage() {
+        return hourlyWage;
+    }
+
+    /**
+     * @param hourlyWage the hourlyWage to set
+     */
+    public void setHourlyWage(int hourlyWage) {
+        this.hourlyWage = hourlyWage;
     }
 
     /**
@@ -232,4 +252,5 @@ public class Employee extends Thread {
     public void setTotalWork(float totalWork) {
         this.totalWork = totalWork;
     }
+
 }

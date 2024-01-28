@@ -10,15 +10,15 @@ import java.io.FileReader;
 
 /**
  *
- * @author angel
+ * @author angel & Erika
  */
-public class FileFuctions {
-    
-    public static String read(File selectedFile){
+public class FileFunctions {
+
+    public static String read(File selectedFile) {
         String line;
-        String data= "";
+        String data = "";
         File file = selectedFile;
-        
+
         try {
             if (!file.exists()) {
                 file.createNewFile();
@@ -26,43 +26,43 @@ public class FileFuctions {
             } else {
                 FileReader fr = new FileReader(file);
                 BufferedReader br = new BufferedReader(fr);
-                
-                while ((line = br.readLine()) != null){
-                    if (!(line.isEmpty())){
+
+                while ((line = br.readLine()) != null) {
+                    if (!(line.isEmpty())) {
                         data += line + "\n";
                     }
                 }
                 br.close();
             }
             return data;
-        } catch (Exception e){
+        } catch (Exception e) {
         }
         return data;
     }
 
-     public int[] getCartoonNetworkValues(String fileData) {
-    // Busca el índice de inicio de la sección de Cartoon Network
-        int startIndex = fileData.indexOf("[CartoonNetwork]");
+    public static int[] getGeneralParams(String fileData) {
+        int startIndex = fileData.indexOf("[General Params]");
         if (startIndex == -1) {
             // La sección de Cartoon Network no fue encontrada.
             return null;
         }
 
-        // Se Encuentra el final de la sección de Cartoon Network o el final del archivo si no hay más secciones
+        // Se Encuentra el final de la sección de General Params o el final del archivo
+        // si no hay más secciones
         int endIndex = fileData.indexOf("[", startIndex + 1);
         if (endIndex == -1) {
             endIndex = fileData.length();
         }
 
-        // Se extrae la sección de Cartoon Network
+        // Se extrae la sección de General Params
         String cnSection = fileData.substring(startIndex, endIndex);
 
         // Se divide la sección en líneas
         String[] lines = cnSection.split("\n");
 
         // Se crea un array para almacenar los valores enteros de la configuración
-        // Hay 8 tipos de trabajadores + el valor de máxima cantidad de empleados.
-        int[] cnValues = new int[9];
+
+        int[] generalParams = new int[2];
 
         // Variable para recorrer el arreglo de líneas
         int valueIndex = 0;
@@ -75,40 +75,42 @@ public class FileFuctions {
                 if (parts.length == 2) {
                     try {
                         // Se castea el valor entero y lo almacena en el array
-                        cnValues[valueIndex++] = Integer.parseInt(parts[1].trim());
+                        generalParams[valueIndex++] = Integer.parseInt(parts[1].trim());
                     } catch (NumberFormatException e) {
                         System.out.println("El valor no es entero");
                     }
                 }
             }
+        }
+        return generalParams;
     }
-    
-    return cnValues;
-}
-     
-     public int[] getNickelodeonValues(String fileData) {
-    // Busca el índice de inicio de la sección de Nickelodeon
-        int startIndex = fileData.indexOf("[Nickelodeon]");
+
+    public static int[] getTelevisionNetworkValues(int company, String fileData) {
+        int[] values = new int[9];
+        int startIndex = 0;
+
+        if (company == 0) {
+            startIndex = fileData.indexOf("[Nickelodeon]");
+        } else if (company == 1) {
+            startIndex = fileData.indexOf("[CartoonNetwork]");
+        }
+
         if (startIndex == -1) {
-            // La sección de Cartoon Network no fue encontrada.
+            // La sección no fue encontrada.
             return null;
         }
 
-        // Se Encuentra el final de la sección de Cartoon Network o el final del archivo si no hay más secciones
+        // Se Encuentra el final de la sección de o el final del archivo
         int endIndex = fileData.indexOf("[", startIndex + 1);
         if (endIndex == -1) {
             endIndex = fileData.length();
         }
 
-        // Se extrae la sección de Nickelodeon
+        // Se extrae la sección
         String cnSection = fileData.substring(startIndex, endIndex);
 
         // Se divide la sección en líneas
         String[] lines = cnSection.split("\n");
-
-        // Se crea un array para almacenar los valores enteros de la configuración
-        // Hay 8 tipos de trabajadores + el valor de máxima cantidad de empleados.
-        int[] nickValues = new int[9];
 
         // Variable para recorrer el arreglo de líneas
         int valueIndex = 0;
@@ -121,20 +123,14 @@ public class FileFuctions {
                 if (parts.length == 2) {
                     try {
                         // Se castea el valor entero y lo almacena en el array
-                        nickValues[valueIndex++] = Integer.parseInt(parts[1].trim());
+                        values[valueIndex++] = Integer.parseInt(parts[1].trim());
                     } catch (NumberFormatException e) {
                         System.out.println("El valor no es entero");
                     }
                 }
             }
-    }
-    
-    return nickValues;
-}
-    
-    public static void loadData(String data){
-        if (!("").equals(data)){
-            
         }
+
+        return values;
     }
 }
