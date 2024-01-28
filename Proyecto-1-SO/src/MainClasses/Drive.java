@@ -30,14 +30,14 @@ public class Drive {
         };
     }
 
-    public void uploadFile(int workerType) {
+    public void uploadFile(int workerType, int workToUpload) {
         if (workerType >= 0 && workerType <= 5) {
             // Si el trabajador es de tipo 5, se sube el archivo sin verificar la capacidad máxima
             if (workerType == 5) {
-                this.getSections()[workerType] += 1;
+                this.getSections()[workerType] += workToUpload;
             } else if (this.getSections()[workerType] < this.getMaxCapacity()[workerType]) {
                 // Para los otros trabajadores, se verifica la capacidad máxima antes de subir el archivo
-                this.getSections()[workerType] += 1;
+                this.getSections()[workerType] += workToUpload;
             }
         }
     }
