@@ -29,7 +29,6 @@ public class Director extends Employee {
     public void run() {
         while (true) {
             try {
-                mutex.acquire();
                 int dayDuration = app.getDayDuration();
                 int oneHour = dayDuration / 24;
                 // Se determina cuanto son 35 minutos. 
@@ -66,7 +65,6 @@ public class Director extends Employee {
 
                 getPaid(); 
                 Thread.sleep(dayDuration);
-                mutex.release();
             } catch (InterruptedException ex) {
                 Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -29,7 +29,6 @@ public class ProjectManager extends Employee {
         while (true) {
             try {
                 //Se obtiene la duración del día total directo de la variable de app.
-                mutex.acquire();
                 int dayDuration = App.getDayDuration(); 
 
                 // Duración de una hora en la simulación
@@ -55,7 +54,6 @@ public class ProjectManager extends Employee {
                 this.updateCountdown();
                 // Culminado el día cobra su salario
                 this.getPaid();
-                mutex.release();
                 System.out.println(this.toString());
 
             } catch (InterruptedException ex) {
