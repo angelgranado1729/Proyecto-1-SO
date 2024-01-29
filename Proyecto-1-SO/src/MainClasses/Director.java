@@ -42,8 +42,8 @@ public class Director extends Thread {
                 int remainingDays = network.getRemainingDays();
 
                 if (remainingDays == 0) {
+                    this.setStatus("Enviando capítulos.");
                     sendChaptersToTV();
-                    network.setRemainingDays(network.getDaySet());
                 } 
                 // Si es un dia diferente al 0 entonces hace sus labores administrativas y supervisa al PM
                 else {
@@ -75,12 +75,42 @@ public class Director extends Thread {
     }
 
     private void sendChaptersToTV() {
+    try {
         this.setStatus("Enviando capítulos.");
+        this.calculateProfit();
+        // Esperar un día completo (simulado)
+        Thread.sleep(app.getDayDuration());
 
+        // Reiniciar el contador de días restantes, el contador de faltas del Project Manager y los capitulos producidos.
+        network.setRemainingDays(network.getDaySet());
+        network.getProjectManagerInstance().resetStrikes();
+        network.getDrive().resetChapters();
+        network.getDrive().resetCost();
+        
+    } catch (InterruptedException ex) {
+        Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
     }
+}
 
     private void performAdministrativeTasks() {
         this.setStatus("Administrando");
+    }
+    
+    private void calculateProfit(){
+        int cost = network.getDrive().getCost();
+        int earnStandard =+ network.getDrive().getStandarChapters();
+        int earnPlotTwist =+ network.getDrive().getPlotTwistChapters();
+        if (network.getName() == "Nickelodeon"){
+            earnStandard *= 450000;
+            earnPlotTwist *=550000;
+        } else {
+            earnStandard *= 300000;
+            earnPlotTwist *=650000;
+        }
+       int earning = earnStandard + earnPlotTwist;
+       int profit = earning - cost;
+       network.setEarning(earning);
+       network.setProfit(profit);
     }
 
     private void checkProjectManager() {
@@ -94,6 +124,7 @@ public class Director extends Thread {
 
     private void getPaid() {
         this.accumulatedSalary += this.hourlyWage * 24;
+        network.getDrive().setCost(this.hourlyWage * 24);
     }
 
     @Override

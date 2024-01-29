@@ -79,6 +79,8 @@ public class ProjectManager extends Thread {
     private void getPaid() {
         // Asumiendo que el Project Manager trabaja las 24 horas del día, incluyendo ver anime.
         this.setAccumulatedSalary(this.getAccumulatedSalary() + this.getHourlyWage() * 24);
+        network.getDrive().setCost(this.getHourlyWage() * 24);
+        
     }
 
     @Override
@@ -178,6 +180,8 @@ public class ProjectManager extends Thread {
         this.strikes++;
     }
     
-    
+    public void resetStrikes(){
+        this.strikes = 0;
+    }
     
 }

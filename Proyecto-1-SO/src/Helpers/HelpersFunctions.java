@@ -57,9 +57,9 @@ public class HelpersFunctions {
 
             // Se crean los empleados de cada sección
             for (int type = 0; type <= 5; type++) {
-                Employee[] employees = new Employee[televisionNetworkValues[type]];
+                Employee[] employees = new Employee[maxEmployees];
 
-                for (int j = 0; j < employees.length; j++) {
+                for (int j = 0; j < televisionNetworkValues[type]; j++) {
                     int workerId = j + 1;
                     int daysToFinish = ImportantConstants.productionTimes[company][type][1];
                     int numOfWorkDone = ImportantConstants.productionTimes[company][type][0];
@@ -85,5 +85,106 @@ public class HelpersFunctions {
         }
         return null;
     }
+    
+    
+    public void addWorker(int company, int workerType) {
+        System.out.println("SE CREOOOO");
+
+        TelevisionNetwork network = company == 0 ? App.getInstance().getNickelodeon() : App.getInstance().getCartoonNetwork();
+                System.out.println(network.getActualEmployeesQuantity());
+
+        // Se verifica si la cantidad actual de empleados es menor que la cantidad máxima permitida
+        if (network.getActualEmployeesQuantity() < network.getMaxEmployeesQuantity()) {
+            Employee[] employees = getEmployeesArrayByType(network, workerType);
+
+            // Se crea nuevo empleado
+            int workerId = network.getActualEmployeesQuantity() + 1;
+            int daysToFinish = ImportantConstants.productionTimes[company][workerType][1];
+            int numOfWorkDone = ImportantConstants.productionTimes[company][workerType][0];
+            int hourlyWage = ImportantConstants.hourlyWages[workerType];
+            Employee newEmployee = new Employee(company, workerId, workerType, daysToFinish, numOfWorkDone, hourlyWage, network.getDrive(), network.getMutex());
+
+            // Se inicia el hilo del nuevo empleado
+            newEmployee.start();
+
+            // Se buscar la primera posición vacía en el arreglo y añadir allí el nuevo empleado
+            for (int i = 0; i < employees.length; i++) {
+                if (employees[i] == null) {
+                    employees[i] = newEmployee;
+                    network.setActualEmployeesQuantity(network.getActualEmployeesQuantity() + 1); // Actualizar la cantidad de empleados
+                    break;
+                }
+            }            
+        } else {
+            System.out.println("Se ha alcanzado el número máximo de empleados.");
+        }
+    }
+    
+    public void deleteWorker(int company, int workerType) {
+    TelevisionNetwork network = company == 0 ? App.getInstance().getNickelodeon() : App.getInstance().getCartoonNetwork();
+
+        // Verifica si hay empleados para eliminar
+        if (network.getActualEmployeesQuantity() > 0) {
+            Employee[] employees = getEmployeesArrayByType(network, workerType);
+
+            if (employees != null) {
+                // Buscar el último empleado no nulo
+                for (int i = employees.length - 1; i >= 0; i--) {
+                    if (employees[i] != null) {
+                        // Interrumpe el hilo del empleado
+                        employees[i].interrupt();
+
+                        // Elimina el empleado del arreglo
+                        employees[i] = null;
+
+                        // Actualiza la cantidad de empleados
+                        network.setActualEmployeesQuantity(network.getActualEmployeesQuantity() - 1);
+                        break;
+                    }
+                }
+            }
+        } else {
+            System.out.println("No hay empleados para eliminar.");
+        }
+    }
+
+
+    private Employee[] getEmployeesArrayByType(TelevisionNetwork network, int workerType) {
+        switch (workerType) {
+            case 0:
+                return network.getScreenwriters();
+            case 1:
+                return network.getSetDesigners();
+            case 2:
+                return network.getCharacterAnimators();
+            case 3:
+                return network.getVoiceActors();
+            case 4:
+                return network.getPlotTwistScreenwriters();
+            default:
+                return null;
+        }
+    }
+    
+    private void setEmployeesArrayByType(TelevisionNetwork network, int workerType, Employee[] newEmployees) {
+    switch (workerType) {
+        case 0:
+            network.setScreenwriters(newEmployees);
+            break;
+        case 1:
+            network.setSetDesigners(newEmployees);
+            break;
+        case 2:
+            network.setCharacterAnimators(newEmployees);
+            break;
+        case 3:
+            network.setVoiceActors(newEmployees);
+            break;
+        case 4:
+            network.setPlotTwistScreenwriters(newEmployees);
+            break;
+    }
+}
+    
 
 }

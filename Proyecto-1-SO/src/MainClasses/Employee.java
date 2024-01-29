@@ -23,6 +23,7 @@ public class Employee extends Thread {
     private int type;
     private int daysToFinish;
     private int numOfWorkDone;
+    private App app = App.getInstance();
     private Drive driveRef;
     private Semaphore mutex;
 
@@ -30,6 +31,7 @@ public class Employee extends Thread {
     private float accumulatedSalary;
     private float dailyProgress;
     private float totalWork;
+    private int plotTwistCounter = 0;
 
     public Employee(int company, int workerId, int type, int daysToFinish, int numOfWorkDone, int hourlyWage,
             Drive driveRef, Semaphore mutex) {
@@ -50,14 +52,20 @@ public class Employee extends Thread {
 
     @Override
     public void run() {
-        while (true) {
+        while (!Thread.interrupted()) {
             try {
                 this.getPaid();
-                this.working();
-                System.out.println(this.toString());
+                if (this.type == 5) {
+                    this.assembleChapters();
+                } else {
+                    this.working();
+                }
                 sleep(App.getDayDuration());
+                System.out.println(this.toString());
             } catch (InterruptedException ex) {
-                Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+                // Interrupción manejada, preparándose para terminar el hilo
+                Logger.getLogger(Employee.class.getName()).log(Level.INFO, "Hilo de Employee interrumpido, terminando...");
+                break; 
             }
         }
     }
@@ -78,9 +86,76 @@ public class Employee extends Thread {
 
         }
     }
+    
+     private void assembleChapters() {
+        try {
+              this.getMutex().acquire();
+              this.evaluateAssemble();
+              this.getMutex().release();
+            } catch (InterruptedException ex) {
+              Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
 
+    private void evaluateAssemble() {
+        int screenwriters = this.getDriveRef().getSections()[0];
+        int scenarists = this.getDriveRef().getSections()[1];
+        int animators = this.getDriveRef().getSections()[2];
+        int voiceActors = this.getDriveRef().getSections()[3];
+        int plotTwistWriters = this.getDriveRef().getSections()[4];
+
+        if (this.company == 0) {
+            // Lógica para Nickelodeon
+            if (screenwriters >= 2 && scenarists >= 1 && animators >= 4 && voiceActors >= 4) {
+                assembleChapter(new int[] {2, 1, 4, 4}, 5, 2, this.app.getNickelodeon());
+            }
+        } else if (this.company == 1) {
+            // Lógica para Cartoon Network
+            if (screenwriters >= 1 && scenarists >= 2 && animators >= 6 && voiceActors >= 5) {
+                assembleChapter(new int[] {1, 2, 6, 5}, 3, 1, this.app.getCartoonNetwork());
+            }
+        } else {
+            try {
+              sleep(app.getDayDuration());
+            } catch (InterruptedException ex) {
+              Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        this.getMutex().release();
+    }
+
+    private void assembleChapter(int[] resources, int plotTwistFrequency, int plotTwistRequirement, TelevisionNetwork network) {
+        // Se descuenta el recurso (parte de episodios estándar
+        for (int i = 0; i < resources.length; i++) {
+            this.getDriveRef().decrementSection(i, resources[i]);
+        }
+
+        // Verificar y ensamblar capítulo con PlotTwist
+        if (plotTwistCounter == plotTwistFrequency && this.getDriveRef().getSections()[4] >= plotTwistRequirement) {
+            // Descontar recursos adicionales para capítulo con PlotTwist
+            this.getDriveRef().decrementSection(4, plotTwistRequirement);
+            this.getDriveRef().increasePlotTwistChapters();
+
+            // Resetear el contador
+            plotTwistCounter = 0;
+        } else {
+            this.getDriveRef().increaseStandarChapters();
+            // Incrementar el contador después de crear un capítulo estándar
+            plotTwistCounter++;
+        }
+
+        try {
+            sleep(app.getDayDuration() * 2);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+
+     
     private void getPaid() {
         this.setAccumulatedSalary(this.getAccumulatedSalary() + this.getHourlyWage() * 24);
+        this.getDriveRef().setCost( this.getHourlyWage() * 24);
     }
 
     @Override

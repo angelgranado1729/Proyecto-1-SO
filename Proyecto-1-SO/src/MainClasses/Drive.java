@@ -14,6 +14,9 @@ public class Drive {
 
     private int[] sections;
     private int[] maxCapacity;
+    private int standarChapters; 
+    private int plotTwistChapters;
+    private int cost;
 
     public Drive(
             int maxScripts,
@@ -55,6 +58,12 @@ public class Drive {
         }
         return str;
     }
+    
+    public void decrementSection(int sectionIndex, int amount) {
+        if (sectionIndex >= 0 && sectionIndex < this.sections.length) {
+            this.sections[sectionIndex] = Math.max(0, this.sections[sectionIndex] - amount);
+        }
+    }
 
     /**
      * @return the sections
@@ -83,5 +92,64 @@ public class Drive {
     public void setMaxCapacity(int[] maxCapacity) {
         this.maxCapacity = maxCapacity;
     }
+    
+    /**
+     * @return the standarChapters
+     */
+    public int getStandarChapters() {
+        return standarChapters;
+    }
+
+    /**
+     * @param standarChapters the standarChapters to set
+     */
+    public void setStandarChapters(int standarChapters) {
+        this.standarChapters = standarChapters;
+    }
+
+    /**
+     * @return the plotTwistChapters
+     */
+    public int getPlotTwistChapters() {
+        return plotTwistChapters;
+    }
+
+    /**
+     * @param plotTwistChapters the plotTwistChapters to set
+     */
+    public void setPlotTwistChapters(int plotTwistChapters) {
+        this.plotTwistChapters = plotTwistChapters;
+    }
+    
+    /**
+     * @return the cost
+     */
+    public int getCost() {
+        return cost;
+    }
+
+    /**
+     * @param cost the cost to set
+     */
+    public void setCost(int cost) {
+        this.cost += cost;
+    }
+    
+    public void resetCost() {
+        this.cost = 0;
+    }
+    
+    public void increaseStandarChapters(){
+        this.standarChapters ++;
+    }
+    public void increasePlotTwistChapters(){
+        this.plotTwistChapters ++;
+    }
+    
+    public void resetChapters () {
+        this.standarChapters =0;
+        this.plotTwistChapters =0;
+    }    
+    
 
 }

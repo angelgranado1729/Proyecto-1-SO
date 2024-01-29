@@ -6,6 +6,8 @@ package GUI.Classes;
 import MainPackage.App;
 import static MainPackage.App.getApp;
 import static MainPackage.App.setApp;
+import Helpers.HelpersFunctions;
+import MainClasses.Employee;
 import java.awt.Point;
 import java.io.IOException;
 import java.net.URL;
@@ -29,6 +31,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
     private int maxEmployees;
     private int actualEmployees;
     private static CartoonNetwork cartoonNetwork;
+    private HelpersFunctions helper = new HelpersFunctions();
 
 
     public static synchronized CartoonNetwork getInstance() {
@@ -81,6 +84,11 @@ public class CartoonNetwork extends javax.swing.JFrame {
                             strikeCounter.setText(String.valueOf(app.getCartoonNetwork().getProjectManagerInstance().getStrikes()));
                             cashPenality.setText(String.valueOf(Integer.parseInt(strikeCounter.getText()) * 100));
                             directorStatus.setText(app.getCartoonNetwork().getDirectorInstance().getStatus());
+                            standardChaptes.setText(String.valueOf(app.getCartoonNetwork().getDrive().getStandarChapters()));
+                            plotTwistChapters.setText(String.valueOf(app.getCartoonNetwork().getDrive().getPlotTwistChapters()));
+                            cost.setText(formatNumberAsK(app.getCartoonNetwork().getDrive().getCost()));
+                            profit.setText((canUpdateProfit()));
+                            earning.setText((canUpdateEarning()));
                         }
                     });
 
@@ -99,19 +107,41 @@ public class CartoonNetwork extends javax.swing.JFrame {
     updateThread.start();
 }
 
-    
-    private void initializeValues() {
-        if (this.app.getCartoonNetwork() != null) {
-            this.maxEmployees = this.app.getCartoonNetwork().getMaxEmployeesQuantity();
-            this.actualEmployees = this.app.getCartoonNetwork().getActualEmployeesQuantity();
-            this.scriptsValues.setText(String.valueOf(this.app.getCartoonNetwork().getScreenwriters().length));
-            this.scenaryValue.setText(String.valueOf(this.app.getCartoonNetwork().getSetDesigners().length));
-            this.animationValues.setText(String.valueOf(this.app.getCartoonNetwork().getCharacterAnimators().length));
-            this.dubbingValues.setText(String.valueOf(this.app.getCartoonNetwork().getVoiceActors().length));
-            this.plotTwistValues.setText(String.valueOf(this.app.getCartoonNetwork().getPlotTwistScreenwriters().length));
+
+        private void initializeValues() {
+            if (this.app.getCartoonNetwork() != null) {
+                this.maxEmployees = this.app.getCartoonNetwork().getMaxEmployeesQuantity();
+                this.actualEmployees = this.app.getCartoonNetwork().getActualEmployeesQuantity();
+                this.scriptsValues.setText(String.valueOf(countNonNullEmployees(this.app.getCartoonNetwork().getScreenwriters())));
+                this.scenaryValue.setText(String.valueOf(countNonNullEmployees(this.app.getCartoonNetwork().getSetDesigners())));
+                this.animationValues.setText(String.valueOf(countNonNullEmployees(this.app.getCartoonNetwork().getCharacterAnimators())));
+                this.dubbingValues.setText(String.valueOf(countNonNullEmployees(this.app.getCartoonNetwork().getVoiceActors())));
+                this.plotTwistValues.setText(String.valueOf(countNonNullEmployees(this.app.getCartoonNetwork().getPlotTwistScreenwriters())));
+                
+            }
         }
+
+        private int countNonNullEmployees(Employee[] employees) {
+            int count = 0;
+            for (Employee employee : employees) {
+                if (employee != null) {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+    public String formatNumberAsK(int number) {
+        // Se onverte el número a miles
+        double thousands = number / 1000.0;
+        
+        // Se redondea a dos dígitos significativos
+        double rounded = Math.round(thousands * 100.0) / 100.0;
+
+        // Se convierte a cadena y se añade 'K'
+        return rounded + "K";
     }
-    
+
      private void cartoonPlayMusic(String path) {
         try {
             URL url = this.getClass().getResource(path);
@@ -123,7 +153,23 @@ public class CartoonNetwork extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-
+     
+    private String canUpdateProfit(){
+        if(this.app.getCartoonNetwork().getRemainingDays()==0){
+            return String.valueOf(this.app.getCartoonNetwork().getProfit());
+        } else{
+            return "En " + String.valueOf(this.app.getCartoonNetwork().getRemainingDays()) + " días";
+        }
+    }
+    
+     private String canUpdateEarning(){
+        if(this.app.getCartoonNetwork().getRemainingDays()==0){
+            return String.valueOf(this.app.getCartoonNetwork().getEarning());
+        } else{
+            return "En " + String.valueOf(this.app.getCartoonNetwork().getRemainingDays()) + " días";
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -217,8 +263,8 @@ public class CartoonNetwork extends javax.swing.JFrame {
         driveTitle4 = new javax.swing.JLabel();
         driveTitle5 = new javax.swing.JLabel();
         driveTitle7 = new javax.swing.JLabel();
-        jTextField32 = new javax.swing.JTextField();
-        jTextField31 = new javax.swing.JTextField();
+        plotTwistChapters = new javax.swing.JTextField();
+        standardChaptes = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         driveTitle6 = new javax.swing.JLabel();
         driveTitle8 = new javax.swing.JLabel();
@@ -233,9 +279,9 @@ public class CartoonNetwork extends javax.swing.JFrame {
         driveTitle10 = new javax.swing.JLabel();
         driveTitle11 = new javax.swing.JLabel();
         driveTitle17 = new javax.swing.JLabel();
-        jTextField37 = new javax.swing.JTextField();
-        jTextField38 = new javax.swing.JTextField();
-        jTextField39 = new javax.swing.JTextField();
+        cost = new javax.swing.JTextField();
+        earning = new javax.swing.JTextField();
+        profit = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         driveTitle14 = new javax.swing.JLabel();
         driveTitle18 = new javax.swing.JLabel();
@@ -1108,8 +1154,8 @@ public class CartoonNetwork extends javax.swing.JFrame {
             .addGroup(scenary1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(scenaryTitle1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scenaryDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scenaryDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 26, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scenaryLimit1)
                 .addGap(15, 15, 15))
@@ -1354,25 +1400,27 @@ public class CartoonNetwork extends javax.swing.JFrame {
         driveTitle7.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle7.setText("ENSAMBLAJE CAPÍTULOS");
 
-        jTextField32.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField32.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField32.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField32.setText("0");
-        jTextField32.setBorder(null);
-        jTextField32.addActionListener(new java.awt.event.ActionListener() {
+        plotTwistChapters.setBackground(new java.awt.Color(51, 51, 51));
+        plotTwistChapters.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        plotTwistChapters.setForeground(new java.awt.Color(255, 255, 255));
+        plotTwistChapters.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        plotTwistChapters.setText("0");
+        plotTwistChapters.setBorder(null);
+        plotTwistChapters.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField32ActionPerformed(evt);
+                plotTwistChaptersActionPerformed(evt);
             }
         });
 
-        jTextField31.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField31.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField31.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField31.setText("0");
-        jTextField31.setBorder(null);
-        jTextField31.addActionListener(new java.awt.event.ActionListener() {
+        standardChaptes.setBackground(new java.awt.Color(51, 51, 51));
+        standardChaptes.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        standardChaptes.setForeground(new java.awt.Color(255, 255, 255));
+        standardChaptes.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        standardChaptes.setText("0");
+        standardChaptes.setBorder(null);
+        standardChaptes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField31ActionPerformed(evt);
+                standardChaptesActionPerformed(evt);
             }
         });
 
@@ -1386,9 +1434,9 @@ public class CartoonNetwork extends javax.swing.JFrame {
                     .addComponent(driveTitle4, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
                     .addComponent(driveTitle5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField31, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField32, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(standardChaptes, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(plotTwistChapters, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(19, 19, 19))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(26, Short.MAX_VALUE)
@@ -1408,9 +1456,9 @@ public class CartoonNetwork extends javax.swing.JFrame {
                         .addComponent(driveTitle4))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(standardChaptes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(plotTwistChapters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(15, 15, 15))
         );
 
@@ -1542,36 +1590,39 @@ public class CartoonNetwork extends javax.swing.JFrame {
         driveTitle17.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle17.setText("Ganancia neta:");
 
-        jTextField37.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField37.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField37.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField37.setText("0");
-        jTextField37.setBorder(null);
-        jTextField37.addActionListener(new java.awt.event.ActionListener() {
+        cost.setBackground(new java.awt.Color(51, 51, 51));
+        cost.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        cost.setForeground(new java.awt.Color(255, 255, 255));
+        cost.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        cost.setText("0");
+        cost.setBorder(null);
+        cost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField37ActionPerformed(evt);
+                costActionPerformed(evt);
             }
         });
 
-        jTextField38.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField38.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField38.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField38.setText("0");
-        jTextField38.setBorder(null);
-        jTextField38.addActionListener(new java.awt.event.ActionListener() {
+        earning.setBackground(new java.awt.Color(51, 51, 51));
+        earning.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        earning.setForeground(new java.awt.Color(255, 255, 255));
+        earning.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        earning.setText("Dentro días");
+        earning.setBorder(null);
+        earning.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField38ActionPerformed(evt);
+                earningActionPerformed(evt);
             }
         });
 
-        jTextField39.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField39.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField39.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField39.setText("0");
-        jTextField39.setBorder(null);
-        jTextField39.addActionListener(new java.awt.event.ActionListener() {
+        profit.setBackground(new java.awt.Color(51, 51, 51));
+        profit.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        profit.setForeground(new java.awt.Color(255, 255, 255));
+        profit.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        profit.setText("Dentro días");
+        profit.setBorder(null);
+        profit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField39ActionPerformed(evt);
+                profitActionPerformed(evt);
             }
         });
 
@@ -1585,14 +1636,16 @@ public class CartoonNetwork extends javax.swing.JFrame {
                     .addComponent(driveTitle10, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(driveTitle9, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(driveTitle17, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField37, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField38, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField39, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cost, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(earning, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(profit, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(20, 20, 20))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(driveTitle11, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
@@ -1604,15 +1657,15 @@ public class CartoonNetwork extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(driveTitle10)
-                    .addComponent(jTextField37, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(driveTitle9)
-                    .addComponent(jTextField38, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(earning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(driveTitle17)
-                    .addComponent(jTextField39, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(profit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19))
         );
 
@@ -1972,13 +2025,13 @@ public class CartoonNetwork extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_remainingDaysActionPerformed
 
-    private void jTextField31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField31ActionPerformed
+    private void standardChaptesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_standardChaptesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField31ActionPerformed
+    }//GEN-LAST:event_standardChaptesActionPerformed
 
-    private void jTextField32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField32ActionPerformed
+    private void plotTwistChaptersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plotTwistChaptersActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField32ActionPerformed
+    }//GEN-LAST:event_plotTwistChaptersActionPerformed
 
     private void strikeCounterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_strikeCounterActionPerformed
         // TODO add your handling code here:
@@ -1996,20 +2049,21 @@ public class CartoonNetwork extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cashPenalityActionPerformed
 
-    private void jTextField37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField37ActionPerformed
+    private void costActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_costActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField37ActionPerformed
+    }//GEN-LAST:event_costActionPerformed
 
-    private void jTextField38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField38ActionPerformed
+    private void earningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_earningActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField38ActionPerformed
+    }//GEN-LAST:event_earningActionPerformed
 
-    private void jTextField39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField39ActionPerformed
+    private void profitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profitActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField39ActionPerformed
+    }//GEN-LAST:event_profitActionPerformed
 
     private void increaseScriptsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseScriptsMouseClicked
         // TODO add your handling code here:
+        helper.addWorker(1, 0);
         cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
         this.scriptsValues.setText(increaseQuantity(this.scriptsValues.getText()));
 
@@ -2017,19 +2071,22 @@ public class CartoonNetwork extends javax.swing.JFrame {
 
     private void increaseScenaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseScenaryMouseClicked
         // TODO add your handling code here:
-        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
+        helper.addWorker(1, 1);
         this.scenaryValue.setText(increaseQuantity(this.scenaryValue.getText()));
+        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
 
     }//GEN-LAST:event_increaseScenaryMouseClicked
 
     private void increaseAnimationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseAnimationMouseClicked
         // TODO add your handling code here:
+        helper.addWorker(1, 2);
         cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
         this.animationValues.setText(increaseQuantity(this.animationValues.getText()));
     }//GEN-LAST:event_increaseAnimationMouseClicked
 
     private void increaseDubbingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseDubbingMouseClicked
         // TODO add your handling code here:
+        helper.addWorker(1, 3);
         cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
         this.dubbingValues.setText(increaseQuantity(this.dubbingValues.getText()));
 
@@ -2037,12 +2094,14 @@ public class CartoonNetwork extends javax.swing.JFrame {
 
     private void increasePlotTwistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increasePlotTwistMouseClicked
         // TODO add your handling code here:
+        helper.addWorker(1, 4);
         cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
         this.plotTwistValues.setText(increaseQuantity(this.plotTwistValues.getText()));
     }//GEN-LAST:event_increasePlotTwistMouseClicked
 
     private void decreacePlotTwistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreacePlotTwistMouseClicked
         // TODO add your handling code here:
+        helper.deleteWorker(1, 4);
         cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
         this.plotTwistValues.setText(decreaseQuantity(this.plotTwistValues.getText()));
 
@@ -2050,6 +2109,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
 
     private void decreaseDubbingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseDubbingMouseClicked
         // TODO add your handling code here:
+        helper.deleteWorker(1, 3);
         cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
         this.dubbingValues.setText(decreaseQuantity(this.dubbingValues.getText()));
 
@@ -2057,6 +2117,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
 
     private void decreaseAnimationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseAnimationMouseClicked
         // TODO add your handling code here:
+        helper.deleteWorker(1, 2);
         cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
         this.animationValues.setText(decreaseQuantity(this.animationValues.getText()));
 
@@ -2064,6 +2125,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
 
     private void decreaseScenaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseScenaryMouseClicked
         // TODO add your handling code here:
+        helper.deleteWorker(1, 1);
         cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
         this.scenaryValue.setText(decreaseQuantity(this.scenaryValue.getText()));
 
@@ -2071,6 +2133,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
 
     private void decreaseScriptsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseScriptsMouseClicked
         // TODO add your handling code here:
+        helper.deleteWorker(1, 0);
         cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
         this.scriptsValues.setText(decreaseQuantity(this.scriptsValues.getText()));
 
@@ -2081,23 +2144,21 @@ public class CartoonNetwork extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jButton21MouseClicked
 
-    private String increaseQuantity (String actualValue){
-    int intValue = 0; 
+    private String increaseQuantity(String actualValue) {
+        int intValue = 0;
         try {
-            intValue = Integer.parseInt(actualValue); 
-            if (actualEmployees < maxEmployees){
-                intValue ++;
-                actualEmployees ++;
-                return String.valueOf(intValue);
+            intValue = Integer.parseInt(actualValue);
+            if (actualEmployees < maxEmployees) {
+                intValue++;
+                actualEmployees++;
             }
-            else{
-                return String.valueOf(intValue);
-            }
+            return String.valueOf(intValue);
         } catch (NumberFormatException e) {
             System.err.println("Error al convertir el valor a int: " + e.getMessage());
+            return actualValue; // Retorna el valor actual en caso de error
         }
-        return null;
     }
+
     
     private String decreaseQuantity (String actualValue){
     int intValue = 0; 
@@ -2169,6 +2230,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
     private javax.swing.JPanel btn_nuevo_pedido;
     private javax.swing.JPanel btn_reporte;
     private javax.swing.JTextField cashPenality;
+    private javax.swing.JTextField cost;
     private javax.swing.JTextField currentDays;
     private javax.swing.JButton decreacePlotTwist;
     private javax.swing.JButton decreaseAnimation;
@@ -2205,6 +2267,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
     private javax.swing.JLabel dubbingTitle;
     private javax.swing.JLabel dubbingTitle1;
     private javax.swing.JTextField dubbingValues;
+    private javax.swing.JTextField earning;
     private javax.swing.JLabel exit;
     private javax.swing.JLabel icono1;
     private javax.swing.JLabel icono3;
@@ -2237,20 +2300,17 @@ public class CartoonNetwork extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField31;
-    private javax.swing.JTextField jTextField32;
-    private javax.swing.JTextField jTextField37;
-    private javax.swing.JTextField jTextField38;
-    private javax.swing.JTextField jTextField39;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JPanel plotTwist;
     private javax.swing.JPanel plotTwist1;
+    private javax.swing.JTextField plotTwistChapters;
     private javax.swing.JTextField plotTwistDrive;
     private javax.swing.JLabel plotTwistLimit1;
     private javax.swing.JLabel plotTwistTitle;
     private javax.swing.JLabel plotTwistTitle1;
     private javax.swing.JTextField plotTwistValues;
+    private javax.swing.JTextField profit;
     private javax.swing.JTextField projectManagerStatus;
     private javax.swing.JTextField remainingDays;
     private javax.swing.JPanel scenary;
@@ -2267,6 +2327,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
     private javax.swing.JLabel scriptsLimit1;
     private javax.swing.JLabel scriptsTitle;
     private javax.swing.JTextField scriptsValues;
+    private javax.swing.JTextField standardChaptes;
     private javax.swing.JTextField strikeCounter;
     private javax.swing.JPanel workersConfigurations;
     // End of variables declaration//GEN-END:variables

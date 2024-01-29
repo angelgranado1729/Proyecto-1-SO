@@ -14,7 +14,7 @@ public class TelevisionNetwork {
 
     private String name;
     private int maxEmployeesQuantity;
-    private int actualEmployeesQuantity;
+    private int actualEmployeesQuantity = 0;
     private Employee[] screenwriters;
     private Employee[] setDesigners;
     private Employee[] characterAnimators;
@@ -59,22 +59,34 @@ public class TelevisionNetwork {
         this.setProfit(0);
 
         for (int i = 0; i < this.getScreenwriters().length; i++) {
-            this.getScreenwriters()[i].start();
+            if(this.getScreenwriters()[i] != null){
+                this.getScreenwriters()[i].start();
+            }
         }
         for (int i = 0; i < this.getSetDesigners().length; i++) {
-            this.getSetDesigners()[i].start();
+            if(this.getSetDesigners()[i] != null){
+                this.getSetDesigners()[i].start();
+            }
         }
         for (int i = 0; i < this.getCharacterAnimators().length; i++) {
-            this.getCharacterAnimators()[i].start();
+             if(this.getCharacterAnimators()[i] != null){
+                this.getCharacterAnimators()[i].start();
+             }
         }
         for (int i = 0; i < this.getVoiceActors().length; i++) {
-            this.getVoiceActors()[i].start();
+            if(this.getVoiceActors()[i] != null){
+                this.getVoiceActors()[i].start();
+            }
         }
         for (int i = 0; i < this.getPlotTwistScreenwriters().length; i++) {
-            this.getPlotTwistScreenwriters()[i].start();
+            if(this.getPlotTwistScreenwriters()[i] != null){
+                this.getPlotTwistScreenwriters()[i].start();
+            }
         }
         for (int i = 0; i < this.getAssemblers().length; i++) {
-            this.getAssemblers()[i].start();
+            if(this.getAssemblers()[i] != null){
+                this.getAssemblers()[i].start();
+            }
         }
        this.getProjectManagerInstance().start();
        this.getDirectorInstance().start();
@@ -82,14 +94,29 @@ public class TelevisionNetwork {
     }
 
     public void actualEmployeesQuantity() {
-        this.setActualEmployeesQuantity(screenwriters.length + setDesigners.length + characterAnimators.length
-                + characterAnimators.length + voiceActors.length + plotTwistScreenwriters.length);
+    int totalEmployees = 0;
+
+    // Contar empleados no nulos en cada arreglo
+    totalEmployees += countNonNull(screenwriters);
+    totalEmployees += countNonNull(setDesigners);
+    totalEmployees += countNonNull(characterAnimators);
+    totalEmployees += countNonNull(voiceActors);
+    totalEmployees += countNonNull(plotTwistScreenwriters);
+
+    this.setActualEmployeesQuantity(totalEmployees);
+}
+
+    // Método auxiliar para contar los elementos no nulos en un arreglo de Employee
+    private int countNonNull(Employee[] employees) {
+        int count = 0;
+        for (Employee employee : employees) {
+            if (employee != null) {
+                count++;
+            }
+        }
+        return count;
     }
 
-    public TelevisionNetwork(String name, int maxEmployeesQuantity) {
-        this.name = name;
-        this.maxEmployeesQuantity = maxEmployeesQuantity;
-    }
 
     /**
      * @return the name
@@ -370,8 +397,7 @@ public class TelevisionNetwork {
     public void setDirectorInstance(Director directorInstance) {
         this.directorInstance = directorInstance;
     }
-    
-    
-    
+
+
     
 }
