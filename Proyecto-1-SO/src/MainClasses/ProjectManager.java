@@ -65,9 +65,13 @@ public class ProjectManager extends Employee {
     private void updateCountdown() {
         // Lógica para actualizar el contador de días restantes
         if (this.company == 0 ) {
+            if (app.getNickelodeon().getRemainingDays() !=0){
             app.getNickelodeon().decreaceRemainingDays();
+            }
         } else {
-            app.getCartoonNetwork().decreaceRemainingDays();
+            if (app.getCartoonNetwork().getRemainingDays() !=0){
+                app.getCartoonNetwork().decreaceRemainingDays();
+            }
         }
     }
 
