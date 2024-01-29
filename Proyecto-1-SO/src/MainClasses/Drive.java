@@ -16,7 +16,6 @@ public class Drive {
     private int[] maxCapacity;
     private int standarChapters; 
     private int plotTwistChapters;
-    private int cost;
 
     public Drive(
             int maxScripts,
@@ -121,23 +120,6 @@ public class Drive {
         this.plotTwistChapters = plotTwistChapters;
     }
     
-    /**
-     * @return the cost
-     */
-    public int getCost() {
-        return cost;
-    }
-
-    /**
-     * @param cost the cost to set
-     */
-    public void setCost(int cost) {
-        this.cost += cost;
-    }
-    
-    public void resetCost() {
-        this.cost = 0;
-    }
     
     public void increaseStandarChapters(){
         this.standarChapters ++;

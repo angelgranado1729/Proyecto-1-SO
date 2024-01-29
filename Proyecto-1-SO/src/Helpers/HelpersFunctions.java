@@ -64,7 +64,6 @@ public class HelpersFunctions {
                     int daysToFinish = ImportantConstants.productionTimes[company][type][1];
                     int numOfWorkDone = ImportantConstants.productionTimes[company][type][0];
                     int hourlyWage = ImportantConstants.hourlyWages[type];
-
                     employees[j] = new Employee(company, workerId, type, daysToFinish, numOfWorkDone, hourlyWage,
                             drive, mutex);
 
@@ -74,12 +73,11 @@ public class HelpersFunctions {
             TelevisionNetwork network = new TelevisionNetwork(name, maxEmployees, workers[0], workers[1], workers[2], workers[3], workers[4],
             workers[5], projectManager, director, drive, mutex);
             
-            // Se crea al projectManager y al director, se les pasa la cadena televisiva. 
-            ProjectManager projectManagerInstance = new ProjectManager(40, network);
-            Director directorInstance = new Director(60, network);
+            // Se crea al projectManager y al director, se les pasa la cadena televisiva.
+            ProjectManager projectManagerInstance = new ProjectManager(company,1, 5,1,1, ImportantConstants.hourlyWages[5], drive, mutex);
             network.setProjectManagerInstance(projectManagerInstance);
+            Director directorInstance = new Director(company,1, 6,2,1, ImportantConstants.hourlyWages[6], drive, mutex);
             network.setDirectorInstance(directorInstance);
-            
             return network;
 
         }

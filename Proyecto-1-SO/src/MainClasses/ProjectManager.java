@@ -5,6 +5,7 @@
 package MainClasses;
 
 import MainPackage.App;
+import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,22 +14,14 @@ import java.util.logging.Logger;
  * @author Erika A. Henández Z.
  */
 
-public class ProjectManager extends Thread {
-    private int hourlyWage;
-    private float accumulatedSalary;
+public class ProjectManager extends Employee {
     private String currentState;
-    private int strikes = 0;
-    private App app = App.getInstance();
-    private TelevisionNetwork network;
+    private int strikes;
 
-
-
-    public ProjectManager(int hourlyWage, TelevisionNetwork network) {
-        this.hourlyWage = hourlyWage;
-        this.accumulatedSalary = 0;
+    public ProjectManager(int company, int workerId, int type, int daysToFinish, int numOfWorkDone, int hourlyWage, Drive driveRef, Semaphore mutex) {
+        super(company, workerId, type, daysToFinish, numOfWorkDone, hourlyWage, driveRef, mutex);
         this.currentState = "Inactivo";
-        this.network = network;
-
+        this.strikes = 0;
     }
     
     @Override    
@@ -36,7 +29,8 @@ public class ProjectManager extends Thread {
         while (true) {
             try {
                 //Se obtiene la duración del día total directo de la variable de app.
-                int dayDuration = getApp().getDayDuration(); 
+                mutex.acquire();
+                int dayDuration = App.getDayDuration(); 
 
                 // Duración de una hora en la simulación
                 int oneHour = dayDuration / 24; 
@@ -61,6 +55,7 @@ public class ProjectManager extends Thread {
                 this.updateCountdown();
                 // Culminado el día cobra su salario
                 this.getPaid();
+                mutex.release();
                 System.out.println(this.toString());
 
             } catch (InterruptedException ex) {
@@ -71,16 +66,21 @@ public class ProjectManager extends Thread {
 
     private void updateCountdown() {
         // Lógica para actualizar el contador de días restantes
-        if (this.getNetwork().getRemainingDays() >0){
-            this.getNetwork().setRemainingDays(this.getNetwork().getRemainingDays() - 1);
+        if (this.company == 0 ) {
+            app.getNickelodeon().decreaceRemainingDays();
+        } else {
+            app.getCartoonNetwork().decreaceRemainingDays();
         }
     }
 
     private void getPaid() {
         // Asumiendo que el Project Manager trabaja las 24 horas del día, incluyendo ver anime.
         this.setAccumulatedSalary(this.getAccumulatedSalary() + this.getHourlyWage() * 24);
-        network.getDrive().setCost(this.getHourlyWage() * 24);
-        
+        if (this.company == 0 ) {
+            app.getNickelodeon().increaseTotalCost(this.getHourlyWage() * 24);
+        } else {
+          app.getCartoonNetwork().increaseTotalCost(this.getHourlyWage() * 24);
+        }
     }
 
     @Override
@@ -143,20 +143,6 @@ public class ProjectManager extends Thread {
      */
     public void setApp(App app) {
         this.app = app;
-    }
-
-    /**
-     * @return the network
-     */
-    public TelevisionNetwork getNetwork() {
-        return network;
-    }
-
-    /**
-     * @param network the network to set
-     */
-    public void setNetwork(TelevisionNetwork network) {
-        this.network = network;
     }
 
     /**

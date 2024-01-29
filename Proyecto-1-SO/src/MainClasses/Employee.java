@@ -18,17 +18,17 @@ public class Employee extends Thread {
 
     // 0 si es Nickelodeon & 1 si es Cartoon Network (REVISAR LA CLASE IMPORTANT
     // CONSTANTS)
-    private int company;
+    int company;
     private int workerId;
     private int type;
     private int daysToFinish;
     private int numOfWorkDone;
-    private App app = App.getInstance();
+    App app = App.getInstance();
     private Drive driveRef;
-    private Semaphore mutex;
+    Semaphore mutex;
 
-    private int hourlyWage;
-    private float accumulatedSalary;
+    int hourlyWage;
+    float accumulatedSalary;
     private float dailyProgress;
     private float totalWork;
     private int plotTwistCounter = 0;
@@ -155,7 +155,11 @@ public class Employee extends Thread {
      
     private void getPaid() {
         this.setAccumulatedSalary(this.getAccumulatedSalary() + this.getHourlyWage() * 24);
-        this.getDriveRef().setCost( this.getHourlyWage() * 24);
+         if (this.company == 0 ) {
+            app.getNickelodeon().increaseTotalCost(this.getHourlyWage() * 24);
+        } else {
+          app.getCartoonNetwork().increaseTotalCost(this.getHourlyWage() * 24);
+        }
     }
 
     @Override

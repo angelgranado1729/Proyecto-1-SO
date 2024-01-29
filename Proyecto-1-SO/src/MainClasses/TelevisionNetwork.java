@@ -4,6 +4,7 @@
  */
 package MainClasses;
 
+import MainPackage.App;
 import java.util.concurrent.Semaphore;
 
 /**
@@ -30,11 +31,10 @@ public class TelevisionNetwork {
     private float totalCost;
     private float earning;
     private float profit;
-    private int daySet = 30;
+    private int daySet = App.getInstance().getDeadline();
     private int remainingDays = daySet;
 
     // CONSTRUCTOR
-
     public TelevisionNetwork(String name, int maxEmployeesQuantity, Employee[] screenwriters, Employee[] setDesigners,
             Employee[] characterAnimators, Employee[] voiceActors, Employee[] plotTwistScreenwriters,
             Employee[] Assemblers, int projectManager, int director, Drive drive, Semaphore mutex) {
@@ -299,6 +299,14 @@ public class TelevisionNetwork {
     public void setTotalCost(float totalCost) {
         this.totalCost = totalCost;
     }
+    
+    public void increaseTotalCost ( int cost){
+        this.totalCost += cost;
+    }
+    
+    public void resetCost (){
+        this.totalCost = 0;
+    }
 
     /**
      * @return the earning
@@ -376,14 +384,18 @@ public class TelevisionNetwork {
     public int getRemainingDays() {
         return remainingDays;
     }
-
-    /**
-     * @param remainingDays the remainingDays to set
-     */
-    public void setRemainingDays(int remainingDays) {
-        this.remainingDays = remainingDays;
+    
+    public void decreaceRemainingDays(){
+        this.remainingDays --;
     }
-
+    
+    public void resetRemainingDays() {
+        this.remainingDays = App.getInstance().getDeadline();
+    }
+    
+    public void setRemainingDays (int days){
+        this.remainingDays = days;
+    }
     /**
      * @return the directorInstance
      */

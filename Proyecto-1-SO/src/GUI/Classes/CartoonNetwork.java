@@ -80,13 +80,13 @@ public class CartoonNetwork extends javax.swing.JFrame {
                             plotTwistDrive.setText(String.valueOf(app.getCartoonNetwork().getDrive().getSections()[4]));
                             projectManagerStatus.setText(app.getCartoonNetwork().getProjectManagerInstance().getCurrentState());
                             remainingDays.setText(String.valueOf(app.getCartoonNetwork().getRemainingDays()));
-                            currentDays.setText(String.valueOf(app.getCartoonNetwork().getDaySet() - app.getCartoonNetwork().getRemainingDays()));
+                            currentDays.setText(String.valueOf(app.getDeadline() - app.getCartoonNetwork().getRemainingDays()));
                             strikeCounter.setText(String.valueOf(app.getCartoonNetwork().getProjectManagerInstance().getStrikes()));
                             cashPenality.setText(String.valueOf(Integer.parseInt(strikeCounter.getText()) * 100));
                             directorStatus.setText(app.getCartoonNetwork().getDirectorInstance().getStatus());
                             standardChaptes.setText(String.valueOf(app.getCartoonNetwork().getDrive().getStandarChapters()));
                             plotTwistChapters.setText(String.valueOf(app.getCartoonNetwork().getDrive().getPlotTwistChapters()));
-                            cost.setText(formatNumberAsK(app.getCartoonNetwork().getDrive().getCost()));
+                            cost.setText(formatNumberAsK((int) app.getCartoonNetwork().getTotalCost()));
                             profit.setText((canUpdateProfit()));
                             earning.setText((canUpdateEarning()));
                         }
