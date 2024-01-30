@@ -59,55 +59,55 @@ public class TelevisionNetwork {
         this.setProfit(0);
 
         for (int i = 0; i < this.getScreenwriters().length; i++) {
-            if(this.getScreenwriters()[i] != null){
+            if (this.getScreenwriters()[i] != null) {
                 this.getScreenwriters()[i].start();
             }
         }
         for (int i = 0; i < this.getSetDesigners().length; i++) {
-            if(this.getSetDesigners()[i] != null){
+            if (this.getSetDesigners()[i] != null) {
                 this.getSetDesigners()[i].start();
             }
         }
         for (int i = 0; i < this.getCharacterAnimators().length; i++) {
-             if(this.getCharacterAnimators()[i] != null){
+            if (this.getCharacterAnimators()[i] != null) {
                 this.getCharacterAnimators()[i].start();
-             }
+            }
         }
         for (int i = 0; i < this.getVoiceActors().length; i++) {
-            if(this.getVoiceActors()[i] != null){
+            if (this.getVoiceActors()[i] != null) {
                 this.getVoiceActors()[i].start();
             }
         }
         for (int i = 0; i < this.getPlotTwistScreenwriters().length; i++) {
-            if(this.getPlotTwistScreenwriters()[i] != null){
+            if (this.getPlotTwistScreenwriters()[i] != null) {
                 this.getPlotTwistScreenwriters()[i].start();
             }
         }
         for (int i = 0; i < this.getAssemblers().length; i++) {
-            if(this.getAssemblers()[i] != null){
+            if (this.getAssemblers()[i] != null) {
                 this.getAssemblers()[i].start();
             }
         }
-       this.getProjectManagerInstance().start();
-       this.getDirectorInstance().start();
+        this.getProjectManagerInstance().start();
+        this.getDirectorInstance().start();
 
     }
 
     public void actualEmployeesQuantity() {
-    int totalEmployees = 0;
+        int totalEmployees = 0;
 
-    // Contar empleados no nulos en cada arreglo
-    totalEmployees += countNonNull(screenwriters);
-    totalEmployees += countNonNull(setDesigners);
-    totalEmployees += countNonNull(characterAnimators);
-    totalEmployees += countNonNull(voiceActors);
-    totalEmployees += countNonNull(plotTwistScreenwriters);
+        // Contar empleados no nulos en cada arreglo
+        totalEmployees += countNonNull(screenwriters);
+        totalEmployees += countNonNull(setDesigners);
+        totalEmployees += countNonNull(characterAnimators);
+        totalEmployees += countNonNull(voiceActors);
+        totalEmployees += countNonNull(plotTwistScreenwriters);
 
-    this.setActualEmployeesQuantity(totalEmployees);
-}
+        this.setActualEmployeesQuantity(totalEmployees);
+    }
 
     // Método auxiliar para contar los elementos no nulos en un arreglo de Employee
-    private int countNonNull(Employee[] employees) {
+    public int countNonNull(Employee[] employees) {
         int count = 0;
         for (Employee employee : employees) {
             if (employee != null) {
@@ -116,7 +116,6 @@ public class TelevisionNetwork {
         }
         return count;
     }
-
 
     /**
      * @return the name
@@ -299,12 +298,12 @@ public class TelevisionNetwork {
     public void setTotalCost(float totalCost) {
         this.totalCost = totalCost;
     }
-    
-    public void increaseTotalCost ( int cost){
+
+    public void increaseTotalCost(int cost) {
         this.totalCost += cost;
     }
-    
-    public void resetCost (){
+
+    public void resetCost() {
         this.totalCost = 0;
     }
 
@@ -384,18 +383,19 @@ public class TelevisionNetwork {
     public int getRemainingDays() {
         return remainingDays;
     }
-    
-    public void decreaceRemainingDays(){
-        this.remainingDays --;
+
+    public void decreaceRemainingDays() {
+        this.remainingDays--;
     }
-    
+
     public void resetRemainingDays() {
         this.remainingDays = App.getInstance().getDeadline();
     }
-    
-    public void setRemainingDays (int days){
+
+    public void setRemainingDays(int days) {
         this.remainingDays = days;
     }
+
     /**
      * @return the directorInstance
      */
@@ -410,6 +410,4 @@ public class TelevisionNetwork {
         this.directorInstance = directorInstance;
     }
 
-
-    
 }

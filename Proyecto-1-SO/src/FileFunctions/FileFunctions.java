@@ -8,6 +8,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
+import MainClasses.TelevisionNetwork;
+import MainPackage.App;
+
 /**
  *
  * @author angel & Erika
@@ -132,5 +135,60 @@ public class FileFunctions {
         }
 
         return values;
+    }
+
+    public static void write(File file) {
+        String data = getActualParams();
+        try {
+            java.io.FileWriter fileWriter = new java.io.FileWriter(file);
+            fileWriter.write(data);
+            fileWriter.close();
+        } catch (Exception e) {
+        }
+    }
+
+    public static String getActualParams() {
+        App app = App.getInstance();
+        String data = "[General Params]\n";
+        int dayDuration = App.getDayDuration();
+        int deadline = App.getDeadline();
+
+        data += "DayDuration=" + dayDuration + "\n" + "Deadline=" + deadline + "\n\n";
+
+        data += "[Nickelodeon]\n";
+        TelevisionNetwork nickelodeon = app.getNickelodeon();
+        int screenwriters = nickelodeon.countNonNull(nickelodeon.getScreenwriters());
+        int setDesigners = nickelodeon.countNonNull(nickelodeon.getSetDesigners());
+        int characterAnimators = nickelodeon.countNonNull(nickelodeon.getCharacterAnimators());
+        int voiceActors = nickelodeon.countNonNull(nickelodeon.getVoiceActors());
+        int plotTwistScriptwriters = nickelodeon.countNonNull(nickelodeon.getPlotTwistScreenwriters());
+        int assemblers = nickelodeon.countNonNull(nickelodeon.getAssemblers());
+        int projectManager = nickelodeon.getProjectManager();
+        int director = nickelodeon.getDirector();
+        int maxCapacity = nickelodeon.getMaxEmployeesQuantity();
+
+        data += "Screenwriters=" + screenwriters + "\n" + "SetDesigners=" + setDesigners + "\n" + "CharacterAnimators="
+                + characterAnimators + "\n" + "VoiceActors=" + voiceActors + "\n" + "PlotTwistScriptwriters="
+                + plotTwistScriptwriters + "\n" + "Assemblers=" + assemblers + "\n" + "ProjectManager=" + projectManager
+                + "\n" + "Director=" + director + "\n" + "MaxCapacity=" + maxCapacity + "\n\n";
+
+        data += "[CartoonNetwork]\n";
+        TelevisionNetwork cartoonNetwork = app.getCartoonNetwork();
+        screenwriters = cartoonNetwork.countNonNull(cartoonNetwork.getScreenwriters());
+        setDesigners = cartoonNetwork.countNonNull(cartoonNetwork.getSetDesigners());
+        characterAnimators = cartoonNetwork.countNonNull(cartoonNetwork.getCharacterAnimators());
+        voiceActors = cartoonNetwork.countNonNull(cartoonNetwork.getVoiceActors());
+        plotTwistScriptwriters = cartoonNetwork.countNonNull(cartoonNetwork.getPlotTwistScreenwriters());
+        assemblers = cartoonNetwork.countNonNull(cartoonNetwork.getAssemblers());
+        projectManager = cartoonNetwork.getProjectManager();
+        director = cartoonNetwork.getDirector();
+        maxCapacity = cartoonNetwork.getMaxEmployeesQuantity();
+
+        data += "Screenwriters=" + screenwriters + "\n" + "SetDesigners=" + setDesigners + "\n" + "CharacterAnimators="
+                + characterAnimators + "\n" + "VoiceActors=" + voiceActors + "\n" + "PlotTwistScriptwriters="
+                + plotTwistScriptwriters + "\n" + "Assemblers=" + assemblers + "\n" + "ProjectManager=" + projectManager
+                + "\n" + "Director=" + director + "\n" + "MaxCapacity=" + maxCapacity + "\n\n";
+
+        return data;
     }
 }
