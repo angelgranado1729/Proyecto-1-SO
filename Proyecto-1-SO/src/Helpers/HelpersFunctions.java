@@ -70,28 +70,32 @@ public class HelpersFunctions {
                 }
                 workers[type] = employees;
             }
-            TelevisionNetwork network = new TelevisionNetwork(name, maxEmployees, workers[0], workers[1], workers[2], workers[3], workers[4],
-            workers[5], projectManager, director, drive, mutex);
-            
+            TelevisionNetwork network = new TelevisionNetwork(name, maxEmployees, workers[0], workers[1], workers[2],
+                    workers[3], workers[4],
+                    workers[5], projectManager, director, drive, mutex);
+
             // Se crea al projectManager y al director, se les pasa la cadena televisiva.
-            ProjectManager projectManagerInstance = new ProjectManager(company,1, 5,1,1, ImportantConstants.hourlyWages[5], drive, mutex);
+            ProjectManager projectManagerInstance = new ProjectManager(company, 1, 5, 1, 1,
+                    ImportantConstants.hourlyWages[5], drive, mutex);
             network.setProjectManagerInstance(projectManagerInstance);
-            Director directorInstance = new Director(company,1, 6,2,1, ImportantConstants.hourlyWages[6], drive, mutex);
+            Director directorInstance = new Director(company, 1, 6, 2, 1, ImportantConstants.hourlyWages[6], drive,
+                    mutex);
             network.setDirectorInstance(directorInstance);
             return network;
 
         }
         return null;
     }
-    
-    
+
     public void addWorker(int company, int workerType) {
         System.out.println("SE CREOOOO");
 
-        TelevisionNetwork network = company == 0 ? App.getInstance().getNickelodeon() : App.getInstance().getCartoonNetwork();
-                System.out.println(network.getActualEmployeesQuantity());
+        TelevisionNetwork network = company == 0 ? App.getInstance().getNickelodeon()
+                : App.getInstance().getCartoonNetwork();
+        System.out.println(network.getActualEmployeesQuantity());
 
-        // Se verifica si la cantidad actual de empleados es menor que la cantidad máxima permitida
+        // Se verifica si la cantidad actual de empleados es menor que la cantidad
+        // máxima permitida
         if (network.getActualEmployeesQuantity() < network.getMaxEmployeesQuantity()) {
             Employee[] employees = getEmployeesArrayByType(network, workerType);
 
@@ -100,26 +104,31 @@ public class HelpersFunctions {
             int daysToFinish = ImportantConstants.productionTimes[company][workerType][1];
             int numOfWorkDone = ImportantConstants.productionTimes[company][workerType][0];
             int hourlyWage = ImportantConstants.hourlyWages[workerType];
-            Employee newEmployee = new Employee(company, workerId, workerType, daysToFinish, numOfWorkDone, hourlyWage, network.getDrive(), network.getMutex());
+            Employee newEmployee = new Employee(company, workerId, workerType, daysToFinish, numOfWorkDone, hourlyWage,
+                    network.getDrive(), network.getMutex());
 
             // Se inicia el hilo del nuevo empleado
             newEmployee.start();
 
-            // Se buscar la primera posición vacía en el arreglo y añadir allí el nuevo empleado
+            // Se buscar la primera posición vacía en el arreglo y añadir allí el nuevo
+            // empleado
             for (int i = 0; i < employees.length; i++) {
                 if (employees[i] == null) {
                     employees[i] = newEmployee;
-                    network.setActualEmployeesQuantity(network.getActualEmployeesQuantity() + 1); // Actualizar la cantidad de empleados
+                    network.setActualEmployeesQuantity(network.getActualEmployeesQuantity() + 1); // Actualizar la
+                                                                                                  // cantidad de
+                                                                                                  // empleados
                     break;
                 }
-            }            
+            }
         } else {
             System.out.println("Se ha alcanzado el número máximo de empleados.");
         }
     }
-    
+
     public void deleteWorker(int company, int workerType) {
-    TelevisionNetwork network = company == 0 ? App.getInstance().getNickelodeon() : App.getInstance().getCartoonNetwork();
+        TelevisionNetwork network = company == 0 ? App.getInstance().getNickelodeon()
+                : App.getInstance().getCartoonNetwork();
 
         // Verifica si hay empleados para eliminar
         if (network.getActualEmployeesQuantity() > 0) {
@@ -146,7 +155,6 @@ public class HelpersFunctions {
         }
     }
 
-
     private Employee[] getEmployeesArrayByType(TelevisionNetwork network, int workerType) {
         switch (workerType) {
             case 0:
@@ -163,26 +171,25 @@ public class HelpersFunctions {
                 return null;
         }
     }
-    
+
     private void setEmployeesArrayByType(TelevisionNetwork network, int workerType, Employee[] newEmployees) {
-    switch (workerType) {
-        case 0:
-            network.setScreenwriters(newEmployees);
-            break;
-        case 1:
-            network.setSetDesigners(newEmployees);
-            break;
-        case 2:
-            network.setCharacterAnimators(newEmployees);
-            break;
-        case 3:
-            network.setVoiceActors(newEmployees);
-            break;
-        case 4:
-            network.setPlotTwistScreenwriters(newEmployees);
-            break;
+        switch (workerType) {
+            case 0:
+                network.setScreenwriters(newEmployees);
+                break;
+            case 1:
+                network.setSetDesigners(newEmployees);
+                break;
+            case 2:
+                network.setCharacterAnimators(newEmployees);
+                break;
+            case 3:
+                network.setVoiceActors(newEmployees);
+                break;
+            case 4:
+                network.setPlotTwistScreenwriters(newEmployees);
+                break;
+        }
     }
-}
-    
 
 }

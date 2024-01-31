@@ -17,10 +17,9 @@ import MainPackage.App;
  */
 public class FileFunctions {
 
-    public static String read(File selectedFile) {
+    public static String read(File file) {
         String line;
         String data = "";
-        File file = selectedFile;
 
         try {
             if (!file.exists()) {
@@ -64,7 +63,6 @@ public class FileFunctions {
         String[] lines = cnSection.split("\n");
 
         // Se crea un array para almacenar los valores enteros de la configuración
-
         int[] generalParams = new int[2];
 
         // Variable para recorrer el arreglo de líneas
@@ -138,12 +136,14 @@ public class FileFunctions {
     }
 
     public static void write(File file) {
+
         String data = getActualParams();
         try {
             java.io.FileWriter fileWriter = new java.io.FileWriter(file);
             fileWriter.write(data);
             fileWriter.close();
         } catch (Exception e) {
+
         }
     }
 

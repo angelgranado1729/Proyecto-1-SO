@@ -50,7 +50,6 @@ public class App {
     public void start() {
         
         HelpersFunctions.loadParams();
-        System.out.println(getDayDuration());
         
         // Inicia la simulacion
         getNickelodeon().start();
@@ -171,5 +170,7 @@ public class App {
     public static void setApp(App aApp) {
         app = aApp;
     }
+
+  
 
 }
