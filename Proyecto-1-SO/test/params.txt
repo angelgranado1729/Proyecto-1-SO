@@ -1,6 +1,6 @@
 [General Params]
 DayDuration=3000
-Deadline=30
+Deadline=4
 
 [Nickelodeon]
 Screenwriter=1

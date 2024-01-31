@@ -167,8 +167,6 @@ public class Nickelodeon extends javax.swing.JFrame {
         plotTwistLimit1 = new javax.swing.JLabel();
         plotTwistTitle1 = new javax.swing.JLabel();
         jTextField28 = new javax.swing.JTextField();
-        jButton12 = new javax.swing.JButton();
-        jButton21 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         driveTitle4 = new javax.swing.JLabel();
         driveTitle5 = new javax.swing.JLabel();
@@ -348,7 +346,7 @@ public class Nickelodeon extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Montserrat", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Parámetros");
+        jLabel7.setText("Configuración");
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel7MouseClicked(evt);
@@ -364,7 +362,7 @@ public class Nickelodeon extends javax.swing.JFrame {
                 .addComponent(icono4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
         btn_nuevo_almacenLayout.setVerticalGroup(
             btn_nuevo_almacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -481,7 +479,7 @@ public class Nickelodeon extends javax.swing.JFrame {
         SidePanel.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 220, 26));
         SidePanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 280, 80));
 
-        jPanel1.add(SidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 710));
+        jPanel1.add(SidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 720));
 
         jPanel2.setBackground(new java.awt.Color(34, 46, 60));
 
@@ -611,7 +609,7 @@ public class Nickelodeon extends javax.swing.JFrame {
             .addGroup(scriptsLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(scriptsTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(36, 36, 36)
+                .addGap(30, 30, 30)
                 .addComponent(increaseScripts)
                 .addGap(18, 18, 18)
                 .addComponent(scriptsValues, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -833,7 +831,7 @@ public class Nickelodeon extends javax.swing.JFrame {
         dubbingLayout.setHorizontalGroup(
             dubbingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dubbingLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(17, 17, 17)
                 .addComponent(dubbingTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(increaseDubbing)
@@ -847,11 +845,10 @@ public class Nickelodeon extends javax.swing.JFrame {
             dubbingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dubbingLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(dubbingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dubbingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(decreaseDubbing)
-                        .addComponent(increaseDubbing)
-                        .addComponent(dubbingValues, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(dubbingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(decreaseDubbing)
+                    .addComponent(increaseDubbing)
+                    .addComponent(dubbingValues, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dubbingTitle))
                 .addContainerGap())
         );
@@ -945,15 +942,13 @@ public class Nickelodeon extends javax.swing.JFrame {
                             .addComponent(dubbing, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(plotTwist, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(scenary, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(scripts, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(scripts, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(workersConfigurationsLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addGroup(workersConfigurationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(driveTitle)
-                            .addGroup(workersConfigurationsLayout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(driveTitle1)))))
-                .addContainerGap(10, Short.MAX_VALUE))
+                            .addComponent(driveTitle1)
+                            .addComponent(driveTitle))))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         workersConfigurationsLayout.setVerticalGroup(
             workersConfigurationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -975,7 +970,7 @@ public class Nickelodeon extends javax.swing.JFrame {
                 .addGap(15, 15, 15))
         );
 
-        jPanel1.add(workersConfigurations, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 280, 400));
+        jPanel1.add(workersConfigurations, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 280, 400));
 
         drivePanel.setBackground(new java.awt.Color(243, 168, 71));
 
@@ -1259,31 +1254,7 @@ public class Nickelodeon extends javax.swing.JFrame {
                 .addGap(15, 15, 15))
         );
 
-        jPanel1.add(drivePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 280, 250, -1));
-
-        jButton12.setBackground(new java.awt.Color(51, 51, 51));
-        jButton12.setFont(new java.awt.Font("Montserrat", 1, 24)); // NOI18N
-        jButton12.setForeground(new java.awt.Color(255, 255, 255));
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Assets/playIcon.png"))); // NOI18N
-        jButton12.setText("Pausar");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 220, 210, 40));
-
-        jButton21.setBackground(new java.awt.Color(51, 51, 51));
-        jButton21.setFont(new java.awt.Font("Montserrat", 1, 24)); // NOI18N
-        jButton21.setForeground(new java.awt.Color(255, 255, 255));
-        jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Assets/playIcon.png"))); // NOI18N
-        jButton21.setText("Comenzar");
-        jButton21.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton21ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 210, 40));
+        jPanel1.add(drivePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 260, 250, -1));
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setForeground(new java.awt.Color(51, 51, 51));
@@ -1725,20 +1696,11 @@ public class Nickelodeon extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
-                .addGap(16, 16, 16))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton21ActionPerformed
-
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
 
     private void plotTwistValuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plotTwistValuesActionPerformed
         // TODO add your handling code here:
@@ -2148,8 +2110,6 @@ public class Nickelodeon extends javax.swing.JFrame {
     private javax.swing.JButton increasePlotTwist;
     private javax.swing.JButton increaseScenary;
     private javax.swing.JButton increaseScripts;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton21;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
