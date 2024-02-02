@@ -35,6 +35,8 @@ public class ConfigParams extends javax.swing.JFrame {
     private int actualEmployees0;
     private int actualEmployees1;
     private static ConfigParams config;
+    private static CartoonNetwork cartoonNetwork;
+    private static Nickelodeon nickelodeon;
     private HelpersFunctions helper = new HelpersFunctions();
     private FileFunctions filefunctions = new FileFunctions();
     private File selectedFile = app.getSelectedFile();
@@ -64,15 +66,28 @@ public class ConfigParams extends javax.swing.JFrame {
             this.maxEmployees1 = this.app.getCartoonNetwork().getMaxEmployeesQuantity();
             this.actualEmployees1 = this.app.getCartoonNetwork().getActualEmployeesQuantity();
             this.actualEmployees0 = this.app.getNickelodeon().getActualEmployeesQuantity();
-            
-            this.scriptsValues.setText(String.valueOf(countNonNullEmployees(this.app.getCartoonNetwork().getScreenwriters())));
-            this.scenaryValue
+
+            this.dayDuration.setText(String.valueOf(app.getDayDuration()/1000));
+            this.deadlineValue.setText(String.valueOf(app.getDeadline()));
+
+            this.scriptsValues0.setText(String.valueOf(countNonNullEmployees(this.app.getNickelodeon().getScreenwriters())));
+            this.scenaryValue0
+                    .setText(String.valueOf(countNonNullEmployees(this.app.getNickelodeon().getSetDesigners())));
+            this.animationValues0.setText(
+                    String.valueOf(countNonNullEmployees(this.app.getNickelodeon().getCharacterAnimators())));
+            this.dubbingValues0
+                    .setText(String.valueOf(countNonNullEmployees(this.app.getNickelodeon().getVoiceActors())));
+            this.plotTwistValues0.setText(
+                    String.valueOf(countNonNullEmployees(this.app.getNickelodeon().getPlotTwistScreenwriters())));
+
+            this.scriptsValues1.setText(String.valueOf(countNonNullEmployees(this.app.getCartoonNetwork().getScreenwriters())));
+            this.scenaryValue1
                     .setText(String.valueOf(countNonNullEmployees(this.app.getCartoonNetwork().getSetDesigners())));
-            this.animationValues.setText(
+            this.animationValues1.setText(
                     String.valueOf(countNonNullEmployees(this.app.getCartoonNetwork().getCharacterAnimators())));
-            this.dubbingValues
+            this.dubbingValues1
                     .setText(String.valueOf(countNonNullEmployees(this.app.getCartoonNetwork().getVoiceActors())));
-            this.plotTwistValues.setText(
+            this.plotTwistValues1.setText(
                     String.valueOf(countNonNullEmployees(this.app.getCartoonNetwork().getPlotTwistScreenwriters())));
 
         }
@@ -161,27 +176,27 @@ public class ConfigParams extends javax.swing.JFrame {
         scripts6 = new javax.swing.JPanel();
         scriptsTitle6 = new javax.swing.JLabel();
         increaseScripts6 = new javax.swing.JButton();
-        scriptsValues6 = new javax.swing.JTextField();
+        scriptsValues1 = new javax.swing.JTextField();
         decreaseScripts6 = new javax.swing.JButton();
         scenary5 = new javax.swing.JPanel();
         scenaryTitle5 = new javax.swing.JLabel();
-        scenaryValue5 = new javax.swing.JTextField();
+        scenaryValue1 = new javax.swing.JTextField();
         increaseScenary5 = new javax.swing.JButton();
         decreaseScenary5 = new javax.swing.JButton();
         animations5 = new javax.swing.JPanel();
         animationsTitle5 = new javax.swing.JLabel();
-        animationValues5 = new javax.swing.JTextField();
+        animationValues1 = new javax.swing.JTextField();
         decreaseAnimation5 = new javax.swing.JButton();
         increaseAnimation5 = new javax.swing.JButton();
         dubbing5 = new javax.swing.JPanel();
         dubbingTitle5 = new javax.swing.JLabel();
         decreaseDubbing5 = new javax.swing.JButton();
-        dubbingValues5 = new javax.swing.JTextField();
+        dubbingValues1 = new javax.swing.JTextField();
         increaseDubbing5 = new javax.swing.JButton();
         plotTwist5 = new javax.swing.JPanel();
         plotTwistTitle5 = new javax.swing.JLabel();
         increasePlotTwist5 = new javax.swing.JButton();
-        plotTwistValues5 = new javax.swing.JTextField();
+        plotTwistValues1 = new javax.swing.JTextField();
         decreacePlotTwist5 = new javax.swing.JButton();
         driveTitle12 = new javax.swing.JLabel();
         workersConfigurations6 = new javax.swing.JPanel();
@@ -189,27 +204,27 @@ public class ConfigParams extends javax.swing.JFrame {
         scripts7 = new javax.swing.JPanel();
         scriptsTitle7 = new javax.swing.JLabel();
         increaseScripts7 = new javax.swing.JButton();
-        scriptsValues = new javax.swing.JTextField();
+        scriptsValues0 = new javax.swing.JTextField();
         decreaseScripts = new javax.swing.JButton();
         scenary6 = new javax.swing.JPanel();
         scenaryTitle6 = new javax.swing.JLabel();
-        scenaryValue6 = new javax.swing.JTextField();
+        scenaryValue0 = new javax.swing.JTextField();
         increaseScenary6 = new javax.swing.JButton();
         decreaseScenary6 = new javax.swing.JButton();
         animations6 = new javax.swing.JPanel();
         animationsTitle6 = new javax.swing.JLabel();
-        animationValues6 = new javax.swing.JTextField();
+        animationValues0 = new javax.swing.JTextField();
         decreaseAnimation6 = new javax.swing.JButton();
         increaseAnimation6 = new javax.swing.JButton();
         dubbing6 = new javax.swing.JPanel();
         dubbingTitle6 = new javax.swing.JLabel();
         decreaseDubbing6 = new javax.swing.JButton();
-        dubbingValues6 = new javax.swing.JTextField();
+        dubbingValues0 = new javax.swing.JTextField();
         increaseDubbing6 = new javax.swing.JButton();
         plotTwist6 = new javax.swing.JPanel();
         plotTwistTitle6 = new javax.swing.JLabel();
         increasePlotTwist6 = new javax.swing.JButton();
-        plotTwistValues6 = new javax.swing.JTextField();
+        plotTwistValues0 = new javax.swing.JTextField();
         decreacePlotTwist6 = new javax.swing.JButton();
         driveTitle14 = new javax.swing.JLabel();
 
@@ -226,12 +241,22 @@ public class ConfigParams extends javax.swing.JFrame {
         SidePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btn_Inicio.setBackground(new java.awt.Color(55, 71, 90));
+        btn_Inicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_InicioMouseClicked(evt);
+            }
+        });
 
         icono1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Montserrat", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Inicio");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_InicioLayout = new javax.swing.GroupLayout(btn_Inicio);
         btn_Inicio.setLayout(btn_InicioLayout);
@@ -357,7 +382,7 @@ public class ConfigParams extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Montserrat", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Parámetros");
+        jLabel7.setText("Nickelodeon");
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel7MouseClicked(evt);
@@ -373,7 +398,7 @@ public class ConfigParams extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(icono4)
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
         btn_nuevo_almacenLayout.setVerticalGroup(
             btn_nuevo_almacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -572,6 +597,7 @@ public class ConfigParams extends javax.swing.JFrame {
         dayDuration.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         dayDuration.setText("0");
         dayDuration.setBorder(null);
+        dayDuration.setFocusable(false);
         dayDuration.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dayDurationActionPerformed(evt);
@@ -599,14 +625,14 @@ public class ConfigParams extends javax.swing.JFrame {
             scripts1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(scripts1Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(scriptsTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                .addComponent(scriptsTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(decreaseScripts1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dayDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dayDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(increaseScripts1)
-                .addGap(16, 16, 16))
+                .addContainerGap())
         );
         scripts1Layout.setVerticalGroup(
             scripts1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -638,7 +664,7 @@ public class ConfigParams extends javax.swing.JFrame {
 
         scriptsTitle3.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         scriptsTitle3.setForeground(new java.awt.Color(51, 51, 51));
-        scriptsTitle3.setText("Días entre las entregas");
+        scriptsTitle3.setText("Días entre las entregas:");
 
         increaseScripts3.setBackground(new java.awt.Color(51, 51, 51));
         increaseScripts3.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
@@ -662,6 +688,7 @@ public class ConfigParams extends javax.swing.JFrame {
         deadlineValue.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         deadlineValue.setText("0");
         deadlineValue.setBorder(null);
+        deadlineValue.setFocusable(false);
         deadlineValue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deadlineValueActionPerformed(evt);
@@ -689,11 +716,11 @@ public class ConfigParams extends javax.swing.JFrame {
             scripts3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(scripts3Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(scriptsTitle3, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addComponent(scriptsTitle3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(decreaseScripts3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(deadlineValue, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(deadlineValue, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(increaseScripts3)
                 .addGap(16, 16, 16))
@@ -718,7 +745,7 @@ public class ConfigParams extends javax.swing.JFrame {
                 .addComponent(scripts3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addGap(26, 26, 26))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -760,14 +787,15 @@ public class ConfigParams extends javax.swing.JFrame {
             }
         });
 
-        scriptsValues6.setBackground(java.awt.Color.lightGray);
-        scriptsValues6.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        scriptsValues6.setForeground(new java.awt.Color(51, 51, 51));
-        scriptsValues6.setText("0");
-        scriptsValues6.setBorder(null);
-        scriptsValues6.addActionListener(new java.awt.event.ActionListener() {
+        scriptsValues1.setBackground(java.awt.Color.lightGray);
+        scriptsValues1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        scriptsValues1.setForeground(new java.awt.Color(51, 51, 51));
+        scriptsValues1.setText("0");
+        scriptsValues1.setBorder(null);
+        scriptsValues1.setFocusable(false);
+        scriptsValues1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                scriptsValues6ActionPerformed(evt);
+                scriptsValues1ActionPerformed(evt);
             }
         });
 
@@ -796,7 +824,7 @@ public class ConfigParams extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(decreaseScripts6)
                 .addGap(22, 22, 22)
-                .addComponent(scriptsValues6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scriptsValues1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(increaseScripts6)
                 .addGap(14, 14, 14))
@@ -806,7 +834,7 @@ public class ConfigParams extends javax.swing.JFrame {
             .addGroup(scripts6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(scriptsTitle6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(increaseScripts6)
-                .addComponent(scriptsValues6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scriptsValues1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(decreaseScripts6))
         );
 
@@ -819,14 +847,15 @@ public class ConfigParams extends javax.swing.JFrame {
         scenaryTitle5.setMaximumSize(new java.awt.Dimension(88, 21));
         scenaryTitle5.setMinimumSize(new java.awt.Dimension(88, 21));
 
-        scenaryValue5.setBackground(java.awt.Color.lightGray);
-        scenaryValue5.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        scenaryValue5.setForeground(new java.awt.Color(51, 51, 51));
-        scenaryValue5.setText("0");
-        scenaryValue5.setBorder(null);
-        scenaryValue5.addActionListener(new java.awt.event.ActionListener() {
+        scenaryValue1.setBackground(java.awt.Color.lightGray);
+        scenaryValue1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        scenaryValue1.setForeground(new java.awt.Color(51, 51, 51));
+        scenaryValue1.setText("0");
+        scenaryValue1.setBorder(null);
+        scenaryValue1.setFocusable(false);
+        scenaryValue1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                scenaryValue5ActionPerformed(evt);
+                scenaryValue1ActionPerformed(evt);
             }
         });
 
@@ -870,7 +899,7 @@ public class ConfigParams extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(decreaseScenary5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(scenaryValue5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scenaryValue1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(increaseScenary5)
                 .addGap(15, 15, 15))
@@ -882,7 +911,7 @@ public class ConfigParams extends javax.swing.JFrame {
                 .addGroup(scenary5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(scenaryTitle5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(decreaseScenary5)
-                    .addComponent(scenaryValue5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(scenaryValue1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(increaseScenary5))
                 .addContainerGap())
         );
@@ -896,14 +925,15 @@ public class ConfigParams extends javax.swing.JFrame {
         animationsTitle5.setMaximumSize(new java.awt.Dimension(88, 21));
         animationsTitle5.setMinimumSize(new java.awt.Dimension(88, 21));
 
-        animationValues5.setBackground(java.awt.Color.lightGray);
-        animationValues5.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        animationValues5.setForeground(new java.awt.Color(51, 51, 51));
-        animationValues5.setText("0");
-        animationValues5.setBorder(null);
-        animationValues5.addActionListener(new java.awt.event.ActionListener() {
+        animationValues1.setBackground(java.awt.Color.lightGray);
+        animationValues1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        animationValues1.setForeground(new java.awt.Color(51, 51, 51));
+        animationValues1.setText("0");
+        animationValues1.setBorder(null);
+        animationValues1.setFocusable(false);
+        animationValues1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                animationValues5ActionPerformed(evt);
+                animationValues1ActionPerformed(evt);
             }
         });
 
@@ -947,7 +977,7 @@ public class ConfigParams extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(decreaseAnimation5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(animationValues5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(animationValues1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(increaseAnimation5)
                 .addGap(17, 17, 17))
@@ -959,7 +989,7 @@ public class ConfigParams extends javax.swing.JFrame {
                 .addGroup(animations5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(animationsTitle5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(decreaseAnimation5)
-                    .addComponent(animationValues5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(animationValues1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(increaseAnimation5))
                 .addContainerGap())
         );
@@ -988,14 +1018,15 @@ public class ConfigParams extends javax.swing.JFrame {
             }
         });
 
-        dubbingValues5.setBackground(java.awt.Color.lightGray);
-        dubbingValues5.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        dubbingValues5.setForeground(new java.awt.Color(51, 51, 51));
-        dubbingValues5.setText("0");
-        dubbingValues5.setBorder(null);
-        dubbingValues5.addActionListener(new java.awt.event.ActionListener() {
+        dubbingValues1.setBackground(java.awt.Color.lightGray);
+        dubbingValues1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        dubbingValues1.setForeground(new java.awt.Color(51, 51, 51));
+        dubbingValues1.setText("0");
+        dubbingValues1.setBorder(null);
+        dubbingValues1.setFocusable(false);
+        dubbingValues1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dubbingValues5ActionPerformed(evt);
+                dubbingValues1ActionPerformed(evt);
             }
         });
 
@@ -1024,7 +1055,7 @@ public class ConfigParams extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(decreaseDubbing5)
                 .addGap(18, 18, 18)
-                .addComponent(dubbingValues5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dubbingValues1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(increaseDubbing5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1035,7 +1066,7 @@ public class ConfigParams extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(dubbing5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(decreaseDubbing5)
-                    .addComponent(dubbingValues5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dubbingValues1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(increaseDubbing5)
                     .addComponent(dubbingTitle5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -1043,6 +1074,7 @@ public class ConfigParams extends javax.swing.JFrame {
 
         plotTwist5.setBackground(java.awt.Color.lightGray);
         plotTwist5.setForeground(new java.awt.Color(255, 255, 255));
+        plotTwist5.setFocusable(false);
 
         plotTwistTitle5.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         plotTwistTitle5.setForeground(new java.awt.Color(51, 51, 51));
@@ -1065,14 +1097,15 @@ public class ConfigParams extends javax.swing.JFrame {
             }
         });
 
-        plotTwistValues5.setBackground(java.awt.Color.lightGray);
-        plotTwistValues5.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        plotTwistValues5.setForeground(new java.awt.Color(51, 51, 51));
-        plotTwistValues5.setText("0");
-        plotTwistValues5.setBorder(null);
-        plotTwistValues5.addActionListener(new java.awt.event.ActionListener() {
+        plotTwistValues1.setBackground(java.awt.Color.lightGray);
+        plotTwistValues1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        plotTwistValues1.setForeground(new java.awt.Color(51, 51, 51));
+        plotTwistValues1.setText("0");
+        plotTwistValues1.setBorder(null);
+        plotTwistValues1.setFocusable(false);
+        plotTwistValues1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                plotTwistValues5ActionPerformed(evt);
+                plotTwistValues1ActionPerformed(evt);
             }
         });
 
@@ -1101,7 +1134,7 @@ public class ConfigParams extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(decreacePlotTwist5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(plotTwistValues5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(plotTwistValues1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(increasePlotTwist5)
                 .addGap(20, 20, 20))
@@ -1112,7 +1145,7 @@ public class ConfigParams extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(plotTwist5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(increasePlotTwist5)
-                    .addComponent(plotTwistValues5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(plotTwistValues1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(decreacePlotTwist5)
                     .addComponent(plotTwistTitle5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7))
@@ -1191,14 +1224,15 @@ public class ConfigParams extends javax.swing.JFrame {
             }
         });
 
-        scriptsValues.setBackground(java.awt.Color.lightGray);
-        scriptsValues.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        scriptsValues.setForeground(new java.awt.Color(51, 51, 51));
-        scriptsValues.setText("0");
-        scriptsValues.setBorder(null);
-        scriptsValues.addActionListener(new java.awt.event.ActionListener() {
+        scriptsValues0.setBackground(java.awt.Color.lightGray);
+        scriptsValues0.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        scriptsValues0.setForeground(new java.awt.Color(51, 51, 51));
+        scriptsValues0.setText("0");
+        scriptsValues0.setBorder(null);
+        scriptsValues0.setFocusable(false);
+        scriptsValues0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                scriptsValuesActionPerformed(evt);
+                scriptsValues0ActionPerformed(evt);
             }
         });
 
@@ -1227,7 +1261,7 @@ public class ConfigParams extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(decreaseScripts)
                 .addGap(22, 22, 22)
-                .addComponent(scriptsValues, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scriptsValues0, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(increaseScripts7)
                 .addGap(14, 14, 14))
@@ -1237,7 +1271,7 @@ public class ConfigParams extends javax.swing.JFrame {
             .addGroup(scripts7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(scriptsTitle7, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(increaseScripts7)
-                .addComponent(scriptsValues, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scriptsValues0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(decreaseScripts))
         );
 
@@ -1250,14 +1284,15 @@ public class ConfigParams extends javax.swing.JFrame {
         scenaryTitle6.setMaximumSize(new java.awt.Dimension(88, 21));
         scenaryTitle6.setMinimumSize(new java.awt.Dimension(88, 21));
 
-        scenaryValue6.setBackground(java.awt.Color.lightGray);
-        scenaryValue6.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        scenaryValue6.setForeground(new java.awt.Color(51, 51, 51));
-        scenaryValue6.setText("0");
-        scenaryValue6.setBorder(null);
-        scenaryValue6.addActionListener(new java.awt.event.ActionListener() {
+        scenaryValue0.setBackground(java.awt.Color.lightGray);
+        scenaryValue0.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        scenaryValue0.setForeground(new java.awt.Color(51, 51, 51));
+        scenaryValue0.setText("0");
+        scenaryValue0.setBorder(null);
+        scenaryValue0.setFocusable(false);
+        scenaryValue0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                scenaryValue6ActionPerformed(evt);
+                scenaryValue0ActionPerformed(evt);
             }
         });
 
@@ -1301,7 +1336,7 @@ public class ConfigParams extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(decreaseScenary6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(scenaryValue6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scenaryValue0, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(increaseScenary6)
                 .addGap(15, 15, 15))
@@ -1313,7 +1348,7 @@ public class ConfigParams extends javax.swing.JFrame {
                 .addGroup(scenary6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(scenaryTitle6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(decreaseScenary6)
-                    .addComponent(scenaryValue6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(scenaryValue0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(increaseScenary6))
                 .addContainerGap())
         );
@@ -1327,14 +1362,15 @@ public class ConfigParams extends javax.swing.JFrame {
         animationsTitle6.setMaximumSize(new java.awt.Dimension(88, 21));
         animationsTitle6.setMinimumSize(new java.awt.Dimension(88, 21));
 
-        animationValues6.setBackground(java.awt.Color.lightGray);
-        animationValues6.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        animationValues6.setForeground(new java.awt.Color(51, 51, 51));
-        animationValues6.setText("0");
-        animationValues6.setBorder(null);
-        animationValues6.addActionListener(new java.awt.event.ActionListener() {
+        animationValues0.setBackground(java.awt.Color.lightGray);
+        animationValues0.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        animationValues0.setForeground(new java.awt.Color(51, 51, 51));
+        animationValues0.setText("0");
+        animationValues0.setBorder(null);
+        animationValues0.setFocusable(false);
+        animationValues0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                animationValues6ActionPerformed(evt);
+                animationValues0ActionPerformed(evt);
             }
         });
 
@@ -1378,7 +1414,7 @@ public class ConfigParams extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(decreaseAnimation6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(animationValues6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(animationValues0, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(increaseAnimation6)
                 .addGap(17, 17, 17))
@@ -1390,7 +1426,7 @@ public class ConfigParams extends javax.swing.JFrame {
                 .addGroup(animations6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(animationsTitle6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(decreaseAnimation6)
-                    .addComponent(animationValues6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(animationValues0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(increaseAnimation6))
                 .addContainerGap())
         );
@@ -1419,14 +1455,15 @@ public class ConfigParams extends javax.swing.JFrame {
             }
         });
 
-        dubbingValues6.setBackground(java.awt.Color.lightGray);
-        dubbingValues6.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        dubbingValues6.setForeground(new java.awt.Color(51, 51, 51));
-        dubbingValues6.setText("0");
-        dubbingValues6.setBorder(null);
-        dubbingValues6.addActionListener(new java.awt.event.ActionListener() {
+        dubbingValues0.setBackground(java.awt.Color.lightGray);
+        dubbingValues0.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        dubbingValues0.setForeground(new java.awt.Color(51, 51, 51));
+        dubbingValues0.setText("0");
+        dubbingValues0.setBorder(null);
+        dubbingValues0.setFocusable(false);
+        dubbingValues0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dubbingValues6ActionPerformed(evt);
+                dubbingValues0ActionPerformed(evt);
             }
         });
 
@@ -1455,7 +1492,7 @@ public class ConfigParams extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(decreaseDubbing6)
                 .addGap(18, 18, 18)
-                .addComponent(dubbingValues6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dubbingValues0, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(increaseDubbing6)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1466,7 +1503,7 @@ public class ConfigParams extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(dubbing6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(decreaseDubbing6)
-                    .addComponent(dubbingValues6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dubbingValues0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(increaseDubbing6)
                     .addComponent(dubbingTitle6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -1496,14 +1533,15 @@ public class ConfigParams extends javax.swing.JFrame {
             }
         });
 
-        plotTwistValues6.setBackground(java.awt.Color.lightGray);
-        plotTwistValues6.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        plotTwistValues6.setForeground(new java.awt.Color(51, 51, 51));
-        plotTwistValues6.setText("0");
-        plotTwistValues6.setBorder(null);
-        plotTwistValues6.addActionListener(new java.awt.event.ActionListener() {
+        plotTwistValues0.setBackground(java.awt.Color.lightGray);
+        plotTwistValues0.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        plotTwistValues0.setForeground(new java.awt.Color(51, 51, 51));
+        plotTwistValues0.setText("0");
+        plotTwistValues0.setBorder(null);
+        plotTwistValues0.setFocusable(false);
+        plotTwistValues0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                plotTwistValues6ActionPerformed(evt);
+                plotTwistValues0ActionPerformed(evt);
             }
         });
 
@@ -1532,7 +1570,7 @@ public class ConfigParams extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(decreacePlotTwist6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(plotTwistValues6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(plotTwistValues0, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(increasePlotTwist6)
                 .addGap(20, 20, 20))
@@ -1543,7 +1581,7 @@ public class ConfigParams extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(plotTwist6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(increasePlotTwist6)
-                    .addComponent(plotTwistValues6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(plotTwistValues0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(decreacePlotTwist6)
                     .addComponent(plotTwistTitle6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7))
@@ -1597,23 +1635,24 @@ public class ConfigParams extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(workersConfigurations6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(91, 91, 91)
-                .addComponent(workersConfigurations5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addComponent(workersConfigurations6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(91, 91, 91)
+                        .addComponent(workersConfigurations5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(22, 22, 22)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(workersConfigurations6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(workersConfigurations5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1682,12 +1721,20 @@ public class ConfigParams extends javax.swing.JFrame {
 
     private void btn_nuevo_almacenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_almacenMouseClicked
         // TODO add your handling code here:
-
+        nickelodeon.setVisible(true);
+        nickelodeon.setLocationRelativeTo(null);
+        nickelodeon.setResizable(false);
+        cartoonPlayMusic("/GUI/Assets/nickelodeonTheme.wav");
+        this.setVisible(false);
     }//GEN-LAST:event_btn_nuevo_almacenMouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
-
+        nickelodeon.setVisible(true);
+        nickelodeon.setLocationRelativeTo(null);
+        nickelodeon.setResizable(false);
+        cartoonPlayMusic("/GUI/Assets/nickelodeonTheme.wav");
+        this.setVisible(false);
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void icono4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono4MouseClicked
@@ -1697,12 +1744,20 @@ public class ConfigParams extends javax.swing.JFrame {
 
     private void btn_nueva_rutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nueva_rutaMouseClicked
         // TODO add your handling code here:
-
+        cartoonNetwork.setVisible(true);
+        cartoonNetwork.setLocationRelativeTo(null);
+        cartoonNetwork.setResizable(false);
+        cartoonPlayMusic("/GUI/Assets/cartoonNetworkTheme.wav");
+        this.setVisible(false);
     }//GEN-LAST:event_btn_nueva_rutaMouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
-
+        cartoonNetwork.setVisible(true);
+        cartoonNetwork.setLocationRelativeTo(null);
+        cartoonNetwork.setResizable(false);
+        cartoonPlayMusic("/GUI/Assets/cartoonNetworkTheme.wav");
+        this.setVisible(false);
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void icono3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono3MouseClicked
@@ -1764,9 +1819,9 @@ public class ConfigParams extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_increaseScripts6ActionPerformed
 
-    private void scriptsValues6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scriptsValues6ActionPerformed
+    private void scriptsValues1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scriptsValues1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_scriptsValues6ActionPerformed
+    }//GEN-LAST:event_scriptsValues1ActionPerformed
 
     private void decreaseScripts6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseScripts6MouseClicked
         // TODO add your handling code here:
@@ -1776,9 +1831,9 @@ public class ConfigParams extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_decreaseScripts6ActionPerformed
 
-    private void scenaryValue5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scenaryValue5ActionPerformed
+    private void scenaryValue1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scenaryValue1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_scenaryValue5ActionPerformed
+    }//GEN-LAST:event_scenaryValue1ActionPerformed
 
     private void increaseScenary5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseScenary5MouseClicked
         // TODO add your handling code here:
@@ -1796,9 +1851,9 @@ public class ConfigParams extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_decreaseScenary5ActionPerformed
 
-    private void animationValues5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animationValues5ActionPerformed
+    private void animationValues1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animationValues1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_animationValues5ActionPerformed
+    }//GEN-LAST:event_animationValues1ActionPerformed
 
     private void decreaseAnimation5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseAnimation5MouseClicked
         // TODO add your handling code here:
@@ -1824,9 +1879,9 @@ public class ConfigParams extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_decreaseDubbing5ActionPerformed
 
-    private void dubbingValues5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dubbingValues5ActionPerformed
+    private void dubbingValues1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dubbingValues1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_dubbingValues5ActionPerformed
+    }//GEN-LAST:event_dubbingValues1ActionPerformed
 
     private void increaseDubbing5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseDubbing5MouseClicked
         // TODO add your handling code here:
@@ -1844,9 +1899,9 @@ public class ConfigParams extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_increasePlotTwist5ActionPerformed
 
-    private void plotTwistValues5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plotTwistValues5ActionPerformed
+    private void plotTwistValues1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plotTwistValues1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_plotTwistValues5ActionPerformed
+    }//GEN-LAST:event_plotTwistValues1ActionPerformed
 
     private void decreacePlotTwist5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreacePlotTwist5MouseClicked
         // TODO add your handling code here:
@@ -1884,15 +1939,15 @@ public class ConfigParams extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_increaseScripts7ActionPerformed
 
-    private void scriptsValuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scriptsValuesActionPerformed
+    private void scriptsValues0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scriptsValues0ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_scriptsValuesActionPerformed
+    }//GEN-LAST:event_scriptsValues0ActionPerformed
 
     private void decreaseScriptsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseScriptsMouseClicked
         // TODO add your handling code here:
         helper.deleteWorker(1, 0);
         cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
-        this.scriptsValues.setText(decreaseQuantity(this.scriptsValues.getText()));
+        this.scriptsValues0.setText(decreaseQuantity(this.scriptsValues0.getText()));
 
 
     }//GEN-LAST:event_decreaseScriptsMouseClicked
@@ -1901,9 +1956,9 @@ public class ConfigParams extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_decreaseScriptsActionPerformed
 
-    private void scenaryValue6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scenaryValue6ActionPerformed
+    private void scenaryValue0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scenaryValue0ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_scenaryValue6ActionPerformed
+    }//GEN-LAST:event_scenaryValue0ActionPerformed
 
     private void increaseScenary6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseScenary6MouseClicked
         // TODO add your handling code here:
@@ -1921,9 +1976,9 @@ public class ConfigParams extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_decreaseScenary6ActionPerformed
 
-    private void animationValues6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animationValues6ActionPerformed
+    private void animationValues0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animationValues0ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_animationValues6ActionPerformed
+    }//GEN-LAST:event_animationValues0ActionPerformed
 
     private void decreaseAnimation6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseAnimation6MouseClicked
         // TODO add your handling code here:
@@ -1949,9 +2004,9 @@ public class ConfigParams extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_decreaseDubbing6ActionPerformed
 
-    private void dubbingValues6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dubbingValues6ActionPerformed
+    private void dubbingValues0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dubbingValues0ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_dubbingValues6ActionPerformed
+    }//GEN-LAST:event_dubbingValues0ActionPerformed
 
     private void increaseDubbing6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseDubbing6MouseClicked
         // TODO add your handling code here:
@@ -1969,9 +2024,9 @@ public class ConfigParams extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_increasePlotTwist6ActionPerformed
 
-    private void plotTwistValues6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plotTwistValues6ActionPerformed
+    private void plotTwistValues0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plotTwistValues0ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_plotTwistValues6ActionPerformed
+    }//GEN-LAST:event_plotTwistValues0ActionPerformed
 
     private void decreacePlotTwist6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreacePlotTwist6MouseClicked
         // TODO add your handling code here:
@@ -1980,6 +2035,20 @@ public class ConfigParams extends javax.swing.JFrame {
     private void decreacePlotTwist6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreacePlotTwist6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_decreacePlotTwist6ActionPerformed
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        Home v1 = new Home();
+        v1.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void btn_InicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_InicioMouseClicked
+        // TODO add your handling code here:
+        Home v1 = new Home();
+        v1.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_InicioMouseClicked
 
     private String decreaseQuantity(String actualValue, JButton button) {
         int intValue = 0;
@@ -2044,8 +2113,8 @@ public class ConfigParams extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel SidePanel;
-    private javax.swing.JTextField animationValues5;
-    private javax.swing.JTextField animationValues6;
+    private javax.swing.JTextField animationValues0;
+    private javax.swing.JTextField animationValues1;
     private javax.swing.JPanel animations5;
     private javax.swing.JPanel animations6;
     private javax.swing.JLabel animationsTitle5;
@@ -2079,8 +2148,8 @@ public class ConfigParams extends javax.swing.JFrame {
     private javax.swing.JPanel dubbing6;
     private javax.swing.JLabel dubbingTitle5;
     private javax.swing.JLabel dubbingTitle6;
-    private javax.swing.JTextField dubbingValues5;
-    private javax.swing.JTextField dubbingValues6;
+    private javax.swing.JTextField dubbingValues0;
+    private javax.swing.JTextField dubbingValues1;
     private javax.swing.JLabel exit;
     private javax.swing.JLabel icono1;
     private javax.swing.JLabel icono3;
@@ -2119,14 +2188,14 @@ public class ConfigParams extends javax.swing.JFrame {
     private javax.swing.JPanel plotTwist6;
     private javax.swing.JLabel plotTwistTitle5;
     private javax.swing.JLabel plotTwistTitle6;
-    private javax.swing.JTextField plotTwistValues5;
-    private javax.swing.JTextField plotTwistValues6;
+    private javax.swing.JTextField plotTwistValues0;
+    private javax.swing.JTextField plotTwistValues1;
     private javax.swing.JPanel scenary5;
     private javax.swing.JPanel scenary6;
     private javax.swing.JLabel scenaryTitle5;
     private javax.swing.JLabel scenaryTitle6;
-    private javax.swing.JTextField scenaryValue5;
-    private javax.swing.JTextField scenaryValue6;
+    private javax.swing.JTextField scenaryValue0;
+    private javax.swing.JTextField scenaryValue1;
     private javax.swing.JPanel scripts1;
     private javax.swing.JPanel scripts3;
     private javax.swing.JPanel scripts6;
@@ -2135,8 +2204,8 @@ public class ConfigParams extends javax.swing.JFrame {
     private javax.swing.JLabel scriptsTitle3;
     private javax.swing.JLabel scriptsTitle6;
     private javax.swing.JLabel scriptsTitle7;
-    private javax.swing.JTextField scriptsValues;
-    private javax.swing.JTextField scriptsValues6;
+    private javax.swing.JTextField scriptsValues0;
+    private javax.swing.JTextField scriptsValues1;
     private javax.swing.JPanel workersConfigurations5;
     private javax.swing.JPanel workersConfigurations6;
     // End of variables declaration//GEN-END:variables

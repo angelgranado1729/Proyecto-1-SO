@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI.Classes;
+
 import MainPackage.App;
 import static MainPackage.App.getApp;
 import static MainPackage.App.setApp;
@@ -16,19 +17,19 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.UIManager;
 
-
 /**
  *
  * @author Erika A. Hernández Z.
  */
 public class Nickelodeon extends javax.swing.JFrame {
-    
+
     private Point initialClick;
     private final App app = App.getInstance();
     private int maxEmployees;
     private int actualEmployees;
     private static Nickelodeon nickelodeon;
-
+    private static CartoonNetwork cartoonNetwork = CartoonNetwork.getInstance();
+    private final ConfigParams config = ConfigParams.getInstance();
 
     public static synchronized Nickelodeon getInstance() {
         if (nickelodeon == null) {
@@ -49,13 +50,13 @@ public class Nickelodeon extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         initializeValues();
     }
-    
+
     private void initializeValues() {
         if (this.app.getCartoonNetwork() != null) {
             this.maxEmployees = this.app.getNickelodeon().getMaxEmployeesQuantity();
@@ -67,8 +68,8 @@ public class Nickelodeon extends javax.swing.JFrame {
             this.plotTwistValues.setText(String.valueOf(this.app.getNickelodeon().getPlotTwistScreenwriters().length));
         }
     }
-    
-     private void cartoonPlayMusic(String path) {
+
+    private void cartoonPlayMusic(String path) {
         try {
             URL url = this.getClass().getResource(path);
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
@@ -215,12 +216,22 @@ public class Nickelodeon extends javax.swing.JFrame {
         SidePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btn_Inicio.setBackground(new java.awt.Color(55, 71, 90));
+        btn_Inicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_InicioMouseClicked(evt);
+            }
+        });
 
         icono1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Montserrat", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Inicio");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_InicioLayout = new javax.swing.GroupLayout(btn_Inicio);
         btn_Inicio.setLayout(btn_InicioLayout);
@@ -1808,11 +1819,18 @@ public class Nickelodeon extends javax.swing.JFrame {
 
     private void btn_nuevo_almacenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_almacenMouseClicked
         // TODO add your handling code here:
-
+        config.setVisible(true);
+        config.setLocationRelativeTo(null);
+        config.setResizable(false);
+        this.setVisible(false);
     }//GEN-LAST:event_btn_nuevo_almacenMouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
+        config.setVisible(true);
+        config.setLocationRelativeTo(null);
+        config.setResizable(false);
+        this.setVisible(false);
 
     }//GEN-LAST:event_jLabel7MouseClicked
 
@@ -1823,11 +1841,20 @@ public class Nickelodeon extends javax.swing.JFrame {
 
     private void btn_nueva_rutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nueva_rutaMouseClicked
         // TODO add your handling code here:
-
+        cartoonNetwork.setVisible(true);
+        cartoonNetwork.setLocationRelativeTo(null);
+        cartoonNetwork.setResizable(false);
+        cartoonPlayMusic("/GUI/Assets/cartoonNetworkTheme.wav");
+        this.setVisible(false);
     }//GEN-LAST:event_btn_nueva_rutaMouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
+        cartoonNetwork.setVisible(true);
+        cartoonNetwork.setLocationRelativeTo(null);
+        cartoonNetwork.setResizable(false);
+        cartoonPlayMusic("/GUI/Assets/cartoonNetworkTheme.wav");
+        this.setVisible(false);
 
     }//GEN-LAST:event_jLabel6MouseClicked
 
@@ -1912,82 +1939,95 @@ public class Nickelodeon extends javax.swing.JFrame {
 
     private void increaseScriptsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseScriptsMouseClicked
         // TODO add your handling code here:
-        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
+        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
         this.scriptsValues.setText(increaseQuantity(this.scriptsValues.getText()));
 
     }//GEN-LAST:event_increaseScriptsMouseClicked
 
     private void increaseScenaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseScenaryMouseClicked
         // TODO add your handling code here:
-        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
+        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
         this.scenaryValue.setText(increaseQuantity(this.scenaryValue.getText()));
 
     }//GEN-LAST:event_increaseScenaryMouseClicked
 
     private void increaseAnimationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseAnimationMouseClicked
         // TODO add your handling code here:
-        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
+        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
         this.animationValues.setText(increaseQuantity(this.animationValues.getText()));
     }//GEN-LAST:event_increaseAnimationMouseClicked
 
     private void increaseDubbingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseDubbingMouseClicked
         // TODO add your handling code here:
-        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
+        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
         this.dubbingValues.setText(increaseQuantity(this.dubbingValues.getText()));
 
     }//GEN-LAST:event_increaseDubbingMouseClicked
 
     private void increasePlotTwistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increasePlotTwistMouseClicked
         // TODO add your handling code here:
-        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
+        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
         this.plotTwistValues.setText(increaseQuantity(this.plotTwistValues.getText()));
     }//GEN-LAST:event_increasePlotTwistMouseClicked
 
     private void decreacePlotTwistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreacePlotTwistMouseClicked
         // TODO add your handling code here:
-        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
+        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
         this.plotTwistValues.setText(decreaseQuantity(this.plotTwistValues.getText()));
 
     }//GEN-LAST:event_decreacePlotTwistMouseClicked
 
     private void decreaseDubbingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseDubbingMouseClicked
         // TODO add your handling code here:
-        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
+        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
         this.dubbingValues.setText(decreaseQuantity(this.dubbingValues.getText()));
 
     }//GEN-LAST:event_decreaseDubbingMouseClicked
 
     private void decreaseAnimationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseAnimationMouseClicked
         // TODO add your handling code here:
-        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
+        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
         this.animationValues.setText(decreaseQuantity(this.animationValues.getText()));
 
     }//GEN-LAST:event_decreaseAnimationMouseClicked
 
     private void decreaseScenaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseScenaryMouseClicked
         // TODO add your handling code here:
-        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
+        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
         this.scenaryValue.setText(decreaseQuantity(this.scenaryValue.getText()));
 
     }//GEN-LAST:event_decreaseScenaryMouseClicked
 
     private void decreaseScriptsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseScriptsMouseClicked
         // TODO add your handling code here:
-        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav"); 
+        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
         this.scriptsValues.setText(decreaseQuantity(this.scriptsValues.getText()));
 
     }//GEN-LAST:event_decreaseScriptsMouseClicked
 
-    private String increaseQuantity (String actualValue){
-    int intValue = 0; 
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        Home v1 = new Home();
+        v1.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void btn_InicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_InicioMouseClicked
+        // TODO add your handling code here:
+        Home v1 = new Home();
+        v1.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_InicioMouseClicked
+
+    private String increaseQuantity(String actualValue) {
+        int intValue = 0;
         try {
-            intValue = Integer.parseInt(actualValue); 
-            if (actualEmployees < maxEmployees){
-                intValue ++;
-                actualEmployees ++;
+            intValue = Integer.parseInt(actualValue);
+            if (actualEmployees < maxEmployees) {
+                intValue++;
+                actualEmployees++;
                 return String.valueOf(intValue);
-            }
-            else{
+            } else {
                 return String.valueOf(intValue);
             }
         } catch (NumberFormatException e) {
@@ -1995,17 +2035,16 @@ public class Nickelodeon extends javax.swing.JFrame {
         }
         return null;
     }
-    
-    private String decreaseQuantity (String actualValue){
-    int intValue = 0; 
+
+    private String decreaseQuantity(String actualValue) {
+        int intValue = 0;
         try {
-            intValue = Integer.parseInt(actualValue); 
-            if (intValue > 0){
-                intValue --;
-                actualEmployees --;
+            intValue = Integer.parseInt(actualValue);
+            if (intValue > 0) {
+                intValue--;
+                actualEmployees--;
                 return String.valueOf(intValue);
-            }
-            else{
+            } else {
                 return String.valueOf(intValue);
             }
         } catch (NumberFormatException e) {
@@ -2013,7 +2052,7 @@ public class Nickelodeon extends javax.swing.JFrame {
         }
         return null;
     }
-    
+
     /**
      * @param args the command line arguments
      */

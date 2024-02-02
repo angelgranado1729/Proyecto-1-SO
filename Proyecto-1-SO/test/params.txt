@@ -1,5 +1,5 @@
 [General Params]
-DayDuration=10000
+DayDuration=3000
 Deadline=2
 
 [Nickelodeon]
@@ -19,7 +19,7 @@ SetDesigners=4
 CharacterAnimators=1
 VoiceActors=1
 PlotTwistScriptwriters=2
-Assemblers=1
+Assemblers=5
 ProjectManager=1
 Director=1
 MaxCapacity=18

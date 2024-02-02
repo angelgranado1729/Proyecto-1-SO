@@ -64,14 +64,19 @@ public class Employee extends Thread {
                 System.out.println(this.toString());
             } catch (InterruptedException ex) {
                 // Interrupción manejada, preparándose para terminar el hilo
-                Logger.getLogger(Employee.class.getName()).log(Level.INFO, "Hilo de Employee interrumpido, terminando...");
-                break; 
+                Logger.getLogger(Employee.class.getName()).log(Level.INFO,
+                        "Hilo de Employee interrumpido, terminando...");
+                break;
             }
         }
     }
 
     private void working() {
         this.setTotalWork(this.getTotalWork() + this.getDailyProgress());
+
+        if (this.type == 5) {
+            System.out.println("\n\n\n Assembler" + getTotalWork());
+        }
 
         if (getTotalWork() >= 1) {
             try {
@@ -86,45 +91,46 @@ public class Employee extends Thread {
 
         }
     }
-    
-     private void assembleChapters() {
+
+    private void assembleChapters() {
         try {
-              this.getMutex().acquire();
-              this.evaluateAssemble();
-              this.getMutex().release();
-            } catch (InterruptedException ex) {
-              Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+            this.getMutex().acquire();
+            this.evaluateAssemble();
+            this.getMutex().release();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
         }
-     }
+    }
 
     private void evaluateAssemble() {
         int screenwriters = this.getDriveRef().getSections()[0];
         int scenarists = this.getDriveRef().getSections()[1];
         int animators = this.getDriveRef().getSections()[2];
         int voiceActors = this.getDriveRef().getSections()[3];
-        int plotTwistWriters = this.getDriveRef().getSections()[4];
 
         if (this.company == 0) {
             // Lógica para Nickelodeon
             if (screenwriters >= 2 && scenarists >= 1 && animators >= 4 && voiceActors >= 4) {
-                assembleChapter(new int[] {2, 1, 4, 4}, 5, 2, this.app.getNickelodeon());
+                assembleChapter(new int[] { 2, 1, 4, 4 }, 5, 2, this.app.getNickelodeon());
             }
         } else if (this.company == 1) {
             // Lógica para Cartoon Network
             if (screenwriters >= 1 && scenarists >= 2 && animators >= 6 && voiceActors >= 5) {
-                assembleChapter(new int[] {1, 2, 6, 5}, 3, 1, this.app.getCartoonNetwork());
+                assembleChapter(new int[] { 1, 2, 6, 5 }, 3, 1, this.app.getCartoonNetwork());
             }
+
         } else {
             try {
-              sleep(app.getDayDuration());
+                sleep(app.getDayDuration());
             } catch (InterruptedException ex) {
-              Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         this.getMutex().release();
     }
 
-    private void assembleChapter(int[] resources, int plotTwistFrequency, int plotTwistRequirement, TelevisionNetwork network) {
+    private void assembleChapter(int[] resources, int plotTwistFrequency, int plotTwistRequirement,
+            TelevisionNetwork network) {
         // Se descuenta el recurso (parte de episodios estándar
         for (int i = 0; i < resources.length; i++) {
             this.getDriveRef().decrementSection(i, resources[i]);
@@ -136,11 +142,16 @@ public class Employee extends Thread {
             this.getDriveRef().decrementSection(4, plotTwistRequirement);
             this.getDriveRef().increasePlotTwistChapters();
 
+            // FIXME
+            this.getDriveRef().getSections()[5] += 1;
             // Resetear el contador
             plotTwistCounter = 0;
         } else {
             this.getDriveRef().increaseStandarChapters();
             // Incrementar el contador después de crear un capítulo estándar
+
+            // FIXME -
+            this.getDriveRef().getSections()[5] += 1;
             plotTwistCounter++;
         }
 
@@ -151,14 +162,12 @@ public class Employee extends Thread {
         }
     }
 
-
-     
     private void getPaid() {
         this.setAccumulatedSalary(this.getAccumulatedSalary() + this.getHourlyWage() * 24);
-         if (this.company == 0 ) {
+        if (this.company == 0) {
             app.getNickelodeon().increaseTotalCost(this.getHourlyWage() * 24);
         } else {
-          app.getCartoonNetwork().increaseTotalCost(this.getHourlyWage() * 24);
+            app.getCartoonNetwork().increaseTotalCost(this.getHourlyWage() * 24);
         }
     }
 

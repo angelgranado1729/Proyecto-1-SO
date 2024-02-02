@@ -74,6 +74,9 @@
                   <Color blue="5a" green="47" red="37" type="rgb"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_InicioMouseClicked"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="0" y="130" width="330" height="60"/>
@@ -123,6 +126,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Inicio"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel4MouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -275,7 +281,7 @@
                           <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="icono4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="179" max="32767" attributes="0"/>
+                          <EmptySpace pref="170" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -314,7 +320,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Par&#xe1;metros"/>
+                    <Property name="text" type="java.lang.String" value="Nickelodeon"/>
                   </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel7MouseClicked"/>
@@ -592,26 +598,29 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel5" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
-                      <Component id="workersConfigurations6" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
-                      <Component id="workersConfigurations5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
+                              <Component id="workersConfigurations6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
+                              <Component id="workersConfigurations5" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="12" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="24" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="workersConfigurations6" max="32767" attributes="0"/>
                           <Component id="workersConfigurations5" max="32767" attributes="0"/>
@@ -639,7 +648,7 @@
                           <Component id="scripts3" max="32767" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jButton1" min="-2" pref="121" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -673,14 +682,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                              <Component id="scriptsTitle1" pref="216" max="32767" attributes="0"/>
+                              <Component id="scriptsTitle1" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="decreaseScripts1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="dayDuration" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="dayDuration" min="-2" pref="32" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="increaseScripts1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -742,6 +751,7 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
                         </Property>
+                        <Property name="focusable" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dayDurationActionPerformed"/>
@@ -803,11 +813,11 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                              <Component id="scriptsTitle3" pref="200" max="32767" attributes="0"/>
+                              <Component id="scriptsTitle3" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="decreaseScripts3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="deadlineValue" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="deadlineValue" min="-2" pref="32" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="increaseScripts3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
@@ -834,7 +844,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="33" green="33" red="33" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="D&#xed;as entre las entregas"/>
+                        <Property name="text" type="java.lang.String" value="D&#xed;as entre las entregas:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JButton" name="increaseScripts3">
@@ -872,6 +882,7 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
                         </Property>
+                        <Property name="focusable" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deadlineValueActionPerformed"/>
@@ -982,7 +993,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="decreaseScripts6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                              <Component id="scriptsValues6" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="scriptsValues1" min="-2" pref="20" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="increaseScripts6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
@@ -994,7 +1005,7 @@
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="scriptsTitle6" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                               <Component id="increaseScripts6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="scriptsValues6" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="scriptsValues1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="decreaseScripts6" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1031,7 +1042,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="increaseScripts6ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="scriptsValues6">
+                    <Component class="javax.swing.JTextField" name="scriptsValues1">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
@@ -1046,9 +1057,10 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
                         </Property>
+                        <Property name="focusable" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="scriptsValues6ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="scriptsValues1ActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="decreaseScripts6">
@@ -1090,7 +1102,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="decreaseScenary5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="scenaryValue5" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="scenaryValue1" min="-2" pref="20" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="increaseScenary5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
@@ -1104,7 +1116,7 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="scenaryTitle5" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                   <Component id="decreaseScenary5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="scenaryValue5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="scenaryValue1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="increaseScenary5" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1130,7 +1142,7 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="scenaryValue5">
+                    <Component class="javax.swing.JTextField" name="scenaryValue1">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
@@ -1145,9 +1157,10 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
                         </Property>
+                        <Property name="focusable" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="scenaryValue5ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="scenaryValue1ActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="increaseScenary5">
@@ -1207,7 +1220,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="decreaseAnimation5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="animationValues5" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="animationValues1" min="-2" pref="20" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="increaseAnimation5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
@@ -1221,7 +1234,7 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="animationsTitle5" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                                   <Component id="decreaseAnimation5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="animationValues5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="animationValues1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="increaseAnimation5" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1247,7 +1260,7 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="animationValues5">
+                    <Component class="javax.swing.JTextField" name="animationValues1">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
@@ -1262,9 +1275,10 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
                         </Property>
+                        <Property name="focusable" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="animationValues5ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="animationValues1ActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="decreaseAnimation5">
@@ -1324,7 +1338,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="decreaseDubbing5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Component id="dubbingValues5" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="dubbingValues1" min="-2" pref="20" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="increaseDubbing5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
@@ -1337,7 +1351,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="decreaseDubbing5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="dubbingValues5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="dubbingValues1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="increaseDubbing5" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="dubbingTitle5" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -1382,7 +1396,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="decreaseDubbing5ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="dubbingValues5">
+                    <Component class="javax.swing.JTextField" name="dubbingValues1">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
@@ -1397,9 +1411,10 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
                         </Property>
+                        <Property name="focusable" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dubbingValues5ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dubbingValues1ActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="increaseDubbing5">
@@ -1430,6 +1445,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
+                    <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
 
                   <Layout>
@@ -1441,7 +1457,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="decreacePlotTwist5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="plotTwistValues5" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="plotTwistValues1" min="-2" pref="20" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="increasePlotTwist5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -1454,7 +1470,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="increasePlotTwist5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="plotTwistValues5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="plotTwistValues1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="decreacePlotTwist5" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="plotTwistTitle5" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                               </Group>
@@ -1499,7 +1515,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="increasePlotTwist5ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="plotTwistValues5">
+                    <Component class="javax.swing.JTextField" name="plotTwistValues1">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
@@ -1514,9 +1530,10 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
                         </Property>
+                        <Property name="focusable" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plotTwistValues5ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plotTwistValues1ActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="decreacePlotTwist5">
@@ -1636,7 +1653,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="decreaseScripts" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                              <Component id="scriptsValues" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="scriptsValues0" min="-2" pref="20" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="increaseScripts7" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
@@ -1648,7 +1665,7 @@
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="scriptsTitle7" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                               <Component id="increaseScripts7" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="scriptsValues" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="scriptsValues0" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="decreaseScripts" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1685,7 +1702,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="increaseScripts7ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="scriptsValues">
+                    <Component class="javax.swing.JTextField" name="scriptsValues0">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
@@ -1700,9 +1717,10 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
                         </Property>
+                        <Property name="focusable" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="scriptsValuesActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="scriptsValues0ActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="decreaseScripts">
@@ -1744,7 +1762,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="decreaseScenary6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="scenaryValue6" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="scenaryValue0" min="-2" pref="20" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="increaseScenary6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
@@ -1758,7 +1776,7 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="scenaryTitle6" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                   <Component id="decreaseScenary6" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="scenaryValue6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="scenaryValue0" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="increaseScenary6" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1784,7 +1802,7 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="scenaryValue6">
+                    <Component class="javax.swing.JTextField" name="scenaryValue0">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
@@ -1799,9 +1817,10 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
                         </Property>
+                        <Property name="focusable" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="scenaryValue6ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="scenaryValue0ActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="increaseScenary6">
@@ -1861,7 +1880,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="decreaseAnimation6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="animationValues6" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="animationValues0" min="-2" pref="20" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="increaseAnimation6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
@@ -1875,7 +1894,7 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="animationsTitle6" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                                   <Component id="decreaseAnimation6" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="animationValues6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="animationValues0" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="increaseAnimation6" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1901,7 +1920,7 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="animationValues6">
+                    <Component class="javax.swing.JTextField" name="animationValues0">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
@@ -1916,9 +1935,10 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
                         </Property>
+                        <Property name="focusable" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="animationValues6ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="animationValues0ActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="decreaseAnimation6">
@@ -1978,7 +1998,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="decreaseDubbing6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Component id="dubbingValues6" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="dubbingValues0" min="-2" pref="20" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="increaseDubbing6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
@@ -1991,7 +2011,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="decreaseDubbing6" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="dubbingValues6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="dubbingValues0" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="increaseDubbing6" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="dubbingTitle6" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -2036,7 +2056,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="decreaseDubbing6ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="dubbingValues6">
+                    <Component class="javax.swing.JTextField" name="dubbingValues0">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
@@ -2051,9 +2071,10 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
                         </Property>
+                        <Property name="focusable" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dubbingValues6ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dubbingValues0ActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="increaseDubbing6">
@@ -2095,7 +2116,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="decreacePlotTwist6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="plotTwistValues6" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="plotTwistValues0" min="-2" pref="20" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="increasePlotTwist6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -2108,7 +2129,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="increasePlotTwist6" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="plotTwistValues6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="plotTwistValues0" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="decreacePlotTwist6" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="plotTwistTitle6" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                               </Group>
@@ -2153,7 +2174,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="increasePlotTwist6ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="plotTwistValues6">
+                    <Component class="javax.swing.JTextField" name="plotTwistValues0">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
@@ -2168,9 +2189,10 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
                         </Property>
+                        <Property name="focusable" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plotTwistValues6ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plotTwistValues0ActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="decreacePlotTwist6">

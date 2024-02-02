@@ -17,6 +17,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -32,9 +33,50 @@ public class CartoonNetwork extends javax.swing.JFrame {
     private int maxEmployees;
     private int actualEmployees;
     private static CartoonNetwork cartoonNetwork;
+    private final Nickelodeon nickelodeon = Nickelodeon.getInstance();
+    private final ConfigParams config = ConfigParams.getInstance();
     private HelpersFunctions helper = new HelpersFunctions();
     private FileFunctions filefunctions = new FileFunctions();
     private File selectedFile = app.getSelectedFile();
+
+    private JButton[] decreaseBtn = {
+        this.decreacePlotTwist,
+        this.decreaseAnimation,
+        this.decreaseDubbing,
+        this.decreaseScenary,
+        this.decreaseScripts,
+        this.decreaceAssembler
+    };
+    private JButton[] increaseBtn = {
+        this.increaseAnimation,
+        this.increaseDubbing,
+        this.increasePlotTwist,
+        this.increaseScenary,
+        this.increaseScripts,
+        this.increaseAssembler
+    };
+
+    private int[] values = {
+        countNonNullEmployees(this.app.getCartoonNetwork().getScreenwriters()),
+        countNonNullEmployees(this.app.getCartoonNetwork().getSetDesigners()),
+        countNonNullEmployees(this.app.getCartoonNetwork().getCharacterAnimators()),
+        countNonNullEmployees(this.app.getCartoonNetwork().getVoiceActors()),
+        countNonNullEmployees(this.app.getCartoonNetwork().getPlotTwistScreenwriters()),
+        countNonNullEmployees(this.app.getCartoonNetwork().getAssemblers())
+    };
+
+    private void updateBtn() {
+        if (this.maxEmployees == this.actualEmployees) {
+            for (JButton btn : increaseBtn) {
+                btn.setEnabled(false);
+            }
+        } else {
+            for (JButton btn : increaseBtn) {
+                btn.setEnabled(true);
+            }
+        }
+
+    }
 
     public static synchronized CartoonNetwork getInstance() {
         if (cartoonNetwork == null) {
@@ -86,6 +128,9 @@ public class CartoonNetwork extends javax.swing.JFrame {
                                         .setText(String.valueOf(app.getCartoonNetwork().getDrive().getSections()[3]));
                                 plotTwistDrive
                                         .setText(String.valueOf(app.getCartoonNetwork().getDrive().getSections()[4]));
+                                assemblerDrive
+                                        .setText(String.valueOf(app.getCartoonNetwork().getDrive().getSections()[5]));
+                                
                                 projectManagerStatus
                                         .setText(app.getCartoonNetwork().getProjectManagerInstance().getCurrentState());
                                 remainingDays.setText(String.valueOf(app.getCartoonNetwork().getRemainingDays()));
@@ -134,7 +179,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
                     .setText(String.valueOf(countNonNullEmployees(this.app.getCartoonNetwork().getVoiceActors())));
             this.plotTwistValues.setText(
                     String.valueOf(countNonNullEmployees(this.app.getCartoonNetwork().getPlotTwistScreenwriters())));
-
+            this.AssemblerValues.setText(String.valueOf(countNonNullEmployees(this.app.getCartoonNetwork().getAssemblers())));
         }
     }
 
@@ -194,7 +239,8 @@ public class CartoonNetwork extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -208,7 +254,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         btn_nueva_ruta = new javax.swing.JPanel();
         icono3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        btn_nuevo_almacen = new javax.swing.JPanel();
+        config_btn = new javax.swing.JPanel();
         icono4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         btn_reporte = new javax.swing.JPanel();
@@ -252,6 +298,11 @@ public class CartoonNetwork extends javax.swing.JFrame {
         increasePlotTwist = new javax.swing.JButton();
         plotTwistValues = new javax.swing.JTextField();
         decreacePlotTwist = new javax.swing.JButton();
+        plotTwist2 = new javax.swing.JPanel();
+        assemblerTitle = new javax.swing.JLabel();
+        increaseAssembler = new javax.swing.JButton();
+        AssemblerValues = new javax.swing.JTextField();
+        decreaceAssembler = new javax.swing.JButton();
         drivePanel = new javax.swing.JPanel();
         driveTitle2 = new javax.swing.JLabel();
         driveTitle3 = new javax.swing.JLabel();
@@ -275,6 +326,10 @@ public class CartoonNetwork extends javax.swing.JFrame {
         plotTwistLimit1 = new javax.swing.JLabel();
         plotTwistTitle1 = new javax.swing.JLabel();
         plotTwistDrive = new javax.swing.JTextField();
+        plotTwist4 = new javax.swing.JPanel();
+        plotTwistLimit3 = new javax.swing.JLabel();
+        assemblerTitle1 = new javax.swing.JLabel();
+        assemblerDrive = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         driveTitle4 = new javax.swing.JLabel();
         driveTitle5 = new javax.swing.JLabel();
@@ -324,32 +379,43 @@ public class CartoonNetwork extends javax.swing.JFrame {
         SidePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btn_Inicio.setBackground(new java.awt.Color(55, 71, 90));
+        btn_Inicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_InicioMouseClicked(evt);
+            }
+        });
 
         icono1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Montserrat", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Inicio");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_InicioLayout = new javax.swing.GroupLayout(btn_Inicio);
         btn_Inicio.setLayout(btn_InicioLayout);
         btn_InicioLayout.setHorizontalGroup(
-                btn_InicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(btn_InicioLayout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(icono1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)));
+            btn_InicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_InicioLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(icono1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
+        );
         btn_InicioLayout.setVerticalGroup(
-                btn_InicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(btn_InicioLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addGroup(btn_InicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(icono1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(0, 16, Short.MAX_VALUE)));
+            btn_InicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_InicioLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(btn_InicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icono1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
+        );
 
         SidePanel.add(btn_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 330, 60));
 
@@ -372,24 +438,23 @@ public class CartoonNetwork extends javax.swing.JFrame {
         javax.swing.GroupLayout btn_nuevo_pedidoLayout = new javax.swing.GroupLayout(btn_nuevo_pedido);
         btn_nuevo_pedido.setLayout(btn_nuevo_pedidoLayout);
         btn_nuevo_pedidoLayout.setHorizontalGroup(
-                btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(btn_nuevo_pedidoLayout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5)
-                                .addContainerGap(168, Short.MAX_VALUE)));
+            btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_nuevo_pedidoLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addContainerGap(168, Short.MAX_VALUE))
+        );
         btn_nuevo_pedidoLayout.setVerticalGroup(
-                btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(btn_nuevo_pedidoLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addGroup(btn_nuevo_pedidoLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(0, 16, Short.MAX_VALUE)));
+            btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_nuevo_pedidoLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
+        );
 
         SidePanel.add(btn_nuevo_pedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 330, 60));
 
@@ -419,30 +484,33 @@ public class CartoonNetwork extends javax.swing.JFrame {
         javax.swing.GroupLayout btn_nueva_rutaLayout = new javax.swing.GroupLayout(btn_nueva_ruta);
         btn_nueva_ruta.setLayout(btn_nueva_rutaLayout);
         btn_nueva_rutaLayout.setHorizontalGroup(
-                btn_nueva_rutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(btn_nueva_rutaLayout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(icono3)
-                                .addContainerGap(95, Short.MAX_VALUE)));
+            btn_nueva_rutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_nueva_rutaLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(icono3)
+                .addContainerGap(95, Short.MAX_VALUE))
+        );
         btn_nueva_rutaLayout.setVerticalGroup(
-                btn_nueva_rutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(btn_nueva_rutaLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addGroup(btn_nueva_rutaLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(icono3, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(0, 16, Short.MAX_VALUE)));
+            btn_nueva_rutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_nueva_rutaLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(btn_nueva_rutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icono3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
+        );
 
         SidePanel.add(btn_nueva_ruta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 330, 60));
 
-        btn_nuevo_almacen.setBackground(new java.awt.Color(55, 71, 90));
-        btn_nuevo_almacen.addMouseListener(new java.awt.event.MouseAdapter() {
+        config_btn.setBackground(new java.awt.Color(55, 71, 90));
+        config_btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_nuevo_almacenMouseClicked(evt);
+                config_btnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                config_btnMouseEntered(evt);
             }
         });
 
@@ -462,29 +530,30 @@ public class CartoonNetwork extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout btn_nuevo_almacenLayout = new javax.swing.GroupLayout(btn_nuevo_almacen);
-        btn_nuevo_almacen.setLayout(btn_nuevo_almacenLayout);
-        btn_nuevo_almacenLayout.setHorizontalGroup(
-                btn_nuevo_almacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(btn_nuevo_almacenLayout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(icono4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7)
-                                .addContainerGap(153, Short.MAX_VALUE)));
-        btn_nuevo_almacenLayout.setVerticalGroup(
-                btn_nuevo_almacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(btn_nuevo_almacenLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addGroup(btn_nuevo_almacenLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(icono4, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                                        .addGroup(btn_nuevo_almacenLayout.createSequentialGroup()
-                                                .addComponent(jLabel7)
-                                                .addGap(0, 0, Short.MAX_VALUE)))
-                                .addGap(0, 7, Short.MAX_VALUE)));
+        javax.swing.GroupLayout config_btnLayout = new javax.swing.GroupLayout(config_btn);
+        config_btn.setLayout(config_btnLayout);
+        config_btnLayout.setHorizontalGroup(
+            config_btnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(config_btnLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(icono4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addContainerGap(153, Short.MAX_VALUE))
+        );
+        config_btnLayout.setVerticalGroup(
+            config_btnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(config_btnLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(config_btnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icono4, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                    .addGroup(config_btnLayout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(0, 7, Short.MAX_VALUE))
+        );
 
-        SidePanel.add(btn_nuevo_almacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 330, 60));
+        SidePanel.add(config_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 330, 60));
 
         btn_reporte.setBackground(new java.awt.Color(55, 71, 90));
         btn_reporte.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -512,23 +581,23 @@ public class CartoonNetwork extends javax.swing.JFrame {
         javax.swing.GroupLayout btn_reporteLayout = new javax.swing.GroupLayout(btn_reporte);
         btn_reporte.setLayout(btn_reporteLayout);
         btn_reporteLayout.setHorizontalGroup(
-                btn_reporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(btn_reporteLayout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(icono5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8)
-                                .addContainerGap(203, Short.MAX_VALUE)));
+            btn_reporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_reporteLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(icono5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addContainerGap(203, Short.MAX_VALUE))
+        );
         btn_reporteLayout.setVerticalGroup(
-                btn_reporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(btn_reporteLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addGroup(
-                                        btn_reporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(icono5, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(0, 16, Short.MAX_VALUE)));
+            btn_reporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_reporteLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(btn_reporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icono5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
+        );
 
         SidePanel.add(btn_reporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 330, 60));
 
@@ -558,23 +627,23 @@ public class CartoonNetwork extends javax.swing.JFrame {
         javax.swing.GroupLayout btn_cargar_guardarLayout = new javax.swing.GroupLayout(btn_cargar_guardar);
         btn_cargar_guardar.setLayout(btn_cargar_guardarLayout);
         btn_cargar_guardarLayout.setHorizontalGroup(
-                btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(btn_cargar_guardarLayout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(icono7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel10)
-                                .addContainerGap(152, Short.MAX_VALUE)));
+            btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_cargar_guardarLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(icono7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10)
+                .addContainerGap(152, Short.MAX_VALUE))
+        );
         btn_cargar_guardarLayout.setVerticalGroup(
-                btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(btn_cargar_guardarLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addGroup(btn_cargar_guardarLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                        .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(icono7, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(0, 16, Short.MAX_VALUE)));
+            btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_cargar_guardarLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icono7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
+        );
 
         SidePanel.add(btn_cargar_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 330, 60));
 
@@ -615,40 +684,39 @@ public class CartoonNetwork extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
-                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addGap(0, 1059, Short.MAX_VALUE)
-                                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 71,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)));
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 1059, Short.MAX_VALUE)
+                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
         jPanel4Layout.setVerticalGroup(
-                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(exit, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap()));
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(exit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Assets/cartoonLogo.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(263, 263, 263)
-                                .addComponent(jLabel2)
-                                .addContainerGap(509, Short.MAX_VALUE)));
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(263, 263, 263)
+                .addComponent(jLabel2)
+                .addContainerGap(509, Short.MAX_VALUE))
+        );
         jPanel2Layout.setVerticalGroup(
-                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27,
-                                        Short.MAX_VALUE)
-                                .addComponent(jLabel2)
-                                .addGap(14, 14, 14)));
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(14, 14, 14))
+        );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1130, 190));
 
@@ -692,6 +760,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         scriptsValues.setForeground(new java.awt.Color(51, 51, 51));
         scriptsValues.setText("0");
         scriptsValues.setBorder(null);
+        scriptsValues.setFocusable(false);
         scriptsValues.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 scriptsValuesActionPerformed(evt);
@@ -716,28 +785,26 @@ public class CartoonNetwork extends javax.swing.JFrame {
         javax.swing.GroupLayout scriptsLayout = new javax.swing.GroupLayout(scripts);
         scripts.setLayout(scriptsLayout);
         scriptsLayout.setHorizontalGroup(
-                scriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(scriptsLayout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(scriptsTitle, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(36, 36, 36)
-                                .addComponent(decreaseScripts)
-                                .addGap(18, 18, 18)
-                                .addComponent(scriptsValues, javax.swing.GroupLayout.PREFERRED_SIZE, 20,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(increaseScripts)
-                                .addGap(15, 15, 15)));
+            scriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(scriptsLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(scriptsTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
+                .addComponent(decreaseScripts)
+                .addGap(18, 18, 18)
+                .addComponent(scriptsValues, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(increaseScripts)
+                .addGap(15, 15, 15))
+        );
         scriptsLayout.setVerticalGroup(
-                scriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(scriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(scriptsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 44,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(increaseScripts)
-                                .addComponent(scriptsValues, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(decreaseScripts)));
+            scriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(scriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(scriptsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(increaseScripts)
+                .addComponent(scriptsValues, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(decreaseScripts))
+        );
 
         scenary.setBackground(java.awt.Color.lightGray);
         scenary.setForeground(new java.awt.Color(60, 63, 65));
@@ -751,6 +818,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         scenaryValue.setForeground(new java.awt.Color(51, 51, 51));
         scenaryValue.setText("0");
         scenaryValue.setBorder(null);
+        scenaryValue.setFocusable(false);
         scenaryValue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 scenaryValueActionPerformed(evt);
@@ -790,34 +858,30 @@ public class CartoonNetwork extends javax.swing.JFrame {
         javax.swing.GroupLayout scenaryLayout = new javax.swing.GroupLayout(scenary);
         scenary.setLayout(scenaryLayout);
         scenaryLayout.setHorizontalGroup(
-                scenaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(scenaryLayout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(scenaryTitle)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(decreaseScenary)
-                                .addGap(18, 18, 18)
-                                .addComponent(scenaryValue, javax.swing.GroupLayout.PREFERRED_SIZE, 20,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(increaseScenary)
-                                .addGap(14, 14, 14)));
+            scenaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(scenaryLayout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addComponent(scenaryTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(decreaseScenary)
+                .addGap(18, 18, 18)
+                .addComponent(scenaryValue, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(increaseScenary)
+                .addGap(14, 14, 14))
+        );
         scenaryLayout.setVerticalGroup(
-                scenaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(scenaryLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(scenaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(scenaryLayout
-                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(increaseScenary)
-                                                .addComponent(scenaryValue, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(decreaseScenary))
-                                        .addComponent(scenaryTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 32,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap()));
+            scenaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(scenaryLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(scenaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(scenaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(increaseScenary)
+                        .addComponent(scenaryValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(decreaseScenary))
+                    .addComponent(scenaryTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
         animations.setBackground(java.awt.Color.lightGray);
         animations.setForeground(new java.awt.Color(255, 255, 255));
@@ -831,6 +895,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         animationValues.setForeground(new java.awt.Color(51, 51, 51));
         animationValues.setText("0");
         animationValues.setBorder(null);
+        animationValues.setFocusable(false);
         animationValues.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 animationValuesActionPerformed(evt);
@@ -870,35 +935,29 @@ public class CartoonNetwork extends javax.swing.JFrame {
         javax.swing.GroupLayout animationsLayout = new javax.swing.GroupLayout(animations);
         animations.setLayout(animationsLayout);
         animationsLayout.setHorizontalGroup(
-                animationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(animationsLayout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(animationsTitle)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(decreaseAnimation)
-                                .addGap(18, 18, 18)
-                                .addComponent(animationValues, javax.swing.GroupLayout.PREFERRED_SIZE, 20,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(increaseAnimation)
-                                .addGap(15, 15, 15)));
+            animationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(animationsLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(animationsTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(decreaseAnimation)
+                .addGap(18, 18, 18)
+                .addComponent(animationValues, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(increaseAnimation)
+                .addGap(15, 15, 15))
+        );
         animationsLayout.setVerticalGroup(
-                animationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(animationsLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(animationsLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(animationsLayout
-                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(decreaseAnimation)
-                                                .addComponent(animationValues, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(increaseAnimation))
-                                        .addComponent(animationsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 33,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap()));
+            animationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(animationsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(animationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(decreaseAnimation)
+                    .addComponent(animationValues, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(increaseAnimation)
+                    .addComponent(animationsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7))
+        );
 
         dubbing.setBackground(java.awt.Color.lightGray);
         dubbing.setForeground(new java.awt.Color(255, 255, 255));
@@ -927,6 +986,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         dubbingValues.setForeground(new java.awt.Color(51, 51, 51));
         dubbingValues.setText("0");
         dubbingValues.setBorder(null);
+        dubbingValues.setFocusable(false);
         dubbingValues.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dubbingValuesActionPerformed(evt);
@@ -951,31 +1011,29 @@ public class CartoonNetwork extends javax.swing.JFrame {
         javax.swing.GroupLayout dubbingLayout = new javax.swing.GroupLayout(dubbing);
         dubbing.setLayout(dubbingLayout);
         dubbingLayout.setHorizontalGroup(
-                dubbingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(dubbingLayout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(dubbingTitle)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(decreaseDubbing)
-                                .addGap(18, 18, 18)
-                                .addComponent(dubbingValues, javax.swing.GroupLayout.PREFERRED_SIZE, 20,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(increaseDubbing)
-                                .addGap(15, 15, 15)));
+            dubbingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dubbingLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(dubbingTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(decreaseDubbing)
+                .addGap(18, 18, 18)
+                .addComponent(dubbingValues, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(increaseDubbing)
+                .addGap(15, 15, 15))
+        );
         dubbingLayout.setVerticalGroup(
-                dubbingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(dubbingLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(dubbingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(decreaseDubbing)
-                                        .addComponent(dubbingValues, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(increaseDubbing)
-                                        .addComponent(dubbingTitle))
-                                .addContainerGap()));
+            dubbingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dubbingLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(dubbingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(decreaseDubbing)
+                    .addComponent(dubbingValues, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(increaseDubbing)
+                    .addComponent(dubbingTitle))
+                .addContainerGap())
+        );
 
         plotTwist.setBackground(java.awt.Color.lightGray);
         plotTwist.setForeground(new java.awt.Color(255, 255, 255));
@@ -1004,6 +1062,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         plotTwistValues.setForeground(new java.awt.Color(51, 51, 51));
         plotTwistValues.setText("0");
         plotTwistValues.setBorder(null);
+        plotTwistValues.setFocusable(false);
         plotTwistValues.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plotTwistValuesActionPerformed(evt);
@@ -1028,90 +1087,146 @@ public class CartoonNetwork extends javax.swing.JFrame {
         javax.swing.GroupLayout plotTwistLayout = new javax.swing.GroupLayout(plotTwist);
         plotTwist.setLayout(plotTwistLayout);
         plotTwistLayout.setHorizontalGroup(
-                plotTwistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plotTwistLayout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(plotTwistTitle)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(decreacePlotTwist)
-                                .addGap(18, 18, 18)
-                                .addComponent(plotTwistValues, javax.swing.GroupLayout.PREFERRED_SIZE, 20,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(increasePlotTwist)
-                                .addGap(16, 16, 16)));
+            plotTwistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plotTwistLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(plotTwistTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(decreacePlotTwist)
+                .addGap(18, 18, 18)
+                .addComponent(plotTwistValues, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(increasePlotTwist)
+                .addGap(16, 16, 16))
+        );
         plotTwistLayout.setVerticalGroup(
-                plotTwistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(plotTwistLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(plotTwistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(plotTwistLayout
-                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(increasePlotTwist)
-                                                .addComponent(plotTwistValues, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(decreacePlotTwist))
-                                        .addComponent(plotTwistTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 33,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap()));
+            plotTwistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(plotTwistLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(plotTwistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(increasePlotTwist)
+                    .addComponent(plotTwistValues, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(decreacePlotTwist)
+                    .addComponent(plotTwistTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7))
+        );
+
+        plotTwist2.setBackground(java.awt.Color.lightGray);
+        plotTwist2.setForeground(new java.awt.Color(255, 255, 255));
+
+        assemblerTitle.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        assemblerTitle.setForeground(new java.awt.Color(51, 51, 51));
+        assemblerTitle.setText("Ensambladores:");
+
+        increaseAssembler.setBackground(new java.awt.Color(51, 51, 51));
+        increaseAssembler.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        increaseAssembler.setForeground(new java.awt.Color(255, 255, 255));
+        increaseAssembler.setText("+");
+        increaseAssembler.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                increaseAssemblerMouseClicked(evt);
+            }
+        });
+        increaseAssembler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                increaseAssemblerActionPerformed(evt);
+            }
+        });
+
+        AssemblerValues.setBackground(java.awt.Color.lightGray);
+        AssemblerValues.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        AssemblerValues.setForeground(new java.awt.Color(51, 51, 51));
+        AssemblerValues.setText("0");
+        AssemblerValues.setBorder(null);
+        AssemblerValues.setFocusable(false);
+        AssemblerValues.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AssemblerValuesActionPerformed(evt);
+            }
+        });
+
+        decreaceAssembler.setBackground(new java.awt.Color(51, 51, 51));
+        decreaceAssembler.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        decreaceAssembler.setForeground(new java.awt.Color(255, 255, 255));
+        decreaceAssembler.setText("-");
+        decreaceAssembler.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                decreaceAssemblerMouseClicked(evt);
+            }
+        });
+        decreaceAssembler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                decreaceAssemblerActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout plotTwist2Layout = new javax.swing.GroupLayout(plotTwist2);
+        plotTwist2.setLayout(plotTwist2Layout);
+        plotTwist2Layout.setHorizontalGroup(
+            plotTwist2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plotTwist2Layout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addComponent(assemblerTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(decreaceAssembler)
+                .addGap(18, 18, 18)
+                .addComponent(AssemblerValues, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(increaseAssembler)
+                .addGap(16, 16, 16))
+        );
+        plotTwist2Layout.setVerticalGroup(
+            plotTwist2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(plotTwist2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(plotTwist2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(increaseAssembler)
+                    .addComponent(AssemblerValues, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(decreaceAssembler)
+                    .addComponent(assemblerTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7))
+        );
 
         javax.swing.GroupLayout workersConfigurationsLayout = new javax.swing.GroupLayout(workersConfigurations);
         workersConfigurations.setLayout(workersConfigurationsLayout);
         workersConfigurationsLayout.setHorizontalGroup(
-                workersConfigurationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(workersConfigurationsLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addGroup(workersConfigurationsLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(animations, javax.swing.GroupLayout.Alignment.LEADING,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(dubbing, javax.swing.GroupLayout.Alignment.LEADING,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(plotTwist, javax.swing.GroupLayout.Alignment.LEADING,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(scenary, javax.swing.GroupLayout.Alignment.LEADING,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(scripts, javax.swing.GroupLayout.Alignment.LEADING,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(19, Short.MAX_VALUE))
-                        .addComponent(driveTitle, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(driveTitle1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+            workersConfigurationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(driveTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addComponent(driveTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, workersConfigurationsLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(workersConfigurationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(plotTwist2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(plotTwist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dubbing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(animations, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scenary, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scripts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
+        );
         workersConfigurationsLayout.setVerticalGroup(
-                workersConfigurationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(workersConfigurationsLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(driveTitle)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(driveTitle1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27,
-                                        Short.MAX_VALUE)
-                                .addComponent(scripts, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(scenary, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(animations, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(dubbing, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(plotTwist, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(22, 22, 22)));
+            workersConfigurationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(workersConfigurationsLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(driveTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(driveTitle1)
+                .addGap(18, 18, 18)
+                .addComponent(scripts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(scenary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(animations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(dubbing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(plotTwist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(plotTwist2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
 
-        jPanel1.add(workersConfigurations, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 290, 400));
+        jPanel1.add(workersConfigurations, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 300, 440));
 
         drivePanel.setBackground(new java.awt.Color(243, 168, 71));
 
@@ -1135,6 +1250,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         scriptsLimit1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         scriptsLimit1.setForeground(new java.awt.Color(51, 51, 51));
         scriptsLimit1.setText("/25");
+        scriptsLimit1.setFocusable(false);
 
         scriptDrive.setBackground(java.awt.Color.lightGray);
         scriptDrive.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
@@ -1142,6 +1258,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         scriptDrive.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         scriptDrive.setText("0");
         scriptDrive.setBorder(null);
+        scriptDrive.setFocusable(false);
         scriptDrive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 scriptDriveActionPerformed(evt);
@@ -1151,30 +1268,26 @@ public class CartoonNetwork extends javax.swing.JFrame {
         javax.swing.GroupLayout scripts1Layout = new javax.swing.GroupLayout(scripts1);
         scripts1.setLayout(scripts1Layout);
         scripts1Layout.setHorizontalGroup(
-                scripts1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(scripts1Layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addComponent(scriptTitle1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63,
-                                        Short.MAX_VALUE)
-                                .addComponent(scriptDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 25,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(scriptsLimit1)
-                                .addGap(16, 16, 16)));
+            scripts1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(scripts1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(scriptTitle1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addComponent(scriptDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scriptsLimit1)
+                .addGap(16, 16, 16))
+        );
         scripts1Layout.setVerticalGroup(
-                scripts1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(scripts1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(scripts1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(scriptTitle1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(scriptsLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 33,
-                                                Short.MAX_VALUE)
-                                        .addComponent(scriptDrive, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap()));
+            scripts1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(scripts1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(scripts1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(scriptTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scriptsLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(scriptDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
         scenary1.setBackground(java.awt.Color.lightGray);
         scenary1.setForeground(new java.awt.Color(60, 63, 65));
@@ -1186,6 +1299,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         scenaryLimit1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         scenaryLimit1.setForeground(new java.awt.Color(51, 51, 51));
         scenaryLimit1.setText("/20");
+        scenaryLimit1.setFocusable(false);
 
         scenaryDrive.setBackground(java.awt.Color.lightGray);
         scenaryDrive.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
@@ -1193,6 +1307,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         scenaryDrive.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         scenaryDrive.setText("0");
         scenaryDrive.setBorder(null);
+        scenaryDrive.setFocusable(false);
         scenaryDrive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 scenaryDriveActionPerformed(evt);
@@ -1202,28 +1317,26 @@ public class CartoonNetwork extends javax.swing.JFrame {
         javax.swing.GroupLayout scenary1Layout = new javax.swing.GroupLayout(scenary1);
         scenary1.setLayout(scenary1Layout);
         scenary1Layout.setHorizontalGroup(
-                scenary1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(scenary1Layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(scenaryTitle1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(scenaryDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 45, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(scenaryLimit1)
-                                .addGap(15, 15, 15)));
+            scenary1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(scenary1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(scenaryTitle1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scenaryDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scenaryLimit1)
+                .addGap(15, 15, 15))
+        );
         scenary1Layout.setVerticalGroup(
-                scenary1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(scenary1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(scenary1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(scenaryTitle1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(scenaryLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 35,
-                                                Short.MAX_VALUE)
-                                        .addComponent(scenaryDrive, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap()));
+            scenary1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(scenary1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(scenary1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(scenaryTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scenaryLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(scenaryDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
         animations1.setBackground(java.awt.Color.lightGray);
         animations1.setForeground(new java.awt.Color(60, 63, 65));
@@ -1235,6 +1348,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         animationsLimit1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         animationsLimit1.setForeground(new java.awt.Color(51, 51, 51));
         animationsLimit1.setText("/55");
+        animationsLimit1.setFocusable(false);
 
         animationDrive.setBackground(java.awt.Color.lightGray);
         animationDrive.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
@@ -1242,6 +1356,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         animationDrive.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         animationDrive.setText("0");
         animationDrive.setBorder(null);
+        animationDrive.setFocusable(false);
         animationDrive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 animationDriveActionPerformed(evt);
@@ -1251,31 +1366,26 @@ public class CartoonNetwork extends javax.swing.JFrame {
         javax.swing.GroupLayout animations1Layout = new javax.swing.GroupLayout(animations1);
         animations1.setLayout(animations1Layout);
         animations1Layout.setHorizontalGroup(
-                animations1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(animations1Layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(animationsTitle1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49,
-                                        Short.MAX_VALUE)
-                                .addComponent(animationDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 23,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(animationsLimit1)
-                                .addGap(14, 14, 14)));
+            animations1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(animations1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(animationsTitle1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(animationDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(animationsLimit1)
+                .addGap(14, 14, 14))
+        );
         animations1Layout.setVerticalGroup(
-                animations1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(animations1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(animations1Layout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(animationsTitle1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(animationsLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 34,
-                                                Short.MAX_VALUE)
-                                        .addComponent(animationDrive, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap()));
+            animations1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(animations1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(animations1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(animationsTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(animationsLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(animationDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
         dubbing1.setBackground(java.awt.Color.lightGray);
         dubbing1.setForeground(new java.awt.Color(60, 63, 65));
@@ -1287,6 +1397,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         dubbingLimit1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         dubbingLimit1.setForeground(new java.awt.Color(51, 51, 51));
         dubbingLimit1.setText("/35");
+        dubbingLimit1.setFocusable(false);
 
         dubbingDrive.setBackground(java.awt.Color.lightGray);
         dubbingDrive.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
@@ -1294,6 +1405,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         dubbingDrive.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         dubbingDrive.setText("0");
         dubbingDrive.setBorder(null);
+        dubbingDrive.setFocusable(false);
         dubbingDrive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dubbingDriveActionPerformed(evt);
@@ -1303,37 +1415,35 @@ public class CartoonNetwork extends javax.swing.JFrame {
         javax.swing.GroupLayout dubbing1Layout = new javax.swing.GroupLayout(dubbing1);
         dubbing1.setLayout(dubbing1Layout);
         dubbing1Layout.setHorizontalGroup(
-                dubbing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(dubbing1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(dubbingTitle1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69,
-                                        Short.MAX_VALUE)
-                                .addComponent(dubbingDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 25,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dubbingLimit1)
-                                .addGap(14, 14, 14)));
+            dubbing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dubbing1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(dubbingTitle1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addComponent(dubbingDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dubbingLimit1)
+                .addGap(14, 14, 14))
+        );
         dubbing1Layout.setVerticalGroup(
-                dubbing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(dubbing1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(dubbing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(dubbingTitle1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(dubbingLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 34,
-                                                Short.MAX_VALUE)
-                                        .addComponent(dubbingDrive, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap()));
+            dubbing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dubbing1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(dubbing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dubbingTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dubbingLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(dubbingDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
         plotTwist1.setBackground(java.awt.Color.lightGray);
         plotTwist1.setForeground(new java.awt.Color(60, 63, 65));
+        plotTwist1.setFocusable(false);
 
         plotTwistLimit1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         plotTwistLimit1.setForeground(new java.awt.Color(51, 51, 51));
         plotTwistLimit1.setText("/10");
+        plotTwistLimit1.setFocusable(false);
 
         plotTwistTitle1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         plotTwistTitle1.setForeground(new java.awt.Color(51, 51, 51));
@@ -1345,6 +1455,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         plotTwistDrive.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         plotTwistDrive.setText("0");
         plotTwistDrive.setBorder(null);
+        plotTwistDrive.setFocusable(false);
         plotTwistDrive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plotTwistDriveActionPerformed(evt);
@@ -1354,106 +1465,121 @@ public class CartoonNetwork extends javax.swing.JFrame {
         javax.swing.GroupLayout plotTwist1Layout = new javax.swing.GroupLayout(plotTwist1);
         plotTwist1.setLayout(plotTwist1Layout);
         plotTwist1Layout.setHorizontalGroup(
-                plotTwist1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plotTwist1Layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(plotTwistTitle1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57,
-                                        Short.MAX_VALUE)
-                                .addComponent(plotTwistDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 23,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(plotTwistLimit1)
-                                .addGap(14, 14, 14)));
+            plotTwist1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plotTwist1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(plotTwistTitle1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addComponent(plotTwistDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(plotTwistLimit1)
+                .addGap(14, 14, 14))
+        );
         plotTwist1Layout.setVerticalGroup(
-                plotTwist1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(plotTwist1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(
-                                        plotTwist1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(plotTwistLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 33,
-                                                        Short.MAX_VALUE)
-                                                .addComponent(plotTwistTitle1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(plotTwistDrive, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap()));
+            plotTwist1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(plotTwist1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(plotTwist1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(plotTwistLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(plotTwistTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(plotTwistDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        plotTwist4.setBackground(java.awt.Color.lightGray);
+        plotTwist4.setForeground(new java.awt.Color(60, 63, 65));
+        plotTwist4.setFocusable(false);
+
+        plotTwistLimit3.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        plotTwistLimit3.setForeground(new java.awt.Color(51, 51, 51));
+        plotTwistLimit3.setFocusable(false);
+
+        assemblerTitle1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        assemblerTitle1.setForeground(new java.awt.Color(51, 51, 51));
+        assemblerTitle1.setText("Ensambladores:");
+
+        assemblerDrive.setBackground(java.awt.Color.lightGray);
+        assemblerDrive.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        assemblerDrive.setForeground(new java.awt.Color(51, 51, 51));
+        assemblerDrive.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        assemblerDrive.setText("0");
+        assemblerDrive.setBorder(null);
+        assemblerDrive.setFocusable(false);
+        assemblerDrive.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assemblerDriveActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout plotTwist4Layout = new javax.swing.GroupLayout(plotTwist4);
+        plotTwist4.setLayout(plotTwist4Layout);
+        plotTwist4Layout.setHorizontalGroup(
+            plotTwist4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plotTwist4Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(assemblerTitle1)
+                .addGap(18, 18, 18)
+                .addComponent(assemblerDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(plotTwistLimit3)
+                .addGap(14, 14, 14))
+        );
+        plotTwist4Layout.setVerticalGroup(
+            plotTwist4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(plotTwist4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(plotTwist4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(plotTwistLimit3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(assemblerTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(assemblerDrive))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout drivePanelLayout = new javax.swing.GroupLayout(drivePanel);
         drivePanel.setLayout(drivePanelLayout);
         drivePanelLayout.setHorizontalGroup(
-                drivePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(drivePanelLayout.createSequentialGroup()
-                                .addGroup(drivePanelLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(drivePanelLayout.createSequentialGroup()
-                                                .addGroup(drivePanelLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(driveTitle2,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 248,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGroup(drivePanelLayout.createSequentialGroup()
-                                                                .addGap(15, 15, 15)
-                                                                .addGroup(drivePanelLayout.createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(dubbing1,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addGroup(drivePanelLayout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                false)
-                                                                                .addComponent(animations1,
-                                                                                        javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(scenary1,
-                                                                                        javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(scripts1,
-                                                                                        javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                        .addComponent(plotTwist1,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                        .addComponent(driveTitle3, javax.swing.GroupLayout.Alignment.TRAILING,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap()));
+            drivePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(drivePanelLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(drivePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(dubbing1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(animations1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scenary1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scripts1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(plotTwist1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(plotTwist4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(drivePanelLayout.createSequentialGroup()
+                .addGroup(drivePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(driveTitle3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, drivePanelLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(driveTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
         drivePanelLayout.setVerticalGroup(
-                drivePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(drivePanelLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(driveTitle2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(driveTitle3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22,
-                                        Short.MAX_VALUE)
-                                .addComponent(scripts1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(scenary1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(animations1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(dubbing1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(plotTwist1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(15, 15, 15)));
+            drivePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(drivePanelLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(driveTitle2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(driveTitle3)
+                .addGap(12, 12, 12)
+                .addComponent(scripts1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(scenary1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(animations1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(dubbing1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(plotTwist1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(plotTwist4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
 
-        jPanel1.add(drivePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 260, 250, -1));
+        jPanel1.add(drivePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 260, 250, 440));
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setForeground(new java.awt.Color(51, 51, 51));
@@ -1461,15 +1587,18 @@ public class CartoonNetwork extends javax.swing.JFrame {
         driveTitle4.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         driveTitle4.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle4.setText("Capítulos plotTwist:");
+        driveTitle4.setFocusable(false);
 
         driveTitle5.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         driveTitle5.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle5.setText("Capítulos normales:");
+        driveTitle5.setFocusable(false);
 
         driveTitle7.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
         driveTitle7.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         driveTitle7.setText("ENSAMBLAJE CAPÍTULOS");
+        driveTitle7.setFocusable(false);
 
         plotTwistChapters.setBackground(new java.awt.Color(51, 51, 51));
         plotTwistChapters.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
@@ -1477,6 +1606,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         plotTwistChapters.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         plotTwistChapters.setText("0");
         plotTwistChapters.setBorder(null);
+        plotTwistChapters.setFocusable(false);
         plotTwistChapters.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plotTwistChaptersActionPerformed(evt);
@@ -1489,6 +1619,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         standardChaptes.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         standardChaptes.setText("0");
         standardChaptes.setBorder(null);
+        standardChaptes.setFocusable(false);
         standardChaptes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 standardChaptesActionPerformed(evt);
@@ -1498,47 +1629,36 @@ public class CartoonNetwork extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
-                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addGroup(jPanel3Layout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(driveTitle4, javax.swing.GroupLayout.DEFAULT_SIZE, 174,
-                                                Short.MAX_VALUE)
-                                        .addComponent(driveTitle5, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30,
-                                        Short.MAX_VALUE)
-                                .addGroup(jPanel3Layout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(plotTwistChapters, javax.swing.GroupLayout.DEFAULT_SIZE, 74,
-                                                Short.MAX_VALUE)
-                                        .addComponent(standardChaptes))
-                                .addContainerGap())
-                        .addComponent(driveTitle7, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(driveTitle4, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                    .addComponent(driveTitle5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(plotTwistChapters, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                    .addComponent(standardChaptes))
+                .addContainerGap())
+            .addComponent(driveTitle7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
         jPanel3Layout.setVerticalGroup(
-                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(driveTitle7)
-                                .addGap(12, 12, 12)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                jPanel3Layout.createSequentialGroup()
-                                                        .addComponent(driveTitle5)
-                                                        .addPreferredGap(
-                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(driveTitle4))
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addComponent(standardChaptes, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(plotTwistChapters, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(10, Short.MAX_VALUE)));
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(driveTitle7)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(driveTitle5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(driveTitle4))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(standardChaptes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(plotTwistChapters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(10, Short.MAX_VALUE))
+        );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 280, 300, 100));
 
@@ -1570,10 +1690,12 @@ public class CartoonNetwork extends javax.swing.JFrame {
         driveTitle19.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         driveTitle19.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle19.setText("Días transcurridos:");
+        driveTitle19.setFocusable(false);
 
         driveTitle20.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         driveTitle20.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle20.setText("Días restantes:");
+        driveTitle20.setFocusable(false);
 
         currentDays.setBackground(new java.awt.Color(51, 51, 51));
         currentDays.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
@@ -1581,6 +1703,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         currentDays.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         currentDays.setText("0");
         currentDays.setBorder(null);
+        currentDays.setFocusable(false);
         currentDays.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 currentDaysActionPerformed(evt);
@@ -1593,6 +1716,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         remainingDays.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         remainingDays.setText("0");
         remainingDays.setBorder(null);
+        remainingDays.setFocusable(false);
         remainingDays.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 remainingDaysActionPerformed(evt);
@@ -1602,73 +1726,50 @@ public class CartoonNetwork extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
-                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel5Layout.createSequentialGroup()
-                                                .addGroup(jPanel5Layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(driveTitle8)
-                                                        .addComponent(driveTitle6))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51,
-                                                        Short.MAX_VALUE)
-                                                .addGroup(jPanel5Layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jTextField8,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jTextField7,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(19, 19, 19))
-                                        .addGroup(jPanel5Layout.createSequentialGroup()
-                                                .addGroup(jPanel5Layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
-                                                                false)
-                                                        .addComponent(driveTitle20,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(driveTitle19,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 174,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(jPanel5Layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(currentDays)
-                                                        .addComponent(remainingDays))
-                                                .addContainerGap()))));
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(driveTitle8)
+                            .addComponent(driveTitle6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(driveTitle20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(driveTitle19, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(currentDays)
+                            .addComponent(remainingDays))
+                        .addContainerGap())))
+        );
         jPanel5Layout.setVerticalGroup(
-                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(driveTitle19)
-                                        .addComponent(currentDays, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(driveTitle20)
-                                        .addComponent(remainingDays, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(134, 134, 134)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(driveTitle8)
-                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(7, 7, 7)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(driveTitle6, javax.swing.GroupLayout.PREFERRED_SIZE, 23,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle19)
+                    .addComponent(currentDays, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle20)
+                    .addComponent(remainingDays, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(134, 134, 134)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle8)
+                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 210, 300, 60));
 
@@ -1679,19 +1780,23 @@ public class CartoonNetwork extends javax.swing.JFrame {
         driveTitle9.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         driveTitle9.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle9.setText("Ganancia bruta:");
+        driveTitle9.setFocusable(false);
 
         driveTitle10.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         driveTitle10.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle10.setText("Costos:");
+        driveTitle10.setFocusable(false);
 
         driveTitle11.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
         driveTitle11.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         driveTitle11.setText("COSTOS/ GANANCIAS");
+        driveTitle11.setFocusable(false);
 
         driveTitle17.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         driveTitle17.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle17.setText("Ganancia neta:");
+        driveTitle17.setFocusable(false);
 
         cost.setBackground(new java.awt.Color(51, 51, 51));
         cost.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
@@ -1699,6 +1804,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         cost.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         cost.setText("0");
         cost.setBorder(null);
+        cost.setFocusable(false);
         cost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 costActionPerformed(evt);
@@ -1711,6 +1817,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         earning.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         earning.setText("Dentro días");
         earning.setBorder(null);
+        earning.setFocusable(false);
         earning.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 earningActionPerformed(evt);
@@ -1723,6 +1830,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         profit.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         profit.setText("Dentro días");
         profit.setBorder(null);
+        profit.setFocusable(false);
         profit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 profitActionPerformed(evt);
@@ -1732,53 +1840,42 @@ public class CartoonNetwork extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
-                jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(driveTitle10, javax.swing.GroupLayout.PREFERRED_SIZE, 86,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(driveTitle9, javax.swing.GroupLayout.PREFERRED_SIZE, 145,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(driveTitle17, javax.swing.GroupLayout.PREFERRED_SIZE, 134,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(cost, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                jPanel6Layout.createSequentialGroup()
-                                                        .addGap(0, 0, Short.MAX_VALUE)
-                                                        .addComponent(earning, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(profit, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(20, 20, 20))
-                        .addComponent(driveTitle11, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(driveTitle10, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(driveTitle9, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(driveTitle17, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cost, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(earning, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(profit, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(20, 20, 20))
+            .addComponent(driveTitle11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
         jPanel6Layout.setVerticalGroup(
-                jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(driveTitle11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(driveTitle10)
-                                        .addComponent(cost, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(1, 1, 1)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(driveTitle9)
-                                        .addComponent(earning, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(driveTitle17)
-                                        .addComponent(profit, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(19, 19, 19)));
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(driveTitle11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle10)
+                    .addComponent(cost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle9)
+                    .addComponent(earning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle17)
+                    .addComponent(profit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19))
+        );
 
         jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 590, 300, 120));
 
@@ -1788,6 +1885,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         driveTitle18.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         driveTitle18.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle18.setText("Estado:");
+        driveTitle18.setFocusable(false);
 
         directorStatus.setBackground(new java.awt.Color(51, 51, 51));
         directorStatus.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
@@ -1795,6 +1893,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         directorStatus.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         directorStatus.setText("0");
         directorStatus.setBorder(null);
+        directorStatus.setFocusable(false);
         directorStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 directorStatusActionPerformed(evt);
@@ -1805,33 +1904,31 @@ public class CartoonNetwork extends javax.swing.JFrame {
         driveTitle14.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         driveTitle14.setText("DIRECTOR");
+        driveTitle14.setFocusable(false);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
-                jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(driveTitle18)
-                                .addGap(67, 67, 67)
-                                .addComponent(directorStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 154,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(driveTitle14, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(driveTitle18)
+                .addGap(67, 67, 67)
+                .addComponent(directorStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(driveTitle14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
         jPanel7Layout.setVerticalGroup(
-                jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(driveTitle14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(driveTitle18)
-                                        .addComponent(directorStatus, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(15, 15, 15)));
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(driveTitle14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle18)
+                    .addComponent(directorStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15))
+        );
 
         jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 390, 300, 60));
 
@@ -1842,14 +1939,17 @@ public class CartoonNetwork extends javax.swing.JFrame {
         driveTitle12.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         driveTitle12.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle12.setText("Estado:");
+        driveTitle12.setFocusable(false);
 
         driveTitle13.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         driveTitle13.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle13.setText("Faltas:");
+        driveTitle13.setFocusable(false);
 
         driveTitle16.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         driveTitle16.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle16.setText("Penalización ($):");
+        driveTitle16.setFocusable(false);
 
         projectManagerStatus.setBackground(new java.awt.Color(51, 51, 51));
         projectManagerStatus.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
@@ -1857,6 +1957,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         projectManagerStatus.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         projectManagerStatus.setText("Por comenzar");
         projectManagerStatus.setBorder(null);
+        projectManagerStatus.setFocusable(false);
         projectManagerStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 projectManagerStatusActionPerformed(evt);
@@ -1869,6 +1970,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         strikeCounter.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         strikeCounter.setText("0");
         strikeCounter.setBorder(null);
+        strikeCounter.setFocusable(false);
         strikeCounter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 strikeCounterActionPerformed(evt);
@@ -1881,6 +1983,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
         cashPenality.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         cashPenality.setText("0");
         cashPenality.setBorder(null);
+        cashPenality.setFocusable(false);
         cashPenality.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cashPenalityActionPerformed(evt);
@@ -1891,74 +1994,114 @@ public class CartoonNetwork extends javax.swing.JFrame {
         driveTitle15.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         driveTitle15.setText("STATUS PROJECT MANAGER");
+        driveTitle15.setFocusable(false);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
-                jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(driveTitle13, javax.swing.GroupLayout.PREFERRED_SIZE, 77,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(driveTitle16)
-                                        .addComponent(driveTitle12, javax.swing.GroupLayout.PREFERRED_SIZE, 77,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel8Layout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(projectManagerStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 114,
-                                                Short.MAX_VALUE)
-                                        .addComponent(cashPenality)
-                                        .addComponent(strikeCounter))
-                                .addContainerGap())
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(driveTitle15, javax.swing.GroupLayout.PREFERRED_SIZE, 300,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)));
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(driveTitle13, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(driveTitle16)
+                    .addComponent(driveTitle12, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(projectManagerStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                    .addComponent(cashPenality)
+                    .addComponent(strikeCounter))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(driveTitle15, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
         jPanel8Layout.setVerticalGroup(
-                jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(driveTitle15)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(driveTitle12)
-                                        .addComponent(projectManagerStatus, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(driveTitle13)
-                                        .addComponent(strikeCounter, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(driveTitle16)
-                                        .addComponent(cashPenality, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(7, 7, 7)));
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(driveTitle15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle12)
+                    .addComponent(projectManagerStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle13)
+                    .addComponent(strikeCounter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle16)
+                    .addComponent(cashPenality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7))
+        );
 
         jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 460, 300, 120));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 731, Short.MAX_VALUE)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 731, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void increaseAssemblerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseAssemblerMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_increaseAssemblerMouseClicked
+
+    private void increaseAssemblerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseAssemblerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_increaseAssemblerActionPerformed
+
+    private void AssemblerValuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AssemblerValuesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AssemblerValuesActionPerformed
+
+    private void decreaceAssemblerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaceAssemblerMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_decreaceAssemblerMouseClicked
+
+    private void decreaceAssemblerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaceAssemblerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_decreaceAssemblerActionPerformed
+
+    private void assemblerDriveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assemblerDriveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_assemblerDriveActionPerformed
+
+    private void config_btnMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_config_btnMouseEntered
+        // TODO add your handling code here:
+    }// GEN-LAST:event_config_btnMouseEntered
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        Home v1 = new Home();
+        v1.setVisible(true);
+        this.dispose();
+    }// GEN-LAST:event_jLabel4MouseClicked
+
+    private void btn_InicioMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btn_InicioMouseClicked
+        // TODO add your handling code here:
+        Home v1 = new Home();
+        v1.setVisible(true);
+        this.dispose();
+    }// GEN-LAST:event_btn_InicioMouseClicked
+
+    private void config_btnMouseClicked(java.awt.event.MouseEvent evt) {
+        config.setVisible(true);
+        config.setLocationRelativeTo(null);
+        config.setResizable(false);
+        this.setVisible(false);
+    }
 
     private void plotTwistValuesActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_plotTwistValuesActionPerformed
         // TODO add your handling code here:
@@ -2039,11 +2182,20 @@ public class CartoonNetwork extends javax.swing.JFrame {
 
     private void btn_cargar_guardarMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btn_cargar_guardarMouseClicked
         // TODO add your handling code here:
-
+        nickelodeon.setVisible(true);
+        nickelodeon.setLocationRelativeTo(null);
+        nickelodeon.setResizable(false);
+        cartoonPlayMusic("/GUI/Assets/nickelodeonTheme.wav");
+        this.setVisible(false);
     }// GEN-LAST:event_btn_cargar_guardarMouseClicked
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
+        nickelodeon.setVisible(true);
+        nickelodeon.setLocationRelativeTo(null);
+        nickelodeon.setResizable(false);
+        cartoonPlayMusic("/GUI/Assets/nickelodeonTheme.wav");
+        this.setVisible(false);
 
     }// GEN-LAST:event_jLabel10MouseClicked
 
@@ -2054,21 +2206,21 @@ public class CartoonNetwork extends javax.swing.JFrame {
 
     private void btn_reporteMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btn_reporteMouseClicked
         // TODO add your handling code here:
-        try{
-        this.filefunctions.write(this.selectedFile);
-        JOptionPane.showMessageDialog(this, "El archivo ha sido guardado exitosamente!");
-            
+        try {
+            this.filefunctions.write(this.selectedFile);
+            JOptionPane.showMessageDialog(this, "El archivo ha sido guardado exitosamente!");
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al escribir el archivo");
         }
     }// GEN-LAST:event_btn_reporteMouseClicked
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jLabel8MouseClicked
-        // TODO add your handling code here:       
-        try{
-        this.filefunctions.write(this.selectedFile);
-        JOptionPane.showMessageDialog(this, "El archivo ha sido guardado exitosamente!");
-            
+        // TODO add your handling code here:
+        try {
+            this.filefunctions.write(this.selectedFile);
+            JOptionPane.showMessageDialog(this, "El archivo ha sido guardado exitosamente!");
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al escribir el archivo");
         }
@@ -2078,14 +2230,12 @@ public class CartoonNetwork extends javax.swing.JFrame {
         // TODO add your handling code here:
     }// GEN-LAST:event_icono5MouseClicked
 
-    private void btn_nuevo_almacenMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btn_nuevo_almacenMouseClicked
-        // TODO add your handling code here:
-
-    }// GEN-LAST:event_btn_nuevo_almacenMouseClicked
-
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
-
+        config.setVisible(true);
+        config.setLocationRelativeTo(null);
+        config.setResizable(false);
+        this.setVisible(false);
     }// GEN-LAST:event_jLabel7MouseClicked
 
     private void icono4MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_icono4MouseClicked
@@ -2256,17 +2406,22 @@ public class CartoonNetwork extends javax.swing.JFrame {
         // TODO add your handling code here:
         helper.deleteWorker(1, 0);
         cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
-        this.scriptsValues.setText(decreaseQuantity(this.scriptsValues.getText()));
+        this.scriptsValues.setText(decreaseQuantity(this.scriptsValues.getText(), this.decreaseScripts));
 
     }// GEN-LAST:event_decreaseScriptsMouseClicked
 
-    private String increaseQuantity(String actualValue) {
+    private String increaseQuantity(String actualValue, JButton btn) {
         int intValue = 0;
         try {
             intValue = Integer.parseInt(actualValue);
             if (actualEmployees < maxEmployees) {
                 intValue++;
                 actualEmployees++;
+                if (intValue > 1) {
+                    btn.setEnabled(true);
+                } else if (actualEmployees == maxEmployees) {
+
+                }
             }
             return String.valueOf(intValue);
         } catch (NumberFormatException e) {
@@ -2275,13 +2430,16 @@ public class CartoonNetwork extends javax.swing.JFrame {
         }
     }
 
-    private String decreaseQuantity(String actualValue) {
+    private String decreaseQuantity(String actualValue, JButton btn) {
         int intValue = 0;
         try {
             intValue = Integer.parseInt(actualValue);
-            if (intValue > 0) {
+            if (intValue > 1) {
                 intValue--;
                 actualEmployees--;
+                if (intValue == 1) {
+                    btn.setEnabled(false);
+                }
                 return String.valueOf(intValue);
             } else {
                 return String.valueOf(intValue);
@@ -2337,6 +2495,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField AssemblerValues;
     private javax.swing.JPanel SidePanel;
     private javax.swing.JTextField animationDrive;
     private javax.swing.JTextField animationValues;
@@ -2345,15 +2504,19 @@ public class CartoonNetwork extends javax.swing.JFrame {
     private javax.swing.JLabel animationsLimit1;
     private javax.swing.JLabel animationsTitle;
     private javax.swing.JLabel animationsTitle1;
+    private javax.swing.JTextField assemblerDrive;
+    private javax.swing.JLabel assemblerTitle;
+    private javax.swing.JLabel assemblerTitle1;
     private javax.swing.JPanel btn_Inicio;
     private javax.swing.JPanel btn_cargar_guardar;
     private javax.swing.JPanel btn_nueva_ruta;
-    private javax.swing.JPanel btn_nuevo_almacen;
     private javax.swing.JPanel btn_nuevo_pedido;
     private javax.swing.JPanel btn_reporte;
     private javax.swing.JTextField cashPenality;
+    private javax.swing.JPanel config_btn;
     private javax.swing.JTextField cost;
     private javax.swing.JTextField currentDays;
+    private javax.swing.JButton decreaceAssembler;
     private javax.swing.JButton decreacePlotTwist;
     private javax.swing.JButton decreaseAnimation;
     private javax.swing.JButton decreaseDubbing;
@@ -2397,6 +2560,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
     private javax.swing.JLabel icono5;
     private javax.swing.JLabel icono7;
     private javax.swing.JButton increaseAnimation;
+    private javax.swing.JButton increaseAssembler;
     private javax.swing.JButton increaseDubbing;
     private javax.swing.JButton increasePlotTwist;
     private javax.swing.JButton increaseScenary;
@@ -2424,11 +2588,18 @@ public class CartoonNetwork extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JPanel plotTwist;
     private javax.swing.JPanel plotTwist1;
+    private javax.swing.JPanel plotTwist2;
+    private javax.swing.JPanel plotTwist3;
+    private javax.swing.JPanel plotTwist4;
     private javax.swing.JTextField plotTwistChapters;
     private javax.swing.JTextField plotTwistDrive;
+    private javax.swing.JTextField plotTwistDrive1;
     private javax.swing.JLabel plotTwistLimit1;
+    private javax.swing.JLabel plotTwistLimit2;
+    private javax.swing.JLabel plotTwistLimit3;
     private javax.swing.JLabel plotTwistTitle;
     private javax.swing.JLabel plotTwistTitle1;
+    private javax.swing.JLabel plotTwistTitle3;
     private javax.swing.JTextField plotTwistValues;
     private javax.swing.JTextField profit;
     private javax.swing.JTextField projectManagerStatus;
