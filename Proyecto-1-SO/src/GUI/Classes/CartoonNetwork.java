@@ -2054,7 +2054,13 @@ public class CartoonNetwork extends javax.swing.JFrame {
 
     private void btn_reporteMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btn_reporteMouseClicked
         // TODO add your handling code here:
+        try{
         this.filefunctions.write(this.selectedFile);
+        JOptionPane.showMessageDialog(this, "El archivo ha sido guardado exitosamente!");
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al escribir el archivo");
+        }
     }// GEN-LAST:event_btn_reporteMouseClicked
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jLabel8MouseClicked

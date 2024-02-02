@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI.Classes;
+
 import MainPackage.App;
 import java.awt.Point;
 import java.io.IOException;
@@ -18,11 +19,12 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * @author angel
  */
 public class Home extends javax.swing.JFrame {
-    
+
     private Point initialClick;
     private final App app = App.getInstance();
     private final CartoonNetwork cartoonNetwork = CartoonNetwork.getInstance();
     private final Nickelodeon nickelodeon = Nickelodeon.getInstance();
+    private final ConfigParams config = ConfigParams.getInstance();
 
     /**
      * Creates new form Home
@@ -419,17 +421,17 @@ public class Home extends javax.swing.JFrame {
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void btn_nuevo_pedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_pedidoMouseClicked
         // TODO add your handling code here:
-      
+
     }//GEN-LAST:event_btn_nuevo_pedidoMouseClicked
 
     private void icono3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono3MouseClicked
         // TODO add your handling code here:
-    
+
     }//GEN-LAST:event_icono3MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
@@ -437,9 +439,8 @@ public class Home extends javax.swing.JFrame {
         cartoonNetwork.setVisible(true);
         cartoonNetwork.setLocationRelativeTo(null);
         cartoonNetwork.setResizable(false);
-        cartoonPlayMusic("/GUI/Assets/cartoonNetworkTheme.wav"); 
+        cartoonPlayMusic("/GUI/Assets/cartoonNetworkTheme.wav");
         this.setVisible(false);
-       
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void cartoonPlayMusic(String path) {
@@ -455,27 +456,33 @@ public class Home extends javax.swing.JFrame {
     }
     private void btn_nueva_rutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nueva_rutaMouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_btn_nueva_rutaMouseClicked
 
     private void icono4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono4MouseClicked
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_icono4MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
-       
+        config.setVisible(true);
+        config.setLocationRelativeTo(null);
+        config.setResizable(false);
+        this.setVisible(false);
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void btn_nuevo_almacenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_almacenMouseClicked
         // TODO add your handling code here:
-       
+        config.setVisible(true);
+        config.setLocationRelativeTo(null);
+        config.setResizable(false);
+        this.setVisible(false);
     }//GEN-LAST:event_btn_nuevo_almacenMouseClicked
 
     private void icono7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono7MouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_icono7MouseClicked
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
@@ -483,13 +490,13 @@ public class Home extends javax.swing.JFrame {
         nickelodeon.setVisible(true);
         nickelodeon.setLocationRelativeTo(null);
         nickelodeon.setResizable(false);
-        cartoonPlayMusic("/GUI/Assets/nickelodeonTheme.wav"); 
+        cartoonPlayMusic("/GUI/Assets/nickelodeonTheme.wav");
         this.setVisible(false);
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void btn_cargar_guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cargar_guardarMouseClicked
         // TODO add your handling code here:
-      
+
     }//GEN-LAST:event_btn_cargar_guardarMouseClicked
 
     private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged

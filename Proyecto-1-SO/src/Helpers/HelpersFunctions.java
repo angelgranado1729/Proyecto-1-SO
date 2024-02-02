@@ -88,7 +88,6 @@ public class HelpersFunctions {
     }
 
     public void addWorker(int company, int workerType) {
-        System.out.println("SE CREOOOO");
 
         TelevisionNetwork network = company == 0 ? App.getInstance().getNickelodeon()
                 : App.getInstance().getCartoonNetwork();
@@ -115,9 +114,8 @@ public class HelpersFunctions {
             for (int i = 0; i < employees.length; i++) {
                 if (employees[i] == null) {
                     employees[i] = newEmployee;
-                    network.setActualEmployeesQuantity(network.getActualEmployeesQuantity() + 1); // Actualizar la
-                                                                                                  // cantidad de
-                                                                                                  // empleados
+                    network.setActualEmployeesQuantity(network.getActualEmployeesQuantity() + 1);
+                    // Actualizar la cantidad de empleados
                     break;
                 }
             }
