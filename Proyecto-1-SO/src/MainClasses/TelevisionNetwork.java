@@ -33,6 +33,11 @@ public class TelevisionNetwork {
     private float profit;
     private int daySet = App.getInstance().getDeadline();
     private int remainingDays = daySet;
+    
+    
+    private int numChapters = 0;
+    private int numNormalChapters = 0;
+    private int numChaptersWithPlotTwist = 0;
 
     // CONSTRUCTOR
     public TelevisionNetwork(String name, int maxEmployeesQuantity, Employee[] screenwriters, Employee[] setDesigners,
@@ -408,6 +413,48 @@ public class TelevisionNetwork {
      */
     public void setDirectorInstance(Director directorInstance) {
         this.directorInstance = directorInstance;
+    }
+
+    /**
+     * @return the numChapters
+     */
+    public int getNumChapters() {
+        return numChapters;
+    }
+
+    /**
+     * @param numChapters the numChapters to set
+     */
+    public void setNumChapters(int numChapters) {
+        this.numChapters = numChapters;
+    }
+
+    /**
+     * @return the numChaptersWithPlotTwist
+     */
+    public int getNumChaptersWithPlotTwist() {
+        return numChaptersWithPlotTwist;
+    }
+
+    /**
+     * @param numChaptersWithPlotTwist the numChaptersWithPlotTwist to set
+     */
+    public void setNumChaptersWithPlotTwist(int numChaptersWithPlotTwist) {
+        this.numChaptersWithPlotTwist = numChaptersWithPlotTwist;
+    }
+
+    /**
+     * @return the numNormalChapters
+     */
+    public int getNumNormalChapters() {
+        return numNormalChapters;
+    }
+
+    /**
+     * @param numNormalChapters the numNormalChapters to set
+     */
+    public void setNumNormalChapters(int numNormalChapters) {
+        this.numNormalChapters = numNormalChapters;
     }
 
 }

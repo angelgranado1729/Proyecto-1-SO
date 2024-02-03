@@ -55,110 +55,15 @@ public class Employee extends Thread {
         while (!Thread.interrupted()) {
             try {
                 this.getPaid();
-                if (this.type == 5) {
-                    this.assembleChapters();
-                } else {
-                    this.working();
-                }
+                this.addDailyProduction();
+                this.working();
                 sleep(App.getDayDuration());
-                System.out.println(this.toString());
             } catch (InterruptedException ex) {
                 // Interrupción manejada, preparándose para terminar el hilo
                 Logger.getLogger(Employee.class.getName()).log(Level.INFO,
                         "Hilo de Employee interrumpido, terminando...");
                 break;
             }
-        }
-    }
-
-    private void working() {
-        this.setTotalWork(this.getTotalWork() + this.getDailyProgress());
-
-        if (this.type == 5) {
-            System.out.println("\n\n\n Assembler" + getTotalWork());
-        }
-
-        if (getTotalWork() >= 1) {
-            try {
-                int workToUpload = (int) Math.floor(this.getTotalWork());
-                this.getMutex().acquire();
-                this.getDriveRef().uploadFile(getType(), workToUpload);
-                this.getMutex().release();
-                this.setTotalWork(this.getTotalWork() - workToUpload);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
-    }
-
-    private void assembleChapters() {
-        try {
-            this.getMutex().acquire();
-            this.evaluateAssemble();
-            this.getMutex().release();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    private void evaluateAssemble() {
-        int screenwriters = this.getDriveRef().getSections()[0];
-        int scenarists = this.getDriveRef().getSections()[1];
-        int animators = this.getDriveRef().getSections()[2];
-        int voiceActors = this.getDriveRef().getSections()[3];
-
-        if (this.company == 0) {
-            // Lógica para Nickelodeon
-            if (screenwriters >= 2 && scenarists >= 1 && animators >= 4 && voiceActors >= 4) {
-                assembleChapter(new int[] { 2, 1, 4, 4 }, 5, 2, this.app.getNickelodeon());
-            }
-        } else if (this.company == 1) {
-            // Lógica para Cartoon Network
-            if (screenwriters >= 1 && scenarists >= 2 && animators >= 6 && voiceActors >= 5) {
-                assembleChapter(new int[] { 1, 2, 6, 5 }, 3, 1, this.app.getCartoonNetwork());
-            }
-
-        } else {
-            try {
-                sleep(app.getDayDuration());
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        this.getMutex().release();
-    }
-
-    private void assembleChapter(int[] resources, int plotTwistFrequency, int plotTwistRequirement,
-            TelevisionNetwork network) {
-        // Se descuenta el recurso (parte de episodios estándar
-        for (int i = 0; i < resources.length; i++) {
-            this.getDriveRef().decrementSection(i, resources[i]);
-        }
-
-        // Verificar y ensamblar capítulo con PlotTwist
-        if (plotTwistCounter == plotTwistFrequency && this.getDriveRef().getSections()[4] >= plotTwistRequirement) {
-            // Descontar recursos adicionales para capítulo con PlotTwist
-            this.getDriveRef().decrementSection(4, plotTwistRequirement);
-            this.getDriveRef().increasePlotTwistChapters();
-
-            // FIXME
-            this.getDriveRef().getSections()[5] += 1;
-            // Resetear el contador
-            plotTwistCounter = 0;
-        } else {
-            this.getDriveRef().increaseStandarChapters();
-            // Incrementar el contador después de crear un capítulo estándar
-
-            // FIXME -
-            this.getDriveRef().getSections()[5] += 1;
-            plotTwistCounter++;
-        }
-
-        try {
-            sleep(app.getDayDuration() * 2);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -170,6 +75,104 @@ public class Employee extends Thread {
             app.getCartoonNetwork().increaseTotalCost(this.getHourlyWage() * 24);
         }
     }
+
+    private void addDailyProduction() {
+        //Si no hay para hacer un cap, entonces el assembler no trabaja
+        if (this.type == 5 && !this.evaluateAssemble()) {
+            this.setTotalWork(0);
+        }
+
+        this.setTotalWork(this.getTotalWork() + this.getDailyProgress());
+    }
+
+    private void working() {
+
+        if (getTotalWork() >= 1) {
+            try {
+                this.getMutex().acquire();
+                int workToUpload = (int) Math.floor(this.getTotalWork());
+
+                if (this.type != 5) {
+                    this.getDriveRef().uploadFile(getType(), workToUpload);
+                } else {
+                    this.createChapter();
+                }
+
+                this.setTotalWork(this.getTotalWork() - workToUpload);
+                this.getMutex().release();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    private boolean evaluateAssemble() {
+
+        TelevisionNetwork tv;
+        if (this.company == 0) {
+            tv = App.getInstance().getNickelodeon();
+        } else {
+            tv = App.getInstance().getCartoonNetwork();
+        }
+
+        // Requisito minimo para un cap (cap regular)
+        for (int i = 0; i < tv.getDrive().getSections().length - 2; i++) {
+            // Si no hay la cantidad minima entonces el assembler no puede tranbajar
+            if (tv.getDrive().getSections()[i] < ImportantConstants.chaptersComposition[this.company][i]) {
+                return false;
+            }
+        }
+        // si es plottwist
+        boolean isNextPlotTwist = (tv.getNumChapters() != 0 && ((tv.getNumChapters()) % ImportantConstants.plotTwistFreq[this.company]) == 0);
+
+        
+        if (isNextPlotTwist) {
+            // Verifica si NO hay para hacer un plottwist
+            if (tv.getDrive().getSections()[4] < ImportantConstants.chaptersComposition[this.company][4]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private void createChapter() {
+    TelevisionNetwork tv;
+    if (this.company == 0) {
+        tv = app.getNickelodeon();
+    } else {
+        tv = app.getCartoonNetwork();
+    }
+
+    // Evaluar si el siguiente capítulo debe ser un plot twist antes de incrementar numChapters
+    boolean isNextPlotTwist = (tv.getNumChapters() != 0 && ((tv.getNumChapters()) % ImportantConstants.plotTwistFreq[this.company]) == 0);
+
+    if (this.evaluateAssemble()) {
+        //Capitulo regular
+        for (int i = 0; i < tv.getDrive().getSections().length - 2; i++) {
+            tv.getDrive().getSections()[i] = Math.max(0, tv.getDrive().getSections()[i] - ImportantConstants.chaptersComposition[this.company][i]);
+            if (tv.getDrive().getSections()[i] < 0) {
+                System.out.println("\nERROR, VALOR NEGATIVO primer flag!!!! :  " + i + "------> " + tv.getDrive().getSections()[i]);
+            }
+        }
+
+        // Si el siguiente es con plot twist
+        if (isNextPlotTwist) {
+            tv.getDrive().getSections()[4] = Math.max(0, tv.getDrive().getSections()[4] - ImportantConstants.chaptersComposition[this.company][4]);
+            tv.setNumChaptersWithPlotTwist(tv.getNumChaptersWithPlotTwist() + 1);
+        } else {
+            tv.setNumNormalChapters(tv.getNumNormalChapters() + 1);
+        }
+
+        // Incrementa el número de capítulos
+        tv.setNumChapters(tv.getNumChapters() + 1);
+        this.getDriveRef().getSections()[5] += 1;
+
+    } else {
+        this.setTotalWork(0);
+    }
+}
+
 
     @Override
     public String toString() {

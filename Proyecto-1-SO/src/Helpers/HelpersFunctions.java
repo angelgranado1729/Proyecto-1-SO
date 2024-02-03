@@ -61,12 +61,11 @@ public class HelpersFunctions {
 
                 for (int j = 0; j < televisionNetworkValues[type]; j++) {
                     int workerId = j + 1;
-                    int daysToFinish = ImportantConstants.productionTimes[company][type][1];
                     int numOfWorkDone = ImportantConstants.productionTimes[company][type][0];
+                    int daysToFinish = ImportantConstants.productionTimes[company][type][1];
                     int hourlyWage = ImportantConstants.hourlyWages[type];
                     employees[j] = new Employee(company, workerId, type, daysToFinish, numOfWorkDone, hourlyWage,
                             drive, mutex);
-
                 }
                 workers[type] = employees;
             }

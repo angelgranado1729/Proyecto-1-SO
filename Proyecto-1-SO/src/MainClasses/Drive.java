@@ -14,7 +14,7 @@ public class Drive {
 
     private int[] sections;
     private int[] maxCapacity;
-    private int standarChapters; 
+    private int standarChapters;
     private int plotTwistChapters;
 
     public Drive(
@@ -22,26 +22,32 @@ public class Drive {
             int maxScenarios,
             int maxAnimations,
             int maxDubbing,
-            int maxScriptsWithPlotTwist
-    ) {
+            int maxScriptsWithPlotTwist) {
         this.sections = new int[6];
-        this.maxCapacity = new int[]{
-            maxScripts,
-            maxScenarios,
-            maxAnimations,
-            maxDubbing,
-            maxScriptsWithPlotTwist
+
+        this.maxCapacity = new int[] {
+                maxScripts,
+                maxScenarios,
+                maxAnimations,
+                maxDubbing,
+                maxScriptsWithPlotTwist
         };
     }
 
     public void uploadFile(int workerType, int workToUpload) {
         if (workerType >= 0 && workerType <= 5) {
-            // Si el trabajador es de tipo 5, se sube el archivo sin verificar la capacidad máxima
+            // Si el trabajador es de tipo 5, se sube el archivo sin verificar la capacidad
+            // máxima
             if (workerType == 5) {
                 this.getSections()[workerType] += workToUpload;
             } else if (this.getSections()[workerType] < this.getMaxCapacity()[workerType]) {
-                // Para los otros trabajadores, se verifica la capacidad máxima antes de subir el archivo
-                this.getSections()[workerType] += workToUpload;
+                // Para los otros trabajadores, se verifica la capacidad máxima antes de subir
+                // el archivo
+                if (this.getSections()[workerType] + workToUpload <= this.getMaxCapacity()[workerType]) {
+                    this.getSections()[workerType] += workToUpload;
+                } else {
+                    this.getSections()[workerType] = this.getMaxCapacity()[workerType];
+                }
             }
         }
     }
@@ -56,12 +62,6 @@ public class Drive {
             }
         }
         return str;
-    }
-    
-    public void decrementSection(int sectionIndex, int amount) {
-        if (sectionIndex >= 0 && sectionIndex < this.sections.length) {
-            this.sections[sectionIndex] = Math.max(0, this.sections[sectionIndex] - amount);
-        }
     }
 
     /**
@@ -91,7 +91,7 @@ public class Drive {
     public void setMaxCapacity(int[] maxCapacity) {
         this.maxCapacity = maxCapacity;
     }
-    
+
     /**
      * @return the standarChapters
      */
@@ -119,19 +119,18 @@ public class Drive {
     public void setPlotTwistChapters(int plotTwistChapters) {
         this.plotTwistChapters = plotTwistChapters;
     }
-    
-    
-    public void increaseStandarChapters(){
-        this.standarChapters ++;
+
+    public void increaseStandarChapters() {
+        this.standarChapters++;
     }
-    public void increasePlotTwistChapters(){
-        this.plotTwistChapters ++;
+
+    public void increasePlotTwistChapters() {
+        this.plotTwistChapters++;
     }
-    
-    public void resetChapters () {
-        this.standarChapters =0;
-        this.plotTwistChapters =0;
-    }    
-    
+
+    public void resetChapters() {
+        this.standarChapters = 0;
+        this.plotTwistChapters = 0;
+    }
 
 }

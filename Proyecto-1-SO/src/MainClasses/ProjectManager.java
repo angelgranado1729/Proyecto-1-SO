@@ -54,7 +54,7 @@ public class ProjectManager extends Employee {
                 this.updateCountdown();
                 // Culminado el día cobra su salario
                 this.getPaid();
-                System.out.println(this.toString());
+                
 
             } catch (InterruptedException ex) {
                 Logger.getLogger(ProjectManager.class.getName()).log(Level.SEVERE, null, ex);

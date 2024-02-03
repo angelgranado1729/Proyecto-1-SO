@@ -39,7 +39,7 @@ public class Director extends Employee {
                 // Se buscan los días restantes.
                 int remainingDays = this.company == 0 ? app.getNickelodeon().getRemainingDays()
                         : app.getCartoonNetwork().getRemainingDays();
-                System.out.println("Remaining Days: " + remainingDays);
+                
 
                 if (remainingDays <= 0) {
                     this.setStatus("Enviando capítulos.");
@@ -50,7 +50,7 @@ public class Director extends Employee {
                 else {
                     Random rand = new Random();
                     int randomHour = rand.nextInt(24);
-                    System.out.println(randomHour);
+                    
                     for (int i = 0; i < 24; i++) {
                         if (i == randomHour) {
                             this.status = "Vigilando PM";
