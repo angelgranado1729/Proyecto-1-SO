@@ -115,14 +115,31 @@ public class Nickelodeon extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         exit = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        driveTitle6 = new javax.swing.JLabel();
+        driveTitle8 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
+        jTextField8 = new javax.swing.JTextField();
+        driveTitle19 = new javax.swing.JLabel();
+        driveTitle20 = new javax.swing.JLabel();
+        currentDays = new javax.swing.JTextField();
+        remainingDays = new javax.swing.JTextField();
+        driveTitle23 = new javax.swing.JLabel();
+        totalDays = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        driveTitle4 = new javax.swing.JLabel();
+        plotTwistChapters = new javax.swing.JTextField();
+        standardChapters = new javax.swing.JTextField();
+        driveTitle5 = new javax.swing.JLabel();
+        driveTitle25 = new javax.swing.JLabel();
+        totalChapters = new javax.swing.JTextField();
         workersConfigurations = new javax.swing.JPanel();
-        driveTitle = new javax.swing.JLabel();
         driveTitle1 = new javax.swing.JLabel();
         scripts = new javax.swing.JPanel();
         scriptsTitle = new javax.swing.JLabel();
-        decreaseScripts = new javax.swing.JButton();
         increaseScripts = new javax.swing.JButton();
         scriptsValues = new javax.swing.JTextField();
+        decreaseScripts = new javax.swing.JButton();
         scenary = new javax.swing.JPanel();
         scenaryTitle = new javax.swing.JLabel();
         scenaryValue = new javax.swing.JTextField();
@@ -131,76 +148,80 @@ public class Nickelodeon extends javax.swing.JFrame {
         animations = new javax.swing.JPanel();
         animationsTitle = new javax.swing.JLabel();
         animationValues = new javax.swing.JTextField();
-        increaseAnimation = new javax.swing.JButton();
         decreaseAnimation = new javax.swing.JButton();
+        increaseAnimation = new javax.swing.JButton();
         dubbing = new javax.swing.JPanel();
         dubbingTitle = new javax.swing.JLabel();
         decreaseDubbing = new javax.swing.JButton();
-        increaseDubbing = new javax.swing.JButton();
         dubbingValues = new javax.swing.JTextField();
+        increaseDubbing = new javax.swing.JButton();
         plotTwist = new javax.swing.JPanel();
         plotTwistTitle = new javax.swing.JLabel();
         increasePlotTwist = new javax.swing.JButton();
-        decreacePlotTwist = new javax.swing.JButton();
         plotTwistValues = new javax.swing.JTextField();
+        decreacePlotTwist = new javax.swing.JButton();
+        plotTwist2 = new javax.swing.JPanel();
+        assemblerTitle = new javax.swing.JLabel();
+        increaseAssembler = new javax.swing.JButton();
+        assemblerValues = new javax.swing.JTextField();
+        decreaceAssembler = new javax.swing.JButton();
+        driveTitle21 = new javax.swing.JLabel();
         drivePanel = new javax.swing.JPanel();
         driveTitle2 = new javax.swing.JLabel();
         driveTitle3 = new javax.swing.JLabel();
         scripts1 = new javax.swing.JPanel();
         scriptTitle1 = new javax.swing.JLabel();
         scriptsLimit1 = new javax.swing.JLabel();
-        jTextField24 = new javax.swing.JTextField();
+        scriptDrive = new javax.swing.JTextField();
         scenary1 = new javax.swing.JPanel();
         scenaryTitle1 = new javax.swing.JLabel();
         scenaryLimit1 = new javax.swing.JLabel();
-        jTextField25 = new javax.swing.JTextField();
+        scenaryDrive = new javax.swing.JTextField();
         animations1 = new javax.swing.JPanel();
         animationsTitle1 = new javax.swing.JLabel();
         animationsLimit1 = new javax.swing.JLabel();
-        jTextField26 = new javax.swing.JTextField();
+        animationDrive = new javax.swing.JTextField();
         dubbing1 = new javax.swing.JPanel();
         dubbingTitle1 = new javax.swing.JLabel();
         dubbingLimit1 = new javax.swing.JLabel();
-        jTextField27 = new javax.swing.JTextField();
+        dubbingDrive = new javax.swing.JTextField();
         plotTwist1 = new javax.swing.JPanel();
         plotTwistLimit1 = new javax.swing.JLabel();
         plotTwistTitle1 = new javax.swing.JLabel();
-        jTextField28 = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
-        driveTitle4 = new javax.swing.JLabel();
-        driveTitle5 = new javax.swing.JLabel();
-        driveTitle7 = new javax.swing.JLabel();
-        jTextField32 = new javax.swing.JTextField();
-        jTextField31 = new javax.swing.JTextField();
-        jPanel5 = new javax.swing.JPanel();
-        driveTitle6 = new javax.swing.JLabel();
-        driveTitle8 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        driveTitle19 = new javax.swing.JLabel();
-        driveTitle20 = new javax.swing.JLabel();
-        jTextField29 = new javax.swing.JTextField();
-        jTextField30 = new javax.swing.JTextField();
+        plotTwistDrive = new javax.swing.JTextField();
+        plotTwist4 = new javax.swing.JPanel();
+        plotTwistLimit3 = new javax.swing.JLabel();
+        assemblerTitle1 = new javax.swing.JLabel();
+        assemblerDrive = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         driveTitle9 = new javax.swing.JLabel();
         driveTitle10 = new javax.swing.JLabel();
         driveTitle11 = new javax.swing.JLabel();
         driveTitle17 = new javax.swing.JLabel();
-        jTextField37 = new javax.swing.JTextField();
-        jTextField38 = new javax.swing.JTextField();
-        jTextField39 = new javax.swing.JTextField();
+        cost = new javax.swing.JTextField();
+        earning = new javax.swing.JTextField();
+        profit = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
-        driveTitle14 = new javax.swing.JLabel();
         driveTitle18 = new javax.swing.JLabel();
-        jTextField35 = new javax.swing.JTextField();
+        directorStatus = new javax.swing.JTextField();
+        driveTitle14 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        driveTitle15 = new javax.swing.JLabel();
         driveTitle12 = new javax.swing.JLabel();
         driveTitle13 = new javax.swing.JLabel();
         driveTitle16 = new javax.swing.JLabel();
-        jTextField34 = new javax.swing.JTextField();
-        jTextField33 = new javax.swing.JTextField();
-        jTextField36 = new javax.swing.JTextField();
+        projectManagerStatus = new javax.swing.JTextField();
+        strikeCounter = new javax.swing.JTextField();
+        cashPenality = new javax.swing.JTextField();
+        driveTitle15 = new javax.swing.JLabel();
+        driveTitle = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        driveTitle7 = new javax.swing.JLabel();
+        plotTwistChapters1 = new javax.swing.JTextField();
+        standardChaptes1 = new javax.swing.JTextField();
+        driveTitle22 = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        directorStatus1 = new javax.swing.JTextField();
+        driveTitle24 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -531,6 +552,244 @@ public class Nickelodeon extends javax.swing.JFrame {
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Assets/nickelodeon2.png"))); // NOI18N
 
+        jPanel5.setBackground(new java.awt.Color(34, 46, 60));
+        jPanel5.setForeground(new java.awt.Color(51, 51, 51));
+
+        driveTitle6.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle6.setForeground(new java.awt.Color(204, 204, 204));
+        driveTitle6.setText("Días Restantes:");
+
+        driveTitle8.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle8.setForeground(new java.awt.Color(204, 204, 204));
+        driveTitle8.setText("Días transcurridos:");
+
+        jTextField7.setBackground(new java.awt.Color(204, 204, 204));
+        jTextField7.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+        jTextField7.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField7.setText("0");
+        jTextField7.setEnabled(false);
+
+        jTextField8.setBackground(new java.awt.Color(204, 204, 204));
+        jTextField8.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+        jTextField8.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField8.setText("0");
+        jTextField8.setEnabled(false);
+
+        driveTitle19.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle19.setForeground(new java.awt.Color(204, 204, 204));
+        driveTitle19.setText("Días transcurridos:");
+        driveTitle19.setFocusable(false);
+
+        driveTitle20.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle20.setForeground(new java.awt.Color(204, 204, 204));
+        driveTitle20.setText("Días restantes:");
+        driveTitle20.setFocusable(false);
+
+        currentDays.setEditable(false);
+        currentDays.setBackground(new java.awt.Color(34, 46, 60));
+        currentDays.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        currentDays.setForeground(new java.awt.Color(255, 255, 255));
+        currentDays.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        currentDays.setText("0");
+        currentDays.setBorder(null);
+        currentDays.setFocusable(false);
+        currentDays.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                currentDaysActionPerformed(evt);
+            }
+        });
+
+        remainingDays.setEditable(false);
+        remainingDays.setBackground(new java.awt.Color(34, 46, 60));
+        remainingDays.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        remainingDays.setForeground(new java.awt.Color(255, 255, 255));
+        remainingDays.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        remainingDays.setText("0");
+        remainingDays.setBorder(null);
+        remainingDays.setFocusable(false);
+        remainingDays.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                remainingDaysActionPerformed(evt);
+            }
+        });
+
+        driveTitle23.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle23.setForeground(new java.awt.Color(204, 204, 204));
+        driveTitle23.setText("Días:");
+        driveTitle23.setFocusable(false);
+
+        totalDays.setEditable(false);
+        totalDays.setBackground(new java.awt.Color(34, 46, 60));
+        totalDays.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        totalDays.setForeground(new java.awt.Color(255, 255, 255));
+        totalDays.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        totalDays.setText("0");
+        totalDays.setBorder(null);
+        totalDays.setFocusable(false);
+        totalDays.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalDaysActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(driveTitle8)
+                    .addComponent(driveTitle6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(driveTitle19, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(driveTitle20, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(currentDays, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(remainingDays, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(76, 76, 76))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(driveTitle23, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(totalDays, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle23)
+                    .addComponent(totalDays, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle19)
+                    .addComponent(currentDays, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle20)
+                    .addComponent(remainingDays, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(117, 117, 117)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle8)
+                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBackground(new java.awt.Color(34, 46, 60));
+        jPanel3.setForeground(new java.awt.Color(51, 51, 51));
+
+        driveTitle4.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle4.setForeground(new java.awt.Color(204, 204, 204));
+        driveTitle4.setText("Capítulos plotTwist:");
+        driveTitle4.setFocusable(false);
+
+        plotTwistChapters.setEditable(false);
+        plotTwistChapters.setBackground(new java.awt.Color(34, 46, 60));
+        plotTwistChapters.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        plotTwistChapters.setForeground(new java.awt.Color(255, 255, 255));
+        plotTwistChapters.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        plotTwistChapters.setText("0");
+        plotTwistChapters.setBorder(null);
+        plotTwistChapters.setFocusable(false);
+        plotTwistChapters.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                plotTwistChaptersActionPerformed(evt);
+            }
+        });
+
+        standardChapters.setEditable(false);
+        standardChapters.setBackground(new java.awt.Color(34, 46, 60));
+        standardChapters.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        standardChapters.setForeground(new java.awt.Color(255, 255, 255));
+        standardChapters.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        standardChapters.setText("0");
+        standardChapters.setBorder(null);
+        standardChapters.setFocusable(false);
+        standardChapters.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                standardChaptersActionPerformed(evt);
+            }
+        });
+
+        driveTitle5.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle5.setForeground(new java.awt.Color(204, 204, 204));
+        driveTitle5.setText("Capítulos normales:");
+        driveTitle5.setFocusable(false);
+
+        driveTitle25.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle25.setForeground(new java.awt.Color(204, 204, 204));
+        driveTitle25.setText("Capítulos:");
+        driveTitle25.setFocusable(false);
+
+        totalChapters.setEditable(false);
+        totalChapters.setBackground(new java.awt.Color(34, 46, 60));
+        totalChapters.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        totalChapters.setForeground(new java.awt.Color(255, 255, 255));
+        totalChapters.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        totalChapters.setText("0");
+        totalChapters.setBorder(null);
+        totalChapters.setFocusable(false);
+        totalChapters.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalChaptersActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(driveTitle4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(driveTitle5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(standardChapters, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(plotTwistChapters, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(driveTitle25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(totalChapters, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalChapters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(driveTitle25))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(standardChapters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(driveTitle5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle4)
+                    .addComponent(plotTwistChapters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -539,27 +798,32 @@ public class Nickelodeon extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(275, 275, 275)
                 .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
-                .addComponent(jLabel9)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1130, 190));
 
         workersConfigurations.setBackground(new java.awt.Color(243, 168, 71));
 
-        driveTitle.setFont(new java.awt.Font("Montserrat", 1, 19)); // NOI18N
-        driveTitle.setForeground(new java.awt.Color(51, 51, 51));
-        driveTitle.setText("CONFIGURACIÓN");
-
         driveTitle1.setFont(new java.awt.Font("Montserrat", 1, 19)); // NOI18N
         driveTitle1.setForeground(new java.awt.Color(51, 51, 51));
+        driveTitle1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         driveTitle1.setText("TRABAJADORES");
 
         scripts.setBackground(java.awt.Color.lightGray);
@@ -568,21 +832,6 @@ public class Nickelodeon extends javax.swing.JFrame {
         scriptsTitle.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         scriptsTitle.setForeground(new java.awt.Color(51, 51, 51));
         scriptsTitle.setText("Guionistas:");
-
-        decreaseScripts.setBackground(new java.awt.Color(51, 51, 51));
-        decreaseScripts.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        decreaseScripts.setForeground(new java.awt.Color(255, 255, 255));
-        decreaseScripts.setText("-");
-        decreaseScripts.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                decreaseScriptsMouseClicked(evt);
-            }
-        });
-        decreaseScripts.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                decreaseScriptsActionPerformed(evt);
-            }
-        });
 
         increaseScripts.setBackground(new java.awt.Color(51, 51, 51));
         increaseScripts.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
@@ -605,9 +854,25 @@ public class Nickelodeon extends javax.swing.JFrame {
         scriptsValues.setForeground(new java.awt.Color(51, 51, 51));
         scriptsValues.setText("0");
         scriptsValues.setBorder(null);
+        scriptsValues.setFocusable(false);
         scriptsValues.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 scriptsValuesActionPerformed(evt);
+            }
+        });
+
+        decreaseScripts.setBackground(new java.awt.Color(51, 51, 51));
+        decreaseScripts.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        decreaseScripts.setForeground(new java.awt.Color(255, 255, 255));
+        decreaseScripts.setText("-");
+        decreaseScripts.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                decreaseScriptsMouseClicked(evt);
+            }
+        });
+        decreaseScripts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                decreaseScriptsActionPerformed(evt);
             }
         });
 
@@ -618,21 +883,21 @@ public class Nickelodeon extends javax.swing.JFrame {
             .addGroup(scriptsLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(scriptsTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(30, 30, 30)
-                .addComponent(increaseScripts)
+                .addGap(36, 36, 36)
+                .addComponent(decreaseScripts)
                 .addGap(18, 18, 18)
                 .addComponent(scriptsValues, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(decreaseScripts)
+                .addComponent(increaseScripts)
                 .addGap(15, 15, 15))
         );
         scriptsLayout.setVerticalGroup(
             scriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(scriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(scriptsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(decreaseScripts)
                 .addComponent(increaseScripts)
-                .addComponent(scriptsValues, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(scriptsValues, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(decreaseScripts))
         );
 
         scenary.setBackground(java.awt.Color.lightGray);
@@ -647,6 +912,7 @@ public class Nickelodeon extends javax.swing.JFrame {
         scenaryValue.setForeground(new java.awt.Color(51, 51, 51));
         scenaryValue.setText("0");
         scenaryValue.setBorder(null);
+        scenaryValue.setFocusable(false);
         scenaryValue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 scenaryValueActionPerformed(evt);
@@ -691,11 +957,11 @@ public class Nickelodeon extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addComponent(scenaryTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(increaseScenary)
+                .addComponent(decreaseScenary)
                 .addGap(18, 18, 18)
                 .addComponent(scenaryValue, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(decreaseScenary)
+                .addComponent(increaseScenary)
                 .addGap(14, 14, 14))
         );
         scenaryLayout.setVerticalGroup(
@@ -704,9 +970,9 @@ public class Nickelodeon extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(scenaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(scenaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(decreaseScenary)
                         .addComponent(increaseScenary)
-                        .addComponent(scenaryValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(scenaryValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(decreaseScenary))
                     .addComponent(scenaryTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -723,24 +989,10 @@ public class Nickelodeon extends javax.swing.JFrame {
         animationValues.setForeground(new java.awt.Color(51, 51, 51));
         animationValues.setText("0");
         animationValues.setBorder(null);
+        animationValues.setFocusable(false);
         animationValues.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 animationValuesActionPerformed(evt);
-            }
-        });
-
-        increaseAnimation.setBackground(new java.awt.Color(51, 51, 51));
-        increaseAnimation.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        increaseAnimation.setForeground(new java.awt.Color(255, 255, 255));
-        increaseAnimation.setText("+");
-        increaseAnimation.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                increaseAnimationMouseClicked(evt);
-            }
-        });
-        increaseAnimation.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                increaseAnimationActionPerformed(evt);
             }
         });
 
@@ -759,32 +1011,46 @@ public class Nickelodeon extends javax.swing.JFrame {
             }
         });
 
+        increaseAnimation.setBackground(new java.awt.Color(51, 51, 51));
+        increaseAnimation.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        increaseAnimation.setForeground(new java.awt.Color(255, 255, 255));
+        increaseAnimation.setText("+");
+        increaseAnimation.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                increaseAnimationMouseClicked(evt);
+            }
+        });
+        increaseAnimation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                increaseAnimationActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout animationsLayout = new javax.swing.GroupLayout(animations);
         animations.setLayout(animationsLayout);
         animationsLayout.setHorizontalGroup(
             animationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(animationsLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(14, 14, 14)
                 .addComponent(animationsTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(increaseAnimation)
+                .addComponent(decreaseAnimation)
                 .addGap(18, 18, 18)
                 .addComponent(animationValues, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(decreaseAnimation)
+                .addComponent(increaseAnimation)
                 .addGap(15, 15, 15))
         );
         animationsLayout.setVerticalGroup(
             animationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(animationsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(animationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(animationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(decreaseAnimation)
-                        .addComponent(increaseAnimation)
-                        .addComponent(animationValues, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(animationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(decreaseAnimation)
+                    .addComponent(animationValues, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(increaseAnimation)
                     .addComponent(animationsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(7, 7, 7))
         );
 
         dubbing.setBackground(java.awt.Color.lightGray);
@@ -809,6 +1075,18 @@ public class Nickelodeon extends javax.swing.JFrame {
             }
         });
 
+        dubbingValues.setBackground(java.awt.Color.lightGray);
+        dubbingValues.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        dubbingValues.setForeground(new java.awt.Color(51, 51, 51));
+        dubbingValues.setText("0");
+        dubbingValues.setBorder(null);
+        dubbingValues.setFocusable(false);
+        dubbingValues.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dubbingValuesActionPerformed(evt);
+            }
+        });
+
         increaseDubbing.setBackground(new java.awt.Color(51, 51, 51));
         increaseDubbing.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
         increaseDubbing.setForeground(new java.awt.Color(255, 255, 255));
@@ -824,30 +1102,19 @@ public class Nickelodeon extends javax.swing.JFrame {
             }
         });
 
-        dubbingValues.setBackground(java.awt.Color.lightGray);
-        dubbingValues.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        dubbingValues.setForeground(new java.awt.Color(51, 51, 51));
-        dubbingValues.setText("0");
-        dubbingValues.setBorder(null);
-        dubbingValues.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dubbingValuesActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout dubbingLayout = new javax.swing.GroupLayout(dubbing);
         dubbing.setLayout(dubbingLayout);
         dubbingLayout.setHorizontalGroup(
             dubbingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dubbingLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(16, 16, 16)
                 .addComponent(dubbingTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(increaseDubbing)
+                .addComponent(decreaseDubbing)
                 .addGap(18, 18, 18)
                 .addComponent(dubbingValues, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(decreaseDubbing)
+                .addComponent(increaseDubbing)
                 .addGap(15, 15, 15))
         );
         dubbingLayout.setVerticalGroup(
@@ -856,8 +1123,8 @@ public class Nickelodeon extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(dubbingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(decreaseDubbing)
-                    .addComponent(increaseDubbing)
                     .addComponent(dubbingValues, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(increaseDubbing)
                     .addComponent(dubbingTitle))
                 .addContainerGap())
         );
@@ -884,6 +1151,18 @@ public class Nickelodeon extends javax.swing.JFrame {
             }
         });
 
+        plotTwistValues.setBackground(java.awt.Color.lightGray);
+        plotTwistValues.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        plotTwistValues.setForeground(new java.awt.Color(51, 51, 51));
+        plotTwistValues.setText("0");
+        plotTwistValues.setBorder(null);
+        plotTwistValues.setFocusable(false);
+        plotTwistValues.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                plotTwistValuesActionPerformed(evt);
+            }
+        });
+
         decreacePlotTwist.setBackground(new java.awt.Color(51, 51, 51));
         decreacePlotTwist.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
         decreacePlotTwist.setForeground(new java.awt.Color(255, 255, 255));
@@ -899,96 +1178,165 @@ public class Nickelodeon extends javax.swing.JFrame {
             }
         });
 
-        plotTwistValues.setBackground(java.awt.Color.lightGray);
-        plotTwistValues.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        plotTwistValues.setForeground(new java.awt.Color(51, 51, 51));
-        plotTwistValues.setText("0");
-        plotTwistValues.setBorder(null);
-        plotTwistValues.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                plotTwistValuesActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout plotTwistLayout = new javax.swing.GroupLayout(plotTwist);
         plotTwist.setLayout(plotTwistLayout);
         plotTwistLayout.setHorizontalGroup(
             plotTwistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plotTwistLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(14, 14, 14)
                 .addComponent(plotTwistTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(increasePlotTwist)
+                .addComponent(decreacePlotTwist)
                 .addGap(18, 18, 18)
                 .addComponent(plotTwistValues, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(decreacePlotTwist)
+                .addComponent(increasePlotTwist)
                 .addGap(16, 16, 16))
         );
         plotTwistLayout.setVerticalGroup(
             plotTwistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(plotTwistLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(plotTwistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(plotTwistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(decreacePlotTwist)
-                        .addComponent(increasePlotTwist)
-                        .addComponent(plotTwistValues, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(plotTwistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(increasePlotTwist)
+                    .addComponent(plotTwistValues, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(decreacePlotTwist)
                     .addComponent(plotTwistTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(7, 7, 7))
         );
+
+        plotTwist2.setBackground(java.awt.Color.lightGray);
+        plotTwist2.setForeground(new java.awt.Color(255, 255, 255));
+
+        assemblerTitle.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        assemblerTitle.setForeground(new java.awt.Color(51, 51, 51));
+        assemblerTitle.setText("Ensambladores:");
+
+        increaseAssembler.setBackground(new java.awt.Color(51, 51, 51));
+        increaseAssembler.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        increaseAssembler.setForeground(new java.awt.Color(255, 255, 255));
+        increaseAssembler.setText("+");
+        increaseAssembler.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                increaseAssemblerMouseClicked(evt);
+            }
+        });
+        increaseAssembler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                increaseAssemblerActionPerformed(evt);
+            }
+        });
+
+        assemblerValues.setBackground(java.awt.Color.lightGray);
+        assemblerValues.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        assemblerValues.setForeground(new java.awt.Color(51, 51, 51));
+        assemblerValues.setText("0");
+        assemblerValues.setBorder(null);
+        assemblerValues.setFocusable(false);
+        assemblerValues.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assemblerValuesActionPerformed(evt);
+            }
+        });
+
+        decreaceAssembler.setBackground(new java.awt.Color(51, 51, 51));
+        decreaceAssembler.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        decreaceAssembler.setForeground(new java.awt.Color(255, 255, 255));
+        decreaceAssembler.setText("-");
+        decreaceAssembler.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                decreaceAssemblerMouseClicked(evt);
+            }
+        });
+        decreaceAssembler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                decreaceAssemblerActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout plotTwist2Layout = new javax.swing.GroupLayout(plotTwist2);
+        plotTwist2.setLayout(plotTwist2Layout);
+        plotTwist2Layout.setHorizontalGroup(
+            plotTwist2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plotTwist2Layout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addComponent(assemblerTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(decreaceAssembler)
+                .addGap(18, 18, 18)
+                .addComponent(assemblerValues, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(increaseAssembler)
+                .addGap(16, 16, 16))
+        );
+        plotTwist2Layout.setVerticalGroup(
+            plotTwist2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(plotTwist2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(plotTwist2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(increaseAssembler)
+                    .addComponent(assemblerValues, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(decreaceAssembler)
+                    .addComponent(assemblerTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7))
+        );
+
+        driveTitle21.setFont(new java.awt.Font("Montserrat", 1, 19)); // NOI18N
+        driveTitle21.setForeground(new java.awt.Color(51, 51, 51));
+        driveTitle21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        driveTitle21.setText("CONFIGURACIÓN");
 
         javax.swing.GroupLayout workersConfigurationsLayout = new javax.swing.GroupLayout(workersConfigurations);
         workersConfigurations.setLayout(workersConfigurationsLayout);
         workersConfigurationsLayout.setHorizontalGroup(
             workersConfigurationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(workersConfigurationsLayout.createSequentialGroup()
-                .addGroup(workersConfigurationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(workersConfigurationsLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(workersConfigurationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(animations, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dubbing, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(plotTwist, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(scenary, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(scripts, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(workersConfigurationsLayout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addGroup(workersConfigurationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(driveTitle1)
-                            .addComponent(driveTitle))))
-                .addContainerGap(15, Short.MAX_VALUE))
+            .addComponent(driveTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, workersConfigurationsLayout.createSequentialGroup()
+                .addContainerGap(12, Short.MAX_VALUE)
+                .addGroup(workersConfigurationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(plotTwist2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(plotTwist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dubbing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(animations, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scenary, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scripts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
+            .addComponent(driveTitle21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         workersConfigurationsLayout.setVerticalGroup(
             workersConfigurationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(workersConfigurationsLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(driveTitle)
+                .addGap(30, 30, 30)
+                .addComponent(driveTitle21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(driveTitle1)
                 .addGap(26, 26, 26)
                 .addComponent(scripts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scenary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(animations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(dubbing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(plotTwist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(plotTwist2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
-        jPanel1.add(workersConfigurations, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 280, 400));
+        jPanel1.add(workersConfigurations, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 300, 510));
 
         drivePanel.setBackground(new java.awt.Color(243, 168, 71));
 
         driveTitle2.setFont(new java.awt.Font("Montserrat", 1, 19)); // NOI18N
         driveTitle2.setForeground(new java.awt.Color(51, 51, 51));
+        driveTitle2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         driveTitle2.setText("ESTATUS DEL DRIVE");
 
         driveTitle3.setFont(new java.awt.Font("Montserrat", 1, 19)); // NOI18N
         driveTitle3.setForeground(new java.awt.Color(51, 51, 51));
+        driveTitle3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         driveTitle3.setText("(Disponiblidad)");
 
         scripts1.setBackground(java.awt.Color.lightGray);
@@ -1001,15 +1349,18 @@ public class Nickelodeon extends javax.swing.JFrame {
         scriptsLimit1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         scriptsLimit1.setForeground(new java.awt.Color(51, 51, 51));
         scriptsLimit1.setText("/25");
+        scriptsLimit1.setFocusable(false);
 
-        jTextField24.setBackground(java.awt.Color.lightGray);
-        jTextField24.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField24.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField24.setText("0");
-        jTextField24.setBorder(null);
-        jTextField24.addActionListener(new java.awt.event.ActionListener() {
+        scriptDrive.setBackground(java.awt.Color.lightGray);
+        scriptDrive.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        scriptDrive.setForeground(new java.awt.Color(51, 51, 51));
+        scriptDrive.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        scriptDrive.setText("0");
+        scriptDrive.setBorder(null);
+        scriptDrive.setFocusable(false);
+        scriptDrive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField24ActionPerformed(evt);
+                scriptDriveActionPerformed(evt);
             }
         });
 
@@ -1020,8 +1371,8 @@ public class Nickelodeon extends javax.swing.JFrame {
             .addGroup(scripts1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(scriptTitle1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addComponent(scriptDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scriptsLimit1)
                 .addGap(16, 16, 16))
@@ -1033,7 +1384,7 @@ public class Nickelodeon extends javax.swing.JFrame {
                 .addGroup(scripts1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(scriptTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(scriptsLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                    .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scriptDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -1047,15 +1398,18 @@ public class Nickelodeon extends javax.swing.JFrame {
         scenaryLimit1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         scenaryLimit1.setForeground(new java.awt.Color(51, 51, 51));
         scenaryLimit1.setText("/20");
+        scenaryLimit1.setFocusable(false);
 
-        jTextField25.setBackground(java.awt.Color.lightGray);
-        jTextField25.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField25.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField25.setText("0");
-        jTextField25.setBorder(null);
-        jTextField25.addActionListener(new java.awt.event.ActionListener() {
+        scenaryDrive.setBackground(java.awt.Color.lightGray);
+        scenaryDrive.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        scenaryDrive.setForeground(new java.awt.Color(51, 51, 51));
+        scenaryDrive.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        scenaryDrive.setText("0");
+        scenaryDrive.setBorder(null);
+        scenaryDrive.setFocusable(false);
+        scenaryDrive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField25ActionPerformed(evt);
+                scenaryDriveActionPerformed(evt);
             }
         });
 
@@ -1066,8 +1420,8 @@ public class Nickelodeon extends javax.swing.JFrame {
             .addGroup(scenary1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(scenaryTitle1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scenaryDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 45, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scenaryLimit1)
                 .addGap(15, 15, 15))
@@ -1079,7 +1433,7 @@ public class Nickelodeon extends javax.swing.JFrame {
                 .addGroup(scenary1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(scenaryTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(scenaryLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scenaryDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -1093,15 +1447,18 @@ public class Nickelodeon extends javax.swing.JFrame {
         animationsLimit1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         animationsLimit1.setForeground(new java.awt.Color(51, 51, 51));
         animationsLimit1.setText("/55");
+        animationsLimit1.setFocusable(false);
 
-        jTextField26.setBackground(java.awt.Color.lightGray);
-        jTextField26.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField26.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField26.setText("0");
-        jTextField26.setBorder(null);
-        jTextField26.addActionListener(new java.awt.event.ActionListener() {
+        animationDrive.setBackground(java.awt.Color.lightGray);
+        animationDrive.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        animationDrive.setForeground(new java.awt.Color(51, 51, 51));
+        animationDrive.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        animationDrive.setText("0");
+        animationDrive.setBorder(null);
+        animationDrive.setFocusable(false);
+        animationDrive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField26ActionPerformed(evt);
+                animationDriveActionPerformed(evt);
             }
         });
 
@@ -1112,8 +1469,8 @@ public class Nickelodeon extends javax.swing.JFrame {
             .addGroup(animations1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(animationsTitle1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(animationDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(animationsLimit1)
                 .addGap(14, 14, 14))
@@ -1125,7 +1482,7 @@ public class Nickelodeon extends javax.swing.JFrame {
                 .addGroup(animations1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(animationsTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(animationsLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                    .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(animationDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -1139,15 +1496,18 @@ public class Nickelodeon extends javax.swing.JFrame {
         dubbingLimit1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         dubbingLimit1.setForeground(new java.awt.Color(51, 51, 51));
         dubbingLimit1.setText("/35");
+        dubbingLimit1.setFocusable(false);
 
-        jTextField27.setBackground(java.awt.Color.lightGray);
-        jTextField27.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField27.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField27.setText("0");
-        jTextField27.setBorder(null);
-        jTextField27.addActionListener(new java.awt.event.ActionListener() {
+        dubbingDrive.setBackground(java.awt.Color.lightGray);
+        dubbingDrive.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        dubbingDrive.setForeground(new java.awt.Color(51, 51, 51));
+        dubbingDrive.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        dubbingDrive.setText("0");
+        dubbingDrive.setBorder(null);
+        dubbingDrive.setFocusable(false);
+        dubbingDrive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField27ActionPerformed(evt);
+                dubbingDriveActionPerformed(evt);
             }
         });
 
@@ -1158,8 +1518,8 @@ public class Nickelodeon extends javax.swing.JFrame {
             .addGroup(dubbing1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(dubbingTitle1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField27, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addComponent(dubbingDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dubbingLimit1)
                 .addGap(14, 14, 14))
@@ -1171,29 +1531,33 @@ public class Nickelodeon extends javax.swing.JFrame {
                 .addGroup(dubbing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dubbingTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(dubbingLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                    .addComponent(jTextField27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dubbingDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         plotTwist1.setBackground(java.awt.Color.lightGray);
         plotTwist1.setForeground(new java.awt.Color(60, 63, 65));
+        plotTwist1.setFocusable(false);
 
         plotTwistLimit1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         plotTwistLimit1.setForeground(new java.awt.Color(51, 51, 51));
         plotTwistLimit1.setText("/10");
+        plotTwistLimit1.setFocusable(false);
 
         plotTwistTitle1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         plotTwistTitle1.setForeground(new java.awt.Color(51, 51, 51));
         plotTwistTitle1.setText("PlotTwist:");
 
-        jTextField28.setBackground(java.awt.Color.lightGray);
-        jTextField28.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField28.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField28.setText("0");
-        jTextField28.setBorder(null);
-        jTextField28.addActionListener(new java.awt.event.ActionListener() {
+        plotTwistDrive.setBackground(java.awt.Color.lightGray);
+        plotTwistDrive.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        plotTwistDrive.setForeground(new java.awt.Color(51, 51, 51));
+        plotTwistDrive.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        plotTwistDrive.setText("0");
+        plotTwistDrive.setBorder(null);
+        plotTwistDrive.setFocusable(false);
+        plotTwistDrive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField28ActionPerformed(evt);
+                plotTwistDriveActionPerformed(evt);
             }
         });
 
@@ -1204,8 +1568,8 @@ public class Nickelodeon extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plotTwist1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(plotTwistTitle1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField28, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addComponent(plotTwistDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(plotTwistLimit1)
                 .addGap(14, 14, 14))
@@ -1217,8 +1581,57 @@ public class Nickelodeon extends javax.swing.JFrame {
                 .addGroup(plotTwist1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(plotTwistLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
                     .addComponent(plotTwistTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(plotTwistDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
+        );
+
+        plotTwist4.setBackground(java.awt.Color.lightGray);
+        plotTwist4.setForeground(new java.awt.Color(60, 63, 65));
+        plotTwist4.setFocusable(false);
+
+        plotTwistLimit3.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        plotTwistLimit3.setForeground(new java.awt.Color(51, 51, 51));
+        plotTwistLimit3.setFocusable(false);
+
+        assemblerTitle1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        assemblerTitle1.setForeground(new java.awt.Color(51, 51, 51));
+        assemblerTitle1.setText("Ensambladores:");
+
+        assemblerDrive.setBackground(java.awt.Color.lightGray);
+        assemblerDrive.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        assemblerDrive.setForeground(new java.awt.Color(51, 51, 51));
+        assemblerDrive.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        assemblerDrive.setText("0");
+        assemblerDrive.setBorder(null);
+        assemblerDrive.setFocusable(false);
+        assemblerDrive.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assemblerDriveActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout plotTwist4Layout = new javax.swing.GroupLayout(plotTwist4);
+        plotTwist4.setLayout(plotTwist4Layout);
+        plotTwist4Layout.setHorizontalGroup(
+            plotTwist4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plotTwist4Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(assemblerTitle1)
+                .addGap(18, 18, 18)
+                .addComponent(assemblerDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(plotTwistLimit3)
+                .addGap(14, 14, 14))
+        );
+        plotTwist4Layout.setVerticalGroup(
+            plotTwist4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(plotTwist4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(plotTwist4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(plotTwistLimit3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(assemblerTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(assemblerDrive))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout drivePanelLayout = new javax.swing.GroupLayout(drivePanel);
@@ -1227,224 +1640,47 @@ public class Nickelodeon extends javax.swing.JFrame {
             drivePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(drivePanelLayout.createSequentialGroup()
                 .addGroup(drivePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(driveTitle3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(drivePanelLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
                         .addGroup(drivePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(driveTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(drivePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(plotTwist1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(dubbing1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(animations1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, drivePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(scenary1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(scripts1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(drivePanelLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(driveTitle3)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(drivePanelLayout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addGroup(drivePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(dubbing1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(animations1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(scenary1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(scripts1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(plotTwist1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(plotTwist4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(drivePanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(driveTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         drivePanelLayout.setVerticalGroup(
             drivePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(drivePanelLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(26, 26, 26)
                 .addComponent(driveTitle2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(driveTitle3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(driveTitle3, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
                 .addComponent(scripts1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scenary1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(animations1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
                 .addComponent(dubbing1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
                 .addComponent(plotTwist1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addGap(12, 12, 12)
+                .addComponent(plotTwist4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
-        jPanel1.add(drivePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 260, 250, -1));
-
-        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel3.setForeground(new java.awt.Color(51, 51, 51));
-
-        driveTitle4.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        driveTitle4.setForeground(new java.awt.Color(204, 204, 204));
-        driveTitle4.setText("Capítulos plotTwist:");
-
-        driveTitle5.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        driveTitle5.setForeground(new java.awt.Color(204, 204, 204));
-        driveTitle5.setText("Capítulos normales:");
-
-        driveTitle7.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        driveTitle7.setForeground(new java.awt.Color(204, 204, 204));
-        driveTitle7.setText("ENSAMBLAJE CAPÍTULOS");
-
-        jTextField32.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField32.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField32.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField32.setText("0");
-        jTextField32.setBorder(null);
-        jTextField32.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField32ActionPerformed(evt);
-            }
-        });
-
-        jTextField31.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField31.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField31.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField31.setText("0");
-        jTextField31.setBorder(null);
-        jTextField31.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField31ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(driveTitle4, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                    .addComponent(driveTitle5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField31, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField32, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
-                .addComponent(driveTitle7, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(driveTitle7)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(driveTitle5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(driveTitle4))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(15, 15, 15))
-        );
-
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 280, 300, 100));
-
-        jPanel5.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel5.setForeground(new java.awt.Color(51, 51, 51));
-
-        driveTitle6.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        driveTitle6.setForeground(new java.awt.Color(204, 204, 204));
-        driveTitle6.setText("Días Restantes:");
-
-        driveTitle8.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        driveTitle8.setForeground(new java.awt.Color(204, 204, 204));
-        driveTitle8.setText("Días transcurridos:");
-
-        jTextField7.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField7.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField7.setText("0");
-        jTextField7.setEnabled(false);
-
-        jTextField8.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField8.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField8.setText("0");
-        jTextField8.setEnabled(false);
-
-        driveTitle19.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        driveTitle19.setForeground(new java.awt.Color(204, 204, 204));
-        driveTitle19.setText("Días transcurridos:");
-
-        driveTitle20.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        driveTitle20.setForeground(new java.awt.Color(204, 204, 204));
-        driveTitle20.setText("Días restantes:");
-
-        jTextField29.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField29.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField29.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField29.setText("0");
-        jTextField29.setBorder(null);
-        jTextField29.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField29ActionPerformed(evt);
-            }
-        });
-
-        jTextField30.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField30.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField30.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField30.setText("0");
-        jTextField30.setBorder(null);
-        jTextField30.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField30ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(driveTitle20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(driveTitle19, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField29, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField30, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(driveTitle8)
-                            .addComponent(driveTitle6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(19, 19, 19))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(driveTitle19)
-                    .addComponent(jTextField29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(driveTitle20)
-                    .addComponent(jTextField30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(134, 134, 134)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(driveTitle8)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(driveTitle6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 200, 300, 60));
+        jPanel1.add(drivePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, 250, 510));
 
         jPanel6.setBackground(new java.awt.Color(51, 51, 51));
         jPanel6.setForeground(new java.awt.Color(51, 51, 51));
@@ -1453,49 +1689,60 @@ public class Nickelodeon extends javax.swing.JFrame {
         driveTitle9.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         driveTitle9.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle9.setText("Ganancia bruta:");
+        driveTitle9.setFocusable(false);
 
         driveTitle10.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         driveTitle10.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle10.setText("Costos:");
+        driveTitle10.setFocusable(false);
 
         driveTitle11.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
         driveTitle11.setForeground(new java.awt.Color(204, 204, 204));
+        driveTitle11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         driveTitle11.setText("COSTOS/ GANANCIAS");
+        driveTitle11.setFocusable(false);
 
         driveTitle17.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         driveTitle17.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle17.setText("Ganancia neta:");
+        driveTitle17.setFocusable(false);
 
-        jTextField37.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField37.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField37.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField37.setText("0");
-        jTextField37.setBorder(null);
-        jTextField37.addActionListener(new java.awt.event.ActionListener() {
+        cost.setBackground(new java.awt.Color(51, 51, 51));
+        cost.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        cost.setForeground(new java.awt.Color(255, 255, 255));
+        cost.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        cost.setText("0");
+        cost.setBorder(null);
+        cost.setFocusable(false);
+        cost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField37ActionPerformed(evt);
+                costActionPerformed(evt);
             }
         });
 
-        jTextField38.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField38.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField38.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField38.setText("0");
-        jTextField38.setBorder(null);
-        jTextField38.addActionListener(new java.awt.event.ActionListener() {
+        earning.setBackground(new java.awt.Color(51, 51, 51));
+        earning.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        earning.setForeground(new java.awt.Color(255, 255, 255));
+        earning.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        earning.setText("Dentro días");
+        earning.setBorder(null);
+        earning.setFocusable(false);
+        earning.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField38ActionPerformed(evt);
+                earningActionPerformed(evt);
             }
         });
 
-        jTextField39.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField39.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField39.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField39.setText("0");
-        jTextField39.setBorder(null);
-        jTextField39.addActionListener(new java.awt.event.ActionListener() {
+        profit.setBackground(new java.awt.Color(51, 51, 51));
+        profit.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        profit.setForeground(new java.awt.Color(255, 255, 255));
+        profit.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        profit.setText("Dentro días");
+        profit.setBorder(null);
+        profit.setFocusable(false);
+        profit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField39ActionPerformed(evt);
+                profitActionPerformed(evt);
             }
         });
 
@@ -1509,16 +1756,15 @@ public class Nickelodeon extends javax.swing.JFrame {
                     .addComponent(driveTitle10, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(driveTitle9, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(driveTitle17, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField37, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField38, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField39, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cost, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(earning, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(profit, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(20, 20, 20))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
-                .addComponent(driveTitle11, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+            .addComponent(driveTitle11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1528,15 +1774,15 @@ public class Nickelodeon extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(driveTitle10)
-                    .addComponent(jTextField37, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(driveTitle9)
-                    .addComponent(jTextField38, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(earning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(driveTitle17)
-                    .addComponent(jTextField39, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(profit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19))
         );
 
@@ -1545,155 +1791,281 @@ public class Nickelodeon extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(51, 51, 51));
         jPanel7.setForeground(new java.awt.Color(51, 51, 51));
 
+        driveTitle18.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle18.setForeground(new java.awt.Color(204, 204, 204));
+        driveTitle18.setText("Estado:");
+        driveTitle18.setFocusable(false);
+
+        directorStatus.setBackground(new java.awt.Color(51, 51, 51));
+        directorStatus.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        directorStatus.setForeground(new java.awt.Color(255, 255, 255));
+        directorStatus.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        directorStatus.setText("0");
+        directorStatus.setBorder(null);
+        directorStatus.setFocusable(false);
+        directorStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                directorStatusActionPerformed(evt);
+            }
+        });
+
         driveTitle14.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
         driveTitle14.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         driveTitle14.setText("DIRECTOR");
-
-        driveTitle18.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        driveTitle18.setForeground(new java.awt.Color(204, 204, 204));
-        driveTitle18.setText("Estado:");
-
-        jTextField35.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField35.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField35.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField35.setText("0");
-        jTextField35.setBorder(null);
-        jTextField35.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField35ActionPerformed(evt);
-            }
-        });
+        driveTitle14.setFocusable(false);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(driveTitle18, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(driveTitle14, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                .addGap(50, 50, 50)
-                .addComponent(jTextField35, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGap(15, 15, 15)
+                .addComponent(driveTitle18)
+                .addGap(67, 67, 67)
+                .addComponent(directorStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(driveTitle14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(driveTitle14))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(driveTitle18)
-                            .addComponent(jTextField35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(driveTitle14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle18)
+                    .addComponent(directorStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15))
         );
 
-        jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 390, 300, 60));
+        jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 270, 300, 60));
 
         jPanel8.setBackground(new java.awt.Color(51, 51, 51));
         jPanel8.setForeground(new java.awt.Color(51, 51, 51));
         jPanel8.setEnabled(false);
 
-        driveTitle15.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        driveTitle15.setForeground(new java.awt.Color(204, 204, 204));
-        driveTitle15.setText("STATUS PROJECT MANAGER");
-
         driveTitle12.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         driveTitle12.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle12.setText("Estado:");
+        driveTitle12.setFocusable(false);
 
         driveTitle13.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         driveTitle13.setForeground(new java.awt.Color(204, 204, 204));
         driveTitle13.setText("Faltas:");
+        driveTitle13.setFocusable(false);
 
         driveTitle16.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         driveTitle16.setForeground(new java.awt.Color(204, 204, 204));
-        driveTitle16.setText("Penalización:");
+        driveTitle16.setText("Penalización ($):");
+        driveTitle16.setFocusable(false);
 
-        jTextField34.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField34.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField34.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField34.setText("0");
-        jTextField34.setBorder(null);
-        jTextField34.addActionListener(new java.awt.event.ActionListener() {
+        projectManagerStatus.setBackground(new java.awt.Color(51, 51, 51));
+        projectManagerStatus.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        projectManagerStatus.setForeground(new java.awt.Color(255, 255, 255));
+        projectManagerStatus.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        projectManagerStatus.setText("Por comenzar");
+        projectManagerStatus.setBorder(null);
+        projectManagerStatus.setFocusable(false);
+        projectManagerStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField34ActionPerformed(evt);
+                projectManagerStatusActionPerformed(evt);
             }
         });
 
-        jTextField33.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField33.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField33.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField33.setText("0");
-        jTextField33.setBorder(null);
-        jTextField33.addActionListener(new java.awt.event.ActionListener() {
+        strikeCounter.setBackground(new java.awt.Color(51, 51, 51));
+        strikeCounter.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        strikeCounter.setForeground(new java.awt.Color(255, 255, 255));
+        strikeCounter.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        strikeCounter.setText("0");
+        strikeCounter.setBorder(null);
+        strikeCounter.setFocusable(false);
+        strikeCounter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField33ActionPerformed(evt);
+                strikeCounterActionPerformed(evt);
             }
         });
 
-        jTextField36.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField36.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        jTextField36.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField36.setText("0");
-        jTextField36.setBorder(null);
-        jTextField36.addActionListener(new java.awt.event.ActionListener() {
+        cashPenality.setBackground(new java.awt.Color(51, 51, 51));
+        cashPenality.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        cashPenality.setForeground(new java.awt.Color(255, 255, 255));
+        cashPenality.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        cashPenality.setText("0");
+        cashPenality.setBorder(null);
+        cashPenality.setFocusable(false);
+        cashPenality.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField36ActionPerformed(evt);
+                cashPenalityActionPerformed(evt);
             }
         });
+
+        driveTitle15.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        driveTitle15.setForeground(new java.awt.Color(204, 204, 204));
+        driveTitle15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        driveTitle15.setText("STATUS PROJECT MANAGER");
+        driveTitle15.setFocusable(false);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(driveTitle13, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(driveTitle16)
+                    .addComponent(driveTitle12, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(driveTitle15)
-                            .addComponent(driveTitle16, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(driveTitle13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(driveTitle12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField34, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField33, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField36, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21))))
+                    .addComponent(projectManagerStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                    .addComponent(cashPenality)
+                    .addComponent(strikeCounter))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(driveTitle15, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(driveTitle15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(driveTitle12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(driveTitle13))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jTextField34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle12)
+                    .addComponent(projectManagerStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle13)
+                    .addComponent(strikeCounter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(driveTitle16)
-                    .addComponent(jTextField36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cashPenality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7))
         );
 
-        jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 460, 300, 120));
+        jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 340, 300, 120));
+
+        driveTitle.setFont(new java.awt.Font("Montserrat", 1, 24)); // NOI18N
+        driveTitle.setForeground(new java.awt.Color(51, 51, 51));
+        driveTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        driveTitle.setText("Último Lote");
+        jPanel1.add(driveTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 470, 300, -1));
+
+        jPanel9.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel9.setForeground(new java.awt.Color(51, 51, 51));
+
+        driveTitle7.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle7.setForeground(new java.awt.Color(204, 204, 204));
+        driveTitle7.setText("Capítulos plotTwist:");
+        driveTitle7.setFocusable(false);
+
+        plotTwistChapters1.setBackground(new java.awt.Color(51, 51, 51));
+        plotTwistChapters1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        plotTwistChapters1.setForeground(new java.awt.Color(255, 255, 255));
+        plotTwistChapters1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        plotTwistChapters1.setText("0");
+        plotTwistChapters1.setBorder(null);
+        plotTwistChapters1.setFocusable(false);
+        plotTwistChapters1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                plotTwistChapters1ActionPerformed(evt);
+            }
+        });
+
+        standardChaptes1.setBackground(new java.awt.Color(51, 51, 51));
+        standardChaptes1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        standardChaptes1.setForeground(new java.awt.Color(255, 255, 255));
+        standardChaptes1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        standardChaptes1.setText("0");
+        standardChaptes1.setBorder(null);
+        standardChaptes1.setFocusable(false);
+        standardChaptes1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                standardChaptes1ActionPerformed(evt);
+            }
+        });
+
+        driveTitle22.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle22.setForeground(new java.awt.Color(204, 204, 204));
+        driveTitle22.setText("Capítulos normales:");
+        driveTitle22.setFocusable(false);
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(driveTitle7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(driveTitle22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(standardChaptes1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(plotTwistChapters1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(standardChaptes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(driveTitle22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle7)
+                    .addComponent(plotTwistChapters1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 510, 300, -1));
+
+        jPanel10.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel10.setForeground(new java.awt.Color(51, 51, 51));
+
+        directorStatus1.setBackground(new java.awt.Color(51, 51, 51));
+        directorStatus1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        directorStatus1.setForeground(new java.awt.Color(255, 255, 255));
+        directorStatus1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        directorStatus1.setText("0");
+        directorStatus1.setBorder(null);
+        directorStatus1.setFocusable(false);
+        directorStatus1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                directorStatus1ActionPerformed(evt);
+            }
+        });
+
+        driveTitle24.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        driveTitle24.setForeground(new java.awt.Color(204, 204, 204));
+        driveTitle24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        driveTitle24.setText("Ganancia Total");
+        driveTitle24.setFocusable(false);
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(driveTitle24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(directorStatus1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(driveTitle24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(directorStatus1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+        );
+
+        jPanel1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 200, 300, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1708,66 +2080,6 @@ public class Nickelodeon extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void plotTwistValuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plotTwistValuesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_plotTwistValuesActionPerformed
-
-    private void decreacePlotTwistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreacePlotTwistActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_decreacePlotTwistActionPerformed
-
-    private void increasePlotTwistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increasePlotTwistActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_increasePlotTwistActionPerformed
-
-    private void dubbingValuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dubbingValuesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dubbingValuesActionPerformed
-
-    private void increaseDubbingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseDubbingActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_increaseDubbingActionPerformed
-
-    private void decreaseDubbingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseDubbingActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_decreaseDubbingActionPerformed
-
-    private void decreaseAnimationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseAnimationActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_decreaseAnimationActionPerformed
-
-    private void increaseAnimationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseAnimationActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_increaseAnimationActionPerformed
-
-    private void animationValuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animationValuesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_animationValuesActionPerformed
-
-    private void decreaseScenaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseScenaryActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_decreaseScenaryActionPerformed
-
-    private void increaseScenaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseScenaryActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_increaseScenaryActionPerformed
-
-    private void scenaryValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scenaryValueActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_scenaryValueActionPerformed
-
-    private void scriptsValuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scriptsValuesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_scriptsValuesActionPerformed
-
-    private void increaseScriptsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseScriptsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_increaseScriptsActionPerformed
-
-    private void decreaseScriptsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseScriptsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_decreaseScriptsActionPerformed
 
     private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
         // TODO add your handling code here:
@@ -1862,138 +2174,6 @@ public class Nickelodeon extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jLabel5MouseClicked
 
-    private void jTextField24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField24ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField24ActionPerformed
-
-    private void jTextField25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField25ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField25ActionPerformed
-
-    private void jTextField26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField26ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField26ActionPerformed
-
-    private void jTextField27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField27ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField27ActionPerformed
-
-    private void jTextField28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField28ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField28ActionPerformed
-
-    private void jTextField29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField29ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField29ActionPerformed
-
-    private void jTextField30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField30ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField30ActionPerformed
-
-    private void jTextField31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField31ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField31ActionPerformed
-
-    private void jTextField32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField32ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField32ActionPerformed
-
-    private void jTextField33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField33ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField33ActionPerformed
-
-    private void jTextField34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField34ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField34ActionPerformed
-
-    private void jTextField35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField35ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField35ActionPerformed
-
-    private void jTextField36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField36ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField36ActionPerformed
-
-    private void jTextField37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField37ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField37ActionPerformed
-
-    private void jTextField38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField38ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField38ActionPerformed
-
-    private void jTextField39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField39ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField39ActionPerformed
-
-    private void increaseScriptsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseScriptsMouseClicked
-        // TODO add your handling code here:
-        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
-        this.scriptsValues.setText(increaseQuantity(this.scriptsValues.getText()));
-
-    }//GEN-LAST:event_increaseScriptsMouseClicked
-
-    private void increaseScenaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseScenaryMouseClicked
-        // TODO add your handling code here:
-        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
-        this.scenaryValue.setText(increaseQuantity(this.scenaryValue.getText()));
-
-    }//GEN-LAST:event_increaseScenaryMouseClicked
-
-    private void increaseAnimationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseAnimationMouseClicked
-        // TODO add your handling code here:
-        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
-        this.animationValues.setText(increaseQuantity(this.animationValues.getText()));
-    }//GEN-LAST:event_increaseAnimationMouseClicked
-
-    private void increaseDubbingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseDubbingMouseClicked
-        // TODO add your handling code here:
-        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
-        this.dubbingValues.setText(increaseQuantity(this.dubbingValues.getText()));
-
-    }//GEN-LAST:event_increaseDubbingMouseClicked
-
-    private void increasePlotTwistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increasePlotTwistMouseClicked
-        // TODO add your handling code here:
-        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
-        this.plotTwistValues.setText(increaseQuantity(this.plotTwistValues.getText()));
-    }//GEN-LAST:event_increasePlotTwistMouseClicked
-
-    private void decreacePlotTwistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreacePlotTwistMouseClicked
-        // TODO add your handling code here:
-        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
-        this.plotTwistValues.setText(decreaseQuantity(this.plotTwistValues.getText()));
-
-    }//GEN-LAST:event_decreacePlotTwistMouseClicked
-
-    private void decreaseDubbingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseDubbingMouseClicked
-        // TODO add your handling code here:
-        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
-        this.dubbingValues.setText(decreaseQuantity(this.dubbingValues.getText()));
-
-    }//GEN-LAST:event_decreaseDubbingMouseClicked
-
-    private void decreaseAnimationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseAnimationMouseClicked
-        // TODO add your handling code here:
-        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
-        this.animationValues.setText(decreaseQuantity(this.animationValues.getText()));
-
-    }//GEN-LAST:event_decreaseAnimationMouseClicked
-
-    private void decreaseScenaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseScenaryMouseClicked
-        // TODO add your handling code here:
-        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
-        this.scenaryValue.setText(decreaseQuantity(this.scenaryValue.getText()));
-
-    }//GEN-LAST:event_decreaseScenaryMouseClicked
-
-    private void decreaseScriptsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseScriptsMouseClicked
-        // TODO add your handling code here:
-        cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
-        this.scriptsValues.setText(decreaseQuantity(this.scriptsValues.getText()));
-
-    }//GEN-LAST:event_decreaseScriptsMouseClicked
-
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
         Home v1 = new Home();
@@ -2007,6 +2187,214 @@ public class Nickelodeon extends javax.swing.JFrame {
         v1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_InicioMouseClicked
+
+    private void increaseScriptsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseScriptsMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_increaseScriptsMouseClicked
+
+    private void increaseScriptsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseScriptsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_increaseScriptsActionPerformed
+
+    private void scriptsValuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scriptsValuesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_scriptsValuesActionPerformed
+
+    private void decreaseScriptsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseScriptsMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_decreaseScriptsMouseClicked
+
+    private void decreaseScriptsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseScriptsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_decreaseScriptsActionPerformed
+
+    private void scenaryValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scenaryValueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_scenaryValueActionPerformed
+
+    private void increaseScenaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseScenaryMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_increaseScenaryMouseClicked
+
+    private void increaseScenaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseScenaryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_increaseScenaryActionPerformed
+
+    private void decreaseScenaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseScenaryMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_decreaseScenaryMouseClicked
+
+    private void decreaseScenaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseScenaryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_decreaseScenaryActionPerformed
+
+    private void animationValuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animationValuesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_animationValuesActionPerformed
+
+    private void decreaseAnimationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseAnimationMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_decreaseAnimationMouseClicked
+
+    private void decreaseAnimationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseAnimationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_decreaseAnimationActionPerformed
+
+    private void increaseAnimationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseAnimationMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_increaseAnimationMouseClicked
+
+    private void increaseAnimationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseAnimationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_increaseAnimationActionPerformed
+
+    private void decreaseDubbingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseDubbingMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_decreaseDubbingMouseClicked
+
+    private void decreaseDubbingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseDubbingActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_decreaseDubbingActionPerformed
+
+    private void dubbingValuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dubbingValuesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dubbingValuesActionPerformed
+
+    private void increaseDubbingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseDubbingMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_increaseDubbingMouseClicked
+
+    private void increaseDubbingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseDubbingActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_increaseDubbingActionPerformed
+
+    private void increasePlotTwistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increasePlotTwistMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_increasePlotTwistMouseClicked
+
+    private void increasePlotTwistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increasePlotTwistActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_increasePlotTwistActionPerformed
+
+    private void plotTwistValuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plotTwistValuesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_plotTwistValuesActionPerformed
+
+    private void decreacePlotTwistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreacePlotTwistMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_decreacePlotTwistMouseClicked
+
+    private void decreacePlotTwistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreacePlotTwistActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_decreacePlotTwistActionPerformed
+
+    private void increaseAssemblerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseAssemblerMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_increaseAssemblerMouseClicked
+
+    private void increaseAssemblerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseAssemblerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_increaseAssemblerActionPerformed
+
+    private void assemblerValuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assemblerValuesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_assemblerValuesActionPerformed
+
+    private void decreaceAssemblerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaceAssemblerMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_decreaceAssemblerMouseClicked
+
+    private void decreaceAssemblerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaceAssemblerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_decreaceAssemblerActionPerformed
+
+    private void scriptDriveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scriptDriveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_scriptDriveActionPerformed
+
+    private void scenaryDriveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scenaryDriveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_scenaryDriveActionPerformed
+
+    private void animationDriveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animationDriveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_animationDriveActionPerformed
+
+    private void dubbingDriveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dubbingDriveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dubbingDriveActionPerformed
+
+    private void plotTwistDriveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plotTwistDriveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_plotTwistDriveActionPerformed
+
+    private void assemblerDriveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assemblerDriveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_assemblerDriveActionPerformed
+
+    private void costActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_costActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_costActionPerformed
+
+    private void earningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_earningActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_earningActionPerformed
+
+    private void profitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_profitActionPerformed
+
+    private void directorStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_directorStatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_directorStatusActionPerformed
+
+    private void projectManagerStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectManagerStatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_projectManagerStatusActionPerformed
+
+    private void strikeCounterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_strikeCounterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_strikeCounterActionPerformed
+
+    private void cashPenalityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashPenalityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cashPenalityActionPerformed
+
+    private void plotTwistChapters1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plotTwistChapters1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_plotTwistChapters1ActionPerformed
+
+    private void standardChaptes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_standardChaptes1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_standardChaptes1ActionPerformed
+
+    private void directorStatus1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_directorStatus1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_directorStatus1ActionPerformed
+
+    private void currentDaysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentDaysActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_currentDaysActionPerformed
+
+    private void remainingDaysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remainingDaysActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_remainingDaysActionPerformed
+
+    private void totalDaysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalDaysActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalDaysActionPerformed
+
+    private void plotTwistChaptersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plotTwistChaptersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_plotTwistChaptersActionPerformed
+
+    private void standardChaptersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_standardChaptersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_standardChaptersActionPerformed
+
+    private void totalChaptersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalChaptersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalChaptersActionPerformed
 
     private String increaseQuantity(String actualValue) {
         int intValue = 0;
@@ -2082,23 +2470,34 @@ public class Nickelodeon extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel SidePanel;
+    private javax.swing.JTextField animationDrive;
     private javax.swing.JTextField animationValues;
     private javax.swing.JPanel animations;
     private javax.swing.JPanel animations1;
     private javax.swing.JLabel animationsLimit1;
     private javax.swing.JLabel animationsTitle;
     private javax.swing.JLabel animationsTitle1;
+    private javax.swing.JTextField assemblerDrive;
+    private javax.swing.JLabel assemblerTitle;
+    private javax.swing.JLabel assemblerTitle1;
+    private javax.swing.JTextField assemblerValues;
     private javax.swing.JPanel btn_Inicio;
     private javax.swing.JPanel btn_cargar_guardar;
     private javax.swing.JPanel btn_nueva_ruta;
     private javax.swing.JPanel btn_nuevo_almacen;
     private javax.swing.JPanel btn_nuevo_pedido;
     private javax.swing.JPanel btn_reporte;
+    private javax.swing.JTextField cashPenality;
+    private javax.swing.JTextField cost;
+    private javax.swing.JTextField currentDays;
+    private javax.swing.JButton decreaceAssembler;
     private javax.swing.JButton decreacePlotTwist;
     private javax.swing.JButton decreaseAnimation;
     private javax.swing.JButton decreaseDubbing;
     private javax.swing.JButton decreaseScenary;
     private javax.swing.JButton decreaseScripts;
+    private javax.swing.JTextField directorStatus;
+    private javax.swing.JTextField directorStatus1;
     private javax.swing.JPanel drivePanel;
     private javax.swing.JLabel driveTitle;
     private javax.swing.JLabel driveTitle1;
@@ -2114,6 +2513,11 @@ public class Nickelodeon extends javax.swing.JFrame {
     private javax.swing.JLabel driveTitle19;
     private javax.swing.JLabel driveTitle2;
     private javax.swing.JLabel driveTitle20;
+    private javax.swing.JLabel driveTitle21;
+    private javax.swing.JLabel driveTitle22;
+    private javax.swing.JLabel driveTitle23;
+    private javax.swing.JLabel driveTitle24;
+    private javax.swing.JLabel driveTitle25;
     private javax.swing.JLabel driveTitle3;
     private javax.swing.JLabel driveTitle4;
     private javax.swing.JLabel driveTitle5;
@@ -2123,10 +2527,12 @@ public class Nickelodeon extends javax.swing.JFrame {
     private javax.swing.JLabel driveTitle9;
     private javax.swing.JPanel dubbing;
     private javax.swing.JPanel dubbing1;
+    private javax.swing.JTextField dubbingDrive;
     private javax.swing.JLabel dubbingLimit1;
     private javax.swing.JLabel dubbingTitle;
     private javax.swing.JLabel dubbingTitle1;
     private javax.swing.JTextField dubbingValues;
+    private javax.swing.JTextField earning;
     private javax.swing.JLabel exit;
     private javax.swing.JLabel icono1;
     private javax.swing.JLabel icono3;
@@ -2134,6 +2540,7 @@ public class Nickelodeon extends javax.swing.JFrame {
     private javax.swing.JLabel icono5;
     private javax.swing.JLabel icono7;
     private javax.swing.JButton increaseAnimation;
+    private javax.swing.JButton increaseAssembler;
     private javax.swing.JButton increaseDubbing;
     private javax.swing.JButton increasePlotTwist;
     private javax.swing.JButton increaseScenary;
@@ -2149,6 +2556,7 @@ public class Nickelodeon extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -2156,43 +2564,44 @@ public class Nickelodeon extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField24;
-    private javax.swing.JTextField jTextField25;
-    private javax.swing.JTextField jTextField26;
-    private javax.swing.JTextField jTextField27;
-    private javax.swing.JTextField jTextField28;
-    private javax.swing.JTextField jTextField29;
-    private javax.swing.JTextField jTextField30;
-    private javax.swing.JTextField jTextField31;
-    private javax.swing.JTextField jTextField32;
-    private javax.swing.JTextField jTextField33;
-    private javax.swing.JTextField jTextField34;
-    private javax.swing.JTextField jTextField35;
-    private javax.swing.JTextField jTextField36;
-    private javax.swing.JTextField jTextField37;
-    private javax.swing.JTextField jTextField38;
-    private javax.swing.JTextField jTextField39;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JPanel plotTwist;
     private javax.swing.JPanel plotTwist1;
+    private javax.swing.JPanel plotTwist2;
+    private javax.swing.JPanel plotTwist4;
+    private javax.swing.JTextField plotTwistChapters;
+    private javax.swing.JTextField plotTwistChapters1;
+    private javax.swing.JTextField plotTwistDrive;
     private javax.swing.JLabel plotTwistLimit1;
+    private javax.swing.JLabel plotTwistLimit3;
     private javax.swing.JLabel plotTwistTitle;
     private javax.swing.JLabel plotTwistTitle1;
     private javax.swing.JTextField plotTwistValues;
+    private javax.swing.JTextField profit;
+    private javax.swing.JTextField projectManagerStatus;
+    private javax.swing.JTextField remainingDays;
     private javax.swing.JPanel scenary;
     private javax.swing.JPanel scenary1;
+    private javax.swing.JTextField scenaryDrive;
     private javax.swing.JLabel scenaryLimit1;
     private javax.swing.JLabel scenaryTitle;
     private javax.swing.JLabel scenaryTitle1;
     private javax.swing.JTextField scenaryValue;
+    private javax.swing.JTextField scriptDrive;
     private javax.swing.JLabel scriptTitle1;
     private javax.swing.JPanel scripts;
     private javax.swing.JPanel scripts1;
     private javax.swing.JLabel scriptsLimit1;
     private javax.swing.JLabel scriptsTitle;
     private javax.swing.JTextField scriptsValues;
+    private javax.swing.JTextField standardChapters;
+    private javax.swing.JTextField standardChaptes1;
+    private javax.swing.JTextField strikeCounter;
+    private javax.swing.JTextField totalChapters;
+    private javax.swing.JTextField totalDays;
     private javax.swing.JPanel workersConfigurations;
     // End of variables declaration//GEN-END:variables
 }
