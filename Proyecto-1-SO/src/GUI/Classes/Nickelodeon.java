@@ -28,8 +28,6 @@ public class Nickelodeon extends javax.swing.JFrame {
     private int maxEmployees;
     private int actualEmployees;
     private static Nickelodeon nickelodeon;
-    private static CartoonNetwork cartoonNetwork = CartoonNetwork.getInstance();
-    private final ConfigParams config = ConfigParams.getInstance();
 
     public static synchronized Nickelodeon getInstance() {
         if (nickelodeon == null) {
@@ -490,7 +488,7 @@ public class Nickelodeon extends javax.swing.JFrame {
         SidePanel.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 220, 26));
         SidePanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 280, 80));
 
-        jPanel1.add(SidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 720));
+        jPanel1.add(SidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 730));
 
         jPanel2.setBackground(new java.awt.Color(34, 46, 60));
 
@@ -1705,9 +1703,7 @@ public class Nickelodeon extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -1819,19 +1815,16 @@ public class Nickelodeon extends javax.swing.JFrame {
 
     private void btn_nuevo_almacenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_almacenMouseClicked
         // TODO add your handling code here:
-        config.setVisible(true);
-        config.setLocationRelativeTo(null);
-        config.setResizable(false);
+        ConfigParams v2 = new ConfigParams();
+        v2.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_nuevo_almacenMouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
-        config.setVisible(true);
-        config.setLocationRelativeTo(null);
-        config.setResizable(false);
+        ConfigParams v2 = new ConfigParams();
+        v2.setVisible(true);
         this.setVisible(false);
-
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void icono4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono4MouseClicked
@@ -1841,19 +1834,15 @@ public class Nickelodeon extends javax.swing.JFrame {
 
     private void btn_nueva_rutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nueva_rutaMouseClicked
         // TODO add your handling code here:
-        cartoonNetwork.setVisible(true);
-        cartoonNetwork.setLocationRelativeTo(null);
-        cartoonNetwork.setResizable(false);
-        cartoonPlayMusic("/GUI/Assets/cartoonNetworkTheme.wav");
+        CartoonNetwork v3 = new CartoonNetwork();
+        v3.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_nueva_rutaMouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
-        cartoonNetwork.setVisible(true);
-        cartoonNetwork.setLocationRelativeTo(null);
-        cartoonNetwork.setResizable(false);
-        cartoonPlayMusic("/GUI/Assets/cartoonNetworkTheme.wav");
+        CartoonNetwork v3 = new CartoonNetwork();
+        v3.setVisible(true);
         this.setVisible(false);
 
     }//GEN-LAST:event_jLabel6MouseClicked

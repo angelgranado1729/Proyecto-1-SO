@@ -22,9 +22,6 @@ public class Home extends javax.swing.JFrame {
 
     private Point initialClick;
     private final App app = App.getInstance();
-    private final CartoonNetwork cartoonNetwork = CartoonNetwork.getInstance();
-    private final Nickelodeon nickelodeon = Nickelodeon.getInstance();
-    private final ConfigParams config = ConfigParams.getInstance();
 
     /**
      * Creates new form Home
@@ -35,7 +32,6 @@ public class Home extends javax.swing.JFrame {
         this.setResizable(false);
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -437,10 +433,8 @@ public class Home extends javax.swing.JFrame {
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
-        cartoonNetwork.setVisible(true);
-        cartoonNetwork.setLocationRelativeTo(null);
-        cartoonNetwork.setResizable(false);
-        cartoonPlayMusic("/GUI/Assets/cartoonNetworkTheme.wav");
+        CartoonNetwork v2 = new CartoonNetwork();
+        v2.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel6MouseClicked
 
@@ -457,7 +451,9 @@ public class Home extends javax.swing.JFrame {
     }
     private void btn_nueva_rutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nueva_rutaMouseClicked
         // TODO add your handling code here:
-
+        CartoonNetwork v2 = new CartoonNetwork();
+        v2.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btn_nueva_rutaMouseClicked
 
     private void icono4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono4MouseClicked
@@ -467,17 +463,15 @@ public class Home extends javax.swing.JFrame {
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
-        config.setVisible(true);
-        config.setLocationRelativeTo(null);
-        config.setResizable(false);
+        ConfigParams v3 = new ConfigParams();
+        v3.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void btn_nuevo_almacenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_almacenMouseClicked
         // TODO add your handling code here:
-        config.setVisible(true);
-        config.setLocationRelativeTo(null);
-        config.setResizable(false);
+        ConfigParams v3 = new ConfigParams();
+        v3.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_nuevo_almacenMouseClicked
 
@@ -488,16 +482,16 @@ public class Home extends javax.swing.JFrame {
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
-        nickelodeon.setVisible(true);
-        nickelodeon.setLocationRelativeTo(null);
-        nickelodeon.setResizable(false);
-        cartoonPlayMusic("/GUI/Assets/nickelodeonTheme.wav");
+        Nickelodeon v1 = new Nickelodeon();
+        v1.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void btn_cargar_guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cargar_guardarMouseClicked
         // TODO add your handling code here:
-
+        Nickelodeon v1 = new Nickelodeon();
+        v1.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btn_cargar_guardarMouseClicked
 
     private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged

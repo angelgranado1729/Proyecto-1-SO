@@ -1,11 +1,11 @@
 [General Params]
-DayDuration=1000
-Deadline=2
+DayDuration=3000
+Deadline=4
 
 [Nickelodeon]
 Screenwriters=1
 SetDesigners=1
-CharacterAnimators=1
+CharacterAnimators=3
 VoiceActors=1
 PlotTwistScriptwriters=1
 Assemblers=1
@@ -15,11 +15,11 @@ MaxCapacity=15
 
 [CartoonNetwork]
 Screenwriters=1
-SetDesigners=1
-CharacterAnimators=1
+SetDesigners=2
+CharacterAnimators=2
 VoiceActors=1
 PlotTwistScriptwriters=1
-Assemblers=1
+Assemblers=3
 ProjectManager=1
 Director=1
 MaxCapacity=18
