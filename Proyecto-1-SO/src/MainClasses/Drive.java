@@ -129,8 +129,7 @@ public class Drive {
     }
 
     public void resetChapters() {
-        this.standarChapters = 0;
-        this.plotTwistChapters = 0;
+        this.getSections()[5] = 0;
     }
 
 }
