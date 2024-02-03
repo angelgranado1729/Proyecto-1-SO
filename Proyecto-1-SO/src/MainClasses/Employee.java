@@ -98,7 +98,7 @@ public class Employee extends Thread {
                     this.createChapter();
                 }
 
-                this.setTotalWork(this.getTotalWork() - workToUpload);
+                this.setTotalWork(Math.max(0, this.getTotalWork() - workToUpload));
                 this.getMutex().release();
             } catch (InterruptedException ex) {
                 Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
@@ -125,54 +125,48 @@ public class Employee extends Thread {
         // si es plottwist
         boolean isNextPlotTwist = (tv.getNumChapters() != 0 && ((tv.getNumChapters()) % ImportantConstants.plotTwistFreq[this.company]) == 0);
 
-        
         if (isNextPlotTwist) {
             // Verifica si NO hay para hacer un plottwist
             if (tv.getDrive().getSections()[4] < ImportantConstants.chaptersComposition[this.company][4]) {
                 return false;
             }
         }
-
         return true;
     }
 
     private void createChapter() {
-    TelevisionNetwork tv;
-    if (this.company == 0) {
-        tv = app.getNickelodeon();
-    } else {
-        tv = app.getCartoonNetwork();
-    }
-
-    // Evaluar si el siguiente capítulo debe ser un plot twist antes de incrementar numChapters
-    boolean isNextPlotTwist = (tv.getNumChapters() != 0 && ((tv.getNumChapters()) % ImportantConstants.plotTwistFreq[this.company]) == 0);
-
-    if (this.evaluateAssemble()) {
-        //Capitulo regular
-        for (int i = 0; i < tv.getDrive().getSections().length - 2; i++) {
-            tv.getDrive().getSections()[i] = Math.max(0, tv.getDrive().getSections()[i] - ImportantConstants.chaptersComposition[this.company][i]);
-            if (tv.getDrive().getSections()[i] < 0) {
-                System.out.println("\nERROR, VALOR NEGATIVO primer flag!!!! :  " + i + "------> " + tv.getDrive().getSections()[i]);
-            }
-        }
-
-        // Si el siguiente es con plot twist
-        if (isNextPlotTwist) {
-            tv.getDrive().getSections()[4] = Math.max(0, tv.getDrive().getSections()[4] - ImportantConstants.chaptersComposition[this.company][4]);
-            tv.setNumChaptersWithPlotTwist(tv.getNumChaptersWithPlotTwist() + 1);
+        TelevisionNetwork tv;
+        if (this.company == 0) {
+            tv = app.getNickelodeon();
         } else {
-            tv.setNumNormalChapters(tv.getNumNormalChapters() + 1);
+            tv = app.getCartoonNetwork();
         }
 
-        // Incrementa el número de capítulos
-        tv.setNumChapters(tv.getNumChapters() + 1);
-        this.getDriveRef().getSections()[5] += 1;
+        if (this.evaluateAssemble()) {
+            // Evaluar si el siguiente capítulo debe ser un plot twist antes de incrementar numChapters
+            boolean isNextPlotTwist = (tv.getNumChapters() != 0 && ((tv.getNumChapters()) % ImportantConstants.plotTwistFreq[this.company]) == 0);
 
-    } else {
-        this.setTotalWork(0);
+           //Capitulo regular
+            for (int i = 0; i < tv.getDrive().getSections().length - 2; i++) {
+                tv.getDrive().getSections()[i] = Math.max(0, tv.getDrive().getSections()[i] - ImportantConstants.chaptersComposition[this.company][i]);
+            }
+
+            // Si el siguiente es con plot twist
+            if (isNextPlotTwist) {
+                tv.getDrive().getSections()[4] = Math.max(0, tv.getDrive().getSections()[4] - ImportantConstants.chaptersComposition[this.company][4]);
+                tv.setNumChaptersWithPlotTwist(tv.getNumChaptersWithPlotTwist() + 1);
+            } else {
+                tv.setNumNormalChapters(tv.getNumNormalChapters() + 1);
+            }
+
+            // Incrementa el número de capítulos
+            tv.setNumChapters(tv.getNumChapters() + 1);
+            this.getDriveRef().getSections()[5] += 1;
+
+        } else {
+            this.setTotalWork(0);
+        }
     }
-}
-
 
     @Override
     public String toString() {

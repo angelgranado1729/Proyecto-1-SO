@@ -164,6 +164,8 @@ public class HelpersFunctions {
                 return network.getVoiceActors();
             case 4:
                 return network.getPlotTwistScreenwriters();
+            case 5:
+                return network.getAssemblers();
             default:
                 return null;
         }

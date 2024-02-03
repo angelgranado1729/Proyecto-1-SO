@@ -1661,7 +1661,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="decreaceAssembler" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="AssemblerValues" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="assemblerValues" min="-2" pref="20" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="increaseAssembler" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
@@ -1674,7 +1674,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="increaseAssembler" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="AssemblerValues" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="assemblerValues" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="decreaceAssembler" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="assemblerTitle" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                           </Group>
@@ -1713,7 +1713,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="increaseAssemblerActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JTextField" name="AssemblerValues">
+                <Component class="javax.swing.JTextField" name="assemblerValues">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
@@ -1731,7 +1731,7 @@
                     <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AssemblerValuesActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="assemblerValuesActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="decreaceAssembler">

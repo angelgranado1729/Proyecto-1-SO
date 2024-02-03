@@ -107,6 +107,7 @@ public class TelevisionNetwork {
         totalEmployees += countNonNull(characterAnimators);
         totalEmployees += countNonNull(voiceActors);
         totalEmployees += countNonNull(plotTwistScreenwriters);
+        totalEmployees += countNonNull(Assemblers);
 
         this.setActualEmployeesQuantity(totalEmployees);
     }
