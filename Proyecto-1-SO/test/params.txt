@@ -14,12 +14,12 @@ Director=1
 MaxCapacity=15
 
 [CartoonNetwork]
-Screenwriters=2
-SetDesigners=2
-CharacterAnimators=4
+Screenwriters=1
+SetDesigners=1
+CharacterAnimators=1
 VoiceActors=1
 PlotTwistScriptwriters=1
-Assemblers=3
+Assemblers=1
 ProjectManager=1
 Director=1
 MaxCapacity=18
