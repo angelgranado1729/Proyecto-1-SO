@@ -4,10 +4,12 @@
  */
 package GUI.Classes;
 
+import FileFunctions.FileFunctions;
+import Helpers.HelpersFunctions;
+import MainClasses.Employee;
 import MainPackage.App;
-import static MainPackage.App.getApp;
-import static MainPackage.App.setApp;
 import java.awt.Point;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import javax.sound.sampled.AudioInputStream;
@@ -15,6 +17,9 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 /**
@@ -28,6 +33,57 @@ public class Nickelodeon extends javax.swing.JFrame {
     private int maxEmployees;
     private int actualEmployees;
     private static Nickelodeon nickelodeon;
+    private HelpersFunctions helper = new HelpersFunctions();
+    private FileFunctions filefunctions = new FileFunctions();
+    private File selectedFile = app.getSelectedFile();
+
+    private JButton[] decreaseBtn = new JButton[6];
+    private JButton[] increaseBtn = new JButton[6];
+
+    private int[] values = {
+        countNonNullEmployees(this.app.getNickelodeon().getScreenwriters()),
+        countNonNullEmployees(this.app.getNickelodeon().getSetDesigners()),
+        countNonNullEmployees(this.app.getNickelodeon().getCharacterAnimators()),
+        countNonNullEmployees(this.app.getNickelodeon().getVoiceActors()),
+        countNonNullEmployees(this.app.getNickelodeon().getPlotTwistScreenwriters()),
+        countNonNullEmployees(this.app.getNickelodeon().getAssemblers())
+    };
+
+    private void updateBtnStatus() {
+        updateValues();
+
+        if (this.actualEmployees == this.maxEmployees) {
+            for (JButton btn : increaseBtn) {
+                btn.setEnabled(false);
+                btn.setFocusable(false);
+            }
+        } else {
+            for (JButton btn : increaseBtn) {
+                btn.setEnabled(true);
+                btn.setFocusable(true);
+            }
+        }
+
+        for (int i = 0; i < this.values.length; i++) {
+            if (this.values[i] == 1) {
+                this.decreaseBtn[i].setEnabled(false);
+                this.decreaseBtn[i].setFocusable(false);
+            } else {
+                this.decreaseBtn[i].setEnabled(true);
+                this.decreaseBtn[i].setFocusable(true);
+
+            }
+        }
+    }
+
+    private void updateValues() {
+        values[0] = countNonNullEmployees(this.app.getNickelodeon().getScreenwriters());
+        values[1] = countNonNullEmployees(this.app.getNickelodeon().getSetDesigners());
+        values[2] = countNonNullEmployees(this.app.getNickelodeon().getCharacterAnimators());
+        values[3] = countNonNullEmployees(this.app.getNickelodeon().getVoiceActors());
+        values[4] = countNonNullEmployees(this.app.getNickelodeon().getPlotTwistScreenwriters());
+        values[5] = countNonNullEmployees(this.app.getNickelodeon().getAssemblers());
+    }
 
     public static synchronized Nickelodeon getInstance() {
         if (nickelodeon == null) {
@@ -53,18 +109,114 @@ public class Nickelodeon extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         initializeValues();
+
+        this.decreaseBtn[0] = decreaseScripts;
+        this.decreaseBtn[1] = decreaseScenary;
+        this.decreaseBtn[2] = decreaseAnimation;
+        this.decreaseBtn[3] = decreaseDubbing;
+        this.decreaseBtn[4] = decreacePlotTwist;
+        this.decreaseBtn[5] = decreaceAssembler;
+
+        this.increaseBtn[0] = increaseScripts;
+        this.increaseBtn[1] = increaseScenary;
+        this.increaseBtn[2] = increaseAnimation;
+        this.increaseBtn[3] = increaseDubbing;
+        this.increaseBtn[4] = increasePlotTwist;
+        this.increaseBtn[5] = increaseAssembler;
+
+        updateBtnStatus();
+        this.start();
+    }
+
+    private void start() {
+        // Crear un nuevo hilo para el bucle infinito
+        Thread updateThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        // Ejecutar las actualizaciones de la UI en el EDT
+                        SwingUtilities.invokeLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                // Aquí van tus actualizaciones de la UI
+                                scriptDrive
+                                        .setText(String.valueOf(app.getNickelodeon().getDrive().getSections()[0]));
+                                scenaryDrive
+                                        .setText(String.valueOf(app.getNickelodeon().getDrive().getSections()[1]));
+                                animationDrive
+                                        .setText(String.valueOf(app.getNickelodeon().getDrive().getSections()[2]));
+                                dubbingDrive
+                                        .setText(String.valueOf(app.getNickelodeon().getDrive().getSections()[3]));
+                                plotTwistDrive
+                                        .setText(String.valueOf(app.getNickelodeon().getDrive().getSections()[4]));
+                                assemblerDrive
+                                        .setText(String.valueOf(app.getNickelodeon().getDrive().getSections()[5]));
+
+                                projectManagerStatus
+                                        .setText(app.getNickelodeon().getProjectManagerInstance().getCurrentState());
+                                remainingDays.setText(String.valueOf(app.getNickelodeon().getRemainingDays()));
+                                currentDays.setText(
+                                        String.valueOf(app.getDeadline() - app.getNickelodeon().getRemainingDays()));
+                                strikeCounter.setText(String
+                                        .valueOf(app.getNickelodeon().getProjectManagerInstance().getStrikes()));
+                                cashPenality.setText(String.valueOf(Integer.parseInt(strikeCounter.getText()) * 100));
+                                directorStatus.setText(app.getNickelodeon().getDirectorInstance().getStatus());
+
+                                totalChapters.setText(
+                                        String.valueOf(app.getNickelodeon().getNumChapters()));
+                                standardChapters.setText(
+                                        String.valueOf(app.getNickelodeon().getNumNormalChapters()));
+
+                                plotTwistChapters.setText(
+                                        String.valueOf(app.getNickelodeon().getNumChaptersWithPlotTwist()));
+
+                            }
+                        });
+
+                        // Pausar el hilo separado, no el EDT
+                        Thread.sleep(app.getDayDuration() / 48);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                        // Opcionalmente, podrías salir del bucle si el hilo es interrumpido
+                        break;
+                    }
+                }
+            }
+        });
+
+        // Iniciar el hilo
+        updateThread.start();
     }
 
     private void initializeValues() {
-        if (this.app.getCartoonNetwork() != null) {
+        if (this.app.getNickelodeon() != null) {
             this.maxEmployees = this.app.getNickelodeon().getMaxEmployeesQuantity();
             this.actualEmployees = this.app.getNickelodeon().getActualEmployeesQuantity();
-            this.scriptsValues.setText(String.valueOf(this.app.getNickelodeon().getScreenwriters().length));
-            this.scenaryValue.setText(String.valueOf(this.app.getNickelodeon().getSetDesigners().length));
-            this.animationValues.setText(String.valueOf(this.app.getNickelodeon().getCharacterAnimators().length));
-            this.dubbingValues.setText(String.valueOf(this.app.getNickelodeon().getVoiceActors().length));
-            this.plotTwistValues.setText(String.valueOf(this.app.getNickelodeon().getPlotTwistScreenwriters().length));
+            this.scriptsValues
+                    .setText(String.valueOf(countNonNullEmployees(this.app.getNickelodeon().getScreenwriters())));
+            this.scenaryValue
+                    .setText(String.valueOf(countNonNullEmployees(this.app.getNickelodeon().getSetDesigners())));
+            this.animationValues.setText(
+                    String.valueOf(countNonNullEmployees(this.app.getNickelodeon().getCharacterAnimators())));
+            this.dubbingValues
+                    .setText(String.valueOf(countNonNullEmployees(this.app.getNickelodeon().getVoiceActors())));
+            this.plotTwistValues.setText(
+                    String.valueOf(countNonNullEmployees(this.app.getNickelodeon().getPlotTwistScreenwriters())));
+            this.assemblerValues
+                    .setText(String.valueOf(countNonNullEmployees(this.app.getNickelodeon().getAssemblers())));
+            this.maxCap.setText(String.valueOf(this.maxEmployees) + "     trabajadores");
         }
+    }
+
+    private int countNonNullEmployees(Employee[] employees) {
+        int count = 0;
+        for (Employee employee : employees) {
+            if (employee != null) {
+                count++;
+            }
+        }
+        return count;
     }
 
     private void cartoonPlayMusic(String path) {
@@ -114,7 +266,7 @@ public class Nickelodeon extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         exit = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         driveTitle6 = new javax.swing.JLabel();
         driveTitle8 = new javax.swing.JLabel();
@@ -166,6 +318,8 @@ public class Nickelodeon extends javax.swing.JFrame {
         assemblerValues = new javax.swing.JTextField();
         decreaceAssembler = new javax.swing.JButton();
         driveTitle21 = new javax.swing.JLabel();
+        maxCap = new javax.swing.JLabel();
+        driveTitle27 = new javax.swing.JLabel();
         drivePanel = new javax.swing.JPanel();
         driveTitle2 = new javax.swing.JLabel();
         driveTitle3 = new javax.swing.JLabel();
@@ -550,7 +704,7 @@ public class Nickelodeon extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Assets/nickelodeon2.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Assets/nickelodeon2.png"))); // NOI18N
 
         jPanel5.setBackground(new java.awt.Color(34, 46, 60));
         jPanel5.setForeground(new java.awt.Color(51, 51, 51));
@@ -796,9 +950,9 @@ public class Nickelodeon extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(275, 275, 275)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -810,10 +964,10 @@ public class Nickelodeon extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -902,6 +1056,7 @@ public class Nickelodeon extends javax.swing.JFrame {
 
         scenary.setBackground(java.awt.Color.lightGray);
         scenary.setForeground(new java.awt.Color(60, 63, 65));
+        scenary.setPreferredSize(new java.awt.Dimension(257, 44));
 
         scenaryTitle.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         scenaryTitle.setForeground(new java.awt.Color(51, 51, 51));
@@ -979,6 +1134,7 @@ public class Nickelodeon extends javax.swing.JFrame {
 
         animations.setBackground(java.awt.Color.lightGray);
         animations.setForeground(new java.awt.Color(255, 255, 255));
+        animations.setPreferredSize(new java.awt.Dimension(257, 44));
 
         animationsTitle.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         animationsTitle.setForeground(new java.awt.Color(51, 51, 51));
@@ -1055,6 +1211,7 @@ public class Nickelodeon extends javax.swing.JFrame {
 
         dubbing.setBackground(java.awt.Color.lightGray);
         dubbing.setForeground(new java.awt.Color(255, 255, 255));
+        dubbing.setPreferredSize(new java.awt.Dimension(257, 44));
 
         dubbingTitle.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         dubbingTitle.setForeground(new java.awt.Color(51, 51, 51));
@@ -1131,6 +1288,7 @@ public class Nickelodeon extends javax.swing.JFrame {
 
         plotTwist.setBackground(java.awt.Color.lightGray);
         plotTwist.setForeground(new java.awt.Color(255, 255, 255));
+        plotTwist.setPreferredSize(new java.awt.Dimension(257, 44));
 
         plotTwistTitle.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         plotTwistTitle.setForeground(new java.awt.Color(51, 51, 51));
@@ -1207,6 +1365,7 @@ public class Nickelodeon extends javax.swing.JFrame {
 
         plotTwist2.setBackground(java.awt.Color.lightGray);
         plotTwist2.setForeground(new java.awt.Color(255, 255, 255));
+        plotTwist2.setPreferredSize(new java.awt.Dimension(257, 44));
 
         assemblerTitle.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         assemblerTitle.setForeground(new java.awt.Color(51, 51, 51));
@@ -1286,22 +1445,35 @@ public class Nickelodeon extends javax.swing.JFrame {
         driveTitle21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         driveTitle21.setText("CONFIGURACIÓN");
 
+        maxCap.setFont(new java.awt.Font("Montserrat", 1, 19)); // NOI18N
+        maxCap.setForeground(new java.awt.Color(51, 51, 51));
+        maxCap.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        driveTitle27.setFont(new java.awt.Font("Montserrat", 1, 19)); // NOI18N
+        driveTitle27.setForeground(new java.awt.Color(51, 51, 51));
+        driveTitle27.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        driveTitle27.setText("Máximo:");
+
         javax.swing.GroupLayout workersConfigurationsLayout = new javax.swing.GroupLayout(workersConfigurations);
         workersConfigurations.setLayout(workersConfigurationsLayout);
         workersConfigurationsLayout.setHorizontalGroup(
             workersConfigurationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(driveTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(driveTitle21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, workersConfigurationsLayout.createSequentialGroup()
                 .addContainerGap(12, Short.MAX_VALUE)
                 .addGroup(workersConfigurationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(plotTwist2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(plotTwist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dubbing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(animations, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(scenary, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, workersConfigurationsLayout.createSequentialGroup()
+                        .addComponent(driveTitle27, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(maxCap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(plotTwist2, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                    .addComponent(plotTwist, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                    .addComponent(dubbing, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                    .addComponent(animations, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                    .addComponent(scenary, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
                     .addComponent(scripts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(15, 15, 15))
-            .addComponent(driveTitle21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         workersConfigurationsLayout.setVerticalGroup(
             workersConfigurationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1322,7 +1494,11 @@ public class Nickelodeon extends javax.swing.JFrame {
                 .addComponent(plotTwist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(plotTwist2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(workersConfigurationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(maxCap, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(driveTitle27, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jPanel1.add(workersConfigurations, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 300, 510));
@@ -1341,6 +1517,7 @@ public class Nickelodeon extends javax.swing.JFrame {
 
         scripts1.setBackground(java.awt.Color.lightGray);
         scripts1.setForeground(new java.awt.Color(60, 63, 65));
+        scripts1.setPreferredSize(new java.awt.Dimension(218, 44));
 
         scriptTitle1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         scriptTitle1.setForeground(new java.awt.Color(51, 51, 51));
@@ -1370,30 +1547,32 @@ public class Nickelodeon extends javax.swing.JFrame {
             scripts1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(scripts1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(scriptTitle1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                .addComponent(scriptDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scriptTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(scriptDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scriptsLimit1)
                 .addGap(16, 16, 16))
         );
         scripts1Layout.setVerticalGroup(
             scripts1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(scripts1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, scripts1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(scripts1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(scriptTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(scriptsLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                    .addComponent(scriptDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(scripts1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(scriptTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(scriptsLimit1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scriptDrive))
                 .addContainerGap())
         );
 
         scenary1.setBackground(java.awt.Color.lightGray);
         scenary1.setForeground(new java.awt.Color(60, 63, 65));
+        scenary1.setPreferredSize(new java.awt.Dimension(218, 44));
 
         scenaryTitle1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         scenaryTitle1.setForeground(new java.awt.Color(51, 51, 51));
         scenaryTitle1.setText("Escenerarios:");
+        scenaryTitle1.setPreferredSize(new java.awt.Dimension(70, 21));
 
         scenaryLimit1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         scenaryLimit1.setForeground(new java.awt.Color(51, 51, 51));
@@ -1419,9 +1598,9 @@ public class Nickelodeon extends javax.swing.JFrame {
             scenary1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(scenary1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(scenaryTitle1)
+                .addComponent(scenaryTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scenaryDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 45, Short.MAX_VALUE)
+                .addComponent(scenaryDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scenaryLimit1)
                 .addGap(15, 15, 15))
@@ -1430,19 +1609,21 @@ public class Nickelodeon extends javax.swing.JFrame {
             scenary1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(scenary1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(scenary1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(scenaryTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(scenaryLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(scenaryDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(scenary1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scenaryDrive)
+                    .addComponent(scenaryTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(scenaryLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         animations1.setBackground(java.awt.Color.lightGray);
         animations1.setForeground(new java.awt.Color(60, 63, 65));
+        animations1.setPreferredSize(new java.awt.Dimension(218, 44));
 
         animationsTitle1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         animationsTitle1.setForeground(new java.awt.Color(51, 51, 51));
         animationsTitle1.setText("Animación:");
+        animationsTitle1.setPreferredSize(new java.awt.Dimension(70, 21));
 
         animationsLimit1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         animationsLimit1.setForeground(new java.awt.Color(51, 51, 51));
@@ -1468,9 +1649,9 @@ public class Nickelodeon extends javax.swing.JFrame {
             animations1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(animations1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(animationsTitle1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(animationDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(animationsTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(animationDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(animationsLimit1)
                 .addGap(14, 14, 14))
@@ -1479,19 +1660,21 @@ public class Nickelodeon extends javax.swing.JFrame {
             animations1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(animations1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(animations1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(animations1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(animationDrive, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                     .addComponent(animationsTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(animationsLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                    .addComponent(animationDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(animationsLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         dubbing1.setBackground(java.awt.Color.lightGray);
         dubbing1.setForeground(new java.awt.Color(60, 63, 65));
+        dubbing1.setPreferredSize(new java.awt.Dimension(218, 44));
 
         dubbingTitle1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         dubbingTitle1.setForeground(new java.awt.Color(51, 51, 51));
         dubbingTitle1.setText("Doblaje:");
+        dubbingTitle1.setPreferredSize(new java.awt.Dimension(70, 21));
 
         dubbingLimit1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         dubbingLimit1.setForeground(new java.awt.Color(51, 51, 51));
@@ -1517,8 +1700,8 @@ public class Nickelodeon extends javax.swing.JFrame {
             dubbing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dubbing1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(dubbingTitle1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addComponent(dubbingTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(dubbingDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dubbingLimit1)
@@ -1528,16 +1711,18 @@ public class Nickelodeon extends javax.swing.JFrame {
             dubbing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dubbing1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(dubbing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dubbingTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dubbingLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                    .addComponent(dubbingDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(dubbing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dubbingTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addGroup(dubbing1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(dubbingLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dubbingDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
         plotTwist1.setBackground(java.awt.Color.lightGray);
         plotTwist1.setForeground(new java.awt.Color(60, 63, 65));
         plotTwist1.setFocusable(false);
+        plotTwist1.setPreferredSize(new java.awt.Dimension(218, 44));
 
         plotTwistLimit1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         plotTwistLimit1.setForeground(new java.awt.Color(51, 51, 51));
@@ -1547,6 +1732,7 @@ public class Nickelodeon extends javax.swing.JFrame {
         plotTwistTitle1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         plotTwistTitle1.setForeground(new java.awt.Color(51, 51, 51));
         plotTwistTitle1.setText("PlotTwist:");
+        plotTwistTitle1.setPreferredSize(new java.awt.Dimension(70, 21));
 
         plotTwistDrive.setBackground(java.awt.Color.lightGray);
         plotTwistDrive.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
@@ -1567,8 +1753,8 @@ public class Nickelodeon extends javax.swing.JFrame {
             plotTwist1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plotTwist1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(plotTwistTitle1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addComponent(plotTwistTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(plotTwistDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(plotTwistLimit1)
@@ -1578,16 +1764,18 @@ public class Nickelodeon extends javax.swing.JFrame {
             plotTwist1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(plotTwist1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(plotTwist1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(plotTwistLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                    .addComponent(plotTwistTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(plotTwistDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(plotTwist1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(plotTwistTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addGroup(plotTwist1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(plotTwistLimit1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(plotTwistDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
         plotTwist4.setBackground(java.awt.Color.lightGray);
         plotTwist4.setForeground(new java.awt.Color(60, 63, 65));
         plotTwist4.setFocusable(false);
+        plotTwist4.setPreferredSize(new java.awt.Dimension(218, 44));
 
         plotTwistLimit3.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         plotTwistLimit3.setForeground(new java.awt.Color(51, 51, 51));
@@ -1596,6 +1784,7 @@ public class Nickelodeon extends javax.swing.JFrame {
         assemblerTitle1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         assemblerTitle1.setForeground(new java.awt.Color(51, 51, 51));
         assemblerTitle1.setText("Ensambladores:");
+        assemblerTitle1.setPreferredSize(new java.awt.Dimension(70, 21));
 
         assemblerDrive.setBackground(java.awt.Color.lightGray);
         assemblerDrive.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
@@ -1616,11 +1805,11 @@ public class Nickelodeon extends javax.swing.JFrame {
             plotTwist4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plotTwist4Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(assemblerTitle1)
-                .addGap(18, 18, 18)
-                .addComponent(assemblerDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(assemblerTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(plotTwistLimit3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(assemblerDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
         plotTwist4Layout.setVerticalGroup(
@@ -1629,8 +1818,8 @@ public class Nickelodeon extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(plotTwist4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(plotTwistLimit3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                    .addComponent(assemblerTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(assemblerDrive))
+                    .addComponent(assemblerDrive)
+                    .addComponent(assemblerTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1671,13 +1860,13 @@ public class Nickelodeon extends javax.swing.JFrame {
                 .addComponent(scenary1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(animations1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(dubbing1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(plotTwist1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(plotTwist4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         jPanel1.add(drivePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, 250, 510));
@@ -2115,10 +2304,24 @@ public class Nickelodeon extends javax.swing.JFrame {
 
     private void btn_reporteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_reporteMouseClicked
         // TODO add your handling code here:
+        try {
+            this.filefunctions.write(this.selectedFile);
+            JOptionPane.showMessageDialog(this, "El archivo ha sido guardado exitosamente!");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al escribir el archivo");
+        }     
     }//GEN-LAST:event_btn_reporteMouseClicked
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // TODO add your handling code here:
+        try {
+            this.filefunctions.write(this.selectedFile);
+            JOptionPane.showMessageDialog(this, "El archivo ha sido guardado exitosamente!");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al escribir el archivo");
+        }       
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void icono5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono5MouseClicked
@@ -2190,6 +2393,12 @@ public class Nickelodeon extends javax.swing.JFrame {
 
     private void increaseScriptsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseScriptsMouseClicked
         // TODO add your handling code here:
+        if (this.canIncreaseQuantity(0)) {
+            cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
+            this.scriptsValues.setText(increaseQuantity(this.scriptsValues.getText(), increaseScripts));
+            helper.addWorker(1, 0);
+        }
+        updateBtnStatus();
     }//GEN-LAST:event_increaseScriptsMouseClicked
 
     private void increaseScriptsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseScriptsActionPerformed
@@ -2202,6 +2411,13 @@ public class Nickelodeon extends javax.swing.JFrame {
 
     private void decreaseScriptsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseScriptsMouseClicked
         // TODO add your handling code here:
+        updateValues();
+        if (canDecreaseQuantity(0)) {
+            cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
+            this.scriptsValues.setText(decreaseQuantity(this.scriptsValues.getText(), this.decreaseScripts));
+            helper.deleteWorker(0, 0);
+        }
+        updateBtnStatus();
     }//GEN-LAST:event_decreaseScriptsMouseClicked
 
     private void decreaseScriptsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseScriptsActionPerformed
@@ -2214,6 +2430,12 @@ public class Nickelodeon extends javax.swing.JFrame {
 
     private void increaseScenaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseScenaryMouseClicked
         // TODO add your handling code here:
+        if (canIncreaseQuantity(1)) {
+            this.scenaryValue.setText(increaseQuantity(this.scenaryValue.getText(), increaseScenary));
+            cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
+            helper.addWorker(0, 1);
+        }
+        updateBtnStatus();
     }//GEN-LAST:event_increaseScenaryMouseClicked
 
     private void increaseScenaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseScenaryActionPerformed
@@ -2222,6 +2444,12 @@ public class Nickelodeon extends javax.swing.JFrame {
 
     private void decreaseScenaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseScenaryMouseClicked
         // TODO add your handling code here:
+        if (canDecreaseQuantity(1)) {
+            cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
+            this.scenaryValue.setText(decreaseQuantity(this.scenaryValue.getText(), decreaseScenary));
+            helper.deleteWorker(0, 1);
+        }
+        updateBtnStatus();
     }//GEN-LAST:event_decreaseScenaryMouseClicked
 
     private void decreaseScenaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseScenaryActionPerformed
@@ -2234,6 +2462,12 @@ public class Nickelodeon extends javax.swing.JFrame {
 
     private void decreaseAnimationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseAnimationMouseClicked
         // TODO add your handling code here:
+        if (canDecreaseQuantity(2)) {
+            cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
+            this.animationValues.setText(decreaseQuantity(this.animationValues.getText(), decreaseAnimation));
+            helper.deleteWorker(0, 2);
+        }
+        updateBtnStatus();
     }//GEN-LAST:event_decreaseAnimationMouseClicked
 
     private void decreaseAnimationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseAnimationActionPerformed
@@ -2242,6 +2476,12 @@ public class Nickelodeon extends javax.swing.JFrame {
 
     private void increaseAnimationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseAnimationMouseClicked
         // TODO add your handling code here:
+        if (canIncreaseQuantity(2)) {
+            cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
+            this.animationValues.setText(increaseQuantity(this.animationValues.getText(), increaseAnimation));
+            helper.addWorker(0, 2);
+        }
+        updateBtnStatus();
     }//GEN-LAST:event_increaseAnimationMouseClicked
 
     private void increaseAnimationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseAnimationActionPerformed
@@ -2250,6 +2490,12 @@ public class Nickelodeon extends javax.swing.JFrame {
 
     private void decreaseDubbingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseDubbingMouseClicked
         // TODO add your handling code here:
+        if (canDecreaseQuantity(3)) {
+            cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
+            this.dubbingValues.setText(decreaseQuantity(this.dubbingValues.getText(), decreaseDubbing));
+            helper.deleteWorker(0, 3);
+        }
+        updateBtnStatus();
     }//GEN-LAST:event_decreaseDubbingMouseClicked
 
     private void decreaseDubbingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseDubbingActionPerformed
@@ -2262,6 +2508,12 @@ public class Nickelodeon extends javax.swing.JFrame {
 
     private void increaseDubbingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseDubbingMouseClicked
         // TODO add your handling code here:
+        if (canIncreaseQuantity(3)) {
+            cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
+            this.dubbingValues.setText(increaseQuantity(this.dubbingValues.getText(), increaseDubbing));
+            helper.addWorker(0, 3);
+        }
+        updateBtnStatus();
     }//GEN-LAST:event_increaseDubbingMouseClicked
 
     private void increaseDubbingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseDubbingActionPerformed
@@ -2270,6 +2522,12 @@ public class Nickelodeon extends javax.swing.JFrame {
 
     private void increasePlotTwistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increasePlotTwistMouseClicked
         // TODO add your handling code here:
+        if (canIncreaseQuantity(4)) {
+            cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
+            this.plotTwistValues.setText(increaseQuantity(this.plotTwistValues.getText(), increasePlotTwist));
+            helper.addWorker(0, 4);
+        }
+        updateBtnStatus();
     }//GEN-LAST:event_increasePlotTwistMouseClicked
 
     private void increasePlotTwistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increasePlotTwistActionPerformed
@@ -2282,6 +2540,12 @@ public class Nickelodeon extends javax.swing.JFrame {
 
     private void decreacePlotTwistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreacePlotTwistMouseClicked
         // TODO add your handling code here:
+        if (canDecreaseQuantity(4)) {
+            cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
+            this.plotTwistValues.setText(decreaseQuantity(this.plotTwistValues.getText(), decreacePlotTwist));
+            helper.deleteWorker(0, 4);
+        }
+        updateBtnStatus();
     }//GEN-LAST:event_decreacePlotTwistMouseClicked
 
     private void decreacePlotTwistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreacePlotTwistActionPerformed
@@ -2290,6 +2554,12 @@ public class Nickelodeon extends javax.swing.JFrame {
 
     private void increaseAssemblerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseAssemblerMouseClicked
         // TODO add your handling code here:
+        if (canIncreaseQuantity(5)) {
+            cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
+            this.assemblerValues.setText(increaseQuantity(this.assemblerValues.getText(), increaseAssembler));
+            helper.addWorker(0, 5);
+        }
+        updateBtnStatus();
     }//GEN-LAST:event_increaseAssemblerMouseClicked
 
     private void increaseAssemblerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseAssemblerActionPerformed
@@ -2302,6 +2572,12 @@ public class Nickelodeon extends javax.swing.JFrame {
 
     private void decreaceAssemblerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaceAssemblerMouseClicked
         // TODO add your handling code here:
+        if (canDecreaseQuantity(5)) {
+            cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
+            this.assemblerValues.setText(decreaseQuantity(this.assemblerValues.getText(), decreaceAssembler));
+            helper.deleteWorker(0, 5);
+        }
+        updateBtnStatus();
     }//GEN-LAST:event_decreaceAssemblerMouseClicked
 
     private void decreaceAssemblerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaceAssemblerActionPerformed
@@ -2396,28 +2672,26 @@ public class Nickelodeon extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_totalChaptersActionPerformed
 
-    private String increaseQuantity(String actualValue) {
+    private String increaseQuantity(String actualValue, JButton btn) {
         int intValue = 0;
         try {
             intValue = Integer.parseInt(actualValue);
             if (actualEmployees < maxEmployees) {
                 intValue++;
                 actualEmployees++;
-                return String.valueOf(intValue);
-            } else {
-                return String.valueOf(intValue);
             }
+            return String.valueOf(intValue);
         } catch (NumberFormatException e) {
             System.err.println("Error al convertir el valor a int: " + e.getMessage());
+            return actualValue; // Retorna el valor actual en caso de error
         }
-        return null;
     }
 
-    private String decreaseQuantity(String actualValue) {
+    private String decreaseQuantity(String actualValue, JButton btn) {
         int intValue = 0;
         try {
             intValue = Integer.parseInt(actualValue);
-            if (intValue > 0) {
+            if (intValue > 1) {
                 intValue--;
                 actualEmployees--;
                 return String.valueOf(intValue);
@@ -2428,6 +2702,16 @@ public class Nickelodeon extends javax.swing.JFrame {
             System.err.println("Error al convertir el valor a int: " + e.getMessage());
         }
         return null;
+    }
+
+    private boolean canDecreaseQuantity(int type) {
+        updateValues();
+        return values[type] > 1;
+    }
+
+    private boolean canIncreaseQuantity(int type) {
+        updateValues();
+        return actualEmployees < maxEmployees;
     }
 
     /**
@@ -2518,6 +2802,7 @@ public class Nickelodeon extends javax.swing.JFrame {
     private javax.swing.JLabel driveTitle23;
     private javax.swing.JLabel driveTitle24;
     private javax.swing.JLabel driveTitle25;
+    private javax.swing.JLabel driveTitle27;
     private javax.swing.JLabel driveTitle3;
     private javax.swing.JLabel driveTitle4;
     private javax.swing.JLabel driveTitle5;
@@ -2548,13 +2833,13 @@ public class Nickelodeon extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
@@ -2568,6 +2853,7 @@ public class Nickelodeon extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JLabel maxCap;
     private javax.swing.JPanel plotTwist;
     private javax.swing.JPanel plotTwist1;
     private javax.swing.JPanel plotTwist2;

@@ -52,6 +52,19 @@ public class ConfigParams extends javax.swing.JFrame {
             this.dayDurationValue.setText(String.valueOf(dayDuration));
             this.deadlineValue.setText(String.valueOf(deadline));
 
+            this.scriptsValues
+                    .setText(String.valueOf(countNonNullEmployees(this.app.getNickelodeon().getScreenwriters())));
+            this.scenaryValue
+                    .setText(String.valueOf(countNonNullEmployees(this.app.getNickelodeon().getSetDesigners())));
+            this.animationValues.setText(
+                    String.valueOf(countNonNullEmployees(this.app.getNickelodeon().getCharacterAnimators())));
+            this.dubbingValues
+                    .setText(String.valueOf(countNonNullEmployees(this.app.getNickelodeon().getVoiceActors())));
+            this.plotTwistValues.setText(
+                    String.valueOf(countNonNullEmployees(this.app.getNickelodeon().getPlotTwistScreenwriters())));
+            this.assemblerValues
+                    .setText(String.valueOf(countNonNullEmployees(this.app.getNickelodeon().getAssemblers())));
+
             this.scriptsValues1
                     .setText(String.valueOf(countNonNullEmployees(this.app.getCartoonNetwork().getScreenwriters())));
             this.scenaryValue1
@@ -64,7 +77,8 @@ public class ConfigParams extends javax.swing.JFrame {
                     String.valueOf(countNonNullEmployees(this.app.getCartoonNetwork().getPlotTwistScreenwriters())));
             this.assemblerValues1
                     .setText(String.valueOf(countNonNullEmployees(this.app.getCartoonNetwork().getAssemblers())));
-
+            this.maxCap.setText(String.valueOf(this.maxEmployees) + "     trabajadores");
+            this.maxCap1.setText(String.valueOf(this.maxEmployees1) + "     trabajadores");
         }
     }
 
@@ -115,6 +129,18 @@ public class ConfigParams extends javax.swing.JFrame {
         return count;
     }
 
+    private JButton[] decreaseBtn = new JButton[6];
+    private JButton[] increaseBtn = new JButton[6];
+
+    private int[] values = {
+        countNonNullEmployees(this.app.getNickelodeon().getScreenwriters()),
+        countNonNullEmployees(this.app.getNickelodeon().getSetDesigners()),
+        countNonNullEmployees(this.app.getNickelodeon().getCharacterAnimators()),
+        countNonNullEmployees(this.app.getNickelodeon().getVoiceActors()),
+        countNonNullEmployees(this.app.getNickelodeon().getPlotTwistScreenwriters()),
+        countNonNullEmployees(this.app.getNickelodeon().getAssemblers())
+    };
+
     private JButton[] decreaseBtn1 = new JButton[6];
     private JButton[] increaseBtn1 = new JButton[6];
 
@@ -126,6 +152,33 @@ public class ConfigParams extends javax.swing.JFrame {
         countNonNullEmployees(this.app.getCartoonNetwork().getPlotTwistScreenwriters()),
         countNonNullEmployees(this.app.getCartoonNetwork().getAssemblers())
     };
+
+    private void updateBtnStatus() {
+        updateValues();
+
+        if (this.actualEmployees == this.maxEmployees) {
+            for (JButton btn : increaseBtn) {
+                btn.setEnabled(false);
+                btn.setFocusable(false);
+            }
+        } else {
+            for (JButton btn : increaseBtn) {
+                btn.setEnabled(true);
+                btn.setFocusable(true);
+            }
+        }
+
+        for (int i = 0; i < this.values.length; i++) {
+            if (this.values[i] == 1) {
+                this.decreaseBtn[i].setEnabled(false);
+                this.decreaseBtn[i].setFocusable(false);
+            } else {
+                this.decreaseBtn[i].setEnabled(true);
+                this.decreaseBtn[i].setFocusable(true);
+
+            }
+        }
+    }
 
     private void updateBtnStatus1() {
         updateValues1();
@@ -152,6 +205,15 @@ public class ConfigParams extends javax.swing.JFrame {
 
             }
         }
+    }
+
+    private void updateValues() {
+        values[0] = countNonNullEmployees(this.app.getNickelodeon().getScreenwriters());
+        values[1] = countNonNullEmployees(this.app.getNickelodeon().getSetDesigners());
+        values[2] = countNonNullEmployees(this.app.getNickelodeon().getCharacterAnimators());
+        values[3] = countNonNullEmployees(this.app.getNickelodeon().getVoiceActors());
+        values[4] = countNonNullEmployees(this.app.getNickelodeon().getPlotTwistScreenwriters());
+        values[5] = countNonNullEmployees(this.app.getNickelodeon().getAssemblers());
     }
 
     private void updateValues1() {
@@ -195,6 +257,22 @@ public class ConfigParams extends javax.swing.JFrame {
         this.increaseBtn1[4] = increasePlotTwist1;
         this.increaseBtn1[5] = increaseAssembler1;
         updateBtnStatus1();
+
+        this.decreaseBtn[0] = decreaseScripts;
+        this.decreaseBtn[1] = decreaseScenary;
+        this.decreaseBtn[2] = decreaseAnimation;
+        this.decreaseBtn[3] = decreaseDubbing;
+        this.decreaseBtn[4] = decreacePlotTwist;
+        this.decreaseBtn[5] = decreaceAssembler;
+
+        this.increaseBtn[0] = increaseScripts;
+        this.increaseBtn[1] = increaseScenary;
+        this.increaseBtn[2] = increaseAnimation;
+        this.increaseBtn[3] = increaseDubbing;
+        this.increaseBtn[4] = increasePlotTwist;
+        this.increaseBtn[5] = increaseAssembler;
+
+        updateBtnStatus();
     }
 
     /**
@@ -278,6 +356,8 @@ public class ConfigParams extends javax.swing.JFrame {
         assemblerValues = new javax.swing.JTextField();
         decreaceAssembler = new javax.swing.JButton();
         driveTitle21 = new javax.swing.JLabel();
+        driveTitle27 = new javax.swing.JLabel();
+        maxCap = new javax.swing.JLabel();
         workersConfigurations1 = new javax.swing.JPanel();
         scripts2 = new javax.swing.JPanel();
         scriptsTitle2 = new javax.swing.JLabel();
@@ -310,6 +390,8 @@ public class ConfigParams extends javax.swing.JFrame {
         assemblerValues1 = new javax.swing.JTextField();
         decreaceAssembler1 = new javax.swing.JButton();
         driveTitle22 = new javax.swing.JLabel();
+        driveTitle28 = new javax.swing.JLabel();
+        maxCap1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -1303,21 +1385,35 @@ public class ConfigParams extends javax.swing.JFrame {
         driveTitle21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         driveTitle21.setText("Nickelodeon");
 
+        driveTitle27.setFont(new java.awt.Font("Montserrat", 1, 19)); // NOI18N
+        driveTitle27.setForeground(new java.awt.Color(51, 51, 51));
+        driveTitle27.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        driveTitle27.setText("Máximo:");
+
+        maxCap.setFont(new java.awt.Font("Montserrat", 1, 19)); // NOI18N
+        maxCap.setForeground(new java.awt.Color(51, 51, 51));
+        maxCap.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
         javax.swing.GroupLayout workersConfigurationsLayout = new javax.swing.GroupLayout(workersConfigurations);
         workersConfigurations.setLayout(workersConfigurationsLayout);
         workersConfigurationsLayout.setHorizontalGroup(
             workersConfigurationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, workersConfigurationsLayout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addGroup(workersConfigurationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(plotTwist2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(plotTwist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dubbing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(animations, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(scenary, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(scripts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(15, 15, 15))
             .addComponent(driveTitle21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, workersConfigurationsLayout.createSequentialGroup()
+                .addContainerGap(15, Short.MAX_VALUE)
+                .addGroup(workersConfigurationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(workersConfigurationsLayout.createSequentialGroup()
+                        .addComponent(driveTitle27, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(maxCap, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(workersConfigurationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(plotTwist2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(plotTwist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dubbing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(animations, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(scenary, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(scripts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(15, 15, 15))
         );
         workersConfigurationsLayout.setVerticalGroup(
             workersConfigurationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1336,6 +1432,10 @@ public class ConfigParams extends javax.swing.JFrame {
                 .addComponent(plotTwist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(plotTwist2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(workersConfigurationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(maxCap, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(driveTitle27, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1801,21 +1901,35 @@ public class ConfigParams extends javax.swing.JFrame {
         driveTitle22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         driveTitle22.setText("Cartoon Network");
 
+        driveTitle28.setFont(new java.awt.Font("Montserrat", 1, 19)); // NOI18N
+        driveTitle28.setForeground(new java.awt.Color(51, 51, 51));
+        driveTitle28.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        driveTitle28.setText("Máximo:");
+
+        maxCap1.setFont(new java.awt.Font("Montserrat", 1, 19)); // NOI18N
+        maxCap1.setForeground(new java.awt.Color(51, 51, 51));
+        maxCap1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
         javax.swing.GroupLayout workersConfigurations1Layout = new javax.swing.GroupLayout(workersConfigurations1);
         workersConfigurations1.setLayout(workersConfigurations1Layout);
         workersConfigurations1Layout.setHorizontalGroup(
             workersConfigurations1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(driveTitle22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, workersConfigurations1Layout.createSequentialGroup()
                 .addContainerGap(21, Short.MAX_VALUE)
-                .addGroup(workersConfigurations1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(plotTwist3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(plotTwist1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dubbing1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(animations1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(scenary1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(scripts2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(workersConfigurations1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(workersConfigurations1Layout.createSequentialGroup()
+                        .addComponent(driveTitle28, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(maxCap1, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, workersConfigurations1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(plotTwist3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(plotTwist1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dubbing1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(animations1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(scenary1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(scripts2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(15, 15, 15))
-            .addComponent(driveTitle22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         workersConfigurations1Layout.setVerticalGroup(
             workersConfigurations1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1834,7 +1948,11 @@ public class ConfigParams extends javax.swing.JFrame {
                 .addComponent(plotTwist1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(plotTwist3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(workersConfigurations1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(driveTitle28, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(maxCap1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -1843,9 +1961,9 @@ public class ConfigParams extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(100, 100, 100)
+                .addGap(97, 97, 97)
                 .addComponent(workersConfigurations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
+                .addGap(71, 71, 71)
                 .addComponent(workersConfigurations1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1853,14 +1971,14 @@ public class ConfigParams extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(workersConfigurations, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(workersConfigurations1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 890, 560));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 890, 580));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1870,7 +1988,7 @@ public class ConfigParams extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 741, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
         );
 
         pack();
@@ -2074,6 +2192,12 @@ public class ConfigParams extends javax.swing.JFrame {
 
     private void increaseScriptsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseScriptsMouseClicked
         // TODO add your handling code here:
+        if (this.canIncreaseQuantity(0)) {
+            cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
+            this.scriptsValues.setText(increaseQuantity(this.scriptsValues.getText(), increaseScripts));
+            helper.addWorker(1, 0);
+        }
+        updateBtnStatus();
     }//GEN-LAST:event_increaseScriptsMouseClicked
 
     private void increaseScriptsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseScriptsActionPerformed
@@ -2086,6 +2210,13 @@ public class ConfigParams extends javax.swing.JFrame {
 
     private void decreaseScriptsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseScriptsMouseClicked
         // TODO add your handling code here:
+        updateValues();
+        if (canDecreaseQuantity(0)) {
+            cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
+            this.scriptsValues.setText(decreaseQuantity(this.scriptsValues.getText(), this.decreaseScripts));
+            helper.deleteWorker(0, 0);
+        }
+        updateBtnStatus();
     }//GEN-LAST:event_decreaseScriptsMouseClicked
 
     private void decreaseScriptsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseScriptsActionPerformed
@@ -2098,6 +2229,12 @@ public class ConfigParams extends javax.swing.JFrame {
 
     private void increaseScenaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseScenaryMouseClicked
         // TODO add your handling code here:
+        if (canIncreaseQuantity(1)) {
+            this.scenaryValue.setText(increaseQuantity(this.scenaryValue.getText(), increaseScenary));
+            cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
+            helper.addWorker(0, 1);
+        }
+        updateBtnStatus();
     }//GEN-LAST:event_increaseScenaryMouseClicked
 
     private void increaseScenaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseScenaryActionPerformed
@@ -2106,6 +2243,12 @@ public class ConfigParams extends javax.swing.JFrame {
 
     private void decreaseScenaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseScenaryMouseClicked
         // TODO add your handling code here:
+        if (canDecreaseQuantity(1)) {
+            cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
+            this.scenaryValue.setText(decreaseQuantity(this.scenaryValue.getText(), decreaseScenary));
+            helper.deleteWorker(0, 1);
+        }
+        updateBtnStatus();
     }//GEN-LAST:event_decreaseScenaryMouseClicked
 
     private void decreaseScenaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseScenaryActionPerformed
@@ -2118,6 +2261,12 @@ public class ConfigParams extends javax.swing.JFrame {
 
     private void decreaseAnimationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseAnimationMouseClicked
         // TODO add your handling code here:
+        if (canDecreaseQuantity(2)) {
+            cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
+            this.animationValues.setText(decreaseQuantity(this.animationValues.getText(), decreaseAnimation));
+            helper.deleteWorker(0, 2);
+        }
+        updateBtnStatus();
     }//GEN-LAST:event_decreaseAnimationMouseClicked
 
     private void decreaseAnimationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseAnimationActionPerformed
@@ -2126,6 +2275,12 @@ public class ConfigParams extends javax.swing.JFrame {
 
     private void increaseAnimationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseAnimationMouseClicked
         // TODO add your handling code here:
+        if (canIncreaseQuantity(2)) {
+            cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
+            this.animationValues.setText(increaseQuantity(this.animationValues.getText(), increaseAnimation));
+            helper.addWorker(0, 2);
+        }
+        updateBtnStatus();
     }//GEN-LAST:event_increaseAnimationMouseClicked
 
     private void increaseAnimationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseAnimationActionPerformed
@@ -2134,6 +2289,12 @@ public class ConfigParams extends javax.swing.JFrame {
 
     private void decreaseDubbingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseDubbingMouseClicked
         // TODO add your handling code here:
+        if (canDecreaseQuantity(3)) {
+            cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
+            this.dubbingValues.setText(decreaseQuantity(this.dubbingValues.getText(), decreaseDubbing));
+            helper.deleteWorker(0, 3);
+        }
+        updateBtnStatus();
     }//GEN-LAST:event_decreaseDubbingMouseClicked
 
     private void decreaseDubbingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseDubbingActionPerformed
@@ -2146,6 +2307,12 @@ public class ConfigParams extends javax.swing.JFrame {
 
     private void increaseDubbingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseDubbingMouseClicked
         // TODO add your handling code here:
+        if (canIncreaseQuantity(3)) {
+            cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
+            this.dubbingValues.setText(increaseQuantity(this.dubbingValues.getText(), increaseDubbing));
+            helper.addWorker(0, 3);
+        }
+        updateBtnStatus();
     }//GEN-LAST:event_increaseDubbingMouseClicked
 
     private void increaseDubbingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseDubbingActionPerformed
@@ -2154,6 +2321,12 @@ public class ConfigParams extends javax.swing.JFrame {
 
     private void increasePlotTwistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increasePlotTwistMouseClicked
         // TODO add your handling code here:
+        if (canIncreaseQuantity(4)) {
+            cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
+            this.plotTwistValues.setText(increaseQuantity(this.plotTwistValues.getText(), increasePlotTwist));
+            helper.addWorker(0, 4);
+        }
+        updateBtnStatus();
     }//GEN-LAST:event_increasePlotTwistMouseClicked
 
     private void increasePlotTwistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increasePlotTwistActionPerformed
@@ -2166,6 +2339,12 @@ public class ConfigParams extends javax.swing.JFrame {
 
     private void decreacePlotTwistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreacePlotTwistMouseClicked
         // TODO add your handling code here:
+        if (canDecreaseQuantity(4)) {
+            cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
+            this.plotTwistValues.setText(decreaseQuantity(this.plotTwistValues.getText(), decreacePlotTwist));
+            helper.deleteWorker(0, 4);
+        }
+        updateBtnStatus();
     }//GEN-LAST:event_decreacePlotTwistMouseClicked
 
     private void decreacePlotTwistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreacePlotTwistActionPerformed
@@ -2174,6 +2353,12 @@ public class ConfigParams extends javax.swing.JFrame {
 
     private void increaseAssemblerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increaseAssemblerMouseClicked
         // TODO add your handling code here:
+        if (canIncreaseQuantity(5)) {
+            cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
+            this.assemblerValues.setText(increaseQuantity(this.assemblerValues.getText(), increaseAssembler));
+            helper.addWorker(0, 5);
+        }
+        updateBtnStatus();
     }//GEN-LAST:event_increaseAssemblerMouseClicked
 
     private void increaseAssemblerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseAssemblerActionPerformed
@@ -2186,6 +2371,12 @@ public class ConfigParams extends javax.swing.JFrame {
 
     private void decreaceAssemblerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaceAssemblerMouseClicked
         // TODO add your handling code here:
+        if (canDecreaseQuantity(5)) {
+            cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
+            this.assemblerValues.setText(decreaseQuantity(this.assemblerValues.getText(), decreaceAssembler));
+            helper.deleteWorker(0, 5);
+        }
+        updateBtnStatus();
     }//GEN-LAST:event_decreaceAssemblerMouseClicked
 
     private void decreaceAssemblerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaceAssemblerActionPerformed
@@ -2393,6 +2584,48 @@ public class ConfigParams extends javax.swing.JFrame {
         return this.deadline > 1;
     }
 
+    private String increaseQuantity(String actualValue, JButton btn) {
+        int intValue = 0;
+        try {
+            intValue = Integer.parseInt(actualValue);
+            if (actualEmployees < maxEmployees) {
+                intValue++;
+                actualEmployees++;
+            }
+            return String.valueOf(intValue);
+        } catch (NumberFormatException e) {
+            System.err.println("Error al convertir el valor a int: " + e.getMessage());
+            return actualValue; // Retorna el valor actual en caso de error
+        }
+    }
+
+    private String decreaseQuantity(String actualValue, JButton btn) {
+        int intValue = 0;
+        try {
+            intValue = Integer.parseInt(actualValue);
+            if (intValue > 1) {
+                intValue--;
+                actualEmployees--;
+                return String.valueOf(intValue);
+            } else {
+                return String.valueOf(intValue);
+            }
+        } catch (NumberFormatException e) {
+            System.err.println("Error al convertir el valor a int: " + e.getMessage());
+        }
+        return null;
+    }
+
+    private boolean canDecreaseQuantity(int type) {
+        updateValues();
+        return values[type] > 1;
+    }
+
+    private boolean canIncreaseQuantity(int type) {
+        updateValues();
+        return actualEmployees < maxEmployees;
+    }
+
     private String increaseQuantity1(String actualValue, JButton btn) {
         int intValue = 0;
         try {
@@ -2514,6 +2747,8 @@ public class ConfigParams extends javax.swing.JFrame {
     private javax.swing.JLabel driveTitle;
     private javax.swing.JLabel driveTitle21;
     private javax.swing.JLabel driveTitle22;
+    private javax.swing.JLabel driveTitle27;
+    private javax.swing.JLabel driveTitle28;
     private javax.swing.JPanel dubbing;
     private javax.swing.JPanel dubbing1;
     private javax.swing.JLabel dubbingTitle;
@@ -2556,6 +2791,8 @@ public class ConfigParams extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel maxCap;
+    private javax.swing.JLabel maxCap1;
     private javax.swing.JPanel plotTwist;
     private javax.swing.JPanel plotTwist1;
     private javax.swing.JPanel plotTwist2;

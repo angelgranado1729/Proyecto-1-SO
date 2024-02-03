@@ -90,7 +90,6 @@ public class HelpersFunctions {
 
         TelevisionNetwork network = company == 0 ? App.getInstance().getNickelodeon()
                 : App.getInstance().getCartoonNetwork();
-        System.out.println(network.getActualEmployeesQuantity());
 
         // Se verifica si la cantidad actual de empleados es menor que la cantidad
         // máxima permitida
