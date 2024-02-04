@@ -155,13 +155,12 @@ public class Nickelodeon extends javax.swing.JFrame {
 
                                 projectManagerStatus
                                         .setText(app.getNickelodeon().getProjectManagerInstance().getCurrentState());
-                                
-                                
-                                remainingDays.setText(String.valueOf(app.getNickelodeon().getRemainingDays()));
-                                
+
+                                currentDeadline.setText(
+                                        String.valueOf(app.getNickelodeon().getRemainingDays()));
+
                                 totalDays.setText(String.valueOf(app.getNickelodeon().getTotalDays()));
-                              
-                                
+
                                 strikeCounter.setText(String
                                         .valueOf(app.getNickelodeon().getProjectManagerInstance().getStrikes()));
                                 cashPenality.setText(String.valueOf(Integer.parseInt(strikeCounter.getText()) * 100));
@@ -174,6 +173,27 @@ public class Nickelodeon extends javax.swing.JFrame {
 
                                 plotTwistChapters.setText(
                                         String.valueOf(app.getNickelodeon().getNumChaptersWithPlotTwist()));
+
+                                standardChaptes2.setText(
+                                        String.valueOf(app.getNickelodeon().getActualNumNormalChapters())
+                                );
+                                plotTwistChapters2.setText(
+                                        String.valueOf(app.getNickelodeon().getActualNumChaptersWithPlotTwist())
+                                );
+
+                                standardChaptes1.setText(
+                                        String.valueOf(app.getNickelodeon().getLastNumNormalChapters())
+                                );
+                                plotTwistChapters1.setText(
+                                        String.valueOf(app.getNickelodeon().getLastNumChaptersWithPlotTwist())
+                                );
+
+                                cost.setText(formatNumberAsK((int) app.getNickelodeon().getTotalCost()));
+                                profit.setText(formatNumberAsK((int) app.getNickelodeon().getProfit()));
+                                earning.setText(formatNumberAsK((int) app.getNickelodeon().getEarning()));
+                                batchLastProfit.setText(
+                                        formatNumberAsK((int) app.getNickelodeon().getBatchLastProfit()));
+
                             }
                         });
 
@@ -220,6 +240,17 @@ public class Nickelodeon extends javax.swing.JFrame {
             }
         }
         return count;
+    }
+
+    public String formatNumberAsK(int number) {
+        // Se onverte el número a miles
+        double thousands = number / 1000.0;
+
+        // Se redondea a dos dígitos significativos
+        double rounded = Math.round(thousands * 100.0) / 100.0;
+
+        // Se convierte a cadena y se añade 'K'
+        return rounded + "K";
     }
 
     private void cartoonPlayMusic(String path) {
@@ -269,17 +300,7 @@ public class Nickelodeon extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         exit = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        driveTitle6 = new javax.swing.JLabel();
-        driveTitle8 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        driveTitle19 = new javax.swing.JLabel();
-        driveTitle20 = new javax.swing.JLabel();
-        currentDays = new javax.swing.JTextField();
-        remainingDays = new javax.swing.JTextField();
-        driveTitle23 = new javax.swing.JLabel();
-        totalDays = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         driveTitle4 = new javax.swing.JLabel();
         plotTwistChapters = new javax.swing.JTextField();
@@ -287,6 +308,15 @@ public class Nickelodeon extends javax.swing.JFrame {
         driveTitle5 = new javax.swing.JLabel();
         driveTitle25 = new javax.swing.JLabel();
         totalChapters = new javax.swing.JTextField();
+        jPanel5 = new javax.swing.JPanel();
+        driveTitle6 = new javax.swing.JLabel();
+        driveTitle8 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
+        jTextField8 = new javax.swing.JTextField();
+        driveTitle19 = new javax.swing.JLabel();
+        currentDeadline = new javax.swing.JTextField();
+        driveTitle23 = new javax.swing.JLabel();
+        totalDays = new javax.swing.JTextField();
         workersConfigurations = new javax.swing.JPanel();
         driveTitle1 = new javax.swing.JLabel();
         scripts = new javax.swing.JPanel();
@@ -375,9 +405,14 @@ public class Nickelodeon extends javax.swing.JFrame {
         plotTwistChapters1 = new javax.swing.JTextField();
         standardChaptes1 = new javax.swing.JTextField();
         driveTitle22 = new javax.swing.JLabel();
+        driveTitle28 = new javax.swing.JLabel();
+        batchLastProfit = new javax.swing.JTextField();
         jPanel10 = new javax.swing.JPanel();
-        directorStatus1 = new javax.swing.JTextField();
+        driveTitle20 = new javax.swing.JLabel();
+        plotTwistChapters2 = new javax.swing.JTextField();
+        standardChaptes2 = new javax.swing.JTextField();
         driveTitle24 = new javax.swing.JLabel();
+        driveTitle26 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -697,7 +732,7 @@ public class Nickelodeon extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 1059, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -708,144 +743,7 @@ public class Nickelodeon extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel5.setBackground(new java.awt.Color(34, 46, 60));
-        jPanel5.setForeground(new java.awt.Color(51, 51, 51));
-
-        driveTitle6.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        driveTitle6.setForeground(new java.awt.Color(204, 204, 204));
-        driveTitle6.setText("Días Restantes:");
-
-        driveTitle8.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        driveTitle8.setForeground(new java.awt.Color(204, 204, 204));
-        driveTitle8.setText("Días transcurridos:");
-
-        jTextField7.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField7.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField7.setText("0");
-        jTextField7.setEnabled(false);
-
-        jTextField8.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField8.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField8.setText("0");
-        jTextField8.setEnabled(false);
-
-        driveTitle19.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        driveTitle19.setForeground(new java.awt.Color(204, 204, 204));
-        driveTitle19.setText("Días transcurridos:");
-        driveTitle19.setFocusable(false);
-
-        driveTitle20.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        driveTitle20.setForeground(new java.awt.Color(204, 204, 204));
-        driveTitle20.setText("Días restantes:");
-        driveTitle20.setFocusable(false);
-
-        currentDays.setEditable(false);
-        currentDays.setBackground(new java.awt.Color(34, 46, 60));
-        currentDays.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        currentDays.setForeground(new java.awt.Color(255, 255, 255));
-        currentDays.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        currentDays.setText("0");
-        currentDays.setBorder(null);
-        currentDays.setFocusable(false);
-        currentDays.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                currentDaysActionPerformed(evt);
-            }
-        });
-
-        remainingDays.setEditable(false);
-        remainingDays.setBackground(new java.awt.Color(34, 46, 60));
-        remainingDays.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        remainingDays.setForeground(new java.awt.Color(255, 255, 255));
-        remainingDays.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        remainingDays.setText("0");
-        remainingDays.setBorder(null);
-        remainingDays.setFocusable(false);
-        remainingDays.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                remainingDaysActionPerformed(evt);
-            }
-        });
-
-        driveTitle23.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        driveTitle23.setForeground(new java.awt.Color(204, 204, 204));
-        driveTitle23.setText("Días:");
-        driveTitle23.setFocusable(false);
-
-        totalDays.setEditable(false);
-        totalDays.setBackground(new java.awt.Color(34, 46, 60));
-        totalDays.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        totalDays.setForeground(new java.awt.Color(255, 255, 255));
-        totalDays.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        totalDays.setText("0");
-        totalDays.setBorder(null);
-        totalDays.setFocusable(false);
-        totalDays.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                totalDaysActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(driveTitle8)
-                    .addComponent(driveTitle6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(driveTitle19, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(driveTitle20, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(currentDays, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(remainingDays, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(76, 76, 76))
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(driveTitle23, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(totalDays, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(driveTitle23)
-                    .addComponent(totalDays, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(driveTitle19)
-                    .addComponent(currentDays, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(driveTitle20)
-                    .addComponent(remainingDays, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(117, 117, 117)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(driveTitle8)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(driveTitle6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Assets/nickelodeonImage (1).png"))); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(34, 46, 60));
         jPanel3.setForeground(new java.awt.Color(51, 51, 51));
@@ -890,7 +788,7 @@ public class Nickelodeon extends javax.swing.JFrame {
 
         driveTitle25.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         driveTitle25.setForeground(new java.awt.Color(204, 204, 204));
-        driveTitle25.setText("Capítulos:");
+        driveTitle25.setText("Capítulos (total):");
         driveTitle25.setFocusable(false);
 
         totalChapters.setEditable(false);
@@ -946,27 +844,146 @@ public class Nickelodeon extends javax.swing.JFrame {
                     .addComponent(plotTwistChapters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        jPanel5.setBackground(new java.awt.Color(34, 46, 60));
+        jPanel5.setForeground(new java.awt.Color(51, 51, 51));
+
+        driveTitle6.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle6.setForeground(new java.awt.Color(204, 204, 204));
+        driveTitle6.setText("Días Restantes:");
+
+        driveTitle8.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle8.setForeground(new java.awt.Color(204, 204, 204));
+        driveTitle8.setText("Días transcurridos:");
+
+        jTextField7.setBackground(new java.awt.Color(204, 204, 204));
+        jTextField7.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+        jTextField7.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField7.setText("0");
+        jTextField7.setEnabled(false);
+
+        jTextField8.setBackground(new java.awt.Color(204, 204, 204));
+        jTextField8.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+        jTextField8.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField8.setText("0");
+        jTextField8.setEnabled(false);
+
+        driveTitle19.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle19.setForeground(new java.awt.Color(204, 204, 204));
+        driveTitle19.setText("Días para la entrega:");
+        driveTitle19.setFocusable(false);
+
+        currentDeadline.setEditable(false);
+        currentDeadline.setBackground(new java.awt.Color(34, 46, 60));
+        currentDeadline.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        currentDeadline.setForeground(new java.awt.Color(255, 255, 255));
+        currentDeadline.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        currentDeadline.setText("0");
+        currentDeadline.setBorder(null);
+        currentDeadline.setFocusable(false);
+        currentDeadline.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                currentDeadlineActionPerformed(evt);
+            }
+        });
+
+        driveTitle23.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle23.setForeground(new java.awt.Color(204, 204, 204));
+        driveTitle23.setText("Días:");
+        driveTitle23.setFocusable(false);
+
+        totalDays.setEditable(false);
+        totalDays.setBackground(new java.awt.Color(34, 46, 60));
+        totalDays.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        totalDays.setForeground(new java.awt.Color(255, 255, 255));
+        totalDays.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        totalDays.setText("0");
+        totalDays.setBorder(null);
+        totalDays.setFocusable(false);
+        totalDays.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalDaysActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(driveTitle23, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(totalDays, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(driveTitle19, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(currentDeadline, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(driveTitle8)
+                            .addComponent(driveTitle6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19))))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle23)
+                    .addComponent(totalDays, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(currentDeadline, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(driveTitle19, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(144, 144, 144)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle8)
+                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(254, Short.MAX_VALUE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(29, Short.MAX_VALUE))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1130, 190));
@@ -1880,7 +1897,7 @@ public class Nickelodeon extends javax.swing.JFrame {
 
         driveTitle10.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         driveTitle10.setForeground(new java.awt.Color(204, 204, 204));
-        driveTitle10.setText("Costos:");
+        driveTitle10.setText("Costos operativos:");
         driveTitle10.setFocusable(false);
 
         driveTitle11.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
@@ -1911,7 +1928,7 @@ public class Nickelodeon extends javax.swing.JFrame {
         earning.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         earning.setForeground(new java.awt.Color(255, 255, 255));
         earning.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        earning.setText("Dentro días");
+        earning.setText("0");
         earning.setBorder(null);
         earning.setFocusable(false);
         earning.addActionListener(new java.awt.event.ActionListener() {
@@ -1924,7 +1941,7 @@ public class Nickelodeon extends javax.swing.JFrame {
         profit.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         profit.setForeground(new java.awt.Color(255, 255, 255));
         profit.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        profit.setText("Dentro días");
+        profit.setText("0");
         profit.setBorder(null);
         profit.setFocusable(false);
         profit.addActionListener(new java.awt.event.ActionListener() {
@@ -1938,18 +1955,24 @@ public class Nickelodeon extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(driveTitle10, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(driveTitle9, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(driveTitle17, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(driveTitle17, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(driveTitle10))
+                        .addGap(11, 11, 11))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(driveTitle9, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cost, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(profit, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(earning, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(profit, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(earning, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cost, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(20, 20, 20))
             .addComponent(driveTitle11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -1963,17 +1986,19 @@ public class Nickelodeon extends javax.swing.JFrame {
                     .addComponent(driveTitle10)
                     .addComponent(cost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(driveTitle9)
-                    .addComponent(earning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(earning, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(driveTitle9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(driveTitle17)
                     .addComponent(profit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19))
         );
 
-        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 590, 300, 120));
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 200, 300, 120));
 
         jPanel7.setBackground(new java.awt.Color(51, 51, 51));
         jPanel7.setForeground(new java.awt.Color(51, 51, 51));
@@ -2026,7 +2051,7 @@ public class Nickelodeon extends javax.swing.JFrame {
                 .addGap(15, 15, 15))
         );
 
-        jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 270, 300, 60));
+        jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 320, 300, 60));
 
         jPanel8.setBackground(new java.awt.Color(51, 51, 51));
         jPanel8.setForeground(new java.awt.Color(51, 51, 51));
@@ -2132,13 +2157,13 @@ public class Nickelodeon extends javax.swing.JFrame {
                 .addGap(7, 7, 7))
         );
 
-        jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 340, 300, 120));
+        jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 380, 300, 120));
 
         driveTitle.setFont(new java.awt.Font("Montserrat", 1, 24)); // NOI18N
         driveTitle.setForeground(new java.awt.Color(51, 51, 51));
         driveTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        driveTitle.setText("Último Lote");
-        jPanel1.add(driveTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 470, 300, -1));
+        driveTitle.setText("Lote Actual");
+        jPanel1.add(driveTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 500, 300, -1));
 
         jPanel9.setBackground(new java.awt.Color(51, 51, 51));
         jPanel9.setForeground(new java.awt.Color(51, 51, 51));
@@ -2179,80 +2204,140 @@ public class Nickelodeon extends javax.swing.JFrame {
         driveTitle22.setText("Capítulos normales:");
         driveTitle22.setFocusable(false);
 
+        driveTitle28.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle28.setForeground(new java.awt.Color(204, 204, 204));
+        driveTitle28.setText("Ganancia neta:");
+        driveTitle28.setFocusable(false);
+
+        batchLastProfit.setBackground(new java.awt.Color(51, 51, 51));
+        batchLastProfit.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        batchLastProfit.setForeground(new java.awt.Color(255, 255, 255));
+        batchLastProfit.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        batchLastProfit.setText("0");
+        batchLastProfit.setBorder(null);
+        batchLastProfit.setFocusable(false);
+        batchLastProfit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                batchLastProfitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(driveTitle7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(driveTitle22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(standardChaptes1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(plotTwistChapters1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(driveTitle28, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(batchLastProfit, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(driveTitle7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(driveTitle22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(standardChaptes1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(plotTwistChapters1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(standardChaptes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(driveTitle22))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(driveTitle22, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(driveTitle7)
                     .addComponent(plotTwistChapters1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle28)
+                    .addComponent(batchLastProfit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 510, 300, -1));
+        jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 620, 300, 90));
 
         jPanel10.setBackground(new java.awt.Color(51, 51, 51));
         jPanel10.setForeground(new java.awt.Color(51, 51, 51));
 
-        directorStatus1.setBackground(new java.awt.Color(51, 51, 51));
-        directorStatus1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
-        directorStatus1.setForeground(new java.awt.Color(255, 255, 255));
-        directorStatus1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        directorStatus1.setText("0");
-        directorStatus1.setBorder(null);
-        directorStatus1.setFocusable(false);
-        directorStatus1.addActionListener(new java.awt.event.ActionListener() {
+        driveTitle20.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle20.setForeground(new java.awt.Color(204, 204, 204));
+        driveTitle20.setText("Capítulos plotTwist:");
+        driveTitle20.setFocusable(false);
+
+        plotTwistChapters2.setBackground(new java.awt.Color(51, 51, 51));
+        plotTwistChapters2.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        plotTwistChapters2.setForeground(new java.awt.Color(255, 255, 255));
+        plotTwistChapters2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        plotTwistChapters2.setText("0");
+        plotTwistChapters2.setBorder(null);
+        plotTwistChapters2.setFocusable(false);
+        plotTwistChapters2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                directorStatus1ActionPerformed(evt);
+                plotTwistChapters2ActionPerformed(evt);
             }
         });
 
-        driveTitle24.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        standardChaptes2.setBackground(new java.awt.Color(51, 51, 51));
+        standardChaptes2.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        standardChaptes2.setForeground(new java.awt.Color(255, 255, 255));
+        standardChaptes2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        standardChaptes2.setText("0");
+        standardChaptes2.setBorder(null);
+        standardChaptes2.setFocusable(false);
+        standardChaptes2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                standardChaptes2ActionPerformed(evt);
+            }
+        });
+
+        driveTitle24.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
         driveTitle24.setForeground(new java.awt.Color(204, 204, 204));
-        driveTitle24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        driveTitle24.setText("Ganancia Total");
+        driveTitle24.setText("Capítulos normales:");
         driveTitle24.setFocusable(false);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(driveTitle24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(directorStatus1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(driveTitle20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(driveTitle24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(standardChaptes2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(plotTwistChapters2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(driveTitle24)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(directorStatus1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(standardChaptes2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(driveTitle24, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(driveTitle20)
+                    .addComponent(plotTwistChapters2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 200, 300, 60));
+        jPanel1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 530, 300, -1));
+
+        driveTitle26.setFont(new java.awt.Font("Montserrat", 1, 24)); // NOI18N
+        driveTitle26.setForeground(new java.awt.Color(51, 51, 51));
+        driveTitle26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        driveTitle26.setText("Último Lote");
+        jPanel1.add(driveTitle26, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 590, 300, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -2610,6 +2695,26 @@ public class Nickelodeon extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_assemblerDriveActionPerformed
 
+    private void plotTwistChaptersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plotTwistChaptersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_plotTwistChaptersActionPerformed
+
+    private void standardChaptersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_standardChaptersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_standardChaptersActionPerformed
+
+    private void totalChaptersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalChaptersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalChaptersActionPerformed
+
+    private void currentDeadlineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentDeadlineActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_currentDeadlineActionPerformed
+
+    private void totalDaysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalDaysActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalDaysActionPerformed
+
     private void costActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_costActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_costActionPerformed
@@ -2646,33 +2751,17 @@ public class Nickelodeon extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_standardChaptes1ActionPerformed
 
-    private void directorStatus1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_directorStatus1ActionPerformed
+    private void batchLastProfitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batchLastProfitActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_directorStatus1ActionPerformed
+    }//GEN-LAST:event_batchLastProfitActionPerformed
 
-    private void currentDaysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentDaysActionPerformed
+    private void plotTwistChapters2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plotTwistChapters2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_currentDaysActionPerformed
+    }//GEN-LAST:event_plotTwistChapters2ActionPerformed
 
-    private void remainingDaysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remainingDaysActionPerformed
+    private void standardChaptes2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_standardChaptes2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_remainingDaysActionPerformed
-
-    private void totalDaysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalDaysActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_totalDaysActionPerformed
-
-    private void plotTwistChaptersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plotTwistChaptersActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_plotTwistChaptersActionPerformed
-
-    private void standardChaptersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_standardChaptersActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_standardChaptersActionPerformed
-
-    private void totalChaptersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalChaptersActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_totalChaptersActionPerformed
+    }//GEN-LAST:event_standardChaptes2ActionPerformed
 
     private String increaseQuantity(String actualValue, JButton btn) {
         int intValue = 0;
@@ -2767,6 +2856,7 @@ public class Nickelodeon extends javax.swing.JFrame {
     private javax.swing.JLabel assemblerTitle;
     private javax.swing.JLabel assemblerTitle1;
     private javax.swing.JTextField assemblerValues;
+    private javax.swing.JTextField batchLastProfit;
     private javax.swing.JPanel btn_Inicio;
     private javax.swing.JPanel btn_cargar_guardar;
     private javax.swing.JPanel btn_nueva_ruta;
@@ -2775,7 +2865,7 @@ public class Nickelodeon extends javax.swing.JFrame {
     private javax.swing.JPanel btn_reporte;
     private javax.swing.JTextField cashPenality;
     private javax.swing.JTextField cost;
-    private javax.swing.JTextField currentDays;
+    private javax.swing.JTextField currentDeadline;
     private javax.swing.JButton decreaceAssembler;
     private javax.swing.JButton decreacePlotTwist;
     private javax.swing.JButton decreaseAnimation;
@@ -2783,7 +2873,6 @@ public class Nickelodeon extends javax.swing.JFrame {
     private javax.swing.JButton decreaseScenary;
     private javax.swing.JButton decreaseScripts;
     private javax.swing.JTextField directorStatus;
-    private javax.swing.JTextField directorStatus1;
     private javax.swing.JPanel drivePanel;
     private javax.swing.JLabel driveTitle;
     private javax.swing.JLabel driveTitle1;
@@ -2804,7 +2893,9 @@ public class Nickelodeon extends javax.swing.JFrame {
     private javax.swing.JLabel driveTitle23;
     private javax.swing.JLabel driveTitle24;
     private javax.swing.JLabel driveTitle25;
+    private javax.swing.JLabel driveTitle26;
     private javax.swing.JLabel driveTitle27;
+    private javax.swing.JLabel driveTitle28;
     private javax.swing.JLabel driveTitle3;
     private javax.swing.JLabel driveTitle4;
     private javax.swing.JLabel driveTitle5;
@@ -2841,6 +2932,7 @@ public class Nickelodeon extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
@@ -2861,6 +2953,7 @@ public class Nickelodeon extends javax.swing.JFrame {
     private javax.swing.JPanel plotTwist4;
     private javax.swing.JTextField plotTwistChapters;
     private javax.swing.JTextField plotTwistChapters1;
+    private javax.swing.JTextField plotTwistChapters2;
     private javax.swing.JTextField plotTwistDrive;
     private javax.swing.JLabel plotTwistLimit1;
     private javax.swing.JLabel plotTwistLimit3;
@@ -2869,7 +2962,6 @@ public class Nickelodeon extends javax.swing.JFrame {
     private javax.swing.JTextField plotTwistValues;
     private javax.swing.JTextField profit;
     private javax.swing.JTextField projectManagerStatus;
-    private javax.swing.JTextField remainingDays;
     private javax.swing.JPanel scenary;
     private javax.swing.JPanel scenary1;
     private javax.swing.JTextField scenaryDrive;
@@ -2886,6 +2978,7 @@ public class Nickelodeon extends javax.swing.JFrame {
     private javax.swing.JTextField scriptsValues;
     private javax.swing.JTextField standardChapters;
     private javax.swing.JTextField standardChaptes1;
+    private javax.swing.JTextField standardChaptes2;
     private javax.swing.JTextField strikeCounter;
     private javax.swing.JTextField totalChapters;
     private javax.swing.JTextField totalDays;
