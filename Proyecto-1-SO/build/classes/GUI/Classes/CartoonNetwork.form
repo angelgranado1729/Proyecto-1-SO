@@ -2436,12 +2436,14 @@
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="profit" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="earning" min="-2" pref="118" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="earning" alignment="1" min="-2" pref="118" max="-2" attributes="0"/>
+                                  <Component id="cost" alignment="1" min="-2" pref="103" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="profit" alignment="1" max="32767" attributes="0"/>
-                          <Component id="cost" alignment="1" min="-2" pref="103" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
                   </Group>

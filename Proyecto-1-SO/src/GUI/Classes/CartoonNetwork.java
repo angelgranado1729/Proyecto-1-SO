@@ -36,10 +36,8 @@ public class CartoonNetwork extends javax.swing.JFrame {
     private HelpersFunctions helper = new HelpersFunctions();
     private FileFunctions filefunctions = new FileFunctions();
     private File selectedFile = app.getSelectedFile();
-
     private JButton[] decreaseBtn = new JButton[6];
     private JButton[] increaseBtn = new JButton[6];
-
     private int[] values = {
         countNonNullEmployees(this.app.getCartoonNetwork().getScreenwriters()),
         countNonNullEmployees(this.app.getCartoonNetwork().getSetDesigners()),
@@ -116,7 +114,6 @@ public class CartoonNetwork extends javax.swing.JFrame {
         this.decreaseBtn[3] = decreaseDubbing;
         this.decreaseBtn[4] = decreacePlotTwist;
         this.decreaseBtn[5] = decreaceAssembler;
-
         this.increaseBtn[0] = increaseScripts;
         this.increaseBtn[1] = increaseScenary;
         this.increaseBtn[2] = increaseAnimation;
@@ -190,8 +187,8 @@ public class CartoonNetwork extends javax.swing.JFrame {
                                         String.valueOf(app.getCartoonNetwork().getLastNumChaptersWithPlotTwist())
                                 );
 
-                                cost.setText(formatNumberAsK((int) app.getCartoonNetwork().getTotalCost()));
                                 profit.setText(formatNumberAsK((int) app.getCartoonNetwork().getProfit()));
+                                cost.setText(formatNumberAsK((int) app.getCartoonNetwork().getTotalCost()));
                                 earning.setText(formatNumberAsK((int) app.getCartoonNetwork().getEarning()));
                                 batchLastProfit.setText(
                                         formatNumberAsK((int) app.getCartoonNetwork().getBatchLastProfit()));

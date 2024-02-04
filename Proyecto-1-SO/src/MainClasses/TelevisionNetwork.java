@@ -28,27 +28,19 @@ public class TelevisionNetwork {
     private Director directorInstance;
     private static Drive drive;
     private Semaphore mutex;
-
     private float totalCost = 0;
     private float earning = 0;
     private float profit = 0;
     private float lastOpsCost = 0;
     private float batchLastProfit = 0;
-
-    private int daySet = App.getInstance().getDeadline();
-
     private int totalDays = 0;
     private int remainingDays = App.getInstance().getDeadline();
-
     private int numChapters = 0;
     private int numNormalChapters = 0;
     private int numChaptersWithPlotTwist = 0;
-
     private int actualNumChapters = 0;
     private int actualNumNormalChapters = 0;
     private int actualNumChaptersWithPlotTwist = 0;
-
-    private int lastNumChapters = 0;
     private int lastNumNormalChapters = 0;
     private int lastNumChaptersWithPlotTwist = 0;
 
@@ -380,20 +372,6 @@ public class TelevisionNetwork {
     }
 
     /**
-     * @return the daySet
-     */
-    public int getDaySet() {
-        return daySet;
-    }
-
-    /**
-     * @param daySet the daySet to set
-     */
-    public void setDaySet(int daySet) {
-        this.daySet = daySet;
-    }
-
-    /**
      * @return the remainingDays
      */
     public int getRemainingDays() {
@@ -523,20 +501,6 @@ public class TelevisionNetwork {
      */
     public void setActualNumChaptersWithPlotTwist(int actualNumChaptersWithPlotTwist) {
         this.actualNumChaptersWithPlotTwist = actualNumChaptersWithPlotTwist;
-    }
-
-    /**
-     * @return the lastNumChapters
-     */
-    public int getLastNumChapters() {
-        return lastNumChapters;
-    }
-
-    /**
-     * @param lastNumChapters the lastNumChapters to set
-     */
-    public void setLastNumChapters(int lastNumChapters) {
-        this.lastNumChapters = lastNumChapters;
     }
 
     /**
