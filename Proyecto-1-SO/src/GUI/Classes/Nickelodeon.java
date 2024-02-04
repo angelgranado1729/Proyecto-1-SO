@@ -185,7 +185,7 @@ public class Nickelodeon extends javax.swing.JFrame {
                                         String.valueOf(app.getNickelodeon().getLastNumChaptersWithPlotTwist())
                                 );
 
-                                profit.setText(formatNumberAsK((int) app.getNickelodeon().getProfit()));
+                                profit.setText(formatNumberAsK((int) app.getNickelodeon().getEarning() -  (int) app.getNickelodeon().getTotalCost()));
                                 cost.setText(formatNumberAsK((int) app.getNickelodeon().getTotalCost()));
                                 earning.setText(formatNumberAsK((int) app.getNickelodeon().getEarning()));
                                 batchLastProfit.setText(

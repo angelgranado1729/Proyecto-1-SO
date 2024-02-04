@@ -30,6 +30,7 @@ public class Director extends Employee {
     public void run() {
         while (true) {
             try {
+                getPaid();
                 int dayDuration = app.getDayDuration();
                 int oneHour = dayDuration / 24;
                 // Se determina cuanto son 35 minutos.
@@ -64,8 +65,6 @@ public class Director extends Employee {
                         }
                     }
                 }
-
-                getPaid();
                 Thread.sleep(dayDuration);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
@@ -85,6 +84,7 @@ public class Director extends Employee {
             Thread.sleep(app.getDayDuration());
             // Reiniciar el contador de días restantes
             if (this.company == 0) {
+                resetDeadline(app.getNickelodeon());
                 calculateProfit(app.getNickelodeon());
                 app.getNickelodeon().getDrive().resetChapters();
                 app.getNickelodeon().setLastNumChaptersWithPlotTwist(
@@ -96,9 +96,9 @@ public class Director extends Employee {
                 app.getNickelodeon().setLastOpsCost(app.getNickelodeon().getTotalCost()
                         - app.getNickelodeon().getLastOpsCost());
                 calculateBatchLastProfit(app.getNickelodeon());
-                resetDeadline(app.getNickelodeon());
 
             } else {
+                resetDeadline(app.getCartoonNetwork());
                 calculateProfit(app.getCartoonNetwork());
                 app.getCartoonNetwork().getDrive().resetChapters();
                 app.getCartoonNetwork().setLastNumChaptersWithPlotTwist(
@@ -111,7 +111,6 @@ public class Director extends Employee {
                 app.getCartoonNetwork().setLastOpsCost(app.getCartoonNetwork().getTotalCost()
                         - app.getCartoonNetwork().getLastOpsCost());
                 calculateBatchLastProfit(app.getCartoonNetwork());
-                resetDeadline(app.getCartoonNetwork());
             }
 
         } catch (InterruptedException ex) {
@@ -134,13 +133,12 @@ public class Director extends Employee {
     }
 
     private void calculateProfit(TelevisionNetwork tv) {
-        float totalCost = tv.getTotalCost();
+        
         float earning = (tv.getNumNormalChapters() * ImportantConstants.profitPerChapter[this.company][0])
                 + (tv.getNumChaptersWithPlotTwist() * ImportantConstants.profitPerChapter[this.company][1]);
-        float profit = earning - totalCost;
-
         tv.setEarning(earning);
-        tv.setProfit(profit);
+        tv.setTotalCost(tv.getTotalCost());
+        tv.setProfit(earning - tv.getTotalCost());
     }
 
     private void checkProjectManager() {
