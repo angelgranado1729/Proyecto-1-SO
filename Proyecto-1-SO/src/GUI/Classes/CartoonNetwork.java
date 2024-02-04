@@ -187,7 +187,7 @@ public class CartoonNetwork extends javax.swing.JFrame {
                                         String.valueOf(app.getCartoonNetwork().getLastNumChaptersWithPlotTwist())
                                 );
 
-                                profit.setText(formatNumberAsK((int) app.getCartoonNetwork().getProfit()));
+                                profit.setText(formatNumberAsK((int) app.getCartoonNetwork().getEarning() -  (int) app.getCartoonNetwork().getTotalCost()));
                                 cost.setText(formatNumberAsK((int) app.getCartoonNetwork().getTotalCost()));
                                 earning.setText(formatNumberAsK((int) app.getCartoonNetwork().getEarning()));
                                 batchLastProfit.setText(

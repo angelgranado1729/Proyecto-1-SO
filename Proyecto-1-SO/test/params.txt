@@ -1,5 +1,5 @@
 [General Params]
-DayDuration=10000
+DayDuration=5000
 Deadline=2
 
 [Nickelodeon]

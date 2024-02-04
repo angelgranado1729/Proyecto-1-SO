@@ -79,11 +79,7 @@ public class Employee extends Thread {
     }
     
     private void addDailyProduction() {
-        //Si no hay para hacer un cap, entonces el assembler no trabaja
-        if (this.type == 5 && !this.evaluateAssemble()) {
-            this.setTotalWork(0);
-        }
-        
+       
         this.setTotalWork(this.getTotalWork() + this.getDailyProgress());
     }
     
@@ -171,6 +167,10 @@ public class Employee extends Thread {
         } else {
             this.setTotalWork(0);
         }
+    }
+    
+    private boolean isPlotTwistChapter(TelevisionNetwork tv){
+        return true;
     }
     
     @Override
