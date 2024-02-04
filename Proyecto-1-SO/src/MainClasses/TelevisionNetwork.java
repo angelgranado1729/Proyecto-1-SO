@@ -28,16 +28,29 @@ public class TelevisionNetwork {
     private Director directorInstance;
     private static Drive drive;
     private Semaphore mutex;
-    private float totalCost;
-    private float earning;
-    private float profit;
+
+    private float totalCost = 0;
+    private float earning = 0;
+    private float profit = 0;
+    private float lastOpsCost = 0;
+    private float batchLastProfit = 0;
+
     private int daySet = App.getInstance().getDeadline();
-    private int remainingDays = daySet;
-    
-    
+
+    private int totalDays = 0;
+    private int remainingDays = App.getInstance().getDeadline();
+
     private int numChapters = 0;
     private int numNormalChapters = 0;
     private int numChaptersWithPlotTwist = 0;
+
+    private int actualNumChapters = 0;
+    private int actualNumNormalChapters = 0;
+    private int actualNumChaptersWithPlotTwist = 0;
+
+    private int lastNumChapters = 0;
+    private int lastNumNormalChapters = 0;
+    private int lastNumChaptersWithPlotTwist = 0;
 
     // CONSTRUCTOR
     public TelevisionNetwork(String name, int maxEmployeesQuantity, Employee[] screenwriters, Employee[] setDesigners,
@@ -59,9 +72,6 @@ public class TelevisionNetwork {
     }
 
     public void start() {
-        this.setTotalCost(0);
-        this.setEarning(0);
-        this.setProfit(0);
 
         for (int i = 0; i < this.getScreenwriters().length; i++) {
             if (this.getScreenwriters()[i] != null) {
@@ -456,6 +466,134 @@ public class TelevisionNetwork {
      */
     public void setNumNormalChapters(int numNormalChapters) {
         this.numNormalChapters = numNormalChapters;
+    }
+
+    /**
+     * @return the totalDays
+     */
+    public int getTotalDays() {
+        return totalDays;
+    }
+
+    /**
+     * @param totalDays the totalDays to set
+     */
+    public void setTotalDays(int totalDays) {
+        this.totalDays = totalDays;
+    }
+
+    /**
+     * @return the actualNumChapters
+     */
+    public int getActualNumChapters() {
+        return actualNumChapters;
+    }
+
+    /**
+     * @param actualNumChapters the actualNumChapters to set
+     */
+    public void setActualNumChapters(int actualNumChapters) {
+        this.actualNumChapters = actualNumChapters;
+    }
+
+    /**
+     * @return the actualNumNormalChapters
+     */
+    public int getActualNumNormalChapters() {
+        return actualNumNormalChapters;
+    }
+
+    /**
+     * @param actualNumNormalChapters the actualNumNormalChapters to set
+     */
+    public void setActualNumNormalChapters(int actualNumNormalChapters) {
+        this.actualNumNormalChapters = actualNumNormalChapters;
+    }
+
+    /**
+     * @return the actualNumChaptersWithPlotTwist
+     */
+    public int getActualNumChaptersWithPlotTwist() {
+        return actualNumChaptersWithPlotTwist;
+    }
+
+    /**
+     * @param actualNumChaptersWithPlotTwist the actualNumChaptersWithPlotTwist
+     * to set
+     */
+    public void setActualNumChaptersWithPlotTwist(int actualNumChaptersWithPlotTwist) {
+        this.actualNumChaptersWithPlotTwist = actualNumChaptersWithPlotTwist;
+    }
+
+    /**
+     * @return the lastNumChapters
+     */
+    public int getLastNumChapters() {
+        return lastNumChapters;
+    }
+
+    /**
+     * @param lastNumChapters the lastNumChapters to set
+     */
+    public void setLastNumChapters(int lastNumChapters) {
+        this.lastNumChapters = lastNumChapters;
+    }
+
+    /**
+     * @return the lastNumNormalChapters
+     */
+    public int getLastNumNormalChapters() {
+        return lastNumNormalChapters;
+    }
+
+    /**
+     * @param lastNumNormalChapters the lastNumNormalChapters to set
+     */
+    public void setLastNumNormalChapters(int lastNumNormalChapters) {
+        this.lastNumNormalChapters = lastNumNormalChapters;
+    }
+
+    /**
+     * @return the lastNumChaptersWithPlotTwist
+     */
+    public int getLastNumChaptersWithPlotTwist() {
+        return lastNumChaptersWithPlotTwist;
+    }
+
+    /**
+     * @param lastNumChaptersWithPlotTwist the lastNumChaptersWithPlotTwist to
+     * set
+     */
+    public void setLastNumChaptersWithPlotTwist(int lastNumChaptersWithPlotTwist) {
+        this.lastNumChaptersWithPlotTwist = lastNumChaptersWithPlotTwist;
+    }
+
+    /**
+     * @return the lastOpsCost
+     */
+    public float getLastOpsCost() {
+        return lastOpsCost;
+    }
+
+    /**
+     * @param lastOpsCost the lastOpsCost to set
+     */
+    public void setLastOpsCost(float lastOpsCost) {
+        this.lastOpsCost = lastOpsCost;
+    }
+
+    /**
+     * @return the batchLastProfit
+     */
+    public float getBatchLastProfit() {
+        return batchLastProfit;
+    }
+
+    /**
+     * @param batchLastProfit the batchLastProfit to set
+     */
+    public void setBatchLastProfit(float batchLastProfit) {
+        this.batchLastProfit = batchLastProfit;
     }
 
 }

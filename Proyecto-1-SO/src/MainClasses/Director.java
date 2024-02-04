@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package MainClasses;
 
+import Helpers.ImportantConstants;
 import MainPackage.App;
 import java.util.Random;
 import java.util.concurrent.Semaphore;
@@ -15,8 +15,8 @@ import java.util.logging.Logger;
  *
  * @author Erika A. Henández Z.
  */
-
 public class Director extends Employee {
+
     private String status;
     private App app = App.getInstance();
 
@@ -39,18 +39,16 @@ public class Director extends Employee {
                 // Se buscan los días restantes.
                 int remainingDays = this.company == 0 ? app.getNickelodeon().getRemainingDays()
                         : app.getCartoonNetwork().getRemainingDays();
-                
 
                 if (remainingDays <= 0) {
-                    this.setStatus("Enviando capítulos.");
+                    this.setStatus("Enviando capítulos");
                     sendChaptersToTV();
-                }
-                // Si es un dia diferente al 0 entonces hace sus labores administrativas y
+                } // Si es un dia diferente al 0 entonces hace sus labores administrativas y
                 // supervisa al PM
                 else {
                     Random rand = new Random();
                     int randomHour = rand.nextInt(24);
-                    
+
                     for (int i = 0; i < 24; i++) {
                         if (i == randomHour) {
                             this.status = "Vigilando PM";
@@ -75,27 +73,54 @@ public class Director extends Employee {
         }
     }
 
+    private void resetDeadline(TelevisionNetwork tv) {
+        tv.setRemainingDays(app.getDeadline());
+    }
+
     private void sendChaptersToTV() {
         try {
-            this.setStatus("Enviando capítulos.");
-            this.calculateProfit();
+            this.setStatus("Enviando capítulos");
+
             // Esperar un día completo (simulado)
             Thread.sleep(app.getDayDuration());
-            // Reiniciar el contador de días restantes, el contador de faltas del Project
-            // Manager y los capitulos producidos.
+            // Reiniciar el contador de días restantes
             if (this.company == 0) {
-                app.getNickelodeon().getProjectManagerInstance().resetStrikes();
                 app.getNickelodeon().getDrive().resetChapters();
-                app.getNickelodeon().resetCost();
-                app.getNickelodeon().resetRemainingDays();
+                app.getNickelodeon().setLastNumChapters(app.getNickelodeon().getActualNumChapters());
+                app.getNickelodeon().setLastNumChaptersWithPlotTwist(
+                        app.getNickelodeon().getActualNumChaptersWithPlotTwist());
+                app.getNickelodeon().setLastNumNormalChapters(
+                        app.getNickelodeon().getActualNumNormalChapters()
+                );
+                app.getNickelodeon().setActualNumChapters(0);
+                app.getNickelodeon().setActualNumChaptersWithPlotTwist(0);
+                app.getNickelodeon().setActualNumNormalChapters(0);
 
-                // FIXME - Se envian TODOS los capitulos a la TV
-                // app.getNickelodeon().getDrive().getSections()[5] = 0;
+                calculateProfit(app.getNickelodeon());
+                resetDeadline(app.getNickelodeon());
+                app.getNickelodeon().setLastOpsCost(app.getNickelodeon().getTotalCost()
+                        - app.getNickelodeon().getLastOpsCost());
+
+                calculateBatchLastProfit(app.getNickelodeon());
+
             } else {
-                app.getCartoonNetwork().getProjectManagerInstance().resetStrikes();
                 app.getCartoonNetwork().getDrive().resetChapters();
-                app.getCartoonNetwork().resetCost();
-                app.getCartoonNetwork().resetRemainingDays();
+                app.getCartoonNetwork().setLastNumChapters(app.getCartoonNetwork().getActualNumChapters());
+                app.getCartoonNetwork().setLastNumChaptersWithPlotTwist(
+                        app.getCartoonNetwork().getActualNumChaptersWithPlotTwist());
+                app.getCartoonNetwork().setLastNumNormalChapters(
+                        app.getCartoonNetwork().getActualNumNormalChapters()
+                );
+                app.getCartoonNetwork().setActualNumChapters(0);
+                app.getCartoonNetwork().setActualNumChaptersWithPlotTwist(0);
+                app.getCartoonNetwork().setActualNumNormalChapters(0);
+
+                calculateProfit(app.getCartoonNetwork());
+                resetDeadline(app.getCartoonNetwork());
+                app.getCartoonNetwork().setLastOpsCost(app.getCartoonNetwork().getTotalCost()
+                        - app.getCartoonNetwork().getLastOpsCost());
+
+                calculateBatchLastProfit(app.getCartoonNetwork());
             }
 
         } catch (InterruptedException ex) {
@@ -103,33 +128,27 @@ public class Director extends Employee {
         }
     }
 
+    private void calculateBatchLastProfit(TelevisionNetwork tv) {
+        float profit = (tv.getLastNumNormalChapters()
+                * ImportantConstants.profitPerChapter[this.company][0])
+                + (tv.getNumChaptersWithPlotTwist()
+                * ImportantConstants.profitPerChapter[this.company][1])
+                - (tv.getLastOpsCost());
+        tv.setBatchLastProfit(profit);
+    }
+
     private void performAdministrativeTasks() {
         this.setStatus("Administrando");
     }
 
-    private void calculateProfit() {
-        int cost;
-        int earnStandard;
-        int earnPlotTwist;
-        int earning;
-        int profit;
-        if (this.getCompany() == 0) {
-            cost = (int) app.getNickelodeon().getTotalCost();
-            earnStandard = app.getNickelodeon().getDrive().getStandarChapters() * 450000;
-            earnPlotTwist = app.getNickelodeon().getDrive().getPlotTwistChapters() * 550000;
-            earning = earnStandard + earnPlotTwist;
-            profit = earning - cost;
-            app.getNickelodeon().setEarning(earning);
-            app.getNickelodeon().setProfit(profit);
-        } else {
-            cost = (int) app.getCartoonNetwork().getTotalCost();
-            earnStandard = app.getCartoonNetwork().getDrive().getStandarChapters() * 300000;
-            earnPlotTwist = app.getCartoonNetwork().getDrive().getPlotTwistChapters() * 650000;
-            earning = earnStandard + earnPlotTwist;
-            profit = earning - cost;
-            app.getNickelodeon().setEarning(earning);
-            app.getNickelodeon().setProfit(profit);
-        }
+    private void calculateProfit(TelevisionNetwork tv) {
+        float totalCost = tv.getTotalCost();
+        float earning = (tv.getNumNormalChapters() * ImportantConstants.profitPerChapter[this.company][0])
+                + (tv.getNumChaptersWithPlotTwist() * ImportantConstants.profitPerChapter[this.company][1]);
+        float profit = earning - totalCost;
+
+        tv.setEarning(earning);
+        tv.setProfit(profit);
     }
 
     private void checkProjectManager() {
@@ -155,8 +174,10 @@ public class Director extends Employee {
         this.accumulatedSalary += this.hourlyWage * 24;
         if (this.company == 0) {
             app.getNickelodeon().increaseTotalCost(this.hourlyWage * 24);
+            app.getNickelodeon().setProfit(app.getNickelodeon().getProfit() - (this.hourlyWage * 24));
         } else {
             app.getCartoonNetwork().increaseTotalCost(this.hourlyWage * 24);
+            app.getCartoonNetwork().setProfit(app.getCartoonNetwork().getProfit() - (this.hourlyWage * 24));
         }
     }
 
@@ -178,5 +199,4 @@ public class Director extends Employee {
     public void setStatus(String status) {
         this.status = status;
     }
-
 }

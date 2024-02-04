@@ -13,8 +13,8 @@ import java.util.logging.Logger;
  *
  * @author Erika A. Henández Z.
  */
-
 public class ProjectManager extends Employee {
+
     private String currentState;
     private int strikes;
 
@@ -23,17 +23,17 @@ public class ProjectManager extends Employee {
         this.currentState = "Inactivo";
         this.strikes = 0;
     }
-    
-    @Override    
+
+    @Override
     public void run() {
         while (true) {
             try {
                 //Se obtiene la duración del día total directo de la variable de app.
-                int dayDuration = App.getDayDuration(); 
+                int dayDuration = App.getDayDuration();
 
                 // Duración de una hora en la simulación
-                int oneHour = dayDuration / 24; 
-                
+                int oneHour = dayDuration / 24;
+
                 // Se sabe que pasa 16 horas alterando ver anime y trabajar cada 30 mins.
                 // Por lo tanto se loopea cada 30 mins (32 intervalos de 30 mins) para las primeras 16 h. 
                 for (int i = 0; i < 32; i++) {
@@ -45,16 +45,22 @@ public class ProjectManager extends Employee {
 
                     }
                     // Duerme por la mitad de una hora de simulación
-                    Thread.sleep(oneHour / 2); 
+                    Thread.sleep(oneHour / 2);
                 }
                 // La segunda parte del día traba para actualizar 1 vez el contador
                 // Porque se actualiza 1 vez por día el dayCounter
                 setCurrentState("Trabajando");
-                Thread.sleep(oneHour * 8); 
-                this.updateCountdown();
+                Thread.sleep(oneHour * 8);
+
                 // Culminado el día cobra su salario
                 this.getPaid();
-                
+
+                if (this.company == 0) {
+                    app.getNickelodeon().setTotalDays(app.getNickelodeon().getTotalDays() + 1);
+                } else {
+                    app.getCartoonNetwork().setTotalDays(app.getCartoonNetwork().getTotalDays() + 1);
+                }
+                this.updateCountdown();
 
             } catch (InterruptedException ex) {
                 Logger.getLogger(ProjectManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -64,12 +70,12 @@ public class ProjectManager extends Employee {
 
     private void updateCountdown() {
         // Lógica para actualizar el contador de días restantes
-        if (this.company == 0 ) {
-            if (app.getNickelodeon().getRemainingDays() !=0){
-            app.getNickelodeon().decreaceRemainingDays();
+        if (this.company == 0) {
+            if (app.getNickelodeon().getRemainingDays() != 0) {
+                app.getNickelodeon().decreaceRemainingDays();
             }
         } else {
-            if (app.getCartoonNetwork().getRemainingDays() !=0){
+            if (app.getCartoonNetwork().getRemainingDays() != 0) {
                 app.getCartoonNetwork().decreaceRemainingDays();
             }
         }
@@ -78,10 +84,12 @@ public class ProjectManager extends Employee {
     private void getPaid() {
         // Asumiendo que el Project Manager trabaja las 24 horas del día, incluyendo ver anime.
         this.setAccumulatedSalary(this.getAccumulatedSalary() + this.getHourlyWage() * 24);
-        if (this.company == 0 ) {
+        if (this.company == 0) {
             app.getNickelodeon().increaseTotalCost(this.getHourlyWage() * 24);
+            app.getNickelodeon().setProfit(app.getNickelodeon().getProfit() - (this.hourlyWage * 24));
         } else {
-          app.getCartoonNetwork().increaseTotalCost(this.getHourlyWage() * 24);
+            app.getCartoonNetwork().increaseTotalCost(this.getHourlyWage() * 24);
+            app.getCartoonNetwork().setProfit(app.getCartoonNetwork().getProfit() - (this.hourlyWage * 24));
         }
     }
 
@@ -167,9 +175,8 @@ public class ProjectManager extends Employee {
     public void addStrike() {
         this.strikes++;
     }
-    
-    public void resetStrikes(){
+
+    public void resetStrikes() {
         this.strikes = 0;
     }
-    
 }

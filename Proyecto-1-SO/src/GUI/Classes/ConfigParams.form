@@ -348,10 +348,10 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="icono5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="203" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="icono5" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="213" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -363,7 +363,7 @@
                               <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="icono5" alignment="2" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="14" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -479,7 +479,7 @@
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="28" y="14" width="-1" height="-1"/>
+                      <AbsoluteConstraints x="20" y="10" width="-1" height="-1"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -952,9 +952,9 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="plotTwist2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="maxCap" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="driveTitle27" alignment="0" min="-2" pref="36" max="-2" attributes="0"/>
+                              <Component id="maxCap" min="-2" pref="36" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -1689,14 +1689,12 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="maxCap1" pref="167" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="plotTwist3" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="plotTwist1" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="dubbing1" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="animations1" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="scenary1" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="scripts2" alignment="1" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="plotTwist3" alignment="1" max="32767" attributes="0"/>
+                              <Component id="plotTwist1" alignment="1" max="32767" attributes="0"/>
+                              <Component id="dubbing1" alignment="1" max="32767" attributes="0"/>
+                              <Component id="animations1" alignment="1" max="32767" attributes="0"/>
+                              <Component id="scenary1" alignment="1" max="32767" attributes="0"/>
+                              <Component id="scripts2" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       </Group>

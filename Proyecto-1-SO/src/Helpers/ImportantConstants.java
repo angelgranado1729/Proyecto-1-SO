@@ -54,4 +54,9 @@ public class ImportantConstants {
 
     public final static int[] plotTwistFreq = {5, 3};
 
+    public final static int[][] profitPerChapter = {
+        {450000, 500000},
+        {300000, 650000}
+    };
+
 }

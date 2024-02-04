@@ -85,6 +85,7 @@ public class Home extends javax.swing.JFrame {
 
         icono1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Montserrat", 0, 24)); // NOI18N
         jLabel4.setText("Inicio");
 
@@ -418,12 +419,16 @@ public class Home extends javax.swing.JFrame {
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
-
+        Dashboard v4 = new Dashboard();
+        v4.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void btn_nuevo_pedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_pedidoMouseClicked
         // TODO add your handling code here:
-
+        Dashboard v4 = new Dashboard();
+        v4.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btn_nuevo_pedidoMouseClicked
 
     private void icono3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono3MouseClicked
@@ -435,7 +440,7 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
         CartoonNetwork v2 = new CartoonNetwork();
         v2.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void cartoonPlayMusic(String path) {
@@ -453,7 +458,7 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
         CartoonNetwork v2 = new CartoonNetwork();
         v2.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btn_nueva_rutaMouseClicked
 
     private void icono4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono4MouseClicked
@@ -465,14 +470,14 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
         ConfigParams v3 = new ConfigParams();
         v3.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void btn_nuevo_almacenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_almacenMouseClicked
         // TODO add your handling code here:
         ConfigParams v3 = new ConfigParams();
         v3.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btn_nuevo_almacenMouseClicked
 
     private void icono7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono7MouseClicked
@@ -484,14 +489,14 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
         Nickelodeon v1 = new Nickelodeon();
         v1.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void btn_cargar_guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cargar_guardarMouseClicked
         // TODO add your handling code here:
         Nickelodeon v1 = new Nickelodeon();
         v1.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btn_cargar_guardarMouseClicked
 
     private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
