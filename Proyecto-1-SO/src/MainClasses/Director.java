@@ -85,42 +85,33 @@ public class Director extends Employee {
             Thread.sleep(app.getDayDuration());
             // Reiniciar el contador de días restantes
             if (this.company == 0) {
+                calculateProfit(app.getNickelodeon());
                 app.getNickelodeon().getDrive().resetChapters();
-                app.getNickelodeon().setLastNumChapters(app.getNickelodeon().getActualNumChapters());
                 app.getNickelodeon().setLastNumChaptersWithPlotTwist(
                         app.getNickelodeon().getActualNumChaptersWithPlotTwist());
                 app.getNickelodeon().setLastNumNormalChapters(
                         app.getNickelodeon().getActualNumNormalChapters()
                 );
-                app.getNickelodeon().setActualNumChapters(0);
-                app.getNickelodeon().setActualNumChaptersWithPlotTwist(0);
                 app.getNickelodeon().setActualNumNormalChapters(0);
-
-                calculateProfit(app.getNickelodeon());
-                resetDeadline(app.getNickelodeon());
                 app.getNickelodeon().setLastOpsCost(app.getNickelodeon().getTotalCost()
                         - app.getNickelodeon().getLastOpsCost());
-
                 calculateBatchLastProfit(app.getNickelodeon());
+                resetDeadline(app.getNickelodeon());
 
             } else {
+                calculateProfit(app.getCartoonNetwork());
                 app.getCartoonNetwork().getDrive().resetChapters();
-                app.getCartoonNetwork().setLastNumChapters(app.getCartoonNetwork().getActualNumChapters());
                 app.getCartoonNetwork().setLastNumChaptersWithPlotTwist(
                         app.getCartoonNetwork().getActualNumChaptersWithPlotTwist());
                 app.getCartoonNetwork().setLastNumNormalChapters(
                         app.getCartoonNetwork().getActualNumNormalChapters()
                 );
-                app.getCartoonNetwork().setActualNumChapters(0);
                 app.getCartoonNetwork().setActualNumChaptersWithPlotTwist(0);
                 app.getCartoonNetwork().setActualNumNormalChapters(0);
-
-                calculateProfit(app.getCartoonNetwork());
-                resetDeadline(app.getCartoonNetwork());
                 app.getCartoonNetwork().setLastOpsCost(app.getCartoonNetwork().getTotalCost()
                         - app.getCartoonNetwork().getLastOpsCost());
-
                 calculateBatchLastProfit(app.getCartoonNetwork());
+                resetDeadline(app.getCartoonNetwork());
             }
 
         } catch (InterruptedException ex) {
@@ -134,6 +125,7 @@ public class Director extends Employee {
                 + (tv.getNumChaptersWithPlotTwist()
                 * ImportantConstants.profitPerChapter[this.company][1])
                 - (tv.getLastOpsCost());
+
         tv.setBatchLastProfit(profit);
     }
 
