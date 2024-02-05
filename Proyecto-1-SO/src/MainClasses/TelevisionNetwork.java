@@ -43,6 +43,7 @@ public class TelevisionNetwork {
     private int actualNumChaptersWithPlotTwist = 0;
     private int lastNumNormalChapters = 0;
     private int lastNumChaptersWithPlotTwist = 0;
+    private int plotTwistTrigger = 0;
 
     // CONSTRUCTOR
     public TelevisionNetwork(String name, int maxEmployeesQuantity, Employee[] screenwriters, Employee[] setDesigners,
@@ -560,4 +561,19 @@ public class TelevisionNetwork {
         this.batchLastProfit = batchLastProfit;
     }
 
+    /**
+     * @return the plotTwistTrigger
+     */
+    public int getPlotTwistTrigger() {
+        return plotTwistTrigger;
+    }
+
+    /**
+     * @param plotTwistTrigger the plotTwistTrigger to set
+     */
+    public void setPlotTwistTrigger(int plotTwistTrigger) {
+        this.plotTwistTrigger = plotTwistTrigger;
+    }
+
+    
 }
