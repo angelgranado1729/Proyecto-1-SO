@@ -133,7 +133,7 @@ public class Director extends Employee {
     }
 
     private void calculateProfit(TelevisionNetwork tv) {
-        
+
         float earning = (tv.getNumNormalChapters() * ImportantConstants.profitPerChapter[this.company][0])
                 + (tv.getNumChaptersWithPlotTwist() * ImportantConstants.profitPerChapter[this.company][1]);
         tv.setEarning(earning);
@@ -148,16 +148,20 @@ public class Director extends Employee {
                 app.getNickelodeon().getProjectManagerInstance().setAccumulatedSalary(
                         app.getNickelodeon().getProjectManagerInstance().getAccumulatedSalary() - 100);
                 app.getNickelodeon().getProjectManagerInstance().addStrike();
+
+                //FIXME se reduce el costo operacional
+                app.getNickelodeon().setTotalCost(app.getNickelodeon().getTotalCost() - 100);
             }
         } else {
             if ("Viendo Anime".equals(app.getCartoonNetwork().getProjectManagerInstance().getCurrentState())) {
                 app.getCartoonNetwork().getProjectManagerInstance().setAccumulatedSalary(
                         app.getCartoonNetwork().getProjectManagerInstance().getAccumulatedSalary() - 100);
                 app.getCartoonNetwork().getProjectManagerInstance().addStrike();
+
+                //FIXME se reduce el costo operacional
+                app.getCartoonNetwork().setTotalCost(app.getCartoonNetwork().getTotalCost() - 100);
             }
-
         }
-
     }
 
     private void getPaid() {
