@@ -92,7 +92,13 @@ public class Director extends Employee {
                 app.getNickelodeon().setLastNumNormalChapters(
                         app.getNickelodeon().getActualNumNormalChapters()
                 );
+               
+               
+                app.getNickelodeon().setActualNumChaptersWithPlotTwist(0);
                 app.getNickelodeon().setActualNumNormalChapters(0);
+               
+               
+               
                 app.getNickelodeon().setLastOpsCost(app.getNickelodeon().getTotalCost()
                         - app.getNickelodeon().getLastOpsCost());
                 calculateBatchLastProfit(app.getNickelodeon());
@@ -108,6 +114,7 @@ public class Director extends Employee {
                 );
                 app.getCartoonNetwork().setActualNumChaptersWithPlotTwist(0);
                 app.getCartoonNetwork().setActualNumNormalChapters(0);
+               
                 app.getCartoonNetwork().setLastOpsCost(app.getCartoonNetwork().getTotalCost()
                         - app.getCartoonNetwork().getLastOpsCost());
                 calculateBatchLastProfit(app.getCartoonNetwork());
