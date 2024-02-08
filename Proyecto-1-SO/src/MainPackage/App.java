@@ -6,6 +6,7 @@ package MainPackage;
 
 import GUI.Classes.Home;
 import FileFunctions.FileFunctions;
+import GUI.Classes.ChartManager;
 import Helpers.HelpersFunctions;
 import MainClasses.TelevisionNetwork;
 import java.io.File;
@@ -28,6 +29,8 @@ public class App {
     // General variables
     private TelevisionNetwork cartoonNetwork;
     private TelevisionNetwork nickelodeon;
+    private static ChartManager chartManager;
+
 
     private static App app;
 
@@ -50,6 +53,8 @@ public class App {
         // Inicia la simulacion
         getNickelodeon().start();
         getCartoonNetwork().start();
+        chartManager = new ChartManager();
+
 
         Home home = new Home();
         home.setVisible(true);
@@ -167,6 +172,9 @@ public class App {
         app = aApp;
     }
 
+     public static ChartManager getChartManager() {
+        return chartManager;
+    }
   
 
 }
