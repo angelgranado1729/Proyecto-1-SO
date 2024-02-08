@@ -14,9 +14,21 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import javax.swing.JPanel;
+import org.jfree.chart.plot.PlotOrientation;
+
 /**
  *
- * @author angel
+ * @author Erika Hernández
  */
 public class Dashboard extends javax.swing.JFrame {
 
@@ -30,8 +42,53 @@ public class Dashboard extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+                createXYLineChartAndAddToPanel();
+
     }
 
+     private void createXYLineChartAndAddToPanel() {
+        // Crea el dataset
+        XYSeries series = new XYSeries("Utilidad");
+        // DATOS DE PRUEBA SOLO POR AHORA Y VER QUE SI FUNCIONA 
+        //SIUUUUUU 
+        
+        series.add(1, 500); // Día 1, Utilidad 500
+        series.add(2, 700); // Día 2, Utilidad 700
+        
+
+        // dataset  XYSeriesCollection
+        XYSeriesCollection dataset = new XYSeriesCollection();
+        dataset.addSeries(series);
+
+        // Se crea la gráfica
+        JFreeChart xyLineChart = ChartFactory.createXYLineChart(
+            "Tiempo vs Utilidad", // Título del gráfico
+            "Tiempo",             // Etiqueta eje X
+            "Utilidad",           // Etiqueta eje Y
+            dataset,              // Dataset
+            PlotOrientation.VERTICAL,
+            true,                 // Mostrar leyenda
+            true,                 // Generar tooltips
+            false                 // URLs
+        );
+        
+        // Se personaliza la gráfica 
+        XYPlot plot = xyLineChart.getXYPlot();
+        XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
+        renderer.setSeriesPaint(0, Color.BLUE);
+        renderer.setSeriesStroke(0, new BasicStroke(2.0f));
+        plot.setRenderer(renderer);
+        
+        // Se crea el ChartPanel
+        ChartPanel chartPanel = new ChartPanel(xyLineChart);
+        
+        // Se añade la Grafica a nuestro JPANEL
+        JPanelJChart.setLayout(new java.awt.BorderLayout());
+        JPanelJChart.add(chartPanel, java.awt.BorderLayout.CENTER);
+        JPanelJChart.validate();
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -68,6 +125,7 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         exit = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        JPanelJChart = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -414,6 +472,19 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1130, 190));
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, -1, -1));
 
+        javax.swing.GroupLayout JPanelJChartLayout = new javax.swing.GroupLayout(JPanelJChart);
+        JPanelJChart.setLayout(JPanelJChartLayout);
+        JPanelJChartLayout.setHorizontalGroup(
+            JPanelJChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 780, Short.MAX_VALUE)
+        );
+        JPanelJChartLayout.setVerticalGroup(
+            JPanelJChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 440, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(JPanelJChart, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 780, 440));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -593,6 +664,7 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel JPanelJChart;
     private javax.swing.JPanel SidePanel;
     private javax.swing.JPanel btn_Inicio;
     private javax.swing.JPanel btn_cargar_guardar;
