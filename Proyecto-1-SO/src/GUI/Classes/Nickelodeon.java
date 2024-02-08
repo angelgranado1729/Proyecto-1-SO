@@ -2449,16 +2449,16 @@ public class Nickelodeon extends javax.swing.JFrame {
 
     private void btn_nuevo_pedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_pedidoMouseClicked
         // TODO add your handling code here:
-//        Dashboard v4 = new Dashboard();
-//        v4.setVisible(true);
-//        this.dispose();
+        Dashboard v4 = new Dashboard();
+        v4.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btn_nuevo_pedidoMouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
-//        Dashboard v4 = new Dashboard();
-//        v4.setVisible(true);
-//        this.dispose();
+        Dashboard v4 = new Dashboard();
+        v4.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked

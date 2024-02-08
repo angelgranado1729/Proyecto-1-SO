@@ -18,7 +18,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  *
  * @author angel
  */
-public class Home extends javax.swing.JFrame {
+public class Dashboard extends javax.swing.JFrame {
 
     private Point initialClick;
     private final App app = App.getInstance();
@@ -26,7 +26,7 @@ public class Home extends javax.swing.JFrame {
     /**
      * Creates new form Home
      */
-    public Home() {
+    public Dashboard() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -81,13 +81,24 @@ public class Home extends javax.swing.JFrame {
         SidePanel.setBackground(new java.awt.Color(34, 46, 60));
         SidePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btn_Inicio.setBackground(new java.awt.Color(243, 168, 71));
+        btn_Inicio.setBackground(new java.awt.Color(55, 71, 90));
+        btn_Inicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_InicioMouseClicked(evt);
+            }
+        });
 
         icono1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Montserrat", 0, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Inicio");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_InicioLayout = new javax.swing.GroupLayout(btn_Inicio);
         btn_Inicio.setLayout(btn_InicioLayout);
@@ -112,7 +123,7 @@ public class Home extends javax.swing.JFrame {
 
         SidePanel.add(btn_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 330, 60));
 
-        btn_nuevo_pedido.setBackground(new java.awt.Color(55, 71, 90));
+        btn_nuevo_pedido.setBackground(new java.awt.Color(243, 168, 71));
         btn_nuevo_pedido.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_nuevo_pedidoMouseClicked(evt);
@@ -120,7 +131,7 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Montserrat", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Dashboard");
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -419,16 +430,16 @@ public class Home extends javax.swing.JFrame {
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
-        Dashboard v4 = new Dashboard();
-        v4.setVisible(true);
-        this.dispose();
+//        Dashboard v4 = new Dashboard();
+//        v4.setVisible(true);
+//        this.dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void btn_nuevo_pedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_pedidoMouseClicked
         // TODO add your handling code here:
-        Dashboard v4 = new Dashboard();
-        v4.setVisible(true);
-        this.dispose();
+//        Dashboard v4 = new Dashboard();
+//        v4.setVisible(true);
+//        this.dispose();
     }//GEN-LAST:event_btn_nuevo_pedidoMouseClicked
 
     private void icono3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono3MouseClicked
@@ -531,6 +542,20 @@ public class Home extends javax.swing.JFrame {
 
     }//GEN-LAST:event_icono5MouseClicked
 
+    private void btn_InicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_InicioMouseClicked
+        // TODO add your handling code here:
+        Home v1 = new Home();
+        v1.setVisible(true);
+        this.dispose();   
+    }//GEN-LAST:event_btn_InicioMouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        Home v1 = new Home();
+        v1.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel4MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -548,20 +573,21 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Home().setVisible(true);
+                new Dashboard().setVisible(true);
             }
         });
     }

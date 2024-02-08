@@ -2423,9 +2423,9 @@ public class CartoonNetwork extends javax.swing.JFrame {
     }// GEN-LAST:event_config_btnMouseEntered
 
     private void dashboardLabelMouseClicked(java.awt.event.MouseEvent evt) {
-//        Dashboard v4 = new Dashboard();
-//        v4.setVisible(true);
-//        this.dispose();
+        Dashboard v4 = new Dashboard();
+        v4.setVisible(true);
+        this.dispose();
     }
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jLabel4MouseClicked
