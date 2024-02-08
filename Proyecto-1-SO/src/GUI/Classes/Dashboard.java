@@ -23,7 +23,7 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import java.awt.BasicStroke;
 import java.awt.Color;
-import javax.swing.JPanel;
+import javax.swing.Timer;
 import org.jfree.chart.plot.PlotOrientation;
 
 /**
@@ -34,6 +34,8 @@ public class Dashboard extends javax.swing.JFrame {
 
     private Point initialClick;
     private final App app = App.getInstance();
+    private Timer updateTimer;
+    private XYSeries series;
 
     /**
      * Creates new form Home
@@ -48,14 +50,13 @@ public class Dashboard extends javax.swing.JFrame {
 
      private void createXYLineChartAndAddToPanel() {
         // Crea el dataset
-        XYSeries series = new XYSeries("Utilidad");
-        // DATOS DE PRUEBA SOLO POR AHORA Y VER QUE SI FUNCIONA 
-        //SIUUUUUU 
-        
-        series.add(1, 500); // Día 1, Utilidad 500
-        series.add(2, 700); // Día 2, Utilidad 700
-        
+        series = new XYSeries("Utilidad");
 
+        // Configura el timer para actualizar el gráfico
+        int delay = 1000; // milisegundos, ajusta a tus necesidades
+        updateTimer = new Timer(delay, e -> updateChartData());
+        updateTimer.start();
+        
         // dataset  XYSeriesCollection
         XYSeriesCollection dataset = new XYSeriesCollection();
         dataset.addSeries(series);
@@ -88,6 +89,16 @@ public class Dashboard extends javax.swing.JFrame {
         JPanelJChart.validate();
     }
     
+    private void updateChartData() {
+        // Aquí obtienes la nueva ganancia de nickelodeon
+        double newGanancia = app.getNickelodeon().getProfit(); // Asegúrate de tener el método getNickelodeon() en tu App
+        int newTimePoint = series.getItemCount() + 1;
+
+        // Añade el nuevo punto de datos a la serie
+        series.addOrUpdate(newTimePoint, newGanancia);
+
+        // No necesitas llamar a dataset.fireDatasetChanged() ya que addOrUpdate notifica al dataset
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
