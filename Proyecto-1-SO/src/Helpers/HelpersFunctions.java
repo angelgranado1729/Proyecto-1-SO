@@ -20,6 +20,10 @@ import java.util.concurrent.Semaphore;
  */
 public class HelpersFunctions {
 
+    public static TelevisionNetwork getTelevisionNetwork(int company) {
+        return company == 0 ? App.getInstance().getNickelodeon() : App.getInstance().getCartoonNetwork();
+    }
+
     public static void loadParams() {
         String fileData = FileFunctions.read(App.getSelectedFile());
 
@@ -49,7 +53,6 @@ public class HelpersFunctions {
             String name = ImportantConstants.companies[company];
             Employee[][] workers = new Employee[6][];
             Semaphore mutex = new Semaphore(1);
-            // REVIEW - Revisar los tama;os de las secciones del Drive
             Drive drive = new Drive(25, 20, 55, 35, 10);
             int projectManager = 1;
             int director = 1;
@@ -123,8 +126,7 @@ public class HelpersFunctions {
     }
 
     public void deleteWorker(int company, int workerType) {
-        TelevisionNetwork network = company == 0 ? App.getInstance().getNickelodeon()
-                : App.getInstance().getCartoonNetwork();
+        TelevisionNetwork network = HelpersFunctions.getTelevisionNetwork(company);
 
         // Verifica si hay empleados para eliminar
         if (network.getActualEmployeesQuantity() > 0) {
@@ -190,4 +192,21 @@ public class HelpersFunctions {
         }
     }
 
+    public static void calculateTotalCost(int company, float accumulatedSalary) {
+        TelevisionNetwork tv = getTelevisionNetwork(company);
+        tv.setTotalCost(tv.getTotalCost() + accumulatedSalary);
+    }
+
+    public static void calculateTotalEarnings(int company) {
+        TelevisionNetwork tv = getTelevisionNetwork(company);
+        float earning = (tv.getNumNormalChapters() * ImportantConstants.profitPerChapter[company][0])
+                + (tv.getNumChaptersWithPlotTwist() * ImportantConstants.profitPerChapter[company][1]);
+        tv.setEarning(earning);
+    }
+
+    public static void calculateProfit(int company) {
+        TelevisionNetwork tv = getTelevisionNetwork(company);
+        float profit = tv.getEarning() - tv.getTotalCost();
+        tv.setProfit(profit);
+    }
 }
