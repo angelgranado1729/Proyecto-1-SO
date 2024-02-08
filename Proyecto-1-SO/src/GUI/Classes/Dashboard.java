@@ -23,6 +23,7 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import java.awt.BasicStroke;
 import java.awt.Color;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import org.jfree.chart.plot.PlotOrientation;
 
@@ -63,6 +64,61 @@ public class Dashboard extends javax.swing.JFrame {
         JPanelJChart.setLayout(new java.awt.BorderLayout());
         JPanelJChart.add(app.getChartManager().getChartPanel(), java.awt.BorderLayout.CENTER);
         JPanelJChart.validate();
+        this.start();
+    }
+    
+   
+     private void start() {
+        // Crear un nuevo hilo para el bucle infinito
+        Thread updateThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        // Ejecutar las actualizaciones de la UI en el EDT
+                        SwingUtilities.invokeLater(new Runnable() {
+                            @Override
+                            public void run() {
+
+                            profit1.setText(formatNumberAsK((int) app.getCartoonNetwork().getEarning() -  (int) app.getNickelodeon().getTotalCost()));
+                            cost1.setText(formatNumberAsK((int) app.getCartoonNetwork().getTotalCost()));
+                            earning1.setText(formatNumberAsK((int) app.getCartoonNetwork().getEarning()));
+
+                            profit.setText(formatNumberAsK((int) app.getNickelodeon().getEarning() -  (int) app.getNickelodeon().getTotalCost()));
+                            cost2.setText(formatNumberAsK((int) app.getNickelodeon().getTotalCost()));
+                            earning.setText(formatNumberAsK((int) app.getNickelodeon().getEarning()));
+                            
+                            totalDays.setText(String.valueOf(app.getCartoonNetwork().getTotalDays()));
+                            currentDeadline.setText(String.valueOf(app.getCartoonNetwork().getRemainingDays()));
+
+                            }
+                        });
+
+                        // Pausar el hilo separado, no el EDT
+                        Thread.sleep(app.getDayDuration() / 48);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                        break;
+                    }
+                }
+            }
+        });
+
+        // Iniciar el hilo
+        updateThread.start();
+    }
+     
+
+    
+    public String formatNumberAsK(int number) {
+        // Se onverte el número a miles
+        double thousands = number / 1000.0;
+
+        // Se redondea a dos dígitos significativos
+        double rounded = Math.round(thousands * 100.0) / 100.0;
+
+        // Se convierte a cadena y se añade 'K'
+        return rounded + "K";
     }
 
     
@@ -105,6 +161,24 @@ public class Dashboard extends javax.swing.JFrame {
         driveTitle = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         JPanelJChart = new javax.swing.JPanel();
+        driveTitle9 = new javax.swing.JLabel();
+        driveTitle10 = new javax.swing.JLabel();
+        currentDeadline = new javax.swing.JTextField();
+        earning = new javax.swing.JTextField();
+        profit = new javax.swing.JTextField();
+        driveTitle17 = new javax.swing.JLabel();
+        driveTitle11 = new javax.swing.JLabel();
+        driveTitle12 = new javax.swing.JLabel();
+        driveTitle13 = new javax.swing.JLabel();
+        cost1 = new javax.swing.JTextField();
+        driveTitle14 = new javax.swing.JLabel();
+        earning1 = new javax.swing.JTextField();
+        driveTitle18 = new javax.swing.JLabel();
+        profit1 = new javax.swing.JTextField();
+        driveTitle15 = new javax.swing.JLabel();
+        driveTitle16 = new javax.swing.JLabel();
+        cost2 = new javax.swing.JTextField();
+        totalDays = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -469,24 +543,203 @@ public class Dashboard extends javax.swing.JFrame {
         JPanelJChart.setLayout(JPanelJChartLayout);
         JPanelJChartLayout.setHorizontalGroup(
             JPanelJChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 780, Short.MAX_VALUE)
+            .addGap(0, 750, Short.MAX_VALUE)
         );
         JPanelJChartLayout.setVerticalGroup(
             JPanelJChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
+            .addGap(0, 320, Short.MAX_VALUE)
         );
 
-        jPanel1.add(JPanelJChart, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 780, 440));
+        jPanel1.add(JPanelJChart, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 750, 320));
+
+        driveTitle9.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle9.setForeground(java.awt.Color.black);
+        driveTitle9.setText("CARTOON NETWORK");
+        driveTitle9.setFocusable(false);
+        jPanel1.add(driveTitle9, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 590, -1, -1));
+
+        driveTitle10.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle10.setForeground(java.awt.Color.black);
+        driveTitle10.setText("Costos operativos:");
+        driveTitle10.setFocusable(false);
+        jPanel1.add(driveTitle10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 630, -1, -1));
+
+        currentDeadline.setBackground(new java.awt.Color(204, 204, 204));
+        currentDeadline.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        currentDeadline.setForeground(java.awt.Color.black);
+        currentDeadline.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        currentDeadline.setText("0");
+        currentDeadline.setBorder(null);
+        currentDeadline.setFocusable(false);
+        currentDeadline.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                currentDeadlineActionPerformed(evt);
+            }
+        });
+        jPanel1.add(currentDeadline, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 210, 100, -1));
+
+        earning.setBackground(new java.awt.Color(204, 204, 204));
+        earning.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        earning.setForeground(java.awt.Color.black);
+        earning.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        earning.setText("0");
+        earning.setBorder(null);
+        earning.setFocusable(false);
+        earning.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                earningActionPerformed(evt);
+            }
+        });
+        jPanel1.add(earning, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 660, 110, -1));
+
+        profit.setBackground(new java.awt.Color(204, 204, 204));
+        profit.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        profit.setForeground(java.awt.Color.black);
+        profit.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        profit.setText("0");
+        profit.setBorder(null);
+        profit.setFocusable(false);
+        profit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                profitMouseClicked(evt);
+            }
+        });
+        profit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                profitActionPerformed(evt);
+            }
+        });
+        jPanel1.add(profit, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 690, 110, -1));
+
+        driveTitle17.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle17.setForeground(java.awt.Color.black);
+        driveTitle17.setText("Ganancia neta:");
+        driveTitle17.setFocusable(false);
+        jPanel1.add(driveTitle17, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 690, -1, -1));
+
+        driveTitle11.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle11.setForeground(java.awt.Color.black);
+        driveTitle11.setText("Ganancia bruta:");
+        driveTitle11.setFocusable(false);
+        jPanel1.add(driveTitle11, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 660, -1, -1));
+
+        driveTitle12.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle12.setForeground(java.awt.Color.black);
+        driveTitle12.setText("DÍAS PARA LA ENTREGA: ");
+        driveTitle12.setFocusable(false);
+        jPanel1.add(driveTitle12, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 210, -1, -1));
+
+        driveTitle13.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle13.setForeground(java.awt.Color.black);
+        driveTitle13.setText("Ganancia bruta:");
+        driveTitle13.setFocusable(false);
+        jPanel1.add(driveTitle13, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 660, -1, -1));
+
+        cost1.setBackground(new java.awt.Color(204, 204, 204));
+        cost1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        cost1.setForeground(java.awt.Color.black);
+        cost1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        cost1.setText("0");
+        cost1.setBorder(null);
+        cost1.setFocusable(false);
+        cost1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cost1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cost1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 630, 100, -1));
+
+        driveTitle14.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle14.setForeground(java.awt.Color.black);
+        driveTitle14.setText("Costos operativos:");
+        driveTitle14.setFocusable(false);
+        jPanel1.add(driveTitle14, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 630, -1, -1));
+
+        earning1.setBackground(new java.awt.Color(204, 204, 204));
+        earning1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        earning1.setForeground(java.awt.Color.black);
+        earning1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        earning1.setText("0");
+        earning1.setBorder(null);
+        earning1.setFocusable(false);
+        earning1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                earning1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(earning1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 660, 100, -1));
+
+        driveTitle18.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle18.setForeground(java.awt.Color.black);
+        driveTitle18.setText("Ganancia neta:");
+        driveTitle18.setFocusable(false);
+        jPanel1.add(driveTitle18, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 690, -1, -1));
+
+        profit1.setBackground(new java.awt.Color(204, 204, 204));
+        profit1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        profit1.setForeground(java.awt.Color.black);
+        profit1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        profit1.setText("0");
+        profit1.setBorder(null);
+        profit1.setFocusable(false);
+        profit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                profit1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(profit1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 690, 100, -1));
+
+        driveTitle15.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle15.setForeground(java.awt.Color.black);
+        driveTitle15.setText("NICKELODEON");
+        driveTitle15.setFocusable(false);
+        jPanel1.add(driveTitle15, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 590, -1, -1));
+
+        driveTitle16.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle16.setForeground(java.awt.Color.black);
+        driveTitle16.setText("DÍAS: ");
+        driveTitle16.setFocusable(false);
+        jPanel1.add(driveTitle16, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, -1, -1));
+
+        cost2.setBackground(new java.awt.Color(204, 204, 204));
+        cost2.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        cost2.setForeground(java.awt.Color.black);
+        cost2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        cost2.setText("0");
+        cost2.setBorder(null);
+        cost2.setFocusable(false);
+        cost2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cost2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cost2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 630, 110, -1));
+
+        totalDays.setBackground(new java.awt.Color(204, 204, 204));
+        totalDays.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        totalDays.setForeground(java.awt.Color.black);
+        totalDays.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        totalDays.setText("0");
+        totalDays.setBorder(null);
+        totalDays.setFocusable(false);
+        totalDays.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalDaysActionPerformed(evt);
+            }
+        });
+        jPanel1.add(totalDays, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, 100, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1142, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -620,6 +873,43 @@ public class Dashboard extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel4MouseClicked
 
+    private void currentDeadlineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentDeadlineActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_currentDeadlineActionPerformed
+
+    private void earningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_earningActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_earningActionPerformed
+
+    private void profitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_profitActionPerformed
+
+    private void cost1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cost1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cost1ActionPerformed
+
+    private void earning1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_earning1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_earning1ActionPerformed
+
+    private void profit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profit1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_profit1ActionPerformed
+
+    private void cost2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cost2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cost2ActionPerformed
+
+    private void totalDaysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalDaysActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalDaysActionPerformed
+
+    private void profitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profitMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_profitMouseClicked
+
+   
     /**
      * @param args the command line arguments
      */
@@ -652,6 +942,8 @@ public class Dashboard extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Dashboard().setVisible(true);
+                
+//                              
             }
         });
     }
@@ -665,7 +957,22 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel btn_nuevo_almacen;
     private javax.swing.JPanel btn_nuevo_pedido;
     private javax.swing.JPanel btn_reporte;
+    private javax.swing.JTextField cost1;
+    private javax.swing.JTextField cost2;
+    private javax.swing.JTextField currentDeadline;
     private javax.swing.JLabel driveTitle;
+    private javax.swing.JLabel driveTitle10;
+    private javax.swing.JLabel driveTitle11;
+    private javax.swing.JLabel driveTitle12;
+    private javax.swing.JLabel driveTitle13;
+    private javax.swing.JLabel driveTitle14;
+    private javax.swing.JLabel driveTitle15;
+    private javax.swing.JLabel driveTitle16;
+    private javax.swing.JLabel driveTitle17;
+    private javax.swing.JLabel driveTitle18;
+    private javax.swing.JLabel driveTitle9;
+    private javax.swing.JTextField earning;
+    private javax.swing.JTextField earning1;
     private javax.swing.JLabel exit;
     private javax.swing.JLabel icono1;
     private javax.swing.JLabel icono3;
@@ -687,5 +994,8 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField profit;
+    private javax.swing.JTextField profit1;
+    private javax.swing.JTextField totalDays;
     // End of variables declaration//GEN-END:variables
 }
