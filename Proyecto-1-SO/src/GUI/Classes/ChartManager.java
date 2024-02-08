@@ -47,9 +47,9 @@ public class ChartManager {
 
     private void initializeChart() {
         xyLineChart = ChartFactory.createXYLineChart(
-                "Tiempo vs Utilidad", // Título del gráfico
-                "Tiempo",             // Etiqueta eje X
-                "Utilidad",           // Etiqueta eje Y
+                "Time vs Profit", // Título del gráfico
+                "Time",             // Etiqueta eje X
+                "Profit",           // Etiqueta eje Y
                 dataset,              // Dataset
                 PlotOrientation.VERTICAL,
                 true,                 // Mostrar leyenda
