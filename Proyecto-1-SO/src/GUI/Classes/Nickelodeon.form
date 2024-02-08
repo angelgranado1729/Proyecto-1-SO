@@ -1638,7 +1638,7 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="13" max="32767" attributes="0"/>
+                          <EmptySpace pref="10" max="32767" attributes="0"/>
                           <Component id="assemblerTitle" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="decreaceAssembler" min="-2" max="-2" attributes="0"/>
@@ -1796,12 +1796,12 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="dubbing1" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="animations1" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="scenary1" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="scripts1" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="plotTwist1" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="plotTwist4" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="dubbing1" alignment="0" pref="222" max="32767" attributes="0"/>
+                                          <Component id="animations1" alignment="0" pref="222" max="32767" attributes="0"/>
+                                          <Component id="scenary1" alignment="0" pref="222" max="32767" attributes="0"/>
+                                          <Component id="scripts1" alignment="0" pref="222" max="32767" attributes="0"/>
+                                          <Component id="plotTwist1" alignment="0" pref="222" max="32767" attributes="0"/>
+                                          <Component id="plotTwist4" alignment="0" pref="222" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -2065,7 +2065,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           <Component id="animationsTitle1" min="-2" pref="97" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="29" max="32767" attributes="0"/>
                           <Component id="animationDrive" min="-2" pref="33" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="animationsLimit1" min="-2" max="-2" attributes="0"/>
