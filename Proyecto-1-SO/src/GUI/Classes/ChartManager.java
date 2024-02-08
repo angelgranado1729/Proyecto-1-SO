@@ -22,6 +22,12 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import javax.swing.Timer;
 
+/**
+ * La clase ChartManager maneja la creación y actualización de gráficos
+ * en tiempo real para visualizar las ganancias de Nickelodeon y Cartoon Network.
+ * Utiliza la biblioteca JFreeChart para crear un gráfico de líneas XY que se actualiza
+ * periódicamente en función de la duración del día establecida en la aplicación.
+ */
 
 public class ChartManager {
     private final App app = App.getInstance();
@@ -31,11 +37,21 @@ public class ChartManager {
     private JFreeChart xyLineChart;
     private Timer updateTimer;
 
+    /**
+     * Constructor de ChartManager que inicializa las series de datos,
+     * crea el gráfico y comienza el temporizador de actualización.
+     */
+    
     public ChartManager() {
         initializeSeries();
         initializeChart();
         startDataUpdateTimer();
     }
+    
+      /**
+     * Inicializa las series de datos para Nickelodeon y Cartoon Network
+     * y las agrega al conjunto de datos para el gráfico.
+     */
 
     private void initializeSeries() {
         seriesNickelodeon = new XYSeries("Nickelodeon");
@@ -45,11 +61,15 @@ public class ChartManager {
         dataset.addSeries(seriesCartoonNetwork);
     }
 
+    /**
+     * Crea el gráfico XY Line usando JFreeChart y configura la apariencia.
+     */
+    
     private void initializeChart() {
         xyLineChart = ChartFactory.createXYLineChart(
-                "Time vs Profit", // Título del gráfico
-                "Time",             // Etiqueta eje X
-                "Profit",           // Etiqueta eje Y
+                "Tiempo vs Ganancia", // Título del gráfico
+                "Tiempo",             // Etiqueta eje X
+                "Ganancia",           // Etiqueta eje Y
                 dataset,              // Dataset
                 PlotOrientation.VERTICAL,
                 true,                 // Mostrar leyenda
@@ -60,6 +80,10 @@ public class ChartManager {
         customizeChart();
     }
 
+     /**
+     * Personaliza la apariencia del gráfico XY Line.
+     */
+    
     private void customizeChart() {
         XYPlot plot = xyLineChart.getXYPlot();
         XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
@@ -68,12 +92,22 @@ public class ChartManager {
         plot.setRenderer(renderer);
     }
 
+     /**
+     * Inicia un temporizador que actualiza las series de datos con un intervalo
+     * que se obtiene de la duración del día en la aplicación.
+     */
+    
     private void startDataUpdateTimer() {
         int delay = app.getDayDuration(); 
         updateTimer = new Timer(delay, e -> updateChartData());
         updateTimer.start();
     }
 
+     /**
+     * Actualiza las series de datos con las ganancias más recientes de Nickelodeon
+     * y Cartoon Network y las agrega al gráfico.
+     */
+    
     public void updateChartData() {
         // Se obtienen las nuevas ganancias
         double nickelodeonProfit = app.getNickelodeon().getProfit(); 

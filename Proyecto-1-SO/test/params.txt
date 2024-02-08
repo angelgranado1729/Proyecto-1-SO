@@ -4,7 +4,7 @@ Deadline=30
 
 [Nickelodeon]
 Screenwriters=1
-SetDesigners=3
+SetDesigners=1
 CharacterAnimators=6
 VoiceActors=2
 PlotTwistScriptwriters=1
@@ -14,8 +14,8 @@ Director=1
 MaxCapacity=15
 
 [CartoonNetwork]
-Screenwriters=2
-SetDesigners=5
+Screenwriters=3
+SetDesigners=1
 CharacterAnimators=2
 VoiceActors=2
 PlotTwistScriptwriters=2
