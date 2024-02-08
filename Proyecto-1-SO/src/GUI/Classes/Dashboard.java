@@ -37,72 +37,35 @@ public class Dashboard extends javax.swing.JFrame {
     private XYSeries seriesNickelodeon;
     private XYSeries seriesCartoonNetwork;
     private Timer updateTimer;
+    private static Dashboard instance;
+
     
-    /**
-     * Creates new form Home
+     /**
+     * Obtiene la instancia única de Dashboard.
+     * Si no existe, la crea. Si existe, retorna la existente.
+     * @return la instancia única de Dashboard.
      */
-    public Dashboard() {
+    public static synchronized Dashboard getInstance() {
+        if (instance == null) {
+            instance = new Dashboard();
+        }
+        return instance;
+    }
+    
+    
+     /**
+     * Constructor privado para prevenir la instanciación.
+     */
+    private Dashboard() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-                createXYLineChartAndAddToPanel();
-
-    }
-
-     private void createXYLineChartAndAddToPanel() {
-        // Crea el dataset
-        seriesNickelodeon = new XYSeries("Nickelodeon");
-        seriesCartoonNetwork = new XYSeries("Cartoon Network");
-
-        // Configura el timer para actualizar el gráfico
-        int delay = 1000; // milisegundos, ajusta a tus necesidades
-        updateTimer = new Timer(delay, e -> updateChartData());
-        updateTimer.start();
-        
-        // dataset  XYSeriesCollection
-         XYSeriesCollection dataset = new XYSeriesCollection();
-        dataset.addSeries(seriesNickelodeon);
-        dataset.addSeries(seriesCartoonNetwork);
-
-        // Se crea la gráfica
-        JFreeChart xyLineChart = ChartFactory.createXYLineChart(
-            "Tiempo vs Utilidad", // Título del gráfico
-            "Tiempo",             // Etiqueta eje X
-            "Utilidad",           // Etiqueta eje Y
-            dataset,              // Dataset
-            PlotOrientation.VERTICAL,
-            true,                 // Mostrar leyenda
-            true,                 // Generar tooltips
-            false                 // URLs
-        );
-        
-        // Se personaliza la gráfica 
-        XYPlot plot = xyLineChart.getXYPlot();
-        XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
-        renderer.setSeriesPaint(0, Color.BLUE);
-        renderer.setSeriesStroke(0, new BasicStroke(2.0f));
-        plot.setRenderer(renderer);
-        
-        // Se crea el ChartPanel
-        ChartPanel chartPanel = new ChartPanel(xyLineChart);
-        
-        // Se añade la Grafica a nuestro JPANEL
         JPanelJChart.setLayout(new java.awt.BorderLayout());
-        JPanelJChart.add(chartPanel, java.awt.BorderLayout.CENTER);
+        JPanelJChart.add(app.getChartManager().getChartPanel(), java.awt.BorderLayout.CENTER);
         JPanelJChart.validate();
     }
+
     
-    private void updateChartData() {
-    // Aquí se obtiene las nuevas ganancias
-        double nickelodeonProfit = app.getNickelodeon().getProfit(); 
-        double CartoonNetworkProfit = app.getCartoonNetwork().getProfit(); 
-        int newTimePoint = seriesNickelodeon.getItemCount() + 1;
-
-        // Se añaden los nuevos puntos de datos a las series
-        seriesNickelodeon.addOrUpdate(newTimePoint, nickelodeonProfit);
-        seriesCartoonNetwork.addOrUpdate(newTimePoint, CartoonNetworkProfit);
-
-}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
