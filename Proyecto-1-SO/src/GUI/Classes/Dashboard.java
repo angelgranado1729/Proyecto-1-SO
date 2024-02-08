@@ -34,9 +34,10 @@ public class Dashboard extends javax.swing.JFrame {
 
     private Point initialClick;
     private final App app = App.getInstance();
+    private XYSeries seriesNickelodeon;
+    private XYSeries seriesCartoonNetwork;
     private Timer updateTimer;
-    private XYSeries series;
-
+    
     /**
      * Creates new form Home
      */
@@ -50,7 +51,8 @@ public class Dashboard extends javax.swing.JFrame {
 
      private void createXYLineChartAndAddToPanel() {
         // Crea el dataset
-        series = new XYSeries("Utilidad");
+        seriesNickelodeon = new XYSeries("Nickelodeon");
+        seriesCartoonNetwork = new XYSeries("Cartoon Network");
 
         // Configura el timer para actualizar el gráfico
         int delay = 1000; // milisegundos, ajusta a tus necesidades
@@ -58,8 +60,9 @@ public class Dashboard extends javax.swing.JFrame {
         updateTimer.start();
         
         // dataset  XYSeriesCollection
-        XYSeriesCollection dataset = new XYSeriesCollection();
-        dataset.addSeries(series);
+         XYSeriesCollection dataset = new XYSeriesCollection();
+        dataset.addSeries(seriesNickelodeon);
+        dataset.addSeries(seriesCartoonNetwork);
 
         // Se crea la gráfica
         JFreeChart xyLineChart = ChartFactory.createXYLineChart(
@@ -90,16 +93,16 @@ public class Dashboard extends javax.swing.JFrame {
     }
     
     private void updateChartData() {
-        // Aquí obtienes la nueva ganancia de nickelodeon
-        double newGanancia = app.getNickelodeon().getProfit(); // Asegúrate de tener el método getNickelodeon() en tu App
-        int newTimePoint = series.getItemCount() + 1;
+    // Aquí se obtiene las nuevas ganancias
+        double nickelodeonProfit = app.getNickelodeon().getProfit(); 
+        double CartoonNetworkProfit = app.getCartoonNetwork().getProfit(); 
+        int newTimePoint = seriesNickelodeon.getItemCount() + 1;
 
-        // Añade el nuevo punto de datos a la serie
-        series.addOrUpdate(newTimePoint, newGanancia);
+        // Se añaden los nuevos puntos de datos a las series
+        seriesNickelodeon.addOrUpdate(newTimePoint, nickelodeonProfit);
+        seriesCartoonNetwork.addOrUpdate(newTimePoint, CartoonNetworkProfit);
 
-        // No necesitas llamar a dataset.fireDatasetChanged() ya que addOrUpdate notifica al dataset
-    }
-    
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
