@@ -110,7 +110,7 @@ public class Employee extends Thread {
 
         // Requisito minimo para un cap (cap regular)
         for (int i = 0; i < tv.getDrive().getSections().length - 2; i++) {
-            // Si no hay la cantidad minima entonces el assembler no puede trabajar
+            // Si no hay la cantidad minima entonces el assembler no puede tranbajar
             if (tv.getDrive().getSections()[i] < ImportantConstants.chaptersComposition[this.company][i]) {
                 return false;
             }
