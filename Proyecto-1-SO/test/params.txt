@@ -3,23 +3,23 @@ DayDuration=2000
 Deadline=30
 
 [Nickelodeon]
-Screenwriters=1
-SetDesigners=1
-CharacterAnimators=6
-VoiceActors=2
+Screenwriters=5
+SetDesigners=4
+CharacterAnimators=3
+VoiceActors=1
 PlotTwistScriptwriters=1
-Assemblers=2
+Assemblers=1
 ProjectManager=1
 Director=1
 MaxCapacity=15
 
 [CartoonNetwork]
-Screenwriters=5
-SetDesigners=5
-CharacterAnimators=3
+Screenwriters=1
+SetDesigners=1
+CharacterAnimators=1
 VoiceActors=1
 PlotTwistScriptwriters=1
-Assemblers=3
+Assemblers=1
 ProjectManager=1
 Director=1
 MaxCapacity=18

@@ -2492,7 +2492,7 @@ public class Nickelodeon extends javax.swing.JFrame {
         if (this.canIncreaseQuantity(0)) {
             cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
             this.scriptsValues.setText(increaseQuantity(this.scriptsValues.getText(), increaseScripts));
-            helper.addWorker(1, 0);
+            helper.addWorker(0, 0);
         }
         updateBtnStatus();
     }//GEN-LAST:event_increaseScriptsMouseClicked
@@ -2507,7 +2507,6 @@ public class Nickelodeon extends javax.swing.JFrame {
 
     private void decreaseScriptsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_decreaseScriptsMouseClicked
         // TODO add your handling code here:
-        updateValues();
         if (canDecreaseQuantity(0)) {
             cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
             this.scriptsValues.setText(decreaseQuantity(this.scriptsValues.getText(), this.decreaseScripts));
