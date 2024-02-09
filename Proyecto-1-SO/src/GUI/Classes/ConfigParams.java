@@ -2198,7 +2198,7 @@ public class ConfigParams extends javax.swing.JFrame {
         if (this.canIncreaseQuantity(0)) {
             cartoonPlayMusic("/GUI/Assets/cartoonClick.wav");
             this.scriptsValues.setText(increaseQuantity(this.scriptsValues.getText(), increaseScripts));
-            helper.addWorker(1, 0);
+            helper.addWorker(0, 0);
         }
         updateBtnStatus();
     }//GEN-LAST:event_increaseScriptsMouseClicked
