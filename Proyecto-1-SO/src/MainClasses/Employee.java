@@ -4,6 +4,7 @@
  */
 package MainClasses;
 
+import Helpers.HelpersFunctions;
 import Helpers.ImportantConstants;
 import MainPackage.App;
 import java.util.concurrent.Semaphore;
@@ -69,13 +70,7 @@ public class Employee extends Thread {
 
     private void getPaid() {
         this.setAccumulatedSalary(this.getAccumulatedSalary() + this.getHourlyWage() * 24);
-        if (this.company == 0) {
-            app.getNickelodeon().increaseTotalCost(this.getHourlyWage() * 24);
-            app.getNickelodeon().setProfit(app.getNickelodeon().getProfit() - (this.hourlyWage * 24));
-        } else {
-            app.getCartoonNetwork().increaseTotalCost(this.getHourlyWage() * 24);
-            app.getCartoonNetwork().setProfit(app.getCartoonNetwork().getProfit() - (this.hourlyWage * 24));
-        }
+        // FIXME
     }
 
     private void addDailyProduction() {
@@ -98,6 +93,9 @@ public class Employee extends Thread {
                     this.createChapter();
                 }
 
+                HelpersFunctions.calculateTotalCost(this.company, this.accumulatedSalary);
+                setAccumulatedSalary(0);
+
                 this.setTotalWork(Math.max(0, this.getTotalWork() - workToUpload));
                 this.getMutex().release();
             } catch (InterruptedException ex) {
@@ -108,12 +106,7 @@ public class Employee extends Thread {
 
     private boolean evaluateAssemble() {
 
-        TelevisionNetwork tv;
-        if (this.company == 0) {
-            tv = App.getInstance().getNickelodeon();
-        } else {
-            tv = App.getInstance().getCartoonNetwork();
-        }
+        TelevisionNetwork tv = HelpersFunctions.getTelevisionNetwork(this.company);
 
         // Requisito minimo para un cap (cap regular)
         for (int i = 0; i < tv.getDrive().getSections().length - 2; i++) {
@@ -123,7 +116,8 @@ public class Employee extends Thread {
             }
         }
         // si es plottwist
-        boolean isNextPlotTwist = (tv.getNumChapters() != 0 && ((tv.getNumChapters()) % ImportantConstants.plotTwistFreq[this.company]) == 0);
+        boolean isNextPlotTwist = (tv.getNumChapters() != 0
+                && ((tv.getNumChapters()) % ImportantConstants.plotTwistFreq[this.company]) == 0);
 
         if (isNextPlotTwist) {
             // Verifica si NO hay para hacer un plottwist
@@ -135,28 +129,27 @@ public class Employee extends Thread {
     }
 
     private void createChapter() {
-        TelevisionNetwork tv;
-        if (this.company == 0) {
-            tv = app.getNickelodeon();
-        } else {
-            tv = app.getCartoonNetwork();
-        }
+        TelevisionNetwork tv = HelpersFunctions.getTelevisionNetwork(this.company);
 
         if (this.evaluateAssemble()) {
-            // Evaluar si el siguiente capítulo debe ser un plot twist antes de incrementar numChapters
-            boolean isNextPlotTwist = (tv.getPlotTwistTrigger() != 0 && ((tv.getPlotTwistTrigger()) % ImportantConstants.plotTwistFreq[this.company]) == 0);
+            // Evaluar si el siguiente capítulo debe ser un plot twist antes de incrementar
+            // numChapters
+            boolean isNextPlotTwist = (tv.getPlotTwistTrigger() != 0
+                    && ((tv.getPlotTwistTrigger()) % ImportantConstants.plotTwistFreq[this.company]) == 0);
 
             if (isNextPlotTwist) {
                 for (int i = 0; i < tv.getDrive().getSections().length - 1; i++) {
-                    tv.getDrive().getSections()[i] = Math.max(0, tv.getDrive().getSections()[i] - ImportantConstants.chaptersComposition[this.company][i]);
+                    tv.getDrive().getSections()[i] = Math.max(0,
+                            tv.getDrive().getSections()[i] - ImportantConstants.chaptersComposition[this.company][i]);
                 }
                 tv.setNumChaptersWithPlotTwist(tv.getNumChaptersWithPlotTwist() + 1);
                 tv.setActualNumChaptersWithPlotTwist(tv.getActualNumChaptersWithPlotTwist() + 1);
                 tv.setPlotTwistTrigger(0);
             } else {
-                //Capitulo regular
+                // Capitulo regular
                 for (int i = 0; i < tv.getDrive().getSections().length - 2; i++) {
-                    tv.getDrive().getSections()[i] = Math.max(0, tv.getDrive().getSections()[i] - ImportantConstants.chaptersComposition[this.company][i]);
+                    tv.getDrive().getSections()[i] = Math.max(0,
+                            tv.getDrive().getSections()[i] - ImportantConstants.chaptersComposition[this.company][i]);
                 }
                 tv.setNumNormalChapters(tv.getNumNormalChapters() + 1);
                 tv.setActualNumNormalChapters(tv.getActualNumNormalChapters() + 1);

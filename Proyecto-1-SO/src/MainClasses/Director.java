@@ -4,6 +4,7 @@
  */
 package MainClasses;
 
+import Helpers.HelpersFunctions;
 import Helpers.ImportantConstants;
 import MainPackage.App;
 import java.util.Random;
@@ -43,9 +44,22 @@ public class Director extends Employee {
 
                 if (remainingDays <= 0) {
                     this.setStatus("Enviando capítulos");
-                    sendChaptersToTV();
+
+                    this.getMutex().acquire();
+                    // Se envian los capitulos
+                    this.sendChaptersToTV();
+
+                    HelpersFunctions.calculateTotalCost(this.company, this.getAccumulatedSalary());
+                    this.setAccumulatedSalary(0);
+
+                    // Se calcula las ganancias
+                    HelpersFunctions.calculateTotalEarnings(this.company);
+                    HelpersFunctions.calculateProfit(this.company);
+
+                    this.getMutex().release();
+
                 } // Si es un dia diferente al 0 entonces hace sus labores administrativas y
-                // supervisa al PM
+                  // supervisa al PM
                 else {
                     Random rand = new Random();
                     int randomHour = rand.nextInt(24);
@@ -72,7 +86,8 @@ public class Director extends Employee {
         }
     }
 
-    private void resetDeadline(TelevisionNetwork tv) {
+    private void resetDeadline(int company) {
+        TelevisionNetwork tv = HelpersFunctions.getTelevisionNetwork(company);
         tv.setRemainingDays(app.getDeadline());
     }
 
@@ -82,36 +97,27 @@ public class Director extends Employee {
 
             // Esperar un día completo (simulado)
             Thread.sleep(app.getDayDuration());
-            // Reiniciar el contador de días restantes
-            if (this.company == 0) {
-                resetDeadline(app.getNickelodeon());
-                calculateProfit(app.getNickelodeon());
-                app.getNickelodeon().getDrive().resetChapters();
-                app.getNickelodeon().setLastNumChaptersWithPlotTwist(
-                        app.getNickelodeon().getActualNumChaptersWithPlotTwist());
-                app.getNickelodeon().setLastNumNormalChapters(
-                        app.getNickelodeon().getActualNumNormalChapters()
-                );
-                app.getNickelodeon().setActualNumNormalChapters(0);
-                app.getNickelodeon().setLastOpsCost(app.getNickelodeon().getTotalCost()
-                        - app.getNickelodeon().getLastOpsCost());
-                calculateBatchLastProfit(app.getNickelodeon());
+            // Se reinicia el deadline
+            this.resetDeadline(this.company);
 
-            } else {
-                resetDeadline(app.getCartoonNetwork());
-                calculateProfit(app.getCartoonNetwork());
-                app.getCartoonNetwork().getDrive().resetChapters();
-                app.getCartoonNetwork().setLastNumChaptersWithPlotTwist(
-                        app.getCartoonNetwork().getActualNumChaptersWithPlotTwist());
-                app.getCartoonNetwork().setLastNumNormalChapters(
-                        app.getCartoonNetwork().getActualNumNormalChapters()
-                );
-                app.getCartoonNetwork().setActualNumChaptersWithPlotTwist(0);
-                app.getCartoonNetwork().setActualNumNormalChapters(0);
-                app.getCartoonNetwork().setLastOpsCost(app.getCartoonNetwork().getTotalCost()
-                        - app.getCartoonNetwork().getLastOpsCost());
-                calculateBatchLastProfit(app.getCartoonNetwork());
-            }
+            TelevisionNetwork tv = HelpersFunctions.getTelevisionNetwork(this.company);
+
+            // Enviamos los capitulos
+            tv.getDrive().resetChapters();
+
+            // Settiamos los valores actuales como los anteriores para estadisticas
+            tv.setLastNumChaptersWithPlotTwist(tv.getActualNumChaptersWithPlotTwist());
+            tv.setLastNumNormalChapters(tv.getActualNumNormalChapters());
+
+            // Settiamos los valores actuales a 0
+            tv.setActualNumChaptersWithPlotTwist(0);
+            tv.setActualNumNormalChapters(0);
+
+            // Settiamos el costo operacional del último batch
+            tv.setLastOpsCost(tv.getTotalCost() - tv.getLastOpsCost());
+
+            // Calculamos las ganancias del último batch
+            calculateBatchLastProfit(tv);
 
         } catch (InterruptedException ex) {
             Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
@@ -122,7 +128,7 @@ public class Director extends Employee {
         float profit = (tv.getLastNumNormalChapters()
                 * ImportantConstants.profitPerChapter[this.company][0])
                 + (tv.getNumChaptersWithPlotTwist()
-                * ImportantConstants.profitPerChapter[this.company][1])
+                        * ImportantConstants.profitPerChapter[this.company][1])
                 - (tv.getLastOpsCost());
 
         tv.setBatchLastProfit(profit);
@@ -132,47 +138,31 @@ public class Director extends Employee {
         this.setStatus("Administrando");
     }
 
-    private void calculateProfit(TelevisionNetwork tv) {
-
-        float earning = (tv.getNumNormalChapters() * ImportantConstants.profitPerChapter[this.company][0])
-                + (tv.getNumChaptersWithPlotTwist() * ImportantConstants.profitPerChapter[this.company][1]);
-        tv.setEarning(earning);
-        tv.setTotalCost(tv.getTotalCost());
-        tv.setProfit(earning - tv.getTotalCost());
-    }
-
     private void checkProjectManager() {
         this.status = "Vigilando PM";
-        if (this.company == 0) {
-            if ("Viendo Anime".equals(app.getNickelodeon().getProjectManagerInstance().getCurrentState())) {
-                app.getNickelodeon().getProjectManagerInstance().setAccumulatedSalary(
-                        app.getNickelodeon().getProjectManagerInstance().getAccumulatedSalary() - 100);
-                app.getNickelodeon().getProjectManagerInstance().addStrike();
+        TelevisionNetwork tv = HelpersFunctions.getTelevisionNetwork(this.company);
 
-                //FIXME se reduce el costo operacional
-                app.getNickelodeon().setTotalCost(app.getNickelodeon().getTotalCost() - 100);
-            }
-        } else {
-            if ("Viendo Anime".equals(app.getCartoonNetwork().getProjectManagerInstance().getCurrentState())) {
-                app.getCartoonNetwork().getProjectManagerInstance().setAccumulatedSalary(
-                        app.getCartoonNetwork().getProjectManagerInstance().getAccumulatedSalary() - 100);
-                app.getCartoonNetwork().getProjectManagerInstance().addStrike();
+        if ("Viendo Anime".equals(tv.getProjectManagerInstance().getCurrentState())) {
 
-                //FIXME se reduce el costo operacional
-                app.getCartoonNetwork().setTotalCost(app.getCartoonNetwork().getTotalCost() - 100);
+            try {
+                // Pedimos permiso al mutex para poder reducir el salario del PM al costo total
+                this.getMutex().acquire();
+                tv.getProjectManagerInstance().addStrike();
+                tv.setTotalCost(tv.getTotalCost() - 100);
+                // Se calcula las ganancias
+                HelpersFunctions.calculateTotalEarnings(this.company);
+                HelpersFunctions.calculateProfit(this.company);
+                this.getMutex().release();
+
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+
     }
 
     private void getPaid() {
         this.accumulatedSalary += this.hourlyWage * 24;
-        if (this.company == 0) {
-            app.getNickelodeon().increaseTotalCost(this.hourlyWage * 24);
-            app.getNickelodeon().setProfit(app.getNickelodeon().getProfit() - (this.hourlyWage * 24));
-        } else {
-            app.getCartoonNetwork().increaseTotalCost(this.hourlyWage * 24);
-            app.getCartoonNetwork().setProfit(app.getCartoonNetwork().getProfit() - (this.hourlyWage * 24));
-        }
     }
 
     @Override

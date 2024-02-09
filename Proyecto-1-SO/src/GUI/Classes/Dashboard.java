@@ -4,12 +4,8 @@
  */
 package GUI.Classes;
 
-import FileFunctions.FileFunctions;
-import Helpers.HelpersFunctions;
-import MainClasses.Employee;
 import MainPackage.App;
 import java.awt.Point;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import javax.sound.sampled.AudioInputStream;
@@ -17,50 +13,56 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.JOptionPane;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+import java.awt.BasicStroke;
+import java.awt.Color;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
+import javax.swing.Timer;
+import org.jfree.chart.plot.PlotOrientation;
 
 /**
  *
- * @author Erika A. Hernández Z.
+ * @author Erika Hernández
  */
 public class Dashboard extends javax.swing.JFrame {
 
     private Point initialClick;
     private final App app = App.getInstance();
-    private int maxEmployees;
-    private int actualEmployees;
-    private static Dashboard nickelodeon;
-    private HelpersFunctions helper = new HelpersFunctions();
-    private FileFunctions filefunctions = new FileFunctions();
-    private File selectedFile = app.getSelectedFile();
+    private XYSeries seriesNickelodeon;
+    private XYSeries seriesCartoonNetwork;
+    private Timer updateTimer;
+    private static Dashboard instance;
 
+    /**
+     * Obtiene la instancia única de Dashboard. Si no existe, la crea. Si
+     * existe, retorna la existente.
+     *
+     * @return la instancia única de Dashboard.
+     */
     public static synchronized Dashboard getInstance() {
-        if (nickelodeon == null) {
-            nickelodeon = new Dashboard();
+        if (instance == null) {
+            instance = new Dashboard();
         }
-        return nickelodeon;
+        return instance;
     }
 
+    /**
+     * Constructor privado para prevenir la instanciación.
+     */
     public Dashboard() {
-        try {
-            // Código para el Look and Feel
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        initializeValues();
-
+        JPanelJChart.setLayout(new java.awt.BorderLayout());
+        JPanelJChart.add(app.getChartManager().getChartPanel(), java.awt.BorderLayout.CENTER);
+        JPanelJChart.validate();
         this.start();
     }
 
@@ -75,7 +77,17 @@ public class Dashboard extends javax.swing.JFrame {
                         SwingUtilities.invokeLater(new Runnable() {
                             @Override
                             public void run() {
-                                // Aquí van tus actualizaciones de la UI
+
+                                profit1.setText(formatNumberAsK((int) app.getCartoonNetwork().getEarning() - (int) app.getNickelodeon().getTotalCost()));
+                                cost1.setText(formatNumberAsK((int) app.getCartoonNetwork().getTotalCost()));
+                                earning1.setText(formatNumberAsK((int) app.getCartoonNetwork().getEarning()));
+
+                                profit.setText(formatNumberAsK((int) app.getNickelodeon().getEarning() - (int) app.getNickelodeon().getTotalCost()));
+                                cost2.setText(formatNumberAsK((int) app.getNickelodeon().getTotalCost()));
+                                earning.setText(formatNumberAsK((int) app.getNickelodeon().getEarning()));
+
+                                totalDays.setText(String.valueOf(app.getCartoonNetwork().getTotalDays()));
+                                currentDeadline.setText(String.valueOf(app.getCartoonNetwork().getRemainingDays()));
 
                             }
                         });
@@ -84,7 +96,6 @@ public class Dashboard extends javax.swing.JFrame {
                         Thread.sleep(app.getDayDuration() / 48);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
-                        // Opcionalmente, podrías salir del bucle si el hilo es interrumpido
                         break;
                     }
                 }
@@ -95,32 +106,15 @@ public class Dashboard extends javax.swing.JFrame {
         updateThread.start();
     }
 
-    private void initializeValues() {
-        if (this.app.getNickelodeon() != null) {
+    public String formatNumberAsK(int number) {
+        // Se onverte el número a miles
+        double thousands = number / 1000.0;
 
-        }
-    }
+        // Se redondea a dos dígitos significativos
+        double rounded = Math.round(thousands * 100.0) / 100.0;
 
-    private int countNonNullEmployees(Employee[] employees) {
-        int count = 0;
-        for (Employee employee : employees) {
-            if (employee != null) {
-                count++;
-            }
-        }
-        return count;
-    }
-
-    private void cartoonPlayMusic(String path) {
-        try {
-            URL url = this.getClass().getResource(path);
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioIn);
-            clip.start();
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-            e.printStackTrace();
-        }
+        // Se convierte a cadena y se añade 'K'
+        return rounded + "K";
     }
 
     /**
@@ -154,9 +148,34 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         exit = new javax.swing.JLabel();
+        driveTitle = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        JPanelJChart = new javax.swing.JPanel();
+        driveTitle9 = new javax.swing.JLabel();
+        driveTitle10 = new javax.swing.JLabel();
+        currentDeadline = new javax.swing.JTextField();
+        earning = new javax.swing.JTextField();
+        profit = new javax.swing.JTextField();
+        driveTitle17 = new javax.swing.JLabel();
+        driveTitle11 = new javax.swing.JLabel();
+        driveTitle12 = new javax.swing.JLabel();
+        driveTitle13 = new javax.swing.JLabel();
+        cost1 = new javax.swing.JTextField();
+        driveTitle14 = new javax.swing.JLabel();
+        earning1 = new javax.swing.JTextField();
+        driveTitle18 = new javax.swing.JLabel();
+        profit1 = new javax.swing.JTextField();
+        driveTitle15 = new javax.swing.JLabel();
+        driveTitle16 = new javax.swing.JLabel();
+        cost2 = new javax.swing.JTextField();
+        totalDays = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -164,6 +183,7 @@ public class Dashboard extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1130, 720));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         SidePanel.setBackground(new java.awt.Color(34, 46, 60));
@@ -178,6 +198,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         icono1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Montserrat", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Inicio");
@@ -232,10 +253,10 @@ public class Dashboard extends javax.swing.JFrame {
             btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_nuevo_pedidoLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel13)
+                .addContainerGap(171, Short.MAX_VALUE))
         );
         btn_nuevo_pedidoLayout.setVerticalGroup(
             btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,10 +299,10 @@ public class Dashboard extends javax.swing.JFrame {
             btn_nueva_rutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_nueva_rutaLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(icono3)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         btn_nueva_rutaLayout.setVerticalGroup(
             btn_nueva_rutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,7 +311,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(btn_nueva_rutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icono3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         SidePanel.add(btn_nueva_ruta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 330, 60));
@@ -311,7 +332,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Montserrat", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Configuración");
+        jLabel7.setText("Parámetros");
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel7MouseClicked(evt);
@@ -324,10 +345,10 @@ public class Dashboard extends javax.swing.JFrame {
             btn_nuevo_almacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_nuevo_almacenLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(icono4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(icono4)
+                .addContainerGap(161, Short.MAX_VALUE))
         );
         btn_nuevo_almacenLayout.setVerticalGroup(
             btn_nuevo_almacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,9 +393,9 @@ public class Dashboard extends javax.swing.JFrame {
             btn_reporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_reporteLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(icono5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(icono5)
                 .addContainerGap(203, Short.MAX_VALUE))
         );
         btn_reporteLayout.setVerticalGroup(
@@ -418,9 +439,9 @@ public class Dashboard extends javax.swing.JFrame {
             btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_cargar_guardarLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(icono7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(icono7)
                 .addContainerGap(152, Short.MAX_VALUE))
         );
         btn_cargar_guardarLayout.setVerticalGroup(
@@ -442,8 +463,12 @@ public class Dashboard extends javax.swing.JFrame {
 
         jSeparator1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         SidePanel.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 220, 26));
+        SidePanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 280, 80));
 
-        jPanel1.add(SidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 730));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Assets/AS.png"))); // NOI18N
+        SidePanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+
+        jPanel1.add(SidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 720));
 
         jPanel2.setBackground(new java.awt.Color(34, 46, 60));
 
@@ -484,147 +509,350 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        driveTitle.setFont(new java.awt.Font("Montserrat", 1, 48)); // NOI18N
+        driveTitle.setForeground(new java.awt.Color(255, 255, 255));
+        driveTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        driveTitle.setText("Visualización de estadísticas ");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(driveTitle)
+                .addGap(63, 63, 63))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addComponent(driveTitle)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1130, 40));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1130, 190));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, -1, -1));
+
+        javax.swing.GroupLayout JPanelJChartLayout = new javax.swing.GroupLayout(JPanelJChart);
+        JPanelJChart.setLayout(JPanelJChartLayout);
+        JPanelJChartLayout.setHorizontalGroup(
+            JPanelJChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 750, Short.MAX_VALUE)
+        );
+        JPanelJChartLayout.setVerticalGroup(
+            JPanelJChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 320, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(JPanelJChart, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 750, 320));
+
+        driveTitle9.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle9.setForeground(java.awt.Color.black);
+        driveTitle9.setText("CARTOON NETWORK");
+        driveTitle9.setFocusable(false);
+        jPanel1.add(driveTitle9, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 590, -1, -1));
+
+        driveTitle10.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle10.setForeground(java.awt.Color.black);
+        driveTitle10.setText("Costos operativos:");
+        driveTitle10.setFocusable(false);
+        jPanel1.add(driveTitle10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 630, -1, -1));
+
+        currentDeadline.setBackground(new java.awt.Color(204, 204, 204));
+        currentDeadline.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        currentDeadline.setForeground(java.awt.Color.black);
+        currentDeadline.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        currentDeadline.setText("0");
+        currentDeadline.setBorder(null);
+        currentDeadline.setFocusable(false);
+        currentDeadline.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                currentDeadlineActionPerformed(evt);
+            }
+        });
+        jPanel1.add(currentDeadline, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 210, 100, -1));
+
+        earning.setBackground(new java.awt.Color(204, 204, 204));
+        earning.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        earning.setForeground(java.awt.Color.black);
+        earning.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        earning.setText("0");
+        earning.setBorder(null);
+        earning.setFocusable(false);
+        earning.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                earningActionPerformed(evt);
+            }
+        });
+        jPanel1.add(earning, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 660, 110, -1));
+
+        profit.setBackground(new java.awt.Color(204, 204, 204));
+        profit.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        profit.setForeground(java.awt.Color.black);
+        profit.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        profit.setText("0");
+        profit.setBorder(null);
+        profit.setFocusable(false);
+        profit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                profitMouseClicked(evt);
+            }
+        });
+        profit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                profitActionPerformed(evt);
+            }
+        });
+        jPanel1.add(profit, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 690, 110, -1));
+
+        driveTitle17.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle17.setForeground(java.awt.Color.black);
+        driveTitle17.setText("Ganancia neta:");
+        driveTitle17.setFocusable(false);
+        jPanel1.add(driveTitle17, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 690, -1, -1));
+
+        driveTitle11.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle11.setForeground(java.awt.Color.black);
+        driveTitle11.setText("Ganancia bruta:");
+        driveTitle11.setFocusable(false);
+        jPanel1.add(driveTitle11, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 660, -1, -1));
+
+        driveTitle12.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle12.setForeground(java.awt.Color.black);
+        driveTitle12.setText("DÍAS PARA LA ENTREGA: ");
+        driveTitle12.setFocusable(false);
+        jPanel1.add(driveTitle12, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 210, -1, -1));
+
+        driveTitle13.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle13.setForeground(java.awt.Color.black);
+        driveTitle13.setText("Ganancia bruta:");
+        driveTitle13.setFocusable(false);
+        jPanel1.add(driveTitle13, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 660, -1, -1));
+
+        cost1.setBackground(new java.awt.Color(204, 204, 204));
+        cost1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        cost1.setForeground(java.awt.Color.black);
+        cost1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        cost1.setText("0");
+        cost1.setBorder(null);
+        cost1.setFocusable(false);
+        cost1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cost1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cost1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 630, 100, -1));
+
+        driveTitle14.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle14.setForeground(java.awt.Color.black);
+        driveTitle14.setText("Costos operativos:");
+        driveTitle14.setFocusable(false);
+        jPanel1.add(driveTitle14, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 630, -1, -1));
+
+        earning1.setBackground(new java.awt.Color(204, 204, 204));
+        earning1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        earning1.setForeground(java.awt.Color.black);
+        earning1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        earning1.setText("0");
+        earning1.setBorder(null);
+        earning1.setFocusable(false);
+        earning1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                earning1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(earning1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 660, 100, -1));
+
+        driveTitle18.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle18.setForeground(java.awt.Color.black);
+        driveTitle18.setText("Ganancia neta:");
+        driveTitle18.setFocusable(false);
+        jPanel1.add(driveTitle18, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 690, -1, -1));
+
+        profit1.setBackground(new java.awt.Color(204, 204, 204));
+        profit1.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        profit1.setForeground(java.awt.Color.black);
+        profit1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        profit1.setText("0");
+        profit1.setBorder(null);
+        profit1.setFocusable(false);
+        profit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                profit1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(profit1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 690, 100, -1));
+
+        driveTitle15.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle15.setForeground(java.awt.Color.black);
+        driveTitle15.setText("NICKELODEON");
+        driveTitle15.setFocusable(false);
+        jPanel1.add(driveTitle15, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 590, -1, -1));
+
+        driveTitle16.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        driveTitle16.setForeground(java.awt.Color.black);
+        driveTitle16.setText("DÍAS: ");
+        driveTitle16.setFocusable(false);
+        jPanel1.add(driveTitle16, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, -1, -1));
+
+        cost2.setBackground(new java.awt.Color(204, 204, 204));
+        cost2.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        cost2.setForeground(java.awt.Color.black);
+        cost2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        cost2.setText("0");
+        cost2.setBorder(null);
+        cost2.setFocusable(false);
+        cost2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cost2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cost2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 630, 110, -1));
+
+        totalDays.setBackground(new java.awt.Color(204, 204, 204));
+        totalDays.setFont(new java.awt.Font("Montserrat", 1, 16)); // NOI18N
+        totalDays.setForeground(java.awt.Color.black);
+        totalDays.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        totalDays.setText("0");
+        totalDays.setBorder(null);
+        totalDays.setFocusable(false);
+        totalDays.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalDaysActionPerformed(evt);
+            }
+        });
+        jPanel1.add(totalDays, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, 100, -1));
+
+        jPanel3.setBackground(new java.awt.Color(243, 168, 71));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 340, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 130, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 590, 340, 130));
+
+        jPanel5.setBackground(new java.awt.Color(243, 168, 71));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 340, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 130, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 590, -1, 130));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1142, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_cargar_guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cargar_guardarMouseClicked
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
-        Nickelodeon v3 = new Nickelodeon();
-        v3.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btn_cargar_guardarMouseClicked
+//        Dashboard v4 = new Dashboard();
+//        v4.setVisible(true);
+//        this.dispose();
+    }//GEN-LAST:event_jLabel5MouseClicked
 
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+    private void btn_nuevo_pedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_pedidoMouseClicked
         // TODO add your handling code here:
-        Nickelodeon v3 = new Nickelodeon();
-        v3.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jLabel10MouseClicked
-
-    private void icono7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono7MouseClicked
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_icono7MouseClicked
-
-    private void btn_reporteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_reporteMouseClicked
-        // TODO add your handling code here:
-        try {
-            this.filefunctions.write(this.selectedFile);
-            JOptionPane.showMessageDialog(this, "El archivo ha sido guardado exitosamente!");
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al escribir el archivo");
-        }
-    }//GEN-LAST:event_btn_reporteMouseClicked
-
-    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-        // TODO add your handling code here:
-        try {
-            this.filefunctions.write(this.selectedFile);
-            JOptionPane.showMessageDialog(this, "El archivo ha sido guardado exitosamente!");
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al escribir el archivo");
-        }
-    }//GEN-LAST:event_jLabel8MouseClicked
-
-    private void icono5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono5MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_icono5MouseClicked
-
-    private void btn_nuevo_almacenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_almacenMouseClicked
-        // TODO add your handling code here:
-        ConfigParams v2 = new ConfigParams();
-        v2.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btn_nuevo_almacenMouseClicked
-
-    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        // TODO add your handling code here:
-        ConfigParams v2 = new ConfigParams();
-        v2.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jLabel7MouseClicked
-
-    private void icono4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono4MouseClicked
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_icono4MouseClicked
-
-    private void btn_nueva_rutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nueva_rutaMouseClicked
-        // TODO add your handling code here:
-        CartoonNetwork v3 = new CartoonNetwork();
-        v3.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btn_nueva_rutaMouseClicked
-
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        // TODO add your handling code here:
-        CartoonNetwork v3 = new CartoonNetwork();
-        v3.setVisible(true);
-        this.setVisible(false);
-
-    }//GEN-LAST:event_jLabel6MouseClicked
+//        Dashboard v4 = new Dashboard();
+//        v4.setVisible(true);
+//        this.dispose();
+    }//GEN-LAST:event_btn_nuevo_pedidoMouseClicked
 
     private void icono3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono3MouseClicked
         // TODO add your handling code here:
 
     }//GEN-LAST:event_icono3MouseClicked
 
-    private void btn_nuevo_pedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_pedidoMouseClicked
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+        CartoonNetwork v2 = new CartoonNetwork();
+        v2.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void cartoonPlayMusic(String path) {
+        try {
+            URL url = this.getClass().getResource(path);
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
+    private void btn_nueva_rutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nueva_rutaMouseClicked
+        // TODO add your handling code here:
+        CartoonNetwork v2 = new CartoonNetwork();
+        v2.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_nueva_rutaMouseClicked
+
+    private void icono4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono4MouseClicked
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_btn_nuevo_pedidoMouseClicked
+    }//GEN-LAST:event_icono4MouseClicked
 
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+        ConfigParams v3 = new ConfigParams();
+        v3.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void btn_nuevo_almacenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_almacenMouseClicked
+        // TODO add your handling code here:
+        ConfigParams v3 = new ConfigParams();
+        v3.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_nuevo_almacenMouseClicked
+
+    private void icono7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono7MouseClicked
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_jLabel5MouseClicked
+    }//GEN-LAST:event_icono7MouseClicked
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
-        Home v1 = new Home();
+        Nickelodeon v1 = new Nickelodeon();
         v1.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jLabel4MouseClicked
+    }//GEN-LAST:event_jLabel10MouseClicked
 
-    private void btn_InicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_InicioMouseClicked
+    private void btn_cargar_guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cargar_guardarMouseClicked
         // TODO add your handling code here:
-        Home v1 = new Home();
+        Nickelodeon v1 = new Nickelodeon();
         v1.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btn_InicioMouseClicked
-
-    private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
-        // TODO add your handling code here:
-        initialClick = evt.getPoint();
-    }//GEN-LAST:event_jPanel4MousePressed
+    }//GEN-LAST:event_btn_cargar_guardarMouseClicked
 
     private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
         // TODO add your handling code here:
@@ -633,10 +861,80 @@ public class Dashboard extends javax.swing.JFrame {
         setLocation(x, y);
     }//GEN-LAST:event_jPanel4MouseDragged
 
+    private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
+        // TODO add your handling code here:
+        initialClick = evt.getPoint();
+    }//GEN-LAST:event_jPanel4MousePressed
+
     private void exitMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMousePressed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_exitMousePressed
+
+    private void btn_reporteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_reporteMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btn_reporteMouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void icono5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono5MouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_icono5MouseClicked
+
+    private void btn_InicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_InicioMouseClicked
+        // TODO add your handling code here:
+        Home v1 = new Home();
+        v1.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_InicioMouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        Home v1 = new Home();
+        v1.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void currentDeadlineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentDeadlineActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_currentDeadlineActionPerformed
+
+    private void earningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_earningActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_earningActionPerformed
+
+    private void profitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_profitActionPerformed
+
+    private void cost1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cost1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cost1ActionPerformed
+
+    private void earning1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_earning1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_earning1ActionPerformed
+
+    private void profit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profit1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_profit1ActionPerformed
+
+    private void cost2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cost2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cost2ActionPerformed
+
+    private void totalDaysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalDaysActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalDaysActionPerformed
+
+    private void profitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profitMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_profitMouseClicked
 
     /**
      * @param args the command line arguments
@@ -665,22 +963,19 @@ public class Dashboard extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Dashboard().setVisible(true);
+
+//                              
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel JPanelJChart;
     private javax.swing.JPanel SidePanel;
     private javax.swing.JPanel btn_Inicio;
     private javax.swing.JPanel btn_cargar_guardar;
@@ -688,6 +983,22 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel btn_nuevo_almacen;
     private javax.swing.JPanel btn_nuevo_pedido;
     private javax.swing.JPanel btn_reporte;
+    private javax.swing.JTextField cost1;
+    private javax.swing.JTextField cost2;
+    private javax.swing.JTextField currentDeadline;
+    private javax.swing.JLabel driveTitle;
+    private javax.swing.JLabel driveTitle10;
+    private javax.swing.JLabel driveTitle11;
+    private javax.swing.JLabel driveTitle12;
+    private javax.swing.JLabel driveTitle13;
+    private javax.swing.JLabel driveTitle14;
+    private javax.swing.JLabel driveTitle15;
+    private javax.swing.JLabel driveTitle16;
+    private javax.swing.JLabel driveTitle17;
+    private javax.swing.JLabel driveTitle18;
+    private javax.swing.JLabel driveTitle9;
+    private javax.swing.JTextField earning;
+    private javax.swing.JTextField earning1;
     private javax.swing.JLabel exit;
     private javax.swing.JLabel icono1;
     private javax.swing.JLabel icono3;
@@ -696,7 +1007,10 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel icono7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -704,7 +1018,12 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField profit;
+    private javax.swing.JTextField profit1;
+    private javax.swing.JTextField totalDays;
     // End of variables declaration//GEN-END:variables
 }
